@@ -1,0 +1,519 @@
+#F3D OpenGL 2016 FratisGraphics
+
+#Some of this code is from the University of Arizona and Rosetta Code.
+#Please contact me if you would like specifics of this.
+#shawnfratis@gmail.com
+
+#This version contains no mouse events. Keyboard commands only, though I am reconsidering this. :)
+
+#This version features only OpenGL
+
+###############################################################
+
+link wopen
+link xcompat
+link color
+link graphics
+link numbers
+link options
+link button
+link dsetup
+link evmux
+link ivalue 
+link usage
+link strings
+
+################################
+
+procedure main()
+
+&window := open("win", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
+     
+  #     inst()
+  
+        repeat {
+
+w := Active() | stop("Active fails")
+
+################################
+#not presently used - can be modified to re-introduce mouse events.
+   
+       case e := Event(w) of {
+
+&lpress | &mpress | &rpress: {
+	      x1 := &x
+	      y1 := &y
+	      x2 := y2 := &null
+	  }
+
+################################
+#begin basic keyboard commands.
+
+#this path is currently set for Windows.
+#You will have to modify it for other platforms. 
+
+"\z": {
+	 
+        WriteImage("C:/fg01.png")
+}
+"\q": {
+	    f01()
+              }
+"\g": {
+            Eye(0,0,0, 0,0,-1, 0,1,0)
+              }
+"\h": {
+	      Eye(.02,0,0, 0,0,-1, 0,1,0)
+
+              }
+"\j": {
+	      Eye(.04,0,0, 0,0,-1, 0,1,0)
+
+              }
+"\G": {
+	      Eye(-.02,0,0, 0,0,-1, 0,1,0)
+              
+              }
+"\H": {
+	      Eye(-.04,0,0, 0,0,-1, 0,1,0)
+              
+              }
+"\J": {
+	      Eye(-.08,0,0, 0,0,-1, 0,1,0)
+              
+              }
+"\$": {      
+              main()
+	         }
+"\%": {    
+              Refresh()
+              }
+"\[": {    
+              glskysphere01()
+
+              }
+"\]": {       
+              glgroundplane01()
+
+              }
+"\s": {  
+             glskyplane01()
+              }
+"\/": {  
+              EraseArea(100,100,1000,700)
+              }
+"\@": {
+              exit()
+              }
+"\=": { 
+               inst()
+              }
+"\.": { 
+              Notice("Items with x,y,z inputs:cube01 thru cube07,place,inpcylinder,inplane,col01,bp01,lwfz01,lwfx01,inpcube(17 params),octinput(10 params)  All others:http,ranhill,angle01-04,draw")
+              }
+"\,": { 
+              openImage()
+              }
+"\\": {      
+              inputprompt()
+              }
+"\(": { 
+              objex2()
+             
+	}
+    }
+  }
+
+WDone()
+
+end
+
+######################################################################################################
+
+procedure inst()
+
+WAttrib("dx=1", "dy=1")
+
+Fg("green")
+
+        WWrite("Welcome to FDraw v1.0")
+        WWrite("qwyuiopk are line widths. asghjkHJK are colors. ; is annotations. z is write image. $ is decimal.01.") 
+        WWrite("% is decimal02. [ is mesh. ] is erase everything. ? brings these words back. ")
+        WWrite("- is clock. ' is grid. / is erase grid area. = is in-depth inst. @ is quit.")
+        WWrite("_ is WF chart01. + is WF chart 02. { is WF chart 03. } is WF chart 04.")  
+        WWrite("\ is object input (. for guide) , is input image. ( is beam calc. ! and ~ are help grids.")
+
+end
+
+
+
+########################################################
+#straighten this up a bit
+
+procedure textin01()
+
+        WAttrib("dx=1", "dy=1")
+
+        Fg("green")
+
+        WAttrib("dx=1", "dy=1")
+        WWrite("annotation:")
+        s := WRead()
+        WWrite("note:",image(s))
+#WDone()
+
+end
+
+########################################################
+#open image
+
+procedure openImage()
+
+        ReadImage("C:/fg01.png",1,1)
+
+end
+
+########################################################
+
+procedure inputCube01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglcube01(ipx,ipy,ipz,ips)
+
+end
+
+################################################################
+procedure inputCyl01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4 
+      ipq := s5  
+      ipa := s6   
+   
+  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      s7 := WRead()
+      s8 := WRead()
+      s9 := WRead()
+      s10 := WRead()
+      s11 := WRead()
+      s12 := WRead()
+        
+      px  := s1
+      py  := s2
+      pz  := s3
+      pxx := s4
+      pyy := s5 
+      pzz := s6  
+      pxxx := s7
+      pyyy := s8
+      pzzz := s9
+      pxxxx := s10
+      pyyyy := s11
+      pzzzz := s12           
+   
+  inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+end
+
+
+#################################################
+procedure inputprompt()
+ 
+        s1 := WRead()
+
+        #WAttrib("dx=1", "dy=1")
+
+        ss1 :=( "cube01")
+        ss2 :=( "plane01")
+        ss3 :=( "cyl01")
+        ss4 :=( "place")
+        ss5 :=( "cube02")
+        ss6 :=( "cube03")
+        ss7 :=( "cube05")
+        ss8 :=( "cube06")
+        ss9 :=( "cube07")
+        ss10 :=( "inpcube")
+        ss11 :=( "inpcylinder")
+        ss12 :=( "inplane")
+        ss13 :=( "octinput")
+        ss14 :=( "angle01")
+        ss15 :=( "angle02")
+        ss16 :=( "angle03")
+        ss17 :=( "angle04")
+        ss18 :=( "http")
+        ss19 :=( "col01")
+        ss20 :=( "bp01")
+        ss21 :=( "lwfz01")
+        ss22 :=( "lwfx01")
+        ss23 :=("draw")
+      
+
+        if s1== ss1 then inputCube01() 
+        else
+        if s1== ss2 then inputPlane01() 
+        else
+        if s1== ss3 then inputCyl01() 
+        else
+        if s1== ss4 then place() 
+        else
+        if s1== ss5 then inputCube02() 
+        else
+        if s1== ss6 then inputCube03() 
+        else
+        if s1== ss7 then inputCube05() 
+        else
+        if s1== ss8 then inputCube06() 
+        else
+        if s1== ss9 then inputCube07() 
+        else
+        if s1== ss10 then inpcube01() 
+        else
+        if s1== ss11 then inputcylinder01() 
+        else
+        if s1== ss12 then inputplane01() 
+        else
+        if s1== ss13 then octinput01() 
+        else
+        if s1== ss14 then angle01() 
+        else
+        if s1== ss15 then angle02() 
+        else
+        if s1== ss16 then angle03() 
+        else
+        if s1== ss17 then angle04()
+        else
+        if s1== ss18 then inputHttp()
+        else
+        if s1== ss19 then inputCol01() 
+        else
+        if s1== ss20 then inputBp01() 
+        else
+        if s1== ss21 then inputLwfz01() 
+        else
+        if s1== ss22 then inputLwfx01()
+        else
+        if s1== ss23 then inputdraw01() 
+     
+
+    return
+
+end
+
+#############end input cubes etc#################
+##############Begin OpenGL 3D##############################
+
+procedure f01()
+
+w := open("ambient.icn","gl", "bg=black", "size=100,100")
+WAttrib("light0=on, ambient blue-green","fg=specular white")
+#DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
+#DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
+#DrawSphere(w,0.0, 0.59, -2.2, 0.3)
+
+Fg("red")
+DrawCylinder(-1,-1,-4,2,.5,.5)
+
+Fg("blue")
+DrawSphere(1,0.5,-5,.5)
+
+Fg("yellow")
+DrawCube(2,0.5,-5,.5)
+
+Fg("green")
+FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
+
+Refresh()
+
+end
+
+##################################################
+
+procedure inpgleye01()
+
+Eye(1.9,0,4, 1,0,0, 0,.5,0)
+
+end
+
+##################################################
+
+procedure inpglcube01(ipx,ipy,ipz,ips)
+
+Fg("red")
+DrawCube(ipx,ipy,ipz,ips)
+
+end
+
+##################################################
+
+procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+Fg("red")
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+##################################################
+
+procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+Fg("red")
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+
+procedure glskysphere01()
+
+Fg("red")
+
+x := -1
+y := 0
+z := -5
+r := 25
+
+DrawSphere(x,y,z,r)
+
+end
+
+##################################################
+
+procedure glgroundplane01()
+
+Fg("red")
+FillPolygon(-1.5,-1,-5,2,-1,-5,3,1,5,3,1,3)
+
+end
+
+##################################################
+
+procedure glskyplane01()
+
+Fg("red")
+FillPolygon(-29,.3,-49,29,.3,-49,29,.3,1,-29,.3,1)
+
+end
+
+########################################################
+
+procedure objex()
+#&window := open("textured.icn","gl","bg=black","size=700,700")
+#Eye(xpa,ypa,zpa, xra,yra,zra, xsa,ysa,zsa)
+# Draw the floor of the room
+WAttrib("texmode=on", "texture=F:\Shawn\3Dprogcodeanddata\tex01.png")
+FillPolygon(-7.0, -0.9, -14.0, -7.0, -7.0, -14.0,7.0, -7.0, -14.0, 7.0, -0.9, -14.0, 3.5, 0.8, -14.0)
+# Draw the right and left walls
+WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex02.png", "texcoord=0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0")
+FillPolygon(2.0, 4.0, -8.0, 8.3, 8.0, -16.0, 8.3, -1.2, -16.0, 2.0, 0.4, -8.0)
+WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex03.png")
+FillPolygon(2.0, 4.0 ,-8.0, -9.0, 8.0, -16.0, -9.0,-1.2,-16.0, 2.0, 0.4, -8.0)
+# Draw a picture
+WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex03.png", "texcoord=0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0")
+FillPolygon(1.0, 1.2, -3.0, 1.0, 0.7, -3.0, 1.2, 0.5, -2.6, 1.2, 1.0, -2.6)
+# Draw another picture
+WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex04.png", "texcoord=1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0")
+FillPolygon(0.8, 2.0, -9.0, -3.0, 1.6, -9.0, 3.0, 3.9,-9.0, 0.8, 4.0, -9.0)
+# Draw the lamp
+WAttrib("texmode=off")
+PushMatrix()
+Translate(0.7, 0.20, -0.5)
+Fg("emission pale weak yellow")
+PushMatrix()
+Rotate(-5.0, 1.0, 0.0, 0.0)
+Rotate( 5.0, 0.0, 0.0, 1.0)
+DrawCylinder(-0.05, 0.570, -2.0, 0.15, 0.05, 0.17)
+PopMatrix()
+Fg("diffuse grey; emission black")
+PushMatrix()
+Rotate(-5.0, 1.0, 0.0, 0.0)
+Rotate( 6.0, 0.0, 0.0, 1.0)
+DrawCylinder(0.0, 0.0, -2.5, 0.7, 0.035, 0.035)
+PopMatrix()
+PushMatrix()
+Rotate(6.0, 0.0, 0.0, 1.0)
+DrawTorus(-0.02, -0.22, -2.5, 0.03, 0.05)
+PopMatrix()
+PopMatrix()
+# Draw the table
+WAttrib("texcoord=auto", "texmode=on", "texture=F:\Shawn\3Dprogcodeanddata\tex05.png")
+PushMatrix()
+Rotate(-10.0, 1.0, 0.0,0.0)
+DrawCylinder(0.0, 0.2, -2.0, 0.1, 0.3, 0.3)
+PopMatrix()
+PushMatrix()
+Translate(0.0, -0.09, -1.8)
+Rotate(65.0, 1.0, 0.0, 0.0)
+DrawDisk(0.0, 0.0, 0.0, 0.0, 0.29)
+PopMatrix()
+WAttrib("texmode=off", "fg=diffuse weak brown")
+PushMatrix()
+Rotate(-20.0, 1.0, 0.0,0.0)
+DrawCylinder(0.0, 0.2, -2.2, 0.3, 0.1, 0.1)
+PopMatrix()
+WriteImage ("C:/SXX/f02.gif")
+#while (e := Event()) ˜== "q" do write(image(e), ": ", &x, ",", &y)
+while Event() do WriteImage("C:/SXX/f02.gif")
+end
+
+procedure objex2()
+w := open("ambient.icn","gl", "bg=black", "size=400,400")
+WAttrib(w,"light0=on, ambient blue-green","fg=specular white")
+DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
+DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
+DrawSphere(w,0.0, 0.59, -2.2, 0.3)
+x := open("diffuse.icn","gl", "bg=black", "size=400,400")
+WAttrib(x,"light0=on, diffuse blue-green","fg=specular white")
+DrawCylinder(x, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
+DrawTorus(x,0.0, -0.2, -3.5, 0.3, 0.7)
+DrawSphere(x, 0.0, 0.59, -2.2, 0.3)
+y := open("specular.icn","gl", "bg=black", "size=400,400")
+WAttrib(y,"light0=on,specular blue-green","fg=specular white")
+DrawCylinder(y, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
+DrawTorus(y, 0.0, -0.2, -3.5, 0.3, 0.7)
+DrawSphere(y, 0.0, 0.59, -2.2, 0.3)
+z := open("all.icn","gl", "bg=black", "size=400,400")
+WAttrib(z, "light0=on, diffuse blue-green; _
+specular blue-green; ambient blue-green","fg=specular white")
+DrawCylinder(z, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
+DrawTorus(z, 0.0, -0.2, -3.5, 0.3, 0.7)
+DrawSphere(z, 0.0, 0.59, -2.2, 0.3)
+end
+
+#END OF PROGRAM########################################
+
+#####################################################################################################################
+
+
