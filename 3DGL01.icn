@@ -132,6 +132,8 @@ end
 
 procedure inst()
 
+&window := open("win", "gl", "size=400,400", "bg=black") | stop("can't even open window, bro")
+
 WAttrib("dx=1", "dy=1")
 
 Fg("green")
@@ -148,6 +150,7 @@ WWrite("Cube(2,0.5,-5,.5)FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
 end
 
 ########################################################
+
 #straighten this up a bit
 
 procedure textin01()
@@ -355,7 +358,8 @@ end
 procedure f01()
 
 w := open("ambient.icn","gl", "bg=black", "size=100,100")
-WAttrib("light0=on, ambient blue-green","fg=specular white")
+WAttrib("light0=on, ambient yellow-white","fg=specular white")
+#WAttrib("light0=on, ambient blue-green","fg=specular white")
 #DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
 #DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
 #DrawSphere(w,0.0, 0.59, -2.2, 0.3)
@@ -387,8 +391,9 @@ end
 
 ##################################################
 
-procedure inpglsphere01()
+procedure inpglsphere01(ipx,ipy,ipz,ips)
 
+Fg("green")
 DrawSphere(ipx,ipy,ipz,ips)
 
 end
@@ -406,7 +411,7 @@ end
 
 procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
 
-Fg("red")
+Fg("blue")
 DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
 
 end
@@ -415,7 +420,7 @@ end
 
 procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
-Fg("red")
+Fg("orange")
 FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
@@ -510,7 +515,7 @@ Rotate(-20.0, 1.0, 0.0,0.0)
 DrawCylinder(0.0, 0.2, -2.2, 0.3, 0.1, 0.1)
 PopMatrix()
 WriteImage ("C:/SXX/f02.gif")
-#while (e := Event()) ˜== "q" do write(image(e), ": ", &x, ",", &y)
+#while (e := Event()) Â˜== "q" do write(image(e), ": ", &x, ",", &y)
 while Event() do WriteImage("C:/SXX/f02.gif")
 end
 
