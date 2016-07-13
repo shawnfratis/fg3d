@@ -136,16 +136,16 @@ WAttrib("dx=1", "dy=1")
 
 Fg("green")
 
-        WWrite("Welcome to FDraw v1.0")
-        WWrite("qwyuiopk are line widths. asghjkHJK are colors. ; is annotations. z is write image. $ is decimal.01.") 
-        WWrite("% is decimal02. [ is mesh. ] is erase everything. ? brings these words back. ")
-        WWrite("- is clock. ' is grid. / is erase grid area. = is in-depth inst. @ is quit.")
-        WWrite("_ is WF chart01. + is WF chart 02. { is WF chart 03. } is WF chart 04.")  
-        WWrite("\ is object input (. for guide) , is input image. ( is beam calc. ! and ~ are help grids.")
+WWrite("Welcome to 3DGL01")
+WWrite("q is main window. ghj, and GHJ are views") 
+WWrite("[ is skysphere, ] is groundplane, s is skyplane")
+WWrite("\ is input prompt, / is erase all")
+WWrite("cube=x,y,z,size cyl=x,y,z,h,r1,r2 sphere=x,y,z,r")  
+WWrite("plane=x,y,z of 4 corners, %=refresh")
+WWrite("cyl(-1,-1,-4,2,.5,.5)Sphere(1,0.5,-5,.5)")
+WWrite("Cube(2,0.5,-5,.5)FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
 
 end
-
-
 
 ########################################################
 #straighten this up a bit
@@ -170,6 +170,23 @@ end
 procedure openImage()
 
         ReadImage("C:/fg01.png",1,1)
+
+end
+########################################################
+
+procedure inputSphere01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglsphere01(ipx,ipy,ipz,ips)
 
 end
 
@@ -256,19 +273,19 @@ procedure inputprompt()
 
         #WAttrib("dx=1", "dy=1")
 
-        ss1 :=( "cube01")
-        ss2 :=( "plane01")
-        ss3 :=( "cyl01")
+        ss1 :=( "cube")
+        ss2 :=( "plane")
+        ss3 :=( "cyl")
         ss4 :=( "place")
         ss5 :=( "cube02")
         ss6 :=( "cube03")
         ss7 :=( "cube05")
         ss8 :=( "cube06")
         ss9 :=( "cube07")
-        ss10 :=( "inpcube")
-        ss11 :=( "inpcylinder")
-        ss12 :=( "inplane")
-        ss13 :=( "octinput")
+        ss10 :=( "cube01")
+        ss11 :=( "cylinder01")
+        ss12 :=( "plane01")
+        ss13 :=( "sphere")
         ss14 :=( "angle01")
         ss15 :=( "angle02")
         ss16 :=( "angle03")
@@ -305,7 +322,7 @@ procedure inputprompt()
         else
         if s1== ss12 then inputplane01() 
         else
-        if s1== ss13 then octinput01() 
+        if s1== ss13 then inputSphere01() 
         else
         if s1== ss14 then angle01() 
         else
@@ -364,6 +381,15 @@ end
 procedure inpgleye01()
 
 Eye(1.9,0,4, 1,0,0, 0,.5,0)
+
+end
+
+
+##################################################
+
+procedure inpglsphere01()
+
+DrawSphere(ipx,ipy,ipz,ips)
 
 end
 
