@@ -132,7 +132,7 @@ end
 
 procedure inst()
 
-&window := open("win", "gl", "size=400,400", "bg=black") | stop("can't even open window, bro")
+&window := open("win", "gl", "size=800,400", "bg=black") | stop("can't even open window, bro")
 
 WAttrib("dx=1", "dy=1")
 
