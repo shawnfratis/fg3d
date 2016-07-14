@@ -359,19 +359,18 @@ procedure f01()
 
 w := open("ambient.icn","gl", "bg=black", "size=100,100")
 WAttrib("light0=on, ambient yellow-white","fg=specular white")
+
+#for testing
 #WAttrib("light0=on, ambient blue-green","fg=specular white")
 #DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
 #DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
 #DrawSphere(w,0.0, 0.59, -2.2, 0.3)
-
-Fg("red")
-DrawCylinder(-1,-1,-4,2,.5,.5)
-
-Fg("blue")
-DrawSphere(1,0.5,-5,.5)
-
-Fg("yellow")
-DrawCube(2,0.5,-5,.5)
+#Fg("red")
+#DrawCylinder(-1,-1,-4,2,.5,.5)
+#Fg("blue")
+#DrawSphere(1,0.5,-5,.5)
+#Fg("yellow")
+#DrawCube(2,0.5,-5,.5)
 
 Fg("green")
 FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
