@@ -6,7 +6,8 @@
 
 #This version contains no mouse events. Keyboard commands only, though I am reconsidering this. :)
 
-#This version features only OpenGL
+#This version features only OpenGL w/o textures
+#Made in Unicon, with Unicon IDE
 
 ###############################################################
 
@@ -28,9 +29,7 @@ link strings
 procedure main()
 
 &window := open("win", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
-     
-  #     inst()
-  
+      
         repeat {
 
 w := Active() | stop("Active fails")
@@ -49,37 +48,37 @@ w := Active() | stop("Active fails")
 ################################
 #begin basic keyboard commands.
 
-#this path is currently set for Windows.
-#You will have to modify it for other platforms. 
+#Image paths currently set for Windows.
+#You will have to modify it for other platforms or locations. 
 
 "\z": {
 	 
-        WriteImage("C:/fg01.png")
+        WriteImage("C:/Users/HHE3/Desktop/fg01.png")
 }
 "\q": {
-	    f01()
+	      f01()
               }
 "\g": {
             Eye(0,0,0, 0,0,-1, 0,1,0)
               }
 "\h": {
-	      Eye(.02,0,0, 0,0,-1, 0,1,0)
-
-              }
-"\j": {
 	      Eye(.04,0,0, 0,0,-1, 0,1,0)
 
               }
-"\G": {
-	      Eye(-.02,0,0, 0,0,-1, 0,1,0)
-              
+"\j": {
+	      Eye(.08,0,0, 0,0,-1, 0,1,0)
+
               }
-"\H": {
+"\G": {
 	      Eye(-.04,0,0, 0,0,-1, 0,1,0)
               
               }
-"\J": {
+"\H": {
 	      Eye(-.08,0,0, 0,0,-1, 0,1,0)
+              
+              }
+"\J": {
+	      Eye(-.10,0,0, 0,0,-1, 0,1,0)
               
               }
 "\$": {      
@@ -89,27 +88,28 @@ w := Active() | stop("Active fails")
               Refresh()
               }
 "\[": {    
-              glskysphere01()
+              #notused
 
               }
 "\]": {       
-              glgroundplane01()
+              #notused
 
               }
 "\s": {  
-             glskyplane01()
+              #notused
+
               }
 "\/": {  
-              EraseArea(100,100,1000,700)
+              EraseArea()
               }
 "\@": {
               exit()
               }
 "\=": { 
-               inst()
+              inst()
               }
 "\.": { 
-              Notice("Items with x,y,z inputs:cube01 thru cube07,place,inpcylinder,inplane,col01,bp01,lwfz01,lwfx01,inpcube(17 params),octinput(10 params)  All others:http,ranhill,angle01-04,draw")
+              Notice("= for instructions. Save as image (z)")
               }
 "\,": { 
               openImage()
@@ -118,7 +118,7 @@ w := Active() | stop("Active fails")
               inputprompt()
               }
 "\(": { 
-              objex2()
+              #notused
              
 	}
     }
@@ -132,20 +132,19 @@ end
 
 procedure inst()
 
-&window := open("win", "gl", "size=800,400", "bg=black") | stop("can't even open window, bro")
-
 WAttrib("dx=1", "dy=1")
 
 Fg("green")
 
 WWrite("Welcome to 3DGL01")
-WWrite("q is main window. ghj, and GHJ are views") 
-WWrite("[ is skysphere, ] is groundplane, s is skyplane")
+WWrite("q is main window w/plane and light. ghj, and GHJ are views") 
 WWrite("\ is input prompt, / is erase all")
-WWrite("cube=x,y,z,size cyl=x,y,z,h,r1,r2 sphere=x,y,z,r")  
-WWrite("plane=x,y,z of 4 corners, %=refresh")
+WWrite("cube01/02=x,y,z,size cyl01/02=x,y,z,h,r1,r2 sphere01/02=x,y,z,r")  
+WWrite("plane01/02=x,y,z of 4 corners, %=refresh")
+WWrite("Some basic settings:")
 WWrite("cyl(-1,-1,-4,2,.5,.5)Sphere(1,0.5,-5,.5)")
 WWrite("Cube(2,0.5,-5,.5)FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
+WWrite("floor:X=+3/-3,Y=-1,Z=-8,5")
 
 end
 
@@ -163,7 +162,6 @@ procedure textin01()
         WWrite("annotation:")
         s := WRead()
         WWrite("note:",image(s))
-#WDone()
 
 end
 
@@ -172,9 +170,10 @@ end
 
 procedure openImage()
 
-        ReadImage("C:/fg01.png",1,1)
+        ReadImage("C:/Users/HHE3/Desktop/bg01.png",1,1)
 
 end
+########################################################
 ########################################################
 
 procedure inputSphere01()
@@ -268,6 +267,98 @@ procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
 
+########################################################
+
+procedure inputSphere02()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglsphere02(ipx,ipy,ipz,ips)
+
+end
+
+########################################################
+
+procedure inputCube02()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglcube02(ipx,ipy,ipz,ips)
+
+end
+
+################################################################
+procedure inputCyl02()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4 
+      ipq := s5  
+      ipa := s6   
+   
+  inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure inputPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      s7 := WRead()
+      s8 := WRead()
+      s9 := WRead()
+      s10 := WRead()
+      s11 := WRead()
+      s12 := WRead()
+        
+      px  := s1
+      py  := s2
+      pz  := s3
+      pxx := s4
+      pyy := s5 
+      pzz := s6  
+      pxxx := s7
+      pyyy := s8
+      pzzz := s9
+      pxxxx := s10
+      pyyyy := s11
+      pzzzz := s12           
+   
+  inpglplane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+end
 
 #################################################
 procedure inputprompt()
@@ -276,14 +367,14 @@ procedure inputprompt()
 
         #WAttrib("dx=1", "dy=1")
 
-        ss1 :=( "cube")
-        ss2 :=( "plane")
-        ss3 :=( "cyl")
-        ss4 :=( "place")
+        ss1 :=( "cube01")
+        ss2 :=( "plane01")
+        ss3 :=( "cyl01")
+        ss4 :=( "sphere01")
         ss5 :=( "cube02")
-        ss6 :=( "cube03")
-        ss7 :=( "cube05")
-        ss8 :=( "cube06")
+        ss6 :=( "plane02")
+        ss7 :=( "cyl02")
+        ss8 :=( "sphere02")
         ss9 :=( "cube07")
         ss10 :=( "cube01")
         ss11 :=( "cylinder01")
@@ -307,45 +398,45 @@ procedure inputprompt()
         else
         if s1== ss3 then inputCyl01() 
         else
-        if s1== ss4 then place() 
+        if s1== ss4 then inputSphere01() 
         else
         if s1== ss5 then inputCube02() 
         else
-        if s1== ss6 then inputCube03() 
+        if s1== ss6 then inputPlane02() 
         else
-        if s1== ss7 then inputCube05() 
+        if s1== ss7 then inputCyl02() 
         else
-        if s1== ss8 then inputCube06() 
+        if s1== ss8 then inputSphere02() 
         else
-        if s1== ss9 then inputCube07() 
+        if s1== ss9  then notused
         else
-        if s1== ss10 then inpcube01() 
+        if s1== ss10 then notused
         else
-        if s1== ss11 then inputcylinder01() 
+        if s1== ss11 then notused
         else
-        if s1== ss12 then inputplane01() 
+        if s1== ss12 then notused
         else
-        if s1== ss13 then inputSphere01() 
+        if s1== ss13 then notused
         else
-        if s1== ss14 then angle01() 
+        if s1== ss14 then notused
         else
-        if s1== ss15 then angle02() 
+        if s1== ss15 then notused
         else
-        if s1== ss16 then angle03() 
+        if s1== ss16 then notused
         else
-        if s1== ss17 then angle04()
+        if s1== ss17 then notused
         else
-        if s1== ss18 then inputHttp()
+        if s1== ss18 then notused
         else
-        if s1== ss19 then inputCol01() 
+        if s1== ss19 then notused
         else
-        if s1== ss20 then inputBp01() 
+        if s1== ss20 then notused
         else
-        if s1== ss21 then inputLwfz01() 
+        if s1== ss21 then notused 
         else
-        if s1== ss22 then inputLwfx01()
+        if s1== ss22 then notused
         else
-        if s1== ss23 then inputdraw01() 
+        if s1== ss23 then notused 
      
 
     return
@@ -357,10 +448,12 @@ end
 
 procedure f01()
 
-w := open("ambient.icn","gl", "bg=black", "size=100,100")
-WAttrib("light0=on, ambient yellow-white","fg=specular white")
+w := open("scene","gl", "bg=black", "size=100,100")
+WAttrib("light0=on, ambient white","fg=specular white")
+#WAttrib("light0=on, ambient white,fg=specular white,position 0.0,-1,0.0")
 
 #for testing
+#WAttrib("light0=on, ambient  white")
 #WAttrib("light0=on, ambient blue-green","fg=specular white")
 #DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
 #DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
@@ -387,7 +480,7 @@ Eye(1.9,0,4, 1,0,0, 0,.5,0)
 
 end
 
-
+###########################################################
 ##################################################
 
 procedure inpglsphere01(ipx,ipy,ipz,ips)
@@ -425,122 +518,45 @@ FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 end
 
 ##################################################
-
-procedure glskysphere01()
-
-Fg("red")
-
-x := -1
-y := 0
-z := -5
-r := 25
-
-DrawSphere(x,y,z,r)
-
-end
-
-##################################################
-
-procedure glgroundplane01()
-
-Fg("red")
-FillPolygon(-1.5,-1,-5,2,-1,-5,3,1,5,3,1,3)
-
-end
-
-##################################################
-
-procedure glskyplane01()
-
-Fg("red")
-FillPolygon(-29,.3,-49,29,.3,-49,29,.3,1,-29,.3,1)
-
-end
-
 ########################################################
 
-procedure objex()
-#&window := open("textured.icn","gl","bg=black","size=700,700")
-#Eye(xpa,ypa,zpa, xra,yra,zra, xsa,ysa,zsa)
-# Draw the floor of the room
-WAttrib("texmode=on", "texture=F:\Shawn\3Dprogcodeanddata\tex01.png")
-FillPolygon(-7.0, -0.9, -14.0, -7.0, -7.0, -14.0,7.0, -7.0, -14.0, 7.0, -0.9, -14.0, 3.5, 0.8, -14.0)
-# Draw the right and left walls
-WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex02.png", "texcoord=0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0")
-FillPolygon(2.0, 4.0, -8.0, 8.3, 8.0, -16.0, 8.3, -1.2, -16.0, 2.0, 0.4, -8.0)
-WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex03.png")
-FillPolygon(2.0, 4.0 ,-8.0, -9.0, 8.0, -16.0, -9.0,-1.2,-16.0, 2.0, 0.4, -8.0)
-# Draw a picture
-WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex03.png", "texcoord=0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0")
-FillPolygon(1.0, 1.2, -3.0, 1.0, 0.7, -3.0, 1.2, 0.5, -2.6, 1.2, 1.0, -2.6)
-# Draw another picture
-WAttrib("texture=F:\Shawn\3Dprogcodeanddata\tex04.png", "texcoord=1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0")
-FillPolygon(0.8, 2.0, -9.0, -3.0, 1.6, -9.0, 3.0, 3.9,-9.0, 0.8, 4.0, -9.0)
-# Draw the lamp
-WAttrib("texmode=off")
-PushMatrix()
-Translate(0.7, 0.20, -0.5)
-Fg("emission pale weak yellow")
-PushMatrix()
-Rotate(-5.0, 1.0, 0.0, 0.0)
-Rotate( 5.0, 0.0, 0.0, 1.0)
-DrawCylinder(-0.05, 0.570, -2.0, 0.15, 0.05, 0.17)
-PopMatrix()
-Fg("diffuse grey; emission black")
-PushMatrix()
-Rotate(-5.0, 1.0, 0.0, 0.0)
-Rotate( 6.0, 0.0, 0.0, 1.0)
-DrawCylinder(0.0, 0.0, -2.5, 0.7, 0.035, 0.035)
-PopMatrix()
-PushMatrix()
-Rotate(6.0, 0.0, 0.0, 1.0)
-DrawTorus(-0.02, -0.22, -2.5, 0.03, 0.05)
-PopMatrix()
-PopMatrix()
-# Draw the table
-WAttrib("texcoord=auto", "texmode=on", "texture=F:\Shawn\3Dprogcodeanddata\tex05.png")
-PushMatrix()
-Rotate(-10.0, 1.0, 0.0,0.0)
-DrawCylinder(0.0, 0.2, -2.0, 0.1, 0.3, 0.3)
-PopMatrix()
-PushMatrix()
-Translate(0.0, -0.09, -1.8)
-Rotate(65.0, 1.0, 0.0, 0.0)
-DrawDisk(0.0, 0.0, 0.0, 0.0, 0.29)
-PopMatrix()
-WAttrib("texmode=off", "fg=diffuse weak brown")
-PushMatrix()
-Rotate(-20.0, 1.0, 0.0,0.0)
-DrawCylinder(0.0, 0.2, -2.2, 0.3, 0.1, 0.1)
-PopMatrix()
-WriteImage ("C:/SXX/f02.gif")
-#while (e := Event()) == "q" do write(image(e), ": ", &x, ",", &y)
-while Event() do WriteImage("C:/SXX/f02.gif")
+procedure inpglsphere02(ipx,ipy,ipz,ips)
+
+Fg("yellow")
+DrawSphere(ipx,ipy,ipz,ips)
+
 end
 
-procedure objex2()
-w := open("ambient.icn","gl", "bg=black", "size=400,400")
-WAttrib(w,"light0=on, ambient blue-green","fg=specular white")
-DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
-DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
-DrawSphere(w,0.0, 0.59, -2.2, 0.3)
-x := open("diffuse.icn","gl", "bg=black", "size=400,400")
-WAttrib(x,"light0=on, diffuse blue-green","fg=specular white")
-DrawCylinder(x, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
-DrawTorus(x,0.0, -0.2, -3.5, 0.3, 0.7)
-DrawSphere(x, 0.0, 0.59, -2.2, 0.3)
-y := open("specular.icn","gl", "bg=black", "size=400,400")
-WAttrib(y,"light0=on,specular blue-green","fg=specular white")
-DrawCylinder(y, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
-DrawTorus(y, 0.0, -0.2, -3.5, 0.3, 0.7)
-DrawSphere(y, 0.0, 0.59, -2.2, 0.3)
-z := open("all.icn","gl", "bg=black", "size=400,400")
-WAttrib(z, "light0=on, diffuse blue-green; _
-specular blue-green; ambient blue-green","fg=specular white")
-DrawCylinder(z, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
-DrawTorus(z, 0.0, -0.2, -3.5, 0.3, 0.7)
-DrawSphere(z, 0.0, 0.59, -2.2, 0.3)
+##################################################
+
+procedure inpglcube02(ipx,ipy,ipz,ips)
+
+Fg("grey")
+DrawCube(ipx,ipy,ipz,ips)
+
 end
+
+##################################################
+
+procedure inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
+
+Fg("orange")
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+##################################################
+
+procedure inpglplane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+Fg("magenta")
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+########################################################
+
 
 #END OF PROGRAM########################################
 
