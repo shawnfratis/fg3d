@@ -88,7 +88,7 @@ w := Active() | stop("Active fails")
               Refresh()
               }
 "\[": {    
-              #notused
+             #notused
 
               }
 "\]": {       
@@ -145,6 +145,7 @@ WWrite("Some basic settings:")
 WWrite("cyl(-1,-1,-4,2,.5,.5)Sphere(1,0.5,-5,.5)")
 WWrite("Cube(2,0.5,-5,.5)FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
 WWrite("floor:X=+3/-3,Y=-1,Z=-8,5")
+WWrite("rcube01 = random displacement")
 
 end
 
@@ -360,6 +361,25 @@ procedure inputPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
 
+###############################################
+#expiremental
+
+procedure inputRCube01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpRglcube01(ipx,ipy,ipz,ips)
+
+end
+
 #################################################
 procedure inputprompt()
  
@@ -375,21 +395,21 @@ procedure inputprompt()
         ss6 :=( "plane02")
         ss7 :=( "cyl02")
         ss8 :=( "sphere02")
-        ss9 :=( "cube07")
-        ss10 :=( "cube01")
-        ss11 :=( "cylinder01")
-        ss12 :=( "plane01")
-        ss13 :=( "sphere")
-        ss14 :=( "angle01")
-        ss15 :=( "angle02")
-        ss16 :=( "angle03")
-        ss17 :=( "angle04")
-        ss18 :=( "http")
-        ss19 :=( "col01")
-        ss20 :=( "bp01")
-        ss21 :=( "lwfz01")
-        ss22 :=( "lwfx01")
-        ss23 :=("draw")
+        ss9 :=( "rcube01")
+        ss10 :=( "notused")
+        ss11 :=( "notused")
+        ss12 :=( "notused")
+        ss13 :=( "notused")
+        ss14 :=( "notused")
+        ss15 :=( "notused")
+        ss16 :=( "notused")
+        ss17 :=( "notused")
+        ss18 :=( "notusedp")
+        ss19 :=( "notused")
+        ss20 :=( "notused")
+        ss21 :=( "notused")
+        ss22 :=( "notused")
+        ss23 :=( "notused")
       
 
         if s1== ss1 then inputCube01() 
@@ -408,7 +428,7 @@ procedure inputprompt()
         else
         if s1== ss8 then inputSphere02() 
         else
-        if s1== ss9  then notused
+        if s1== ss9  then inputRCube01()
         else
         if s1== ss10 then notused
         else
@@ -469,14 +489,6 @@ Fg("green")
 FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
 
 Refresh()
-
-end
-
-##################################################
-
-procedure inpgleye01()
-
-Eye(1.9,0,4, 1,0,0, 0,.5,0)
 
 end
 
@@ -556,6 +568,38 @@ end
 
 ##################################################
 ########################################################
+##################################################
+#following are expiremental
+
+procedure inpgleye01()
+
+Eye(1.9,0,4, 1,0,0, 0,.5,0)
+
+end
+
+#####################################################
+
+procedure inpRglcube01(ipx,ipy,ipz,ips)
+
+#ipxx := ?1
+#ipyy := ?1
+#ipzz := ?1
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+end
+
+############################################################
 
 
 #END OF PROGRAM########################################
