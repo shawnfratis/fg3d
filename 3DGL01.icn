@@ -1,27 +1,40 @@
 #F3D OpenGL 2016 FratisGraphics
 
 #Some of this code is from the University of Arizona and Rosetta Code.
+
 #Please contact me if you would like specifics of this.
 #shawnfratis@gmail.com
-
-#This version contains no mouse events. Keyboard commands only, though I am reconsidering this. :)
 
 #This version features only OpenGL w/o textures
 #Made in Unicon, with Unicon IDE
 
+#Things to do:
+#finish mesh - expand - breakout as separate matrice for others
+#Z-axis color desaturate - fake fog - distance effect
+#random displacement - octrees - voxels - cities
+#mouse navigation - better keyboard nav
+#background image import
+#fix image export - image sequence export?
+#color - texture parameters
+#input language - math
+#texture maps - generators
+#gui - on screen controls
+#bring in stuff from old icon:terrain gen,etc etc.
+#animation
+
 ###############################################################
 
 link wopen
-link xcompat
+#link xcompat
 link color
 link graphics
 link numbers
 link options
 link button
-link dsetup
-link evmux
-link ivalue 
-link usage
+#link dsetup
+#link evmux
+#link ivalue 
+#link usage
 link strings
 
 ################################
@@ -56,6 +69,7 @@ w := Active() | stop("Active fails")
 }
 "\q": {
 	      f01()
+
               }
 "\g": {
            WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
@@ -82,22 +96,18 @@ w := Active() | stop("Active fails")
 "\f": {
 	      WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.1,0.0,1.0")
     
-
               }
 "\d": {
 	      WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.2,0.0,1.0")
     
-
               }
 "\s": {
 	      WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.3,0.0,1.0")
     
-
               }
 "\a": {
 	      WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.4,0.0,1.0")
     
-
               }
 "\G": {
             Eye(0,.2,0, 0,0,-1, 0,1,0)
@@ -130,7 +140,7 @@ w := Active() | stop("Active fails")
 
               }
 "\]": {       
-             back()
+              back()
 
               }
 "\}": {  
@@ -227,7 +237,6 @@ procedure textin01()
 
         Fg("green")
 
-        WAttrib("dx=1", "dy=1")
         WWrite("annotation:")
         s := WRead()
         WWrite("note:",image(s))
@@ -537,11 +546,12 @@ end
 procedure f01()
 
 w := open("scene","gl", "bg=black", "size=100,100")
-#WAttrib("light0=on, ambient white","fg=specular white")
+
 WAttrib(w, "light0=diffuse white; ambient black; _
 specular white; position 0.0, 1.0, 0.0")
 
 #for testing
+#WAttrib("light0=on, ambient white","fg=specular white")
 #WAttrib("light0=on, ambient white,fg=specular white,position 0.0,-1,0.0")
 #WAttrib("light0=on, ambient  white")
 #WAttrib("light0=on, ambient blue-green","fg=specular white")
@@ -552,10 +562,11 @@ specular white; position 0.0, 1.0, 0.0")
 #DrawCylinder(0,-1,-4,1,.5,.5)
 #Fg("blue")
 #DrawSphere(0,0.1,-3,.5)
-Fg("yellow")
-DrawCube(0,0.5,-10,.5)
 #Fg("green")
 #FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
+
+Fg("yellow")
+DrawCube(0,0.5,-10,.5)
 
 Refresh()
 
@@ -638,7 +649,7 @@ end
 ##################################################
 ########################################################
 ##################################################
-#following are expiremental
+#following are experemental
 
 procedure inpgleye01()
 
@@ -690,8 +701,6 @@ case Event() of {
 #Eye(&x,&y,0, 0,0,-1, 0,1,0)
 #WDelay(15)
 
-#circle()
-
 }
 }
 }
@@ -699,13 +708,11 @@ case Event() of {
 end
 
 ######################################################
-#procedure tmod01(xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,xzz)
-#FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
+#procedure tmod01(xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zq1,zq2,zq3)
+
 procedure tmod01()
 
-#(v01 := 0,v02 := 0,v03 := 0,v04 := 0,v05 := 0,v06 := 0,v07 := 0 ,v08 := 0,v09 := 0,v10 := 0,v11 := 0,v12 := 0,v13 := 0,v14 := 0,v15 := 0)
-
-(v01 := .2,v02 := .2,v03 := .2,v04 := .2,v05 := .2,v06 := .2,v07 := .2 ,v08 := .2,v09 := .2,v10 := .2,v11 := .2,v12 := .2,v13 := .2,v14 := .2,v15 := .2)
+(v01 := .2,v02 := .2,v03 := .2,v04 := .2,v05 := .2,v06 := .2,v07 := .2,v08 := .2,v09 := .2,v10 := .2,v11 := .2,v12 := .2,v13 := .2,v14 := .2,v15 := .2)
 
 (zq1 := -4,zq2 := -6, zq3 := -8)
 
@@ -716,23 +723,13 @@ xdd := -.5
 #daq := ("green")
 #daz := ("yellow")
 
-###########################################################################################
+######################################################
 
-(ya1 := -1+v01,ya2 := -1+v13,ya3 := -1+v12,ya4 := -1+v01,ya5 := -1+v02,ya6 := -1+v13)
+(ya1 := -1+v01,ya2 := -1+v02,ya3 := -1+v03,ya4 := -1+v04,ya5 := -1+v05,ya6 := -1+v06)
 
-(ya7 := -1+v02,yb1 := -1+v03,yb2 := -1+v13,yb3 := -1+v03,yb4 := -1+v14,yb5 := -1+v13)
+(ya7 := -1+v07,ya8 := -1+v08,ya9 := -1+v09,yn1 := -1+v10,yn2 := -1+v11,yn3 := -1+v12)
 
-(yb6 := -1+v03,yb7 := -1+v15,yc1 := -1+v14,yc2 := -1+v03,yc3 := -1+v04,yc4 := -1+v15)
-
-(yc5 := -1+v04,yc6 := -1+v05,yc7 := -1+v15,yd1 := -1+v05,yd2 := -1+v06,yd3 := -1+v15)
-
-(yd4 := -1+v12,yd5 := -1+v13,yd6 := -1+v11,yd7 := -1+v13,ye1 := -1+v10,ye2 := -1+v11)
-
-(ye3 := -1+v13,ye4 := -1+v09,ye5 := -1+v10,ye6 := -1+v13,ye7 := -1+v14,yf1 := -1+v09)
-
-(yf2 := -1+v14,yf3 := -1+v15,yf4 := -1+v09,yf5 := -1+v15,yf6 := -1+v08,yf7 := -1+v09)
-
-(yg1 := -1+v15,yg2 := -1+v07,yg3 := -1+v08,yg4 := -1+v15,yg5 := -1+v06,yg6 := -1+v07)
+(yn4 := -1+v13,yn5 := -1+v14,yn6 := -1+v15)
 
 ######################################################
 
@@ -773,122 +770,28 @@ xm3 := x12
 xm4 := x13 
 xm5 := x14  
 xm6 := x15
-################################## 
-##################################
-xq3 := xc2 
-xq4 := xc3  
-xq9 := xc4 
-
-xq4 := xc5  
-xq5 := xc6 
-xq9 := xc7 
-
-xq5 := xd1  
-xm1 := xd2 
-xq9 := xd3 
-
-#######################################
-
-xq6 := xd4 
-xq7 := xd5  
-xm2 := xd6 
- 
-xq7 := xd7 
-xm3 := xe1 
-xm2 := xe2 
- 
-xq7 := xe3  
-xm4 := xe4  
-xm3 := xe5 
- 
-xq7 := xe6 
-xq8 := xe7  
-xm4 := xf1 
-
-xq8 := xf2  
-xq9 := xf3
-xm4 := xf4 
-
-xq9 := xf5  
-xm5 := xf6 
-xm4 := xf7 
-
-xq9 := xg1  
-xm6 := xg2  
-xm5 := xg3 
-
-xq9 := xg4 
-xm1 := xg5  
-xm6 := xg6 
 
 ##############################################
 
-
 yq1 := ya1 
-yq7 := ya2  
-yq6 := ya3 
+yq2 := ya2  
+yq3 := ya3 
  
-yq1 := ya4 
-yq2 := ya5 
-yq7 := ya6 
+yq4 := ya4 
+yq5 := ya5 
+yq6 := ya6 
  
-yq2 := ya7 
-yq3 := yb1 
-yq7 := yb2 
+yq7 := ya7 
+yq8 := ya8 
+yq9 := ya9 
  
-yq3 := yb3  
-yq8 := yb4
-yq7 := yb5 
+ym1 := yn1  
+ym2 := yn2
+ym3 := yn3 
 
-yq3 := yb6 
-yq9 := yb7  
-yq8 := yc1 
-
-yq3 := yc2  
-yq4 := yc3 
-yq9 := yc4 
-
-yq4 := yc5 
-yq5 := yc6  
-yq9 := yc7 
-
-yq5 := yd1 
-ym1 := yd2  
-yq9 := yd3 
-
-#######################################
-
-yq6 := yd4  
-yq7 := yd5  
-ym2 := yd6 
- 
-yq7 := yd7  
-ym3 := ye1
-ym2 := ye2 
- 
-yq7 := ye3 
-ym4 := ye4  
-ym3 := ye5 
- 
-yq7 := ye6 
-yq8 := ye7 
-ym4 := yf1 
-
-yq8 := yf2  
-yq9 := yf3  
-ym4 := yf4 
-
-yq9 := yf5  
-ym5 := yf6  
-ym4 := yf7 
-
-yq9 := yg1  
-ym6 := yg2  
-ym5 := yg3 
-
-yq9 := yg4  
-ym1 := yg5  
-ym6 := yg6 
+ym4 := yn4 
+ym5 := yn5  
+ym6 := yn6 
 
 ######################################################
 
@@ -898,7 +801,7 @@ Fg("red")
 
 Fg("green")
 #2  
- FillPolygon(xq2,yq2,zq1,xq7,yq7,zq1,xq6,yq6,zq2)
+ FillPolygon(xq2,yq2,zq1,xq7,yq7,zq2,xq6,yq6,zq2)
 
 Fg("blue")
 #3  
