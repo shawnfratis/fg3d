@@ -136,7 +136,7 @@ w := Active() | stop("Active fails")
               Refresh()
               }
 "\[": {    
-              tmod01()
+              testTmod()
 
               }
 "\]": {       
@@ -166,7 +166,7 @@ w := Active() | stop("Active fails")
               inputprompt()
               }
 "\(": { 
-              #notused
+              trimesh01
              
 	}
     }
@@ -708,30 +708,33 @@ case Event() of {
 end
 
 ######################################################
-#procedure tmod01(xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zq1,zq2,zq3)
+procedure testTmod()
 
-procedure tmod01()
+tmod01(-.5,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,"green","red","yellow","orange",-4,-6,-8)
 
-##(v01 := .2,v02 := .2,v03 := .2,v04 := .2,v05 := .2,v06 := .2,v07 := .2,v08 := .2,v09 := .2,v10 := .2,v11 := .2,v12 := .2,v13 := .2,v14 := .2,v15 := .2)
+end
 
-(v01 := -.01,v02 := .04,v03 := -.01,v04 := .04,v05 := -.01,v06 := .04,v07 := -.01,v08 := .04,v09 := -.01,v10 := .04,v11 := -.01,v12 := .04,v13 := -.01,v14 := .04,v15 := -.01)
+procedure tmod01(xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zq1,zq2,zq3)
 
-(zq1 := -4,zq2 := -6, zq3 := -8)
+#procedure tmod01()
 
-xdd := -.5
+#(v01 := .2,v02 := .2,v03 := .2,v04 := .2,v05 := .2,v06 := .2,v07 := .2,v08 := .2,v09 := .2,v10 := .2,v11 := .2,v12 := .2,v13 := .2,v14 := .2,v15 := .2)
 
-#duk := ("red")
-#dad := ("blue")
-#daq := ("green")
-#daz := ("yellow")
+#test
+##(v01 := -.01,v02 := .04,v03 := -.01,v04 := .04,v05 := -.01,v06 := .04,v07 := -.01,v08 := .04,v09 := -.01,v10 := .04,v11 := -.01,v12 := .04,v13 := -.01,v14 := .04,v15 := -.01)
+
+#(zq1 := -4,zq2 := -6, zq3 := -8)
+
+#xdd := -.5
+
+duk := cc
+dad := dd
+daq := ee
+daz := ff
 
 ######################################################
 
-(ya1 := -1+v01,ya2 := -1+v02,ya3 := -1+v03,ya4 := -1+v04,ya5 := -1+v05,ya6 := -1+v06)
-
-(ya7 := -1+v07,ya8 := -1+v08,ya9 := -1+v09,yn1 := -1+v10,yn2 := -1+v11,yn3 := -1+v12)
-
-(yn4 := -1+v13,yn5 := -1+v14,yn6 := -1+v15)
+(ya1 := -1+v01,ya2 := -1+v02,ya3 := -1+v03,ya4 := -1+v04,ya5 := -1+v05,ya6 := -1+v06,ya7 := -1+v07,ya8 := -1+v08,ya9 := -1+v09,yn1 := -1+v10,yn2 := -1+v11,yn3 := -1+v12,yn4 := -1+v13,yn5 := -1+v14,yn6 := -1+v15)
 
 ######################################################
 
@@ -797,69 +800,69 @@ ym6 := yn6
 
 ######################################################
 
-Fg("red")
+Fg(duk)
 #1
  FillPolygon(xq1,yq1,zq1,xq2,yq2,zq1,xq6,yq6,zq2)
 
-Fg("green")
+Fg(daq)
 #2  
  FillPolygon(xq2,yq2,zq1,xq7,yq7,zq2,xq6,yq6,zq2)
 
-Fg("blue")
+Fg(daz)
 #3  
  FillPolygon(xq2,yq2,zq1,xq3,yq3,zq1,xq7,yq7,zq2)
 
-Fg("orange")
+Fg(dad)
 #4  
  FillPolygon(xq3,yq3,zq1,xq8,yq8,zq2,xq7,yq7,zq2)
 
-Fg("magenta")
+Fg(duk)
 #5
  FillPolygon(xq3,yq3,zq1,xq4,yq4,zq1,xq8,yq8,zq2)
 
-Fg("yellow")
+Fg(daq)
 #6  
  FillPolygon(xq4,yq4,zq1,xq9,yq9,zq2,xq8,yq8,zq2)
 
-Fg("white")
+Fg(daz)
 #7
  FillPolygon(xq4,yq4,zq1,xq5,yq5,zq1,xq9,yq9,zq2)
 
-Fg("blue")
+Fg(dad)
 #8  
  FillPolygon(xq5,yq5,zq1,xm1,ym1,zq2,xq9,yq9,zq2)
 
 ######################################################
 
-Fg("pink")
+Fg(duk)
 #9  
  FillPolygon(xq6,yq6,zq2,xq7,yq7,zq2,xm2,ym2,zq3)
 
-Fg("green")
+Fg(daq)
 #10  
  FillPolygon(xq7,yq7,zq2,xm3,ym3,zq3,xm2,ym2,zq3)
 
-Fg("red")
+Fg(daz)
 #11
  FillPolygon(xq7,yq7,zq2,xq8,yq8,zq2,xm3,ym3,zq3)
 
-Fg("magenta")
+Fg(dad)
 #12  
  FillPolygon(xq8,yq8,zq2,xm4,ym4,zq3,xm3,ym3,zq3)
 
-Fg("grey")
+Fg(duk)
 #13
  FillPolygon(xq8,yq8,zq2,xq9,yq9,zq2,xm4,ym4,zq3)
 
-Fg("yellow")
+Fg(daq)
 #14  
  FillPolygon(xq9,yq9,zq2,xm5,ym5,zq3,xm4,ym4,zq3)
 
-Fg("green")
+Fg(daz)
 #15  
  FillPolygon(xq9,yq9,zq2,xm1,ym1,zq2,xm5,ym5,zq3)
 
-Fg("blue")
+Fg(dad)
 #16  
  FillPolygon(xm1,ym1,zq2,xm6,ym6,zq3,xm5,ym5,zq3)
  
