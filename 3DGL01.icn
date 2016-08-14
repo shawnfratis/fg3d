@@ -895,6 +895,9 @@ procedure trimesh01(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,
 
 #group 1
 
+#tmod01(-.5,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,"green","red","yellow","orange",-4,-6,-8)
+
+
 #2nd
 tmod01(-80,-260+ha05,-260+ha06,-260+ha07,-260+ha08,-260+ha09,-260+hb09,-260+qa09,-260+qa08,-260+qa07,-260+qa06,-260+qa05,-260+hb05,-260+hb06,-260+hb07,-260+hb08,"green","red","yellow","orange",220)
 #4th
