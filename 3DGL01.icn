@@ -878,9 +878,9 @@ procedure trimesh01()
 #2nd
 tmod01(0,.2+ha05,.2+ha06,.2+ha07,.2+ha08,.2+ha09,.2+hb09,.2+qa09,.2+qa08,.2+qa07,.2+qa06,.2+qa05,.2+hb05,.2+hb06,.2+hb07,.2+hb08,"green","red","yellow","orange",0)
 #4th
-tmod01(4,.2+qa05,.2+qa06,.2+qa07,.2+qa08,.2+qa09,.2+he09,.2+qb09,.2+qb08,.2+qb07,.2+qb06,.2+qb05,.2+he05,.2+he06,.2+he07,.2+hb08,"dark strong green","blue","medium weak green","purple",0)
+tmod01(2,.2+qa05,.2+qa06,.2+qa07,.2+qa08,.2+qa09,.2+he09,.2+qb09,.2+qb08,.2+qb07,.2+qb06,.2+qb05,.2+he05,.2+he06,.2+he07,.2+hb08,"dark strong green","blue","medium weak green","purple",0)
 #1st
-tmod01(-.5,.2+ha01,.2+ha02,.2+ha03,.2+ha04,.2+ha05,.2+hb05,.2+qa05,.2+qa04,.2+qa03,.2+qa02,.2+qa01,.2+hb01,.2+hb02,.2+hb03,.2+hb04,"medium weak red","magenta","dark moderate orange","cyan",0)
+tmod01(-2,.2+ha01,.2+ha02,.2+ha03,.2+ha04,.2+ha05,.2+hb05,.2+qa05,.2+qa04,.2+qa03,.2+qa02,.2+qa01,.2+hb01,.2+hb02,.2+hb03,.2+hb04,"medium weak red","magenta","dark moderate orange","cyan",0)
 #3rd
 tmod01(-4,.2+qa01,.2+qa02,.2+qa03,.2+qa04,.2+qa05,.2+he05,.2+qb05,.2+qb04,.2+qb03,.2+qb02,.2+qb01,.2+he01,.2+he02,.2+he03,.2+he04,"dark strong blue","brown","medium weak red","2000,30000,2000",0)
 
