@@ -159,13 +159,13 @@ w := Active() | stop("Active fails")
 "\.": { 
               Notice("= for instructions. Save as image (z)")
               }
-"\,": { 
+"\x": { 
               openImage()
               }
 "\\": {      
               inputprompt()
               }
-"\x": { 
+"\,": { 
               trimesh01()
              
 	}
