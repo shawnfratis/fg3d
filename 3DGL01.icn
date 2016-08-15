@@ -899,24 +899,24 @@ tmod01(-4,.2+qa09,.2+qa10,.2+qa11,.2+qa12,.2+qa13,.2+he13,.2+qb13,.2+qb12,.2+qb1
 #group 3
 
 #2nd
-#tmod01(-80,-260+qb05,-260+qb06,-260+qb07,-260+qb08,-260+qb09,-260+qb09,-260+hh09,-260+qc08,-260+qc07,-260+qc06,-260+qc05,-260+hh05,-260+hh06,-260+hh07,-260+hh08,"green","red","yellow","orange",490)
+tmod01(0,.2+qb05,.2+qb06,.2+qb07,.2+qb08,.2+qb09,.2+qb09,.2+hh09,.2+qc08,.2+qc07,.2+qc06,.2+qc05,.2+hh05,.2+hh06,.2+hh07,.2+hh08,"green","red","yellow","orange",-2.5)
 #4th
-#tmod01(-80,-260+qc05,-260+qc06,-260+qc07,-260+qc08,-260+qc09,-260+hk09,-260+hl09,-260+hl08,-260+hl07,-260+hl06,-260+hl05,-260+hk05,-260+hk06,-260+hk07,-260+hk08,"dark strong green","blue","medium weak green","purple",710)
+tmod01(2,.2+qc05,.2+qc06,.2+qc07,.2+qc08,.2+qc09,.2+hk09,.2+hl09,.2+hl08,.2+hl07,.2+hl06,.2+hl05,.2+hk05,.2+hk06,.2+hk07,.2+hk08,"dark strong green","blue","medium weak green","purple",-2.5)
 #1st
-#tmod01(-160,-260+qb01,-260+qb02,-260+qb03,-260+qb04,-260+qb05,-260+hh05,-260+qc05,-260+qc04,-260+qc03,-260+qc02,-260+qc01,-260+hh01,-260+hh02,-260+hh03,-260+hh04,"medium weak red","magenta","dark moderate orange","cyan",490)
+tmod01(-2,.2+qb01,.2+qb02,.2+qb03,.2+qb04,.2+qb05,.2+hh05,.2+qc05,.2+qc04,.2+qc03,.2+qc02,.2+qc01,.2+hh01,.2+hh02,.2+hh03,.2+hh04,"medium weak red","magenta","dark moderate orange","cyan",-2.5)
 #3rd
-#tmod01(-160,-260+qc01,-260+qc02,-260+qc03,-260+qc04,-260+qc05,-260+hk05,-260+hl05,-260+hl04,-260+hl03,-260+hl02,-260+hl01,-260+hk01,-260+hk02,-260+hk03,-260+hk04,"dark strong blue","brown","medium weak red","2000,30000,2000",710)
+tmod01(-4,.2+qc01,.2+qc02,.2+qc03,.2+qc04,.2+qc05,.2+hk05,.2+hl05,.2+hl04,.2+hl03,.2+hl02,.2+hl01,.2+hk01,.2+hk02,.2+hk03,.2+hk04,"dark strong blue","brown","medium weak red","2000,30000,2000",-2.5)
 
 #group 4
 
 #2nd
-#tmod01(80,-260+qb13,-260+qb14,-260+qb15,-260+qb16,-260+qb17,-260+hh17,-260+qc17,-260+qc16,-260+qc15,-260+qc14,-260+qc13,-260+hh13,-260+hh14,-260+hh15,-260+hh16,"green","red","yellow","orange",490)
+tmod01(0,.2+qb13,.2+qb14,.2+qb15,.2+qb16,.2+qb17,.2+hh17,.2+qc17,.2+qc16,.2+qc15,.2+qc14,.2+qc13,.2+hh13,.2+hh14,.2+hh15,.2+hh16,"green","red","yellow","orange",-4)
 #4th
-#tmod01(80,-260+qc13,-260+qc14,-260+qc15,-260+qc16,-260+qc17,-260+hk17,-260+hl17,-260+hl16,-260+hl15,-260+hl14,-260+hl13,-260+hk13,-260+hk14,-260+hk15,-260+hk16,"dark strong green","blue","medium weak green","purple",710)
+tmod01(2,.2+qc13,.2+qc14,.2+qc15,.2+qc16,.2+qc17,.2+hk17,.2+hl17,.2+hl16,.2+hl15,.2+hl14,.2+hl13,.2+hk13,.2+hk14,.2+hk15,.2+hk16,"dark strong green","blue","medium weak green","purple",-4)
 #1st
-#tmod01(-1,-260+qb09,-260+qb10,-260+qb11,-260+qb12,-260+qb13,-260+hh13,-260+qc13,-260+qc12,-260+qc11,-260+qc10,-260+qc09,-260+hh09,-260+hh10,-260+hh11,-260+hh12,"medium weak red","magenta","dark moderate orange","cyan",490)
+tmod01(-2,.2+qb09,.2+qb10,.2+qb11,.2+qb12,.2+qb13,.2+hh13,.2+qc13,.2+qc12,.2+qc11,.2+qc10,.2+qc09,.2+hh09,.2+hh10,.2+hh11,.2+hh12,"medium weak red","magenta","dark moderate orange","cyan",-4)
 #3rd
-#tmod01(-1,-260+qc09,-260+qc10,-260+qc11,-260+qc12,-260+qc13,-260+hk13,-260+hl13,-260+hl12,-260+hl11,-260+hl10,-260+hl09,-260+hk09,-260+hk10,-260+hk11,-260+hk12,"dark strong blue","brown","medium weak red","2000,30000,2000",710)
+tmod01(-4,.2+qc09,.2+qc10,.2+qc11,.2+qc12,.2+qc13,.2+hk13,.2+hl13,.2+hl12,.2+hl11,.2+hl10,.2+hl09,.2+hk09,.2+hk10,.2+hk11,.2+hk12,"dark strong blue","brown","medium weak red","2000,30000,2000",-4)
 
 end
 
