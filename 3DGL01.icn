@@ -710,7 +710,7 @@ end
 ######################################################
 procedure testTmod()
 
-tmod01(0,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,"green","red","yellow","orange",0)
+tmod01(0,.1,.2,.1,.2,.1,.2,.1,.2,.1,.2,.1,.2,.1,.2,.1,"green","red","yellow","orange",0)
 
 end
 
@@ -899,24 +899,24 @@ tmod01(-4,.2+qa09,.2+qa10,.2+qa11,.2+qa12,.2+qa13,.2+he13,.2+qb13,.2+qb12,.2+qb1
 #group 3
 
 #2nd
-tmod01(0,.2+qb05,.2+qb06,.2+qb07,.2+qb08,.2+qb09,.2+qb09,.2+hh09,.2+qc08,.2+qc07,.2+qc06,.2+qc05,.2+hh05,.2+hh06,.2+hh07,.2+hh08,"green","red","yellow","orange",-2.5)
+tmod01(0,.2+qb05,.2+qb06,.2+qb07,.2+qb08,.2+qb09,.2+qb09,.2+hh09,.2+qc08,.2+qc07,.2+qc06,.2+qc05,.2+hh05,.2+hh06,.2+hh07,.2+hh08,"green","red","yellow","orange",-2)
 #4th
-tmod01(2,.2+qc05,.2+qc06,.2+qc07,.2+qc08,.2+qc09,.2+hk09,.2+hl09,.2+hl08,.2+hl07,.2+hl06,.2+hl05,.2+hk05,.2+hk06,.2+hk07,.2+hk08,"dark strong green","blue","medium weak green","purple",-2.5)
+tmod01(2,.2+qc05,.2+qc06,.2+qc07,.2+qc08,.2+qc09,.2+hk09,.2+hl09,.2+hl08,.2+hl07,.2+hl06,.2+hl05,.2+hk05,.2+hk06,.2+hk07,.2+hk08,"dark strong green","blue","medium weak green","purple",-2)
 #1st
-tmod01(-2,.2+qb01,.2+qb02,.2+qb03,.2+qb04,.2+qb05,.2+hh05,.2+qc05,.2+qc04,.2+qc03,.2+qc02,.2+qc01,.2+hh01,.2+hh02,.2+hh03,.2+hh04,"medium weak red","magenta","dark moderate orange","cyan",-2.5)
+tmod01(-2,.2+qb01,.2+qb02,.2+qb03,.2+qb04,.2+qb05,.2+hh05,.2+qc05,.2+qc04,.2+qc03,.2+qc02,.2+qc01,.2+hh01,.2+hh02,.2+hh03,.2+hh04,"medium weak red","magenta","dark moderate orange","cyan",-2)
 #3rd
-tmod01(-4,.2+qc01,.2+qc02,.2+qc03,.2+qc04,.2+qc05,.2+hk05,.2+hl05,.2+hl04,.2+hl03,.2+hl02,.2+hl01,.2+hk01,.2+hk02,.2+hk03,.2+hk04,"dark strong blue","brown","medium weak red","2000,30000,2000",-2.5)
+tmod01(-4,.2+qc01,.2+qc02,.2+qc03,.2+qc04,.2+qc05,.2+hk05,.2+hl05,.2+hl04,.2+hl03,.2+hl02,.2+hl01,.2+hk01,.2+hk02,.2+hk03,.2+hk04,"dark strong blue","brown","medium weak red","2000,30000,2000",-2)
 
 #group 4
 
 #2nd
-tmod01(0,.2+qb13,.2+qb14,.2+qb15,.2+qb16,.2+qb17,.2+hh17,.2+qc17,.2+qc16,.2+qc15,.2+qc14,.2+qc13,.2+hh13,.2+hh14,.2+hh15,.2+hh16,"green","red","yellow","orange",-4)
+tmod01(0,.2+qb13,.2+qb14,.2+qb15,.2+qb16,.2+qb17,.2+hh17,.2+qc17,.2+qc16,.2+qc15,.2+qc14,.2+qc13,.2+hh13,.2+hh14,.2+hh15,.2+hh16,"green","red","yellow","orange",-3)
 #4th
-tmod01(2,.2+qc13,.2+qc14,.2+qc15,.2+qc16,.2+qc17,.2+hk17,.2+hl17,.2+hl16,.2+hl15,.2+hl14,.2+hl13,.2+hk13,.2+hk14,.2+hk15,.2+hk16,"dark strong green","blue","medium weak green","purple",-4)
+tmod01(2,.2+qc13,.2+qc14,.2+qc15,.2+qc16,.2+qc17,.2+hk17,.2+hl17,.2+hl16,.2+hl15,.2+hl14,.2+hl13,.2+hk13,.2+hk14,.2+hk15,.2+hk16,"dark strong green","blue","medium weak green","purple",-3)
 #1st
-tmod01(-2,.2+qb09,.2+qb10,.2+qb11,.2+qb12,.2+qb13,.2+hh13,.2+qc13,.2+qc12,.2+qc11,.2+qc10,.2+qc09,.2+hh09,.2+hh10,.2+hh11,.2+hh12,"medium weak red","magenta","dark moderate orange","cyan",-4)
+tmod01(-2,.2+qb09,.2+qb10,.2+qb11,.2+qb12,.2+qb13,.2+hh13,.2+qc13,.2+qc12,.2+qc11,.2+qc10,.2+qc09,.2+hh09,.2+hh10,.2+hh11,.2+hh12,"medium weak red","magenta","dark moderate orange","cyan",-3)
 #3rd
-tmod01(-4,.2+qc09,.2+qc10,.2+qc11,.2+qc12,.2+qc13,.2+hk13,.2+hl13,.2+hl12,.2+hl11,.2+hl10,.2+hl09,.2+hk09,.2+hk10,.2+hk11,.2+hk12,"dark strong blue","brown","medium weak red","2000,30000,2000",-4)
+tmod01(-4,.2+qc09,.2+qc10,.2+qc11,.2+qc12,.2+qc13,.2+hk13,.2+hl13,.2+hl12,.2+hl11,.2+hl10,.2+hl09,.2+hk09,.2+hk10,.2+hk11,.2+hk12,"dark strong blue","brown","medium weak red","2000,30000,2000",-3)
 
 end
 
