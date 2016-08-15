@@ -106,7 +106,7 @@ w := Active() | stop("Active fails")
     
               }
 "\a": {
-	      WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.4,0.0,1.0")
+	      WAttrib("eyepos=0.0,2.0,5.0","eyedir=-0.4,0.0,1.0")
     
               }
 "\G": {
@@ -121,13 +121,13 @@ w := Active() | stop("Active fails")
 
               }
 "\F": {
-            Eye(0,0,0, 0,0,-1, 0,1,0)
+           WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,3.0")
               }
 "\D": {
-            Eye(0,0,0, 0,0,-1, 0,1,0)
+            WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
               }
 "\S": {
-            Eye(0,0,0, 0,0,-1, 0,1,0)
+            WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
               }
 "\$": {      
               main()
@@ -689,13 +689,13 @@ repeat {
 case Event() of {
 &ldrag:{
 
-&x := (ax + 0.1)
-&y := (ay + 0.1)
+#&x := (ax + 0.1)
+#&y := (ay + 0.1)
 
 #animatedModule01(&x,&y,&x)
 #  Eye(0,0,0, 0,0,-1, 0,1,0)
  #   WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
-    WAttrib("eyepos=0.0,0.0,5.0","eyedir=ax,ay,1.0")
+    WAttrib("eyepos=0.0,0.0,5.0","eyedir=&x,&y,1.0")
 #Eye(0,0,0, 0,0,-1, 0,1,0)
 #eyedir(ax,0,0)
 #Eye(&x,&y,0, 0,0,-1, 0,1,0)
@@ -716,7 +716,8 @@ end
 
 procedure tmod01(xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed)
 
-(zq1 := -4+zed,zq2 := -4.5+zed, zq3 := -5+zed)
+#(zq1 := -4+zed,zq2 := -4.5+zed, zq3 := -5+zed)
+(zq1 := -5+zed,zq2 := -4.5+zed, zq3 := -4+zed)
 
 duk := cc
 dad := dd
@@ -887,13 +888,13 @@ tmod01(-4,.2+qa01,.2+qa02,.2+qa03,.2+qa04,.2+qa05,.2+he05,.2+qb05,.2+qb04,.2+qb0
 #group 2   
                                      
 #2nd
-#tmod01(80,-260+ha13,-260+ha14,-260+ha15,-260+ha16,-260+ha17,-260+hb17,-260+qa17,-260+qa16,-260+qa15,-260+qa14,-260+qa13,-260+hb13,-260+hb14,-260+hb15,-260+hb16,"green","red","yellow","orange",220)
+tmod01(0,.2+ha13,.2+ha14,.2+ha15,.2+ha16,.2+ha17,.2+hb17,.2+qa17,.2+qa16,.2+qa15,.2+qa14,.2+qa13,.2+hb13,.2+hb14,.2+hb15,.2+hb16,"green","red","yellow","orange",-1)
 #4th
-#tmod01(80,-260+qa13,-260+qa14,-260+qa15,-260+qa16,-260+qa17,-260+he17,-260+qb17,-260+qb16,-260+qb15,-260+qb14,-260+qb13,-260+he13,-260+he14,-260+he15,-260+he16,"dark strong green","blue","medium weak green","purple",330)
+tmod01(2,.2+qa13,.2+qa14,.2+qa15,.2+qa16,.2+qa17,.2+he17,.2+qb17,.2+qb16,.2+qb15,.2+qb14,.2+qb13,.2+he13,.2+he14,.2+he15,.2+he16,"dark strong green","blue","medium weak green","purple",-1)
 #1st
-#tmod01(-1,-260+ha09,-260+ha10,-260+ha11,-260+ha12,-260+ha13,-260+hb13,-260+qa13,-260+qa12,-260+qa11,-260+qa10,-260+qa09,-260+hb09,-260+hb10,-260+hb11,-260+hb12,"medium weak red","magenta","dark moderate orange","cyan",220)
+tmod01(-2,.2+ha09,.2+ha10,.2+ha11,.2+ha12,.2+ha13,.2+hb13,.2+qa13,.2+qa12,.2+qa11,.2+qa10,.2+qa09,.2+hb09,.2+hb10,.2+hb11,.2+hb12,"medium weak red","magenta","dark moderate orange","cyan",-1)
 #3rd
-#tmod01(-1,-260+qa09,-260+qa10,-260+qa11,-260+qa12,-260+qa13,-260+he13,-260+qb13,-260+qb12,-260+qb11,-260+qb10,-260+qb09,-260+he09,-260+he10,-260+he11,-260+he12,"dark strong blue","brown","medium weak red","2000,30000,2000",330)
+tmod01(-4,.2+qa09,.2+qa10,.2+qa11,.2+qa12,.2+qa13,.2+he13,.2+qb13,.2+qb12,.2+qb11,.2+qb10,.2+qb09,.2+he09,.2+he10,.2+he11,.2+he12,"dark strong blue","brown","medium weak red","2000,30000,2000",-1)
 
 #group 3
 
