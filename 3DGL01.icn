@@ -1,3 +1,4 @@
+
 #F3D OpenGL 2016 FratisGraphics
 
 #Some of this code is from the University of Arizona and Rosetta Code.
@@ -660,11 +661,10 @@ case Event() of {
 
 
 Eye(&x,&y,&x,0 ,0,-1, 0,1,0)
-#    WAttrib("eyepos=x1,0.0,5.0","eyedir=0,0,1.0")
 }
 }
 }
-#    
+   
 end
 
 #####################################################
