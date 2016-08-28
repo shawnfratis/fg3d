@@ -61,7 +61,7 @@ w := Active() | stop("Active fails")
 
 "\z": {
 	 
-            WriteImage("C:/Users/meridith/Desktop/fg01.png")
+              WriteImage("C:/Users/meridith/Desktop/fg01.png")
 }
 "\q": {
 	         f01()
