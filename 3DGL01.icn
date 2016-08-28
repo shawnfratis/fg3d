@@ -78,11 +78,11 @@ w := Active() | stop("Active fails")
               }
 "\j": {
 	      
-              WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.2,0.0,1.0")
+              WAttrib("eyepos=0.0,0.0,2.0","eyedir=0.0,0.0,1.0")
     
               }
 "\k": {
-	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.3,0.0,1.0")
+	         WAttrib("eyepos=0.0,0.0,.5","eyedir=0.0,0.0,1.0")
     
               }
 "\l": {
@@ -102,7 +102,7 @@ w := Active() | stop("Active fails")
     
               }
 "\a": {
-	        WAttrib("eyepos=0.0,2.0,5.0","eyedir=-0.4,0.0,1.0")
+	        WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.4,0.0,1.0")
     
               }
 "\G": {
@@ -143,7 +143,7 @@ w := Active() | stop("Active fails")
               helpmsg1()
 
               }
-"\/": {  
+"\\": {  
               EraseArea()
               }
 "\@": {
@@ -158,7 +158,7 @@ w := Active() | stop("Active fails")
 "\x": { 
               openImage()
               }
-"\\": {      
+"\/": {      
               inputprompt()
               }
 "\,": { 
@@ -186,7 +186,7 @@ Fg("green")
 WWrite("Welcome to 3DGL01")
 WWrite("Many of these are for testing purposes:")
 WWrite("q is main window w/plane and light. ghj, and asGHJkl are views") 
-WWrite("\ is input prompt, / is erase all")
+WWrite("/ is input prompt, \ is erase all")
 WWrite("cube01/02=x,y,z,size cyl01/02=x,y,z,h,r1,r2 sphere01/02=x,y,z,r")  
 WWrite("plane01/02=x,y,z of 4 corners, %=refresh")
 WWrite("Some basic settings:")
@@ -196,7 +196,8 @@ WWrite("DrawCylinder(0,-1,-4,1,.5,.5)")
 WWrite("DrawSphere(0,0.1,-3,.5)")
 WWrite("DrawCube(0,0.5,-2,.5)")
 WWrite("FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
-WWrite("Preset pos:centercube,rightcube,leftcube,centercubelow")
+WWrite("Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
+WWrite("randomcubecenter,randomcuberight, etc.")
 WWrite(", is plane01,< is plane02,] is mouse control")
 WWrite("{ is instruction 1, } is instruction 2")
 
@@ -476,10 +477,10 @@ procedure inputprompt()
         ss7 :=( "cyl02")
         ss8 :=( "sphere02")
         ss9 :=( "rcube01")
-        ss10 :=( "centercube")
-        ss11 :=( "rightcube")
-        ss12 :=( "leftcube")
-        ss13 :=( "centercubelow")
+        ss10 :=( "cubecenter")
+        ss11 :=( "cuberight")
+        ss12 :=( "cubeleft")
+        ss13 :=( "cubecenterlow")
         ss14 :=( "randomcubecenter")
         ss15 :=( "randomcuberight")
         ss16 :=( "randomcubeleft")
