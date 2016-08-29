@@ -10,7 +10,7 @@
 #Made in Unicon, with Unicon IDE
 
 #Things to do:
-#finish mesh - expand - breakout as separate matrice for others - vertice/math input method
+#finish mesh- fix holes - expand - breakout as separate matrice for others - vertice/math input method
 #Z-axis color desaturate - fake fog - distance effect
 #random displacement - octrees - voxels - cities
 #mouse navigation - better keyboard nav
@@ -26,16 +26,11 @@
 ###############################################################
 
 link wopen
-#link xcompat
 link color
 link graphics
 link numbers
 link options
-link button
-#link dsetup
-#link evmux
-#link ivalue 
-#link usage
+link button 
 link strings
 
 ################################
@@ -66,7 +61,7 @@ w := Active() | stop("Active fails")
 
 "\z": {
 	 
-            WriteImage("C:/Users/HHE3/Desktop/fg01.png")
+            WriteImage("C:/Users/meridith/Desktop/fg01.png")
 }
 "\q": {
 	         f01()
@@ -157,8 +152,8 @@ w := Active() | stop("Active fails")
 "\{": { 
               inst()
               }
-"\.": { 
-              Notice("= for instructions. Save as image (z)")
+"\?": { 
+              Notice("{ for instructions. Save as image (z)")
               }
 "\x": { 
               openImage()
@@ -189,6 +184,7 @@ WAttrib("dx=1", "dy=1")
 Fg("green")
 
 WWrite("Welcome to 3DGL01")
+WWrite("Many of these are for testing purposes:")
 WWrite("q is main window w/plane and light. ghj, and asGHJkl are views") 
 WWrite("\ is input prompt, / is erase all")
 WWrite("cube01/02=x,y,z,size cyl01/02=x,y,z,h,r1,r2 sphere01/02=x,y,z,r")  
@@ -200,6 +196,9 @@ WWrite("DrawCylinder(0,-1,-4,1,.5,.5)")
 WWrite("DrawSphere(0,0.1,-3,.5)")
 WWrite("DrawCube(0,0.5,-2,.5)")
 WWrite("FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
+WWrite("Preset pos:centercube,rightcube,leftcube,centercubelow")
+WWrite(", is plane01,< is plane02,] is mouse control")
+WWrite("{ is instruction 1, } is instruction 2")
 
 end
 
@@ -477,10 +476,10 @@ procedure inputprompt()
         ss7 :=( "cyl02")
         ss8 :=( "sphere02")
         ss9 :=( "rcube01")
-        ss10 :=( "notused")
-        ss11 :=( "notused")
-        ss12 :=( "notused")
-        ss13 :=( "notused")
+        ss10 :=( "centercube")
+        ss11 :=( "leftcube")
+        ss12 :=( "rightcube")
+        ss13 :=( "centercubelow")
         ss14 :=( "notused")
         ss15 :=( "notused")
         ss16 :=( "notused")
@@ -511,21 +510,21 @@ procedure inputprompt()
         else
         if s1== ss9  then inputRCube01()
         else
-        if s1== ss10 then notused
+        if s1== ss10 then presetCube01()
         else
-        if s1== ss11 then notused
+        if s1== ss11 then presetCube02()
         else
-        if s1== ss12 then notused
+        if s1== ss12 then presetCube03()
         else
-        if s1== ss13 then notused
+        if s1== ss13 then presetCube04()
         else
-        if s1== ss14 then notused
+        if s1== ss14 then presetSphere01()
         else
-        if s1== ss15 then notused
+        if s1== ss15 then presetPlane02()
         else
-        if s1== ss16 then notused
+        if s1== ss16 then presetSphere02()
         else
-        if s1== ss17 then notused
+        if s1== ss17 then presetRCube01()
         else
         if s1== ss18 then notused
         else
@@ -1022,7 +1021,111 @@ tmod01(-4,.2+qc09,.2+qc10,.2+qc11,.2+qc12,.2+qc13,.2+hk13,.2+hl13,.2+hl12,.2+hl1
 
 end
 
+##############################################################
 
+#start preset cubes
+
+#for reference...please destroy me later
+#WWrite("DrawCylinder(0,-1,-4,1,.5,.5)")
+#WWrite("DrawSphere(0,0.1,-3,.5)")
+#WWrite("DrawCube(0,0.5,-2,.5)")
+#WWrite("FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
+
+##############################################################
+
+procedure presetCube01()
+   
+  inpglcube01(0,0.5,-2,.5)
+
+end
+
+##############################################################
+
+procedure presetCube02()
+   
+  inpglcube01(1,0.5,-2,.5)
+
+end
+
+##############################################################
+
+procedure presetCube03()
+   
+  inpglcube01(-1,0.5,-2,.5)
+
+end
+
+##############################################################
+
+procedure presetCube04()
+   
+  inpglcube01(0,0.1,-2,.5)
+
+end
+
+################################################################
+procedure presetSphere01()
+    
+  inpglsphere01(ipx,ipy,ipz,ips)
+
+end
+
+########################################################
+
+procedure presetCyl01()
+   
+  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure 
+
+presetPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+########################################################
+
+procedure presetSphere02()
+   
+  inpglsphere02(ipx,ipy,ipz,ips)
+
+end
+
+########################################################
+
+procedure presetrCube02()
+   
+  inpglcube02(ipx,ipy,ipz,ips)
+
+end
+
+################################################################
+
+procedure presetCyl02()
+   
+  inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure 
+
+presetPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)        
+ 
+end
+
+###############################################
+
+
+procedure presetRCube01()
+   
+  inpRglcube01(ipx,ipy,ipz,ips)
+
+end
 
 ##################################################################
 #END OF PROGRAM########################################
