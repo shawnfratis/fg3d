@@ -477,13 +477,13 @@ procedure inputprompt()
         ss8 :=( "sphere02")
         ss9 :=( "rcube01")
         ss10 :=( "centercube")
-        ss11 :=( "leftcube")
-        ss12 :=( "rightcube")
+        ss11 :=( "rightcube")
+        ss12 :=( "leftcube")
         ss13 :=( "centercubelow")
-        ss14 :=( "notused")
-        ss15 :=( "notused")
-        ss16 :=( "notused")
-        ss17 :=( "notused")
+        ss14 :=( "randomcubecenter")
+        ss15 :=( "randomcuberight")
+        ss16 :=( "randomcubeleft")
+        ss17 :=( "randomcubecenterlow")
         ss18 :=( "notused")
         ss19 :=( "notused")
         ss20 :=( "notused")
@@ -518,13 +518,13 @@ procedure inputprompt()
         else
         if s1== ss13 then presetCube04()
         else
-        if s1== ss14 then presetSphere01()
+        if s1== ss14 then presetRCube01()
         else
-        if s1== ss15 then presetPlane02()
+        if s1== ss15 then presetRCube02()
         else
-        if s1== ss16 then presetSphere02()
+        if s1== ss16 then presetRCube03()
         else
-        if s1== ss17 then presetRCube01()
+        if s1== ss17 then presetRCube04()
         else
         if s1== ss18 then notused
         else
@@ -1063,6 +1063,39 @@ procedure presetCube04()
 
 end
 
+###############################################
+
+procedure presetRCube01()
+   
+  inpRglcube01(0,0.5,-2,.5)
+
+end
+
+###############################################
+
+procedure presetRCube02()
+   
+  inpRglcube01(1,0.5,-2,.5)
+
+end
+
+###############################################
+
+procedure presetRCube03()
+   
+  inpRglcube01(-1,0.5,-2,.5)
+
+end
+
+###############################################
+
+procedure presetRCube04()
+   
+  inpRglcube01(0,0.1,-2,.5)
+
+end
+
+
 ################################################################
 procedure presetSphere01()
     
@@ -1118,14 +1151,6 @@ presetPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
  
 end
 
-###############################################
-
-
-procedure presetRCube01()
-   
-  inpRglcube01(ipx,ipy,ipz,ips)
-
-end
 
 ##################################################################
 #END OF PROGRAM########################################
