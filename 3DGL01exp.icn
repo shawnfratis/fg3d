@@ -35,9 +35,104 @@ link strings
 
 ################################
 
-procedure main()
+procedure main(args)
 
 &window := open("win", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
+
+###############################################################
+
+   in1 := open(args[1]) | stop("*** cannot open file 1")
+
+xxx := args[2]
+yyy := args[3]
+
+#####################################
+
+    count := 0
+    count1 := 0
+
+       every !in1  ?  {
+      write(find(xxx))
+      count +:= 1
+
+      write(find(yyy))
+     } do
+      count1 +:= 1
+
+   write(count)
+   write(count1)
+
+######################################
+
+   in2 := open(args[4]) | stop("*** cannot open file 2")
+
+xxx1 := args[5]
+yyy1 := args[6]
+
+    countx := 0
+    countx1 := 0
+
+       every !in2  ?  {
+      write(find(xxx1))
+      countx +:= 1
+
+      write(find(yyy1))
+     } do
+      countx1 +:= 1
+
+   write(countx)
+   write(countx1)
+
+#######################################
+
+   in3 := open(args[7]) | stop("*** cannot open file 3")
+
+xxx2 := args[8]
+yyy2 := args[9]
+
+    countxx := 0
+    count11 := 0
+
+       every !in3  ?  {
+      write(find(xxx2))
+      countxx +:= 1
+
+      write(find(yyy2))
+     } do
+      count11 +:= 1
+
+   write(countxx)
+   write(count11)
+
+######################################
+
+   in4 := open(args[10]) | stop("*** cannot open file 4")
+
+xxx3 := args[11]
+yyy3 := args[12]
+
+    countxxx := 0
+    countx111 := 0
+
+       every !in4  ?  {
+      write(find(xxx3))
+      countxxx +:= 1
+
+      write(find(yyy3))
+     } do
+      countx111 +:= 1
+
+   write(countxxx)
+   write(countx111)
+
+window(count,count1,yyy, countx, countx1,yyy1,countxx,count11,yyy2,countxxx,countx111,yyy3)
+
+
+#####################################################################################
+
+
+#####################################################
+
       
         repeat {
 
@@ -1264,14 +1359,17 @@ end
 
 procedure window(c,d,e,f,g,h,i,j,k,l,m,n)
 
-WOpen("label=Gscan01", "size=800,980","bg=black","linewidth=1","fg=orange")
+#WOpen("label=Gscan01", "size=800,980","bg=black","linewidth=1","fg=orange")
 
         WAttrib("dx=1", "dy=1")
 
-cube07(c,d)
-cube08(f,g)
-cube09(i,j)
-cube10(l,m)
+#cube07(c,d)
+#cube08(f,g)
+#cube09(i,j)
+#cube10(l,m)
+
+inpglcube01(c,d,-2,.5)
+#WWrite("DrawCube(0,0.5,-2,.5)"
 
 Fg("orange")
 
@@ -1313,62 +1411,8 @@ WWrite(m)
 Fg("red")
 if m <:= 1 then WWrite("WARNING: entry 4")
 
-       repeat {
-
-w := Active() | stop("Active fails")
-
-################################
-#not presently used - can be modified to re-introduce mouse events.
-   
-       case e := Event(w) of {
-
-&lpress | &mpress | &rpress: {
-	      x1 := &x
-	      y1 := &y
-	      x2 := y2 := &null
-	  }
-
-################################
-#begin basic keyboard commands.
-
-#this path is currently set for Windows.
-#You will have to modify it for other platforms. 
-
-"\z": {
-	 
-        WriteImage("C:/Users/sfratis/Desktop/gs01.png")
-
-}
-
-################################
-
-
-"\]": {       
-              EraseArea()
-              }
-"\-": {  
-              clock()
-              }
-"\@": {
-              exit()
-              }
-"\?": { 
-              Notice("\] = Erase area, - = Timestamp, Z = Save Image, , = Open Image, ; = Annotation, @ = Exit")
-              }
-"\,": { 
-              openImage()
-  }
-"\\": {      
-              inputprompt()
-   }
-"\;": {
-              textin01()
-                      
-	}
-     }
-  }
-
-WDone()
+       
+#WDone()
 
 end
 
