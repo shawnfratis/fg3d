@@ -22,7 +22,7 @@
 #gui - on screen controls
 #bring in stuff from old icon:terrain gen,etc etc.
 #animation
-
+#finish input text
 ###############################################################
 
 link wopen
@@ -557,25 +557,6 @@ procedure inputRCube01()
 end
 
 ###############################################
-#expiremental
-
-procedure mainxx()
-
-      s1 := WRead()
-      #s2 := WRead()
-      #s3 := WRead()
-      #s4 := WRead()
-      
-      ipx := s1
-      #ipy := s2
-      #ipz := s3
-      #ips := s4  
-   
-  #mainx(ipx,ipy,ipz,ips)
-  mainx(ipx)
-
-end
-
 #################################################
 procedure inputprompt()
  
@@ -600,7 +581,7 @@ procedure inputprompt()
         ss15 :=( "randomcuberight")
         ss16 :=( "randomcubeleft")
         ss17 :=( "randomcubecenterlow")
-        ss18 :=( "file")
+        ss18 :=( "notused")
         ss19 :=( "notused")
         ss20 :=( "notused")
         ss21 :=( "notused")
@@ -1044,25 +1025,29 @@ end
 
 #procedure trimesh02(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09)
 
-procedure trimesh02()
 
-(ha01 := -.1,ha02 := -.2,ha03 := -.1,ha04 := -.2,ha05 := -.1,ha06 := -.2,ha07 := -.1,ha08 := -.2,ha09 := -.1,ha10 := -.2,ha11 := -.1,ha12 := -.2,ha13 := -.1,ha14 := -.2,ha15 := -.1,ha16 := -.2,ha17 := -.1)
+procedure trimesh02(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,ha10,ha11,ha12,ha13,ha14,ha15,ha16,ha17,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,hb10,hb11,hb12,hb13,hb14,hb15,hb16,hb17,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09,qa10,qa11,qa12,qa13,qa14,qa15,qa16,qa17,he01,he02,he03,he04,he05,he06,he07,he08,he09,he10,he11,he12,he13,he14,he15,he16,he17,qb01,qb02,qb03,qb04,qb05,qb06,qb07,qb08,qb09,qb10,qb11,qb12,qb13,qb14,qb15,qb16,qb17,hh01,hh02,hh03,hh04,hh05,hh06,hh07,hh08,hh09,hh10,hh11,hh12,hh13,hh14,hh15,hh16,hh17,qc01,qc02,qc03,qc04,qc05,qc06,qc07,qc08,qc09,qc10,qc11,qc12,qc13,qc14,qc15,qc16,qc17,hk01,hk02,hk03,hk04,hk05,hk06,hk07,hk08,hk09,hk10,hk11,hk12,hk13,hk14,hk15,hk16,hk17,hl01,hl02,hl03,hl04,hl05,hl06,hl07,hl08,hl09,hl10,hl11,hl12,hl13,hl14,hl15,hl16,hl17)
 
-(hb01 := -.2,hb02 := -.1,hb03 := -.2,hb04 := -.1,hb05 := -.2,hb06 := -.1,hb07 := -.2,hb08 := -.1,hb09 := -.2,hb10 := -.1,hb11 := -.2,hb12 := -.1,hb13 := -.2,hb14 := -.1,hb15 := -.2,hb16 := -.1,hb17 := -.2)
 
-(qa01 := -.1,qa02 := -.2,qa03 := -.1,qa04 := -.1,qa05 := -.3,qa06 := -3.5,qa07 := -.4,qa08 := -.2,qa09 := -.1,qa10 := -.2,qa11 := -.1,qa12 := -.2,qa13 := -.1,qa14 := -.2,qa15 := -.1,qa16 := -.2,qa17 := -.1)
+#procedure trimesh02()
 
-(he01 := -.2,he02 := -.1,he03 := -.2,he04 := -.1,he05 := -.2,he06 := -.3,he07 := -3.5,he08 := -.3,he09 := -.2,he10 := -.1,he11 := -.2,he12 := -.1,he13 := -.2,he14 := -.1,he15 := -.2,he16 := -.1,he17 := -.2)
+#(ha01 := -.1,ha02 := -.2,ha03 := -.1,ha04 := -.2,ha05 := -.1,ha06 := -.2,ha07 := -.1,ha08 := -.2,ha09 := -.1,ha10 := -.2,ha11 := -.1,ha12 := -.2,ha13 := -.1,ha14 := -.2,ha15 := -.1,ha16 := -.2,ha17 := -.1)
 
-(qb01 := -.1,qb02 := -.2,qb03 := -.1,qb04 := -.2,qb05 := -..5,qb06 := -.2,qb07 := -2.5,qb08 := -.2,qb09 := -.1,qb10 := -.2,qb11 := -.1,qb12 := -.2,qb13 := -.1,qb14 := -.2,qb15 := -.1,qb16 := -.2,qb17 := -.1)
+#(hb01 := -.2,hb02 := -.1,hb03 := -.2,hb04 := -.1,hb05 := -.2,hb06 := -.1,hb07 := -.2,hb08 := -.1,hb09 := -.2,hb10 := -.1,hb11 := -.2,hb12 := -.1,hb13 := -.2,hb14 := -.1,hb15 := -.2,hb16 := -.1,hb17 := -.2)
 
-(hh01 := -.2,hh02 := -.1,hh03 := -.2,hh04 := -.1,hh05 := -.2,hh06 := -.1,hh07 := -.2,hh08 := -.1,hh09 := -.2,hh10 := -.1,hh11 := -.2,hh12 := -.1,hh13 := -.2,hh14 := -.1,hh15 := -.2,hh16 := -.1,hh17 := -.2)
+#(qa01 := -.1,qa02 := -.2,qa03 := -.1,qa04 := -.1,qa05 := -.3,qa06 := -3.5,qa07 := -.4,qa08 := -.2,qa09 := -.1,qa10 := -.2,qa11 := -.1,qa12 := -.2,qa13 := -.1,qa14 := -.2,qa15 := -.1,qa16 := -.2,qa17 := -.1)
 
-(qc01 := -.1,qc02 := -.2,qc03 := -.1,qc04 := -.2,qc05 := -.1,qc06 := -.2,qc07 := -.1,qc08 := -.2,qc09 := -.1,qc10 := -.2,qc11 := -.1,qc12 := -.2,qc13 := -.1,qc14 := -.2,qc15 := -.1,qc16 := -.2,qc17 := -.1)
+#(he01 := -.2,he02 := -.1,he03 := -.2,he04 := -.1,he05 := -.2,he06 := -.3,he07 := -3.5,he08 := -.3,he09 := -.2,he10 := -.1,he11 := -.2,he12 := -.1,he13 := -.2,he14 := -.1,he15 := -.2,he16 := -.1,he17 := -.2)
 
-(hk01 := -.2,hk02 := -.1,hk03 := -.2,hk04 := -.1,hk05 := -.2,hk06 := -.1,hk07 := -.2,hk08 := -.1,hk09 := -.2,hk10 := -.1,hk11 := -.2,hk12 := -.1,hk13 := -.2,hk14 := -.1,hk15 := -.2,hk16 := -.1,hk17 := -.2)
+#(qb01 := -.1,qb02 := -.2,qb03 := -.1,qb04 := -.2,qb05 := -..5,qb06 := -.2,qb07 := -2.5,qb08 := -.2,qb09 := -.1,qb10 := -.2,qb11 := -.1,qb12 := -.2,qb13 := -.1,qb14 := -.2,qb15 := -.1,qb16 := -.2,qb17 := -.1)
 
-(hl01 := -.1,hl02 := -.2,hl03 := -.1,hl04 := -.2,hl05 := -.1,hl06 := -.2,hl07 := -.1,hl08 := -.2,hl09 := -.1,hl10 := -.2,hl11 := -.1,hl12 := -.2,hl13 := -.1,hl14 := -.2,hl15 := -.1,hl16 := -.2,hl17 := -.1)
+#(hh01 := -.2,hh02 := -.1,hh03 := -.2,hh04 := -.1,hh05 := -.2,hh06 := -.1,hh07 := -.2,hh08 := -.1,hh09 := -.2,hh10 := -.1,hh11 := -.2,hh12 := -.1,hh13 := -.2,hh14 := -.1,hh15 := -.2,hh16 := -.1,hh17 := -.2)
+
+#(qc01 := -.1,qc02 := -.2,qc03 := -.1,qc04 := -.2,qc05 := -.1,qc06 := -.2,qc07 := -.1,qc08 := -.2,qc09 := -.1,qc10 := -.2,qc11 := -.1,qc12 := -.2,qc13 := -.1,qc14 := -.2,qc15 := -.1,qc16 := -.2,qc17 := -.1)
+
+#(hk01 := -.2,hk02 := -.1,hk03 := -.2,hk04 := -.1,hk05 := -.2,hk06 := -.1,hk07 := -.2,hk08 := -.1,hk09 := -.2,hk10 := -.1,hk11 := -.2,hk12 := -.1,hk13 := -.2,hk14 := -.1,hk15 := -.2,hk16 := -.1,hk17 := -.2)
+
+#(hl01 := -.1,hl02 := -.2,hl03 := -.1,hl04 := -.2,hl05 := -.1,hl06 := -.2,hl07 := -.1,hl08 := -.2,hl09 := -.1,hl10 := -.2,hl11 := -.1,hl12 := -.2,hl13 := -.1,hl14 := -.2,hl15 := -.1,hl16 := -.2,hl17 := -.1)
 
 #####################################################
 
@@ -1265,95 +1250,6 @@ end
 ##########################################################
 #############################################################
 
-procedure mainx(args)
-
-   in1 := open(args[1]) | stop("*** cannot open file 1")
-
-xxx := args[2]
-yyy := args[3]
-
-#####################################
-
-    count := 0
-    count1 := 0
-
-       every !in1  ?  {
-      write(find(xxx))
-      count +:= 1
-
-      write(find(yyy))
-     } do
-      count1 +:= 1
-
-   write(count)
-   write(count1)
-
-######################################
-
-   in2 := open(args[4]) | stop("*** cannot open file 2")
-
-xxx1 := args[5]
-yyy1 := args[6]
-
-    countx := 0
-    countx1 := 0
-
-       every !in2  ?  {
-      write(find(xxx1))
-      countx +:= 1
-
-      write(find(yyy1))
-     } do
-      countx1 +:= 1
-
-   write(countx)
-   write(countx1)
-
-#######################################
-
-   in3 := open(args[7]) | stop("*** cannot open file 3")
-
-xxx2 := args[8]
-yyy2 := args[9]
-
-    countxx := 0
-    count11 := 0
-
-       every !in3  ?  {
-      write(find(xxx2))
-      countxx +:= 1
-
-      write(find(yyy2))
-     } do
-      count11 +:= 1
-
-   write(countxx)
-   write(count11)
-
-######################################
-
-   in4 := open(args[10]) | stop("*** cannot open file 4")
-
-xxx3 := args[11]
-yyy3 := args[12]
-
-    countxxx := 0
-    countx111 := 0
-
-       every !in4  ?  {
-      write(find(xxx3))
-      countxxx +:= 1
-
-      write(find(yyy3))
-     } do
-      countx111 +:= 1
-
-   write(countxxx)
-   write(countx111)
-
-window(count,count1,yyy, countx, countx1,yyy1,countxx,count11,yyy2,countxxx,countx111,yyy3)
-
-end
 
 #####################################################################################
 
@@ -1361,15 +1257,21 @@ procedure window(c,d,e,f,g,h,i,j,k,l,m,n)
 
 #WOpen("label=Gscan01", "size=800,980","bg=black","linewidth=1","fg=orange")
 
-        WAttrib("dx=1", "dy=1")
+WAttrib("dx=1", "dy=1")
 
 #cube07(c,d)
 #cube08(f,g)
 #cube09(i,j)
 #cube10(l,m)
 
-inpglcube01(c,d,-2,.5)
-#WWrite("DrawCube(0,0.5,-2,.5)"
+cc := (c/100)
+dd := (d/100)
+
+#inpglcylinder02(-2,-1,-4,cc,.5,.5)
+#inpglcylinder02(0,-1,-4,dd,.5,.5)
+ #trimesh02(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09)
+
+trimesh02(cc,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,dd,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1)
 
 Fg("orange")
 
