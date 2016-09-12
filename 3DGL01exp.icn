@@ -127,12 +127,7 @@ yyy3 := args[12]
 
 window(count,count1,yyy, countx, countx1,yyy1,countxx,count11,yyy2,countxxx,countx111,yyy3)
 
-
-#####################################################################################
-
-
 #####################################################
-
       
         repeat {
 
@@ -141,13 +136,13 @@ w := Active() | stop("Active fails")
 ################################
 #not presently used - can be modified to re-introduce mouse events.
    
-       case e := Event(w) of {
+        case e := Event(w) of {
 
-&lpress | &mpress | &rpress: {
-	      x1 := &x
-	      y1 := &y
-	      x2 := y2 := &null
-}
+#&lpress | &mpress | &rpress: {
+	      #x1 := &x
+	      #y1 := &y
+	      #x2 := y2 := &null
+#}
 ################################
 #begin basic keyboard commands.
 
@@ -157,7 +152,7 @@ w := Active() | stop("Active fails")
 "\z": {
 	 
               WriteImage("C:/Users/meridith/Desktop/fg01.png")
-}
+              }
 "\q": {
 	         f01()
 
@@ -222,7 +217,7 @@ w := Active() | stop("Active fails")
               }
 "\$": {      
               main()
-	       }
+	        }
 "\%": {    
               Refresh()
               }
@@ -258,7 +253,7 @@ w := Active() | stop("Active fails")
               }
 "\,": { 
               trimesh01()   
-             }
+              }
 "\<": { 
               trimesh02()
              
@@ -279,7 +274,7 @@ WAttrib("dx=1", "dy=1")
 Fg("green")
 
 WWrite("Welcome to 3DGL01")
-WWrite("Many of these are for testing purposes:")
+WWrite("Many of these are for testing/experimental purposes:")
 WWrite("q is main window w/plane and light. ghj, and asGHJkl are views") 
 WWrite("/ is input prompt, \ is erase all")
 WWrite("cube01/02=x,y,z,size cyl01/02=x,y,z,h,r1,r2 sphere01/02=x,y,z,r")  
@@ -351,7 +346,6 @@ procedure openImage()
 
 end
 ########################################################
-########################################################
 
 procedure inputSphere01()
 
@@ -388,6 +382,7 @@ procedure inputCube01()
 end
 
 ################################################################
+
 procedure inputCyl01()
 
       s1 := WRead()
@@ -411,7 +406,6 @@ end
 ################################################################
 
 procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
 
       s1 := WRead()
       s2 := WRead()
@@ -440,7 +434,6 @@ procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
       pzzzz := s12           
    
   inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
 
 end
 
@@ -534,7 +527,6 @@ procedure inputPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
    
   inpglplane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
-
 end
 
 ###############################################
@@ -588,7 +580,6 @@ procedure inputprompt()
         ss22 :=( "notused")
         ss23 :=( "notused")
       
-
         if s1== ss1 then inputCube01() 
         else
         if s1== ss2 then inputPlane01() 
@@ -623,7 +614,7 @@ procedure inputprompt()
         else
         if s1== ss17 then presetRCube04()
         else
-        if s1== ss18 then mainxx()
+        if s1== ss18 then notused
         else
         if s1== ss19 then notused
         else
@@ -635,7 +626,6 @@ procedure inputprompt()
         else
         if s1== ss23 then notused 
      
-
     return
 
 end
@@ -709,7 +699,6 @@ FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
 
-##################################################
 ########################################################
 
 procedure inpglsphere02(ipx,ipy,ipz,ips)
@@ -749,6 +738,7 @@ end
 ##################################################
 ########################################################
 ##################################################
+
 #following are experemental
 
 procedure inpgleye01()
@@ -1025,9 +1015,7 @@ end
 
 #procedure trimesh02(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09)
 
-
 procedure trimesh02(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,ha10,ha11,ha12,ha13,ha14,ha15,ha16,ha17,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,hb10,hb11,hb12,hb13,hb14,hb15,hb16,hb17,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09,qa10,qa11,qa12,qa13,qa14,qa15,qa16,qa17,he01,he02,he03,he04,he05,he06,he07,he08,he09,he10,he11,he12,he13,he14,he15,he16,he17,qb01,qb02,qb03,qb04,qb05,qb06,qb07,qb08,qb09,qb10,qb11,qb12,qb13,qb14,qb15,qb16,qb17,hh01,hh02,hh03,hh04,hh05,hh06,hh07,hh08,hh09,hh10,hh11,hh12,hh13,hh14,hh15,hh16,hh17,qc01,qc02,qc03,qc04,qc05,qc06,qc07,qc08,qc09,qc10,qc11,qc12,qc13,qc14,qc15,qc16,qc17,hk01,hk02,hk03,hk04,hk05,hk06,hk07,hk08,hk09,hk10,hk11,hk12,hk13,hk14,hk15,hk16,hk17,hl01,hl02,hl03,hl04,hl05,hl06,hl07,hl08,hl09,hl10,hl11,hl12,hl13,hl14,hl15,hl16,hl17)
-
 
 #procedure trimesh02()
 
@@ -1249,8 +1237,6 @@ end
 
 ##########################################################
 #############################################################
-
-
 #####################################################################################
 
 procedure window(c,d,e,f,g,h,i,j,k,l,m,n)
@@ -1265,13 +1251,15 @@ WAttrib("dx=1", "dy=1")
 #cube10(l,m)
 
 cc := (c/100)
-dd := (d/100)
+ff := (f/100)
+ii := (c/100)
+ll := (d/100)
 
 #inpglcylinder02(-2,-1,-4,cc,.5,.5)
 #inpglcylinder02(0,-1,-4,dd,.5,.5)
  #trimesh02(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09)
 
-trimesh02(cc,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,dd,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1)
+trimesh02(cc,.1,.1,.1,ff,.1,.1,.1,ii,.1,.1,.1,ll,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1,.1)
 
 Fg("orange")
 
@@ -1312,11 +1300,10 @@ WWrite(m)
 
 Fg("red")
 if m <:= 1 then WWrite("WARNING: entry 4")
-
        
-#WDone()
-
 end
+
+########################################################
 
 procedure cube07(c,d)
 
@@ -1329,7 +1316,6 @@ day := 10
 (ebx := 165,eby := 10 ,ecx := 165,ecy := 15 + c,edx :=125,edy := 15 + c)
 
 (dbx := 235,dby := 10,dcx := 235,dcy := 15 + d,ddx := 175,ddy := 15 + d)
-
 
 #######################################
 
