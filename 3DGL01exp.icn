@@ -971,31 +971,32 @@ procedure trimesh01()
 #group 1
 
 #2nd
-tmod01(0,s01,e01,e02,e03,s03,s05,e04,e05,e06,s06,s15,s16,s17,s18,s19,"green","red","yellow","orange",0)
+tmod01(0,s02,e01,e02,e03,s03,s05,e04,e05,e06,s06,s15,s16,s17,s18,s19,"green","red","yellow","orange",0)
 #4th
-tmod01(2,s03,e07,e08,e09,e10,s06,e11,e12,e13,e133,s19,s20,s21,s22,s23,"dark strong green","blue","medium weak green","purple",0)
+tmod01(2,s03,e07,e08,e09,e10,s06,e11,e12,e13,e14,s19,s20,s21,s22,s23,"dark strong green","blue","medium weak green","purple",0)
 #1st
-tmod01(-2,e14,e15,e16,e17,s02,e18,e19,e20,e21,s05,s11,s12,s13,s14,s15,"medium weak red","magenta","dark moderate orange","cyan",0)
+tmod01(-2,s01,e15,e16,e17,s02,s04,e18,e19,e20,s05,s11,s12,s13,s14,s15,"medium weak red","magenta","dark moderate orange","cyan",0)
 #3rd
-tmod01(-4,e22,e23,e24,e25,s01,e26,e27,e28,e29,s04,s07,s08,s09,s10,s11,"dark strong blue","brown","medium weak red","2000,30000,2000",0)
+tmod01(-4,e21,e22,e23,e24,s01,e25,e26,e27,e28,s04,s07,s08,s09,s10,s11,"dark strong blue","brown","medium weak red","2000,30000,2000",0)
 
 #group 2   
                                      
 #2nd
-tmod01(0,s07,s08,s09,s10,s11,e30,e31,e32,e33,s24,s27,s28,s29,s30,s31,"green","red","yellow","orange",-1)
+tmod01
+(0,s15,s16,s17,s18,s19,s25,e29,e30,e31,s26,s35,s36,s37,s38,s39,"green","red","yellow","orange",-1)
 #4th
-tmod01(2,s19,s20,s21,s22,s23,s26,e37,e38,e39,e399,s39,s40,s41,s42,s43,"dark strong green","blue","medium weak green","purple",-1)
+tmod01(2,s19,s20,s21,s22,s23,s26,e32,e33,e34,e35,s39,s40,s41,s42,s43,"dark strong green","blue","medium weak green","purple",-1)
 #1st
-tmod01(-2,s11,s12,s13,s14,s15,s24,e34,e35,e36,s25,s31,s32,s33,s34,s35,"medium weak red","magenta","dark moderate orange","cyan",-1)
+tmod01(-2,s11,s12,s13,s14,s15,s24,e36,e37,e38,s25,s31,s32,s33,s34,s35,"medium weak red","magenta","dark moderate orange","cyan",-1)
 #3rd
-tmod01(-4,s07,s08,s09,s10,s11,e40,e41,e42,e43,s24,s27,s28,s29,s30,s31,"dark strong blue","brown","medium weak red","2000,30000,2000",-1)
+tmod01(-4,s07,s08,s09,s10,s11,e39,e40,e41,e42,s24,s27,s28,s29,s30,s31,"dark strong blue","brown","medium weak red","2000,30000,2000",-1)
 
 #group 3
 
 #2nd
-tmod01(0,s35,s36,s37,s38,s39,s45,e51,e52,e53,s46,s55,s56,s57,s58,s59,"medium weak red","magenta","dark moderate orange","cyan",-2)
+tmod01(0,s35,s36,s37,s38,s39,s45,e43,e44,e45,s46,s55,s56,s57,s58,s59,"medium weak red","magenta","dark moderate orange","cyan",-2)
 #4th
-tmod01(2,s39,s40,s41,s42,s43,s46,e54,e55,e56,e566,s59,s60,s61,s62,s63,"dark strong blue","brown","medium weak red","2000,30000,2000",-2)
+tmod01(2,s39,s40,s41,s42,s43,s46,e46,e47,e48,e49,s59,s60,s61,s62,s63,"dark strong blue","brown","medium weak red","2000,30000,2000",-2)
 #1st
 tmod01(-2,s31,s32,s33,s34,s35,s44,e48,e49,e50,s45,s51,s52,s53,s54,s55,"dark strong green","blue","medium weak green","purple",-2)
 #3rd
