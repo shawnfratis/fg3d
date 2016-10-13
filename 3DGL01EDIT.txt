@@ -1,0 +1,1169 @@
+
+#F3D OpenGL 2016 FratisGraphics
+
+#Some of this code is from the University of Arizona and Rosetta Code.
+
+#Please contact me if you would like specifics of this.
+#shawnfratis@gmail.com
+
+#This version features only OpenGL w/o textures
+#Made in Unicon, with Unicon IDE
+
+#Things to do:
+#finish mesh- fix holes - expand - breakout as separate matrice for others - vertice/math input method
+#Z-axis color desaturate - fake fog - distance effect
+#random displacement - octrees - voxels - cities
+#mouse navigation - better keyboard nav
+#background image import
+#fix image export - image sequence export?
+#color - texture parameters
+#input language - math
+#texture maps - generators
+#gui - on screen controls
+#bring in stuff from old icon:terrain gen,etc etc.
+#animation
+
+###############################################################
+
+link wopen
+link color
+link graphics
+link numbers
+link options
+link button 
+link strings
+
+################################
+
+procedure main()
+
+&window := open("win", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
+      
+        repeat {
+
+w := Active() | stop("Active fails")
+
+################################
+#not presently used - can be modified to re-introduce mouse events.
+   
+       case e := Event(w) of {
+
+&lpress | &mpress | &rpress: {
+	      x1 := &x
+	      y1 := &y
+	      x2 := y2 := &null
+}
+################################
+#begin basic keyboard commands.
+
+#Image paths currently set for Windows.
+#You will have to modify it for other platforms or locations. 
+
+"\z": {
+	 
+              WriteImage("C:/Users/meridith/Desktop/fg01.png")
+}
+"\q": {
+	         f01()
+
+              }
+"\g": {
+              WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+
+              }
+"\h": {
+	      
+              WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.1,0.0,1.0")
+       
+              }
+"\j": {
+	      
+              WAttrib("eyepos=0.0,0.0,2.0","eyedir=0.0,0.0,1.0")
+    
+              }
+"\k": {
+	         WAttrib("eyepos=0.0,0.0,.5","eyedir=0.0,0.0,1.0")
+    
+              }
+"\l": {
+	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.4,0.0,1.0")
+    
+              }
+"\f": {
+	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.1,0.0,1.0")
+    
+              }
+"\d": {
+	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.2,0.0,1.0")
+    
+              }
+"\s": {
+	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.3,0.0,1.0")
+    
+              }
+"\a": {
+	        WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.4,0.0,1.0")
+    
+              }
+"\G": {
+              Eye(0,.2,0, 0,0,-1, 0,1,0)
+              }
+"\H": {
+              WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.0,0.0,2.0")
+
+              }
+"\J": {
+              WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.0,0.0,3.0")
+
+              }
+"\F": {
+              WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,3.0")
+              }
+"\D": {
+              WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
+              }
+"\S": {
+              WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
+              }
+"\$": {      
+              main()
+	       }
+"\%": {    
+              Refresh()
+              }
+"\[": {    
+              testTmod()
+
+              }
+"\]": {       
+              inpgleye01()
+
+              }
+"\}": {  
+              helpmsg1()
+
+              }
+"\\": {  
+              EraseArea()
+              }
+"\@": {
+              exit()
+              }
+"\{": { 
+              inst()
+              }
+"\?": { 
+              Notice("{ for instructions. Save as image (z)")
+              }
+"\x": { 
+              openImage()
+              }
+"\/": {      
+              inputprompt()
+              }
+"\,": { 
+              trimesh01()   
+             }
+"\<": { 
+              trimesh02()
+             
+	}
+    }
+  }
+
+WDone()
+
+end
+
+######################################################################################################
+
+procedure inst()
+
+WAttrib("dx=1", "dy=1")
+
+Fg("green")
+
+WWrite("Welcome to 3DGL01")
+WWrite("Many of these are for testing purposes:")
+WWrite("q is main window w/plane and light. ghj, and asGHJkl are views") 
+WWrite("/ is input prompt, \ is erase all")
+WWrite("cube01/02=x,y,z,size cyl01/02=x,y,z,h,r1,r2 sphere01/02=x,y,z,r")  
+WWrite("plane01/02=x,y,z of 4 corners, %=refresh")
+WWrite("Some basic settings:")
+WWrite("floor:X=+3/-3,Y=-1,Z=-8,5")
+WWrite("rcube01 = random displacement")
+WWrite("DrawCylinder(0,-1,-4,1,.5,.5)")
+WWrite("DrawSphere(0,0.1,-3,.5)")
+WWrite("DrawCube(0,0.5,-2,.5)")
+WWrite("FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
+WWrite("Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
+WWrite("randomcubecenter,randomcuberight, etc.")
+WWrite(", is plane01,< is plane02,] is mouse control")
+WWrite("{ is instruction 1, } is instruction 2")
+
+end
+
+###############  ################  ######################
+
+Welcome to __________
+To come back to these instructions press ?
+Generating an example cube:
+Press "/" to start command line. Type "cube", then enter.
+type 0,then enter..type 0.5,then enter..type -2,then enter..
+type .5,then enter..Finally, type _________, then enter.  This will create a ___ colored cube in the center of the screen. These numbers are the X, Y, Z, size and color values of the cube.  All basic primitive shapes, as well as meshes and other elements, can be created this way. Press " " for a reference screen which shows all the types of values, etc. for other shapes and elements.
+" "," "," "," "," " and " " change views. " " is for a basic mouse navigation.
+
+
+
+
+############################start online help messages.
+
+#Help Panel 1
+procedure helpmsg1()
+
+WAttrib("dx=1", "dy=1")
+
+        Fg("red")
+
+        WWrite("Help 1")
+        WWrite("Parameters for 3D planes and objects")
+        WWrite("           [+y]               row (a)1    X    X    X  4|  X    X    X")
+        WWrite("            |                    ")
+        WWrite("            |                 row (b)2    X    X    X  3|  X    X    X")	 
+        WWrite("            |                    ")
+        WWrite("            |                 row (c)3    X    X    X  2|  X    X    X")
+        WWrite("[-x]--------0-------[+x]         ")
+        WWrite("            |                 row (d)4  -3|  -2|  -1|  0|   1|   2|  3|")
+        WWrite("            |                    ")
+        WWrite("            |                 row (e)5    X    X    X   -2|  X    X    X")
+        WWrite("            |                    ")
+        WWrite("           [-y]               row (f)6    X    X    X   -3|  X    X    X")
+        WWrite("                                ")
+        WWrite("                              row (g)7    X    X    X   -4|  X    X    X")   
+end
+
+######################################################
+
+########################################################
+
+#straighten this up a bit
+
+procedure textin01()
+
+        WAttrib("dx=1", "dy=1")
+
+        Fg("green")
+
+        WWrite("annotation:")
+        s := WRead()
+        WWrite("note:",image(s))
+
+end
+
+########################################################
+#open image
+
+procedure openImage()
+
+        ReadImage("C:/Users/HHE3/Desktop/bg01.png",1,1)
+
+end
+########################################################
+########################################################
+
+procedure inputSphere01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglsphere01(ipx,ipy,ipz,ips)
+
+end
+
+########################################################
+
+procedure inputCube01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglcube01(ipx,ipy,ipz,ips)
+
+end
+
+################################################################
+procedure inputCyl01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4 
+      ipq := s5  
+      ipa := s6   
+   
+  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      s7 := WRead()
+      s8 := WRead()
+      s9 := WRead()
+      s10 := WRead()
+      s11 := WRead()
+      s12 := WRead()
+        
+      px  := s1
+      py  := s2
+      pz  := s3
+      pxx := s4
+      pyy := s5 
+      pzz := s6  
+      pxxx := s7
+      pyyy := s8
+      pzzz := s9
+      pxxxx := s10
+      pyyyy := s11
+      pzzzz := s12           
+   
+  inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+end
+
+########################################################
+
+procedure inputSphere02()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglsphere02(ipx,ipy,ipz,ips)
+
+end
+
+########################################################
+
+procedure inputCube02()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpglcube02(ipx,ipy,ipz,ips)
+
+end
+
+################################################################
+procedure inputCyl02()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4 
+      ipq := s5  
+      ipa := s6   
+   
+  inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure inputPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      s7 := WRead()
+      s8 := WRead()
+      s9 := WRead()
+      s10 := WRead()
+      s11 := WRead()
+      s12 := WRead()
+        
+      px  := s1
+      py  := s2
+      pz  := s3
+      pxx := s4
+      pyy := s5 
+      pzz := s6  
+      pxxx := s7
+      pyyy := s8
+      pzzz := s9
+      pxxxx := s10
+      pyyyy := s11
+      pzzzz := s12           
+   
+  inpglplane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+
+end
+
+###############################################
+#expiremental
+
+procedure inputRCube01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4  
+   
+  inpRglcube01(ipx,ipy,ipz,ips)
+
+end
+
+#################################################
+procedure inputprompt()
+ 
+        s1 := WRead()
+
+        #WAttrib("dx=1", "dy=1")
+
+        ss1 :=( "cube01")
+        ss2 :=( "plane01")
+        ss3 :=( "cyl01")
+        ss4 :=( "sphere01")
+        ss5 :=( "cube02")
+        ss6 :=( "plane02")
+        ss7 :=( "cyl02")
+        ss8 :=( "sphere02")
+        ss9 :=( "rcube01")
+        ss10 :=( "cubecenter")
+        ss11 :=( "cuberight")
+        ss12 :=( "cubeleft")
+        ss13 :=( "cubecenterlow")
+        ss14 :=( "randomcubecenter")
+        ss15 :=( "randomcuberight")
+        ss16 :=( "randomcubeleft")
+        ss17 :=( "randomcubecenterlow")
+        ss18 :=( "notused")
+        ss19 :=( "notused")
+        ss20 :=( "notused")
+        ss21 :=( "notused")
+        ss22 :=( "notused")
+        ss23 :=( "notused")
+      
+
+        if s1== ss1 then inputCube01() 
+        else
+        if s1== ss2 then inputPlane01() 
+        else
+        if s1== ss3 then inputCyl01() 
+        else
+        if s1== ss4 then inputSphere01() 
+        else
+        if s1== ss5 then inputCube02() 
+        else
+        if s1== ss6 then inputPlane02() 
+        else
+        if s1== ss7 then inputCyl02() 
+        else
+        if s1== ss8 then inputSphere02() 
+        else
+        if s1== ss9  then inputRCube01()
+        else
+        if s1== ss10 then presetCube01()
+        else
+        if s1== ss11 then presetCube02()
+        else
+        if s1== ss12 then presetCube03()
+        else
+        if s1== ss13 then presetCube04()
+        else
+        if s1== ss14 then presetRCube01()
+        else
+        if s1== ss15 then presetRCube02()
+        else
+        if s1== ss16 then presetRCube03()
+        else
+        if s1== ss17 then presetRCube04()
+        else
+        if s1== ss18 then notused
+        else
+        if s1== ss19 then notused
+        else
+        if s1== ss20 then notused
+        else
+        if s1== ss21 then notused 
+        else
+        if s1== ss22 then notused
+        else
+        if s1== ss23 then notused 
+     
+
+    return
+
+end
+
+#############end input cubes etc#################
+##############Begin OpenGL 3D##############################
+
+procedure f01()
+
+w := open("scene","gl", "bg=black", "size=100,100")
+
+WAttrib(w, "light0=diffuse white; ambient black; _
+specular white; position 0.0, 1.0, 0.0")
+
+#for testing
+#WAttrib("light0=on, ambient white","fg=specular white")
+#WAttrib("light0=on, ambient white,fg=specular white,position 0.0,-1,0.0")
+#WAttrib("light0=on, ambient  white")
+#WAttrib("light0=on, ambient blue-green","fg=specular white")
+#DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
+#DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
+#DrawSphere(w,0.0, 0.59, -2.2, 0.3)
+#Fg("red")
+#DrawCylinder(0,-1,-4,1,.5,.5)
+#Fg("blue")
+#DrawSphere(0,0.1,-3,.5)
+#Fg("green")
+#FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
+
+Fg("yellow")
+DrawCube(0,0.5,-10,.5)
+
+Refresh()
+
+end
+
+###########################################################
+##################################################
+
+procedure inpglsphere01(ipx,ipy,ipz,ips)
+
+Fg("green")
+DrawSphere(ipx,ipy,ipz,ips)
+
+end
+
+##################################################
+
+procedure inpglcube01(ipx,ipy,ipz,ips)
+
+Fg("red")
+DrawCube(ipx,ipy,ipz,ips)
+
+end
+
+##################################################
+
+procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+Fg("blue")
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+##################################################
+
+procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+Fg("orange")
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+########################################################
+
+procedure inpglsphere02(ipx,ipy,ipz,ips)
+
+Fg("yellow")
+DrawSphere(ipx,ipy,ipz,ips)
+
+end
+
+##################################################
+
+procedure inpglcube02(ipx,ipy,ipz,ips)
+
+Fg("grey")
+DrawCube(ipx,ipy,ipz,ips)
+
+end
+
+##################################################
+
+procedure inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
+
+Fg("orange")
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+##################################################
+
+procedure inpglplane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+Fg("magenta")
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+########################################################
+##################################################
+#following are experemental
+
+procedure inpgleye01()
+
+repeat {
+
+case Event() of {
+&ldrag:{
+
+Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
+
+#Eye(&x,&y,&x,0 ,0,-1, 0,1,0)
+}
+}
+}
+   
+end
+
+#####################################################
+
+procedure inpRglcube01(ipx,ipy,ipz,ips)
+
+#ipxx := ?1
+#ipyy := ?1
+#ipzz := ?1
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+Fg("red")
+DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
+
+end
+
+######################################################
+procedure testTmod()
+
+tmod01(0,.1,.2,.1,.2,.1,.2,.1,.2,.1,.2,.1,.2,.1,.2,.1,"green","red","yellow","orange",0)
+
+end
+
+##########################################################
+
+procedure tmod01(xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed)
+
+#(zq1 := -4+zed,zq2 := -4.5+zed, zq3 := -5+zed)
+(zq1 := -5+zed,zq2 := -4.5+zed, zq3 := -4+zed)
+
+duk := cc
+dad := dd
+daq := ee
+daz := ff
+
+######################################################
+
+(ya1 := -1+v01,ya2 := -1+v02,ya3 := -1+v03,ya4 := -1+v04,ya5 := -1+v05,ya6 := -1+v06,ya7 := -1+v07,ya8 := -1+v08,ya9 := -1+v09,yn1 := -1+v10,yn2 := -1+v11,yn3 := -1+v12,yn4 := -1+v13,yn5 := -1+v14,yn6 := -1+v15)
+
+######################################################
+
+(xa1 := 0+xdd,xa2 := .5+xdd,xa3 := 1+xdd,xa4 := 1.5+xdd,xa5 := 2+xdd,xa6 := 0+xdd,xa7 := .5+xdd,xa8 := 1+xdd,xa9 := 1.5+xdd,x10 := 2+xdd,x11 := 0+xdd,x12 := .5+xdd,x13 := 1+xdd,x14 := 1.5+xdd,x15 := 2+xdd)
+
+##############
+
+xq1 := xa1 
+xq2 := xa2  
+xq3 := xa3 
+ 
+xq4 := xa4  
+xq5 := xa5 
+xq6 := xa6 
+ 
+xq7 := xa7  
+xq8 := xa8  
+xq9 := xa9
+ 
+xm1 := x10  
+xm2 := x11 
+xm3 := x12 
+
+xm4 := x13 
+xm5 := x14  
+xm6 := x15
+
+##############################################
+
+yq1 := ya1 
+yq2 := ya2  
+yq3 := ya3 
+ 
+yq4 := ya4 
+yq5 := ya5 
+yq6 := ya6 
+ 
+yq7 := ya7 
+yq8 := ya8 
+yq9 := ya9 
+ 
+ym1 := yn1  
+ym2 := yn2
+ym3 := yn3 
+
+ym4 := yn4 
+ym5 := yn5  
+ym6 := yn6 
+
+######################################################
+
+Fg(duk)
+#1
+ FillPolygon(xq1,yq1,zq1,xq2,yq2,zq1,xq6,yq6,zq2)
+
+Fg(daq)
+#2  
+ FillPolygon(xq2,yq2,zq1,xq7,yq7,zq2,xq6,yq6,zq2)
+
+Fg(daz)
+#3  
+ FillPolygon(xq2,yq2,zq1,xq3,yq3,zq1,xq7,yq7,zq2)
+
+Fg(dad)
+#4  
+ FillPolygon(xq3,yq3,zq1,xq8,yq8,zq2,xq7,yq7,zq2)
+
+Fg(duk)
+#5
+ FillPolygon(xq3,yq3,zq1,xq4,yq4,zq1,xq8,yq8,zq2)
+
+Fg(daq)
+#6  
+ FillPolygon(xq4,yq4,zq1,xq9,yq9,zq2,xq8,yq8,zq2)
+
+Fg(daz)
+#7
+ FillPolygon(xq4,yq4,zq1,xq5,yq5,zq1,xq9,yq9,zq2)
+
+Fg(dad)
+#8  
+ FillPolygon(xq5,yq5,zq1,xm1,ym1,zq2,xq9,yq9,zq2)
+
+######################################################
+
+Fg(duk)
+#9  
+ FillPolygon(xq6,yq6,zq2,xq7,yq7,zq2,xm2,ym2,zq3)
+
+Fg(daq)
+#10  
+ FillPolygon(xq7,yq7,zq2,xm3,ym3,zq3,xm2,ym2,zq3)
+
+Fg(daz)
+#11
+ FillPolygon(xq7,yq7,zq2,xq8,yq8,zq2,xm3,ym3,zq3)
+
+Fg(dad)
+#12  
+ FillPolygon(xq8,yq8,zq2,xm4,ym4,zq3,xm3,ym3,zq3)
+
+Fg(duk)
+#13
+ FillPolygon(xq8,yq8,zq2,xq9,yq9,zq2,xm4,ym4,zq3)
+
+Fg(daq)
+#14  
+ FillPolygon(xq9,yq9,zq2,xm5,ym5,zq3,xm4,ym4,zq3)
+
+Fg(daz)
+#15  
+ FillPolygon(xq9,yq9,zq2,xm1,ym1,zq2,xm5,ym5,zq3)
+
+Fg(dad)
+#16  
+ FillPolygon(xm1,ym1,zq2,xm6,ym6,zq3,xm5,ym5,zq3)
+ 
+end
+
+############################################################
+
+#procedure trimesh01(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09)
+
+#add ? for params
+
+procedure trimesh01()
+
+(ha01 := -.1,ha02 := -.2,ha03 := -.1,ha04 := -.2,ha05 := -.1,ha06 := -.2,ha07 := -.1,ha08 := -.2,ha09 := -.1,ha10 := -.2,ha11 := -.1,ha12 := -.2,ha13 := -.1,ha14 := -.2,ha15 := -.1,ha16 := -.2,ha17 := -.1)
+
+(hb01 := -.2,hb02 := -.1,hb03 := -.2,hb04 := -.1,hb05 := -.2,hb06 := -.1,hb07 := -.2,hb08 := -.1,hb09 := -.2,hb10 := -.1,hb11 := -.2,hb12 := -.1,hb13 := -.2,hb14 := -.1,hb15 := -.2,hb16 := -.1,hb17 := -.2)
+
+(qa01 := -.1,qa02 := -.2,qa03 := -.1,qa04 := -.2,qa05 := -.1,qa06 := -.2,qa07 := -.1,qa08 := -.2,qa09 := -.1,qa10 := -.2,qa11 := -.1,qa12 := -.2,qa13 := -.1,qa14 := -.2,qa15 := -.1,qa16 := -.2,qa17 := -.1)
+
+(he01 := -.2,he02 := -.1,he03 := -.2,he04 := -.1,he05 := -.2,he06 := -.1,he07 := -.2,he08 := -.1,he09 := -.2,he10 := -.1,he11 := -.2,he12 := -.1,he13 := -.2,he14 := -.1,he15 := -.2,he16 := -.1,he17 := -.2)
+
+(qb01 := -.1,qb02 := -.2,qb03 := -.1,qb04 := -.2,qb05 := -.1,qb06 := -.2,qb07 := -.1,qb08 := -.2,qb09 := -.1,qb10 := -.2,qb11 := -.1,qb12 := -.2,qb13 := -.1,qb14 := -.2,qb15 := -.1,qb16 := -.2,qb17 := -.1)
+
+(hh01 := -.2,hh02 := -.1,hh03 := -.2,hh04 := -.1,hh05 := -.2,hh06 := -.1,hh07 := -.2,hh08 := -.1,hh09 := -.2,hh10 := -.1,hh11 := -.2,hh12 := -.1,hh13 := -.2,hh14 := -.1,hh15 := -.2,hh16 := -.1,hh17 := -.2)
+
+(qc01 := -.1,qc02 := -.2,qc03 := -.1,qc04 := -.2,qc05 := -.1,qc06 := -.2,qc07 := -.1,qc08 := -.2,qc09 := -.1,qc10 := -.2,qc11 := -.1,qc12 := -.2,qc13 := -.1,qc14 := -.2,qc15 := -.1,qc16 := -.2,qc17 := -.1)
+
+(hk01 := -.2,hk02 := -.1,hk03 := -.2,hk04 := -.1,hk05 := -.2,hk06 := -.1,hk07 := -.2,hk08 := -.1,hk09 := -.2,hk10 := -.1,hk11 := -.2,hk12 := -.1,hk13 := -.2,hk14 := -.1,hk15 := -.2,hk16 := -.1,hk17 := -.2)
+
+(hl01 := -.1,hl02 := -.2,hl03 := -.1,hl04 := -.2,hl05 := -.1,hl06 := -.2,hl07 := -.1,hl08 := -.2,hl09 := -.1,hl10 := -.2,hl11 := -.1,hl12 := -.2,hl13 := -.1,hl14 := -.2,hl15 := -.1,hl16 := -.2,hl17 := -.1)
+
+#####################################################
+
+(s01:=.2,e01:=.2,e02:=.2,e03:=.2,s03:=.2,s05:=.2,e04:=.2,e05:=.2,e06:=.2,s06:=.2,s15:=.2,s16:=.2,s17:=.2,s18:=.2,s19:=.2)
+(s03:=.2,e07:=.2,e08:=.2,e09:=.2,e10:=.2,s06:=.2,e11:=.2,e12:=.2,e13:=.2,e133:=.2,s19:=.2,s20:=.2,s21:=.2,s22:=.2,s23:=.2)
+(e14:=.2,e15:=.2,e16:=.2,e17:=.2,s02:=.2,e18:=.2,e19:=.2,e20:=.2,e21:=.2,s05:=.2,s11:=.2,s12:=.2,s13:=.2,s14:=.2,s15:=.2)
+(e22:=.2,e23:=.2,e24:=.2,e25:=.2,s01:=.2,e26:=.2,e27:=.2,e28:=.2,e29:=.2,s04:=.2,s07:=.2,s08:=.2,s09:=.2,s10:=.2,s11:=.2)                                    
+(s07:=.2,s08:=.2,s09:=.2,s10:=.2,s11:=.2,e30:=.2,e31:=.2,e32:=.2,e33:=.2,s24:=.2,s27:=.2,s28:=.2,s29:=.2,s30:=.2,s31:=.2)
+(s19:=.2,s20:=.2,s21:=.2,s22:=.2,s23:=.2,s26:=.2,e37:=.2,e38:=.2,e39:=.2,e399:=.2,s39:=.2,s40:=.2,s41:=.2,s42:=.2,s43:=.2)
+(s11:=.2,s12:=.2,s13:=.2,s14:=.2,s15:=.2,s24:=.2,e34:=.2,e35:=.2,e36:=.2,s25:=.2,s31:=.2,s32:=.2,s33:=.2,s34:=.2,s35:=.2)
+(s07:=.2,s08:=.2,s09:=.2,s10:=.2,s11:=.2,e40:=.2,e41:=.2,e42:=.2,e43:=.2,s24:=.2,s27:=.2,s28:=.2,s29:=.2,s30:=.2,s31:=.2)
+(s35:=.2,s36:=.2,s37:=.2,s38:=.2,s39:=.2,s45:=.2,e51:=.2,e52:=.2,e53:=.2,s46:=.2,s55:=.2,s56:=.2,s57:=.2,s58:=.2,s59:=.2)
+(s39:=.2,s40:=.2,s41:=.2,s42:=.2,s43:=.2,s46:=.2,e54:=.2,e55:=.2,e56:=.2,e566:=.2,s59:=.2,s60:=.2,s61:=.2,s62:=.2,s63:=.2)
+(s27:=.2,s28:=.2,s29:=.2,s30:=.2,s31:=.2,e44:=.2,e45:=.2,e46:=.2,e47:=.2,s44:=.2,s47:=.2,s48:=.2,s49:=.2,s50:=.2,s51:=.2)
+(s31:=.2,s32:=.2,s33:=.2,s34:=.2,s35:=.2,s44:=.2,e48:=.2,e49:=.2,e50:=.2,s45:=.2,s51:=.2,s52:=.2,s53:=.2,s54:=.2,s55:=.2)
+(s55:=.2,s56:=.2,s57:=.2,s58:=.2,s59:=.2,s65:=.2,e71:=.2,e72:=.2,e73:=.2,s66:=.2,s68:=.2,e74:=.2,e75:=.2,e76:=.2,s69:=.2)
+(s59:=.2,s60:=.2,s61:=.2,s62:=.2,s63:=.2,s66:=.2,e77:=.2,e78:=.2,e79:=.2,e80:=.2,e81:=.2,e82:=.2,e83:=.2,e84:=.2,s69:=.2)
+(s47:=.2,s48:=.2,s49:=.2,s50:=.2,s51:=.2,e57:=.2,e58:=.2,e59:=.2,e60:=.2,s64:=.2,e61:=.2,e62:=.2,e63:=.2,e64:=.2,s67:=.2)
+(s51:=.2,s52:=.2,s53:=.2,s54:=.2,s55:=.2,s64:=.2,e65:=.2,e66:=.2,e67:=.2,s65:=.2,s67:=.2,e68:=.2,e69:=.2,e70:=.2,s68:=.2)
+######################################################
+
+#group 1
+
+#2nd
+tmod01(0,s01,e01,e02,e03,s03,s05,e04,e05,e06,s06,s15,s16,s17,s18,s19,"green","red","yellow","orange",0)
+#4th
+tmod01(2,s03,e07,e08,e09,e10,s06,e11,e12,e13,e133,s19,s20,s21,s22,s23,"dark strong green","blue","medium weak green","purple",0)
+#1st
+tmod01(-2,e14,e15,e16,e17,s02,e18,e19,e20,e21,s05,s11,s12,s13,s14,s15,"medium weak red","magenta","dark moderate orange","cyan",0)
+#3rd
+tmod01(-4,e22,e23,e24,e25,s01,e26,e27,e28,e29,s04,s07,s08,s09,s10,s11,"dark strong blue","brown","medium weak red","2000,30000,2000",0)
+
+#group 2   
+                                     
+#2nd
+tmod01(0,s07,s08,s09,s10,s11,e30,e31,e32,e33,s24,s27,s28,s29,s30,s31,"green","red","yellow","orange",-1)
+#4th
+tmod01(2,s19,s20,s21,s22,s23,s26,e37,e38,e39,e399,s39,s40,s41,s42,s43,"dark strong green","blue","medium weak green","purple",-1)
+#1st
+tmod01(-2,s11,s12,s13,s14,s15,s24,e34,e35,e36,s25,s31,s32,s33,s34,s35,"medium weak red","magenta","dark moderate orange","cyan",-1)
+#3rd
+tmod01(-4,s07,s08,s09,s10,s11,e40,e41,e42,e43,s24,s27,s28,s29,s30,s31,"dark strong blue","brown","medium weak red","2000,30000,2000",-1)
+
+#group 3
+
+#2nd
+tmod01(0,s35,s36,s37,s38,s39,s45,e51,e52,e53,s46,s55,s56,s57,s58,s59,"medium weak red","magenta","dark moderate orange","cyan",-2)
+#4th
+tmod01(2,s39,s40,s41,s42,s43,s46,e54,e55,e56,e566,s59,s60,s61,s62,s63,"dark strong blue","brown","medium weak red","2000,30000,2000",-2)
+#3rd
+tmod01(-4,s27,s28,s29,s30,s31,e44,e45,e46,e47,s44,s47,s48,s49,s50,s51,"green","red","yellow","orange",-2)
+#1st
+tmod01(-2,s31,s32,s33,s34,s35,s44,e48,e49,e50,s45,s51,s52,s53,s54,s55,"dark strong green","blue","medium weak green","purple",-2)
+
+#group 4
+
+#2nd
+tmod01(0,s55,s56,s57,s58,s59,s65,e71,e72,e73,s66,s68,e74,e75,e76,s69,"medium weak red","magenta","dark moderate orange","cyan",-3)
+#4th
+tmod01(2,s59,s60,s61,s62,s63,s66,e77,e78,e79,e80,e81,e82,e83,e84,s69,"dark strong blue","brown","medium weak red","2000,30000,2000",-3)
+#3rd
+tmod01(-4,s47,s48,s49,s50,s51,e57,e58,e59,e60,s64,e61,e62,e63,e64,s67,"green","red","yellow","orange",-3)
+#1st
+tmod01(-2,s51,s52,s53,s54,s55,s64,e65,e66,e67,s65,s67,e68,e69,e70,s68,"dark strong green","blue","medium weak green","purple",-3)
+
+end
+#########################################################
+
+#procedure trimesh02(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09)
+
+procedure trimesh02()
+
+(ha01 := -.1,ha02 := -.2,ha03 := -.1,ha04 := -.2,ha05 := -.1,ha06 := -.2,ha07 := -.1,ha08 := -.2,ha09 := -.1,ha10 := -.2,ha11 := -.1,ha12 := -.2,ha13 := -.1,ha14 := -.2,ha15 := -.1,ha16 := -.2,ha17 := -.1)
+
+(hb01 := -.2,hb02 := -.1,hb03 := -.2,hb04 := -.1,hb05 := -.2,hb06 := -.1,hb07 := -.2,hb08 := -.1,hb09 := -.2,hb10 := -.1,hb11 := -.2,hb12 := -.1,hb13 := -.2,hb14 := -.1,hb15 := -.2,hb16 := -.1,hb17 := -.2)
+
+(qa01 := -.1,qa02 := -.2,qa03 := -.1,qa04 := -.1,qa05 := -.3,qa06 := -3.5,qa07 := -.4,qa08 := -.2,qa09 := -.1,qa10 := -.2,qa11 := -.1,qa12 := -.2,qa13 := -.1,qa14 := -.2,qa15 := -.1,qa16 := -.2,qa17 := -.1)
+
+(he01 := -.2,he02 := -.1,he03 := -.2,he04 := -.1,he05 := -.2,he06 := -.3,he07 := -3.5,he08 := -.3,he09 := -.2,he10 := -.1,he11 := -.2,he12 := -.1,he13 := -.2,he14 := -.1,he15 := -.2,he16 := -.1,he17 := -.2)
+
+(qb01 := -.1,qb02 := -.2,qb03 := -.1,qb04 := -.2,qb05 := -..5,qb06 := -.2,qb07 := -2.5,qb08 := -.2,qb09 := -.1,qb10 := -.2,qb11 := -.1,qb12 := -.2,qb13 := -.1,qb14 := -.2,qb15 := -.1,qb16 := -.2,qb17 := -.1)
+
+(hh01 := -.2,hh02 := -.1,hh03 := -.2,hh04 := -.1,hh05 := -.2,hh06 := -.1,hh07 := -.2,hh08 := -.1,hh09 := -.2,hh10 := -.1,hh11 := -.2,hh12 := -.1,hh13 := -.2,hh14 := -.1,hh15 := -.2,hh16 := -.1,hh17 := -.2)
+
+(qc01 := -.1,qc02 := -.2,qc03 := -.1,qc04 := -.2,qc05 := -.1,qc06 := -.2,qc07 := -.1,qc08 := -.2,qc09 := -.1,qc10 := -.2,qc11 := -.1,qc12 := -.2,qc13 := -.1,qc14 := -.2,qc15 := -.1,qc16 := -.2,qc17 := -.1)
+
+(hk01 := -.2,hk02 := -.1,hk03 := -.2,hk04 := -.1,hk05 := -.2,hk06 := -.1,hk07 := -.2,hk08 := -.1,hk09 := -.2,hk10 := -.1,hk11 := -.2,hk12 := -.1,hk13 := -.2,hk14 := -.1,hk15 := -.2,hk16 := -.1,hk17 := -.2)
+
+(hl01 := -.1,hl02 := -.2,hl03 := -.1,hl04 := -.2,hl05 := -.1,hl06 := -.2,hl07 := -.1,hl08 := -.2,hl09 := -.1,hl10 := -.2,hl11 := -.1,hl12 := -.2,hl13 := -.1,hl14 := -.2,hl15 := -.1,hl16 := -.2,hl17 := -.1)
+
+#####################################################
+
+#(ha01 := 0,ha02 := 0,ha03 := 0,ha04 := 0,ha05 := 0,ha06 := 0,ha07 := 0,ha08 := 0,ha09 := 0,ha10 := 0,ha11 := 0,ha12 := 0,ha13 := 0,ha14 := 0,ha15 := 0,ha16 := 0,ha17 := 0)
+
+#(hb01 := 0,hb02 := 0,hb03 := 0,hb04 := 0,hb05 := 0,hb06 := 0,hb07 := 0,hb08 := 0,hb09 := 0,hb10 := 0,hb11 := 0,hb12 := 0,hb13 := 0,hb14 := 0,hb15 := 0,hb16 := 0,hb17 := 0)
+
+#(qa01 := 0,qa02 := 0,qa03 := 0,qa04 := 0,qa05 := 0,qa06 := 0,qa07 := 0,qa08 := 0,qa09 := 0,qa10 := 0,qa11 := 0,qa12 := 0,qa13 := 0,qa14 := 0,qa15 := 0,qa16 := 0,qa17 := 0)
+
+#(he01 := 0,he02 := 0,he03 := 0,he04 := 0,he05 := 0,he06 := 0,he07 := 0,he08 := 0,he09 := 0,he10 := 0,he11 := 0,he12 := 0,he13 := 0,he14 := 0,he15 := 0,he16 := 0,he17 := 0)
+
+#(qb01 := 0,qb02 := 0,qb03 := 0,qb04 := 0,qb05 := 0,qb06 := 0,qb07 := 0,qb08 := 0,qb09 := 0,qb10 := 0,qb11 := 0,qb12 := 0,qb13 := 0,qb14 := 0,qb15 := 0,qb16 := 0,qb17 := 0)
+
+#(hh01 := 0,hh02 := 0,hh03 := 0,hh04 := 0,hh05 := 0,hh06 := 0,hh07 := 0,hh08 := 0,hh09 := 0,hh10 := 0,hh11 := 0,hh12 := 0,hh13 := 0,hh14 := 0,hh15 := 0,hh16 := 0,hh17 := 0)
+
+#(qc01 := 0,qc02 := 0,qc03 := 0,qc04 := 0,qc05 := 0,qc06 := 0,qc07 := 0,qc08 := 0,qc09 := 0,qc10 := 0,qc11 := 0,qc12 := 0,qc13 := 0,qc14 := 0,qc15 := 0,qc16 := 0,qc17 := 0)
+
+#(hk01 := 0,hk02 := 0,hk03 := 0,hk04 := 0,hk05 := 0,hk06 := 0,hk07 := 0,hk08 := 0,hk09 := 0,hk10 := 0,hk11 := 0,hk12 := 0,hk13 := 0,hk14 := 0,hk15 := 0,hk16 := 0,hk17 := 0)
+
+#(hl01 := 0,hl02 := 0,hl03 := 0,hl04 := 0,hl05 := 0,hl06 := 0,hl07 := 0,hl08 := 0,hl09 := 0,hl10 := 0,hl11 := 0,hl12 := 0,hl13 := 0,hl14 := 0,hl15 := 0,hl16 := 0,hl17 := 0)
+
+######################################################
+
+#group 1
+
+#2nd
+tmod01(0,.2+ha05,.2+ha06,.2+ha07,.2+ha08,.2+ha09,.2+hb09,.2+qa09,.2+qa08,.2+qa07,.2+qa06,.2+qa05,.2+hb05,.2+hb06,.2+hb07,.2+hb08,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",0)
+#4th
+tmod01(2,.2+qa05,.2+qa06,.2+qa07,.2+qa08,.2+qa09,.2+he09,.2+qb09,.2+qb08,.2+qb07,.2+qb06,.2+qb05,.2+he05,.2+he06,.2+he07,.2+hb08,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",0)
+#1st
+tmod01(-2,.2+ha01,.2+ha02,.2+ha03,.2+ha04,.2+ha05,.2+hb05,.2+qa05,.2+qa04,.2+qa03,.2+qa02,.2+qa01,.2+hb01,.2+hb02,.2+hb03,.2+hb04,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",0)
+#3rd
+tmod01(-4,.2+qa01,.2+qa02,.2+qa03,.2+qa04,.2+qa05,.2+he05,.2+qb05,.2+qb04,.2+qb03,.2+qb02,.2+qb01,.2+he01,.2+he02,.2+he03,.2+he04,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",0)
+
+#group 2   
+                                     
+#2nd
+tmod01(0,.2+ha13,.2+ha14,.2+ha15,.2+ha16,.2+ha17,.2+hb17,.2+qa17,.2+qa16,.2+qa15,.2+qa14,.2+qa13,.2+hb13,.2+hb14,.2+hb15,.2+hb16,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-1)
+#4th
+tmod01(2,.2+qa13,.2+qa14,.2+qa15,.2+qa16,.2+qa17,.2+he17,.2+qb17,.2+qb16,.2+qb15,.2+qb14,.2+qb13,.2+he13,.2+he14,.2+he15,.2+he16,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-1)
+#1st
+tmod01(-2,.2+ha09,.2+ha10,.2+ha11,.2+ha12,.2+ha13,.2+hb13,.2+qa13,.2+qa12,.2+qa11,.2+qa10,.2+qa09,.2+hb09,.2+hb10,.2+hb11,.2+hb12,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-1)
+#3rd
+tmod01(-4,.2+qa09,.2+qa10,.2+qa11,.2+qa12,.2+qa13,.2+he13,.2+qb13,.2+qb12,.2+qb11,.2+qb10,.2+qb09,.2+he09,.2+he10,.2+he11,.2+he12,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-1)
+
+#group 3
+
+#2nd
+tmod01(0,.2+qb05,.2+qb06,.2+qb07,.2+qb08,.2+qb09,.2+qb09,.2+hh09,.2+qc08,.2+qc07,.2+qc06,.2+qc05,.2+hh05,.2+hh06,.2+hh07,.2+hh08,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-2)
+#4th
+tmod01(2,.2+qc05,.2+qc06,.2+qc07,.2+qc08,.2+qc09,.2+hk09,.2+hl09,.2+hl08,.2+hl07,.2+hl06,.2+hl05,.2+hk05,.2+hk06,.2+hk07,.2+hk08,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-2)
+#1st
+tmod01(-2,.2+qb01,.2+qb02,.2+qb03,.2+qb04,.2+qb05,.2+hh05,.2+qc05,.2+qc04,.2+qc03,.2+qc02,.2+qc01,.2+hh01,.2+hh02,.2+hh03,.2+hh04,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-2)
+#3rd
+tmod01(-4,.2+qc01,.2+qc02,.2+qc03,.2+qc04,.2+qc05,.2+hk05,.2+hl05,.2+hl04,.2+hl03,.2+hl02,.2+hl01,.2+hk01,.2+hk02,.2+hk03,.2+hk04,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-2)
+
+#group 4
+
+#2nd
+tmod01(0,.2+qb13,.2+qb14,.2+qb15,.2+qb16,.2+qb17,.2+hh17,.2+qc17,.2+qc16,.2+qc15,.2+qc14,.2+qc13,.2+hh13,.2+hh14,.2+hh15,.2+hh16,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-3)
+#4th
+tmod01(2,.2+qc13,.2+qc14,.2+qc15,.2+qc16,.2+qc17,.2+hk17,.2+hl17,.2+hl16,.2+hl15,.2+hl14,.2+hl13,.2+hk13,.2+hk14,.2+hk15,.2+hk16,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-3)
+#1st
+tmod01(-2,.2+qb09,.2+qb10,.2+qb11,.2+qb12,.2+qb13,.2+hh13,.2+qc13,.2+qc12,.2+qc11,.2+qc10,.2+qc09,.2+hh09,.2+hh10,.2+hh11,.2+hh12,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-3)
+#3rd
+tmod01(-4,.2+qc09,.2+qc10,.2+qc11,.2+qc12,.2+qc13,.2+hk13,.2+hl13,.2+hl12,.2+hl11,.2+hl10,.2+hl09,.2+hk09,.2+hk10,.2+hk11,.2+hk12,"13000,23000,13000","10000,20000,8000","11000,19000,8000","15000,20000,10000",-3)
+
+end
+
+##############################################################
+
+#start preset cubes
+
+#for reference...please destroy me later
+#WWrite("DrawCylinder(0,-1,-4,1,.5,.5)")
+#WWrite("DrawSphere(0,0.1,-3,.5)")
+#WWrite("DrawCube(0,0.5,-2,.5)")
+#WWrite("FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
+
+##############################################################
+
+procedure presetCube01()
+   
+  inpglcube01(0,0.5,-2,.5)
+
+end
+
+##############################################################
+
+procedure presetCube02()
+   
+  inpglcube01(1,0.5,-2,.5)
+
+end
+
+##############################################################
+
+procedure presetCube03()
+   
+  inpglcube01(-1,0.5,-2,.5)
+
+end
+
+##############################################################
+
+procedure presetCube04()
+   
+  inpglcube01(0,0.1,-2,.5)
+
+end
+
+###############################################
+
+procedure presetRCube01()
+   
+  inpRglcube01(0,0.5,-2,.5)
+
+end
+
+###############################################
+
+procedure presetRCube02()
+   
+  inpRglcube01(1,0.5,-2,.5)
+
+end
+
+###############################################
+
+procedure presetRCube03()
+   
+  inpRglcube01(-1,0.5,-2,.5)
+
+end
+
+###############################################
+
+procedure presetRCube04()
+   
+  inpRglcube01(0,0.1,-2,.5)
+
+end
+
+
+################################################################
+procedure presetSphere01()
+    
+  inpglsphere01(ipx,ipy,ipz,ips)
+
+end
+
+########################################################
+
+procedure presetCyl01()
+   
+  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure 
+
+presetPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+########################################################
+
+procedure presetSphere02()
+   
+  inpglsphere02(ipx,ipy,ipz,ips)
+
+end
+
+########################################################
+
+procedure presetrCube02()
+   
+  inpglcube02(ipx,ipy,ipz,ips)
+
+end
+
+################################################################
+
+procedure presetCyl02()
+   
+  inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+################################################################
+
+procedure 
+
+presetPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)        
+ 
+end
+
+
+##################################################################
+#END OF PROGRAM########################################
+
+#####################################################################################################################
+
+
