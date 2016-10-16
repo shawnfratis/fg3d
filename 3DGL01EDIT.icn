@@ -7,6 +7,7 @@
 #shawnfratis@gmail.com
 
 #Made in Unicon, with Unicon IDE
+#unicon.sourceforge.net
 
 ###############################
 
@@ -26,7 +27,10 @@ procedure main()
 
 Fg("green")
 
-WWrite("Welcome to _____. Press ?, < and > for instruction screens")
+WWrite("Welcome to _____. Press ? for basic instruction screen")
+WWrite("< gives more in-depth instructions. > and : are reference guides")
+
+###############################
       
         repeat {
 
@@ -47,15 +51,14 @@ w := Active() | stop("Active fails")
 ################################
 #begin basic keyboard commands.
 #Image paths currently set for Windows.
-#You will have to modify it for other platforms or locations.
- 
+#You will have to modify it for other platforms or locations. 
 
 "\z": {
 	 
               WriteImage("C:/Users/meridith/Desktop/fg01.png")
               }
 "\q":{
-                  #NOT USED
+                  texskyplane01()
 
               }
 "\g": {
@@ -117,7 +120,7 @@ w := Active() | stop("Active fails")
               WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
               }
 "\$": {      
-              #NOT USED
+                   texgroundplane01()
 	       }
 "\%": {    
               Refresh()
@@ -131,7 +134,7 @@ w := Active() | stop("Active fails")
 
               }
 "\?": {  
-              helpmsg1()
+              helpbox1()
 
               }
 "\\": {  
@@ -140,8 +143,8 @@ w := Active() | stop("Active fails")
 "\@": {
               exit()
               }
-"\{": { 
-              inst()
+"\:": { 
+              helpbox4()
              }           
 "\x": { 
               openImage()
@@ -153,10 +156,10 @@ w := Active() | stop("Active fails")
               trimesh01()   
              }
 "\<": { 
-              helpbox1()
+              helpbox2()
              }
 "\>": { 
-              helpbox2()
+              helpbox3()
 	}
     }
   }
@@ -165,7 +168,7 @@ WDone()
 
 end
 
-######################################################################################################
+#########################################################
 
 procedure inst()
 
@@ -177,48 +180,48 @@ end
 
 ###############  ################  ######################
 
-procedure helpmsg1()
+procedure helpbox1()
 
-win1 := WOpen("size=800, 200", "fg=red", "bg=black")
+win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
 WWrite(win1,"Welcome to _________")
 WWrite(win1,"To come back to these instructions press ?")
-WWrite(win1,"Generating an example cube: Press / to start command line. Type cube, then enter.")
-WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter. Finally, type 60000,10000,10000 then enter.")  
+WWrite(win1,"Generating an example cube:") 
+WWrite(win1,"Press / to start command line. Type cube, then enter.")
+WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter.") 
+WWrite(win1,"Finally, type 60000,10000,10000 then enter.")  
 WWrite(win1,"This will create a red colored cube in the center of the screen.")
 WWrite(win1,"These numbers are the X, Y, Z, size and color values of the cube.")  
-WWrite(win1,"All basic primitive shapes, as well as meshes and other elements, can be created this way.") 
+WWrite(win1,"All elements can be created this way.") 
 WWrite(win1,"__ __ __ and __ change views. __ is for a basic mouse navigation.")
 
 end
 
 ################################################
 
-procedure helpbox1()
+procedure helpbox3()
 
-win1 := WOpen("size=800, 200", "fg=red", "bg=black")
+win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
  #WAttrib("dx=1", "dy=1")
 
-        WWrite(win1,"           [+y]               row (a)1    X    X    X  4|  X    X    X")
+        WWrite(win1,"           [+y]               ")
         WWrite(win1,"            |                    ")
-        WWrite("            |                 row (b)2    X    X    X  3|  X    X    X")	 
+        WWrite(win1,"            |                 ")	 
         WWrite(win1,"            |                    ")
-        WWrite(win1,"            |                 row (c)3    X    X    X  2|  X    X    X")
+        WWrite(win1,"            |                 ")
         WWrite(win1,"[-x]--------0-------[+x]         ")
-        WWrite(win1,"            |                 row (d)4  -3|  -2|  -1|  0|   1|   2|  3|")
+        WWrite(win1,"            |                 ")
         WWrite(win1,"            |                    ")
-        WWrite(win1,"            |                 row (e)5    X    X    X   -2|  X    X    X")
+        WWrite(win1,"            |                 ")
         WWrite(win1,"            |                    ")
-        WWrite(win1,"           [-y]               row (f)6    X    X    X   -3|  X    X    X")
-        WWrite(win1,"                                ")
-        WWrite(win1,"                              row (g)7    X    X    X   -4|  X    X    X")
+        WWrite(win1,"           [-y]              ")
 
 end
 
 procedure helpbox2()
 
-win1 := WOpen("size=800, 200", "fg=red", "bg=black")
+win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
 WWrite(win1,"/ is input prompt, \ is erase all")
 WWrite(win1,"cube=x,y,z,color") 
@@ -233,10 +236,24 @@ WWrite(win1,"rcube01 = random displacement")
 WWrite(win1,"Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
 WWrite(win1,"randomcubecenter,randomcuberight, etc.")
 
-#####COLOR REFERENCE
+end
 
-#WDone(win1)
-#WClose(win1)
+procedure helpbox4()
+
+win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+
+WWrite(win1,"Color (RGB) values must be entered in this format: 65000,65000,65000")
+WWrite(win1,"Here are some examples for different shades of red:")
+WWrite(win1,"very light weak red     57343,51881,51881  medium strong red       57343,8191,8191")
+WWrite(win1,"very light moderate red 60073,49151,49151  medium vivid red        65535,0,0")
+WWrite(win1,"very light strong red   62804,46420,46420  dark weak red           27306,16383,16383")
+WWrite(win1,"very light vivid red    65535,43689,43689  dark moderate red       32767,10922,10922")
+WWrite(win1,"light weak red          49151,38228,38228  dark strong red         38228,5461,5461")
+WWrite(win1,"light moderate red      54612,32767,32767  dark vivid red          43690,0,0")
+WWrite(win1,"light strong red        60073,27306,27306  very dark weak red      13653,8191,8191")
+WWrite(win1,"light vivid red         65535,21845,21845  very dark moderate red  16383,5461,5461")
+WWrite(win1,"medium weak red         40959,24575,24575  very dark strong red    19114,2730,2730")
+WWrite(win1,"medium moderate red     49151,16383,16383  very dark vivid red     21845,0,0")
 
 end
 
@@ -368,100 +385,6 @@ procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb
 end
 
 ########################################################
-
-procedure inputSphere02()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4  
-   
-  inpglsphere02(ipx,ipy,ipz,ips)
-
-end
-
-########################################################
-
-procedure inputCube02()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4  
-   
-  inpglcube02(ipx,ipy,ipz,ips)
-
-end
-
-################################################################
-procedure inputCyl02()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-      s6 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4 
-      ipq := s5  
-      ipa := s6   
-   
-  inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
-
-end
-
-################################################################
-
-procedure inputPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-      s6 := WRead()
-      s7 := WRead()
-      s8 := WRead()
-      s9 := WRead()
-      s10 := WRead()
-      s11 := WRead()
-      s12 := WRead()
-        
-      px  := s1
-      py  := s2
-      pz  := s3
-      pxx := s4
-      pyy := s5 
-      pzz := s6  
-      pxxx := s7
-      pyyy := s8
-      pzzz := s9
-      pxxxx := s10
-      pyyyy := s11
-      pzzzz := s12           
-   
-  inpglplane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
-
-end
-
-###############################################
-#expiremental
 
 procedure inputRCube01()
 
@@ -632,43 +555,6 @@ FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 end
 
 ##################################################
-
-procedure inpglsphere02(ipx,ipy,ipz,ips)
-
-Fg("yellow")
-DrawSphere(ipx,ipy,ipz,ips)
-
-end
-
-##################################################
-
-procedure inpglcube02(ipx,ipy,ipz,ips)
-
-Fg("grey")
-DrawCube(ipx,ipy,ipz,ips)
-
-end
-
-##################################################
-
-procedure inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
-
-Fg("orange")
-DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
-
-end
-
-##################################################
-
-procedure inpglplane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
-Fg("magenta")
-FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
-end
-
-##################################################
-########################################################
 
 procedure inpgleye01()
 
@@ -1060,5 +946,137 @@ end
 ##################################################################
 #END OF PROGRAM########################################
 #####################################################################################################################
+
+
+##############Begin OpenGL 3D TEX##############################
+
+#procedure f01(xpa,ypa,zpa,xra,yra,zra,xsa,ysa,zsa)
+procedure f011()
+
+#Eye(xpa,ypa,zpa,xra,yra,zra,xsa,ysa,zsa)
+
+#WAttrib("texmode=on")
+
+#WAttrib("texture=C:\Users\meridith\Documents\dumdum\check.png")
+Fg("ambient red")
+DrawCylinder(-1,-1,-4,2,.5,.5)
+
+#WAttrib("texture=C:\Users\meridith\Documents\dumdum\check.png")
+Fg("diffuse grey; emission black")
+DrawSphere(1,-1,-5,.5)
+
+#WAttrib("texture=C:\Users\meridith\Documents\dumdum\check.png")
+Fg("emission pale weak yellow")
+FillPolygon(-1.5,-1,-5,2,-1,-5,3,1,5,3,1,3)
+
+Refresh()
+
+end
+
+##################################################
+
+#procedure inpgleye01(ipx,ipy,ipz,ips,ipq,ipa,)
+
+#Eye(1.9,0,4, 1,0,0, 0,.5,0)
+#Eye(1.9,0,4, 1,0,0, 0,.5,0)
+
+#end
+
+
+##################################################
+
+procedure texcube01(ipx,ipy,ipz,ips)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=F:\Shawn\3Dprogcodeanddat\tex04.png")
+
+DrawCube(ipx,ipy,ipz,ips)
+
+end
+
+##################################################
+
+procedure texcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")
+
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+##################################################
+
+procedure texplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+
+###########
+# -10 -1 -10 , 10 -1 -10 , 10 -1 1 , -10 -1 1
+##############
+
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+
+procedure texskysphere01()
+
+WAttrib("texmode=on")
+
+#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
+
+WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png")
+
+x := -1
+y := 0
+z := -5
+r := 25
+
+#Rotate(45,290,2,90)
+
+#PushMatrix()
+
+DrawSphere(x,y,z,r)
+
+end
+
+##################################################
+
+procedure texgroundplane01()
+
+WAttrib("texmode=on")
+
+WAttrib("C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+
+###########
+# -10 -1 -10 , 10 -1 -10 , 10 -1 1 , -10 -1 1
+##############
+
+FillPolygon(-29,-.5,-49,29,-.5,-49,29,-.5,1,-29,-.5,1)
+
+end
+
+##################################################
+
+procedure texskyplane01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+
+###########
+# -10 -1 -10 , 10 -1 -10 , 10 -1 1 , -10 -1 1
+##############
+
+FillPolygon(-29,.3,-49,29,.3,-49,29,.3,1,-29,.3,1)
+
+end
+
 
 
