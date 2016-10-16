@@ -23,6 +23,10 @@ link strings
 procedure main()
 
 &window := open("win", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
+
+Fg("green")
+
+WWrite("Welcome to _____. Press ?, < and > for instruction screens")
       
         repeat {
 
@@ -43,7 +47,8 @@ w := Active() | stop("Active fails")
 ################################
 #begin basic keyboard commands.
 #Image paths currently set for Windows.
-#You will have to modify it for other platforms or locations. 
+#You will have to modify it for other platforms or locations.
+ 
 
 "\z": {
 	 
@@ -125,7 +130,7 @@ w := Active() | stop("Active fails")
               inpgleye01()
 
               }
-"\}": {  
+"\?": {  
               helpmsg1()
 
               }
@@ -137,10 +142,7 @@ w := Active() | stop("Active fails")
               }
 "\{": { 
               inst()
-              }
-"\?": { 
-              Notice("{ for instructions. Save as image (z)")
-              }
+             }           
 "\x": { 
               openImage()
               }
@@ -151,8 +153,10 @@ w := Active() | stop("Active fails")
               trimesh01()   
              }
 "\<": { 
-              #NOT USED
-             
+              helpbox1()
+             }
+"\>": { 
+              helpbox2()
 	}
     }
   }
@@ -169,65 +173,72 @@ WAttrib("dx=1", "dy=1")
 
 Fg("green")
 
-#WWrite("Welcome to 3DGL01")
-
-
 end
 
 ###############  ################  ######################
 
-#Welcome to _________
-#To come back to these instructions press ?
-#Generating an example cube: Press "/" to start command line. Type "cube", then enter.
-#Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter. Finally, type _________, enter.  
-#This will create a ___ colored cube in the center of the screen. 
-#These numbers are the X, Y, Z, size and color values of the cube.  
-#All basic primitive shapes, as well as meshes and other elements, can be created this way. Press " " for a reference screen which shows all the types of values, etc. for other shapes and elements.
-#" "," "," "," "," " and " " change views. " " is for a basic mouse navigation.
-
-############################start REF BOX
-
-#Help Panel 1
 procedure helpmsg1()
 
-WAttrib("dx=1", "dy=1")
+win1 := WOpen("size=800, 200", "fg=red", "bg=black")
 
-        Fg("red")
+WWrite(win1,"Welcome to _________")
+WWrite(win1,"To come back to these instructions press ?")
+WWrite(win1,"Generating an example cube: Press / to start command line. Type cube, then enter.")
+WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter. Finally, type 60000,10000,10000 then enter.")  
+WWrite(win1,"This will create a red colored cube in the center of the screen.")
+WWrite(win1,"These numbers are the X, Y, Z, size and color values of the cube.")  
+WWrite(win1,"All basic primitive shapes, as well as meshes and other elements, can be created this way.") 
+WWrite(win1,"__ __ __ and __ change views. __ is for a basic mouse navigation.")
 
-        #WWrite("Help 1")
-        WWrite("Parameters for 3D planes and objects")
-        WWrite("           [+y]               row (a)1    X    X    X  4|  X    X    X")
-        WWrite("            |                    ")
-        WWrite("            |                 row (b)2    X    X    X  3|  X    X    X")	 
-        WWrite("            |                    ")
-        WWrite("            |                 row (c)3    X    X    X  2|  X    X    X")
-        WWrite("[-x]--------0-------[+x]         ")
-        WWrite("            |                 row (d)4  -3|  -2|  -1|  0|   1|   2|  3|")
-        WWrite("            |                    ")
-        WWrite("            |                 row (e)5    X    X    X   -2|  X    X    X")
-        WWrite("            |                    ")
-        WWrite("           [-y]               row (f)6    X    X    X   -3|  X    X    X")
-        WWrite("                                ")
-        WWrite("                              row (g)7    X    X    X   -4|  X    X    X")   
 end
 
-######################################################
-#WWrite("/ is input prompt, \ is erase all")
-#WWrite("cube01/02=x,y,z,size cyl01/02=x,y,z,h,r1,r2 sphere01/02=x,y,z,r")  
-#WWrite("plane01/02=x,y,z of 4 corners, %=refresh")
-#WWrite("Some basic settings:")
-#WWrite("floor:X=+3/-3,Y=-1,Z=-8,5")
-#WWrite("rcube01 = random displacement")
-#WWrite("DrawCylinder(0,-1,-4,1,.5,.5)")
-#WWrite("DrawSphere(0,0.1,-3,.5)")
-#WWrite("DrawCube(0,0.5,-2,.5)")
-#WWrite("FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
-#WWrite("Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
-#WWrite("randomcubecenter,randomcuberight, etc.")
-#WWrite(", is plane01,< is plane02,] is mouse control")
-#WWrite("{ is instruction 1, } is instruction 2")
+################################################
+
+procedure helpbox1()
+
+win1 := WOpen("size=800, 200", "fg=red", "bg=black")
+
+ #WAttrib("dx=1", "dy=1")
+
+        WWrite(win1,"           [+y]               row (a)1    X    X    X  4|  X    X    X")
+        WWrite(win1,"            |                    ")
+        WWrite("            |                 row (b)2    X    X    X  3|  X    X    X")	 
+        WWrite(win1,"            |                    ")
+        WWrite(win1,"            |                 row (c)3    X    X    X  2|  X    X    X")
+        WWrite(win1,"[-x]--------0-------[+x]         ")
+        WWrite(win1,"            |                 row (d)4  -3|  -2|  -1|  0|   1|   2|  3|")
+        WWrite(win1,"            |                    ")
+        WWrite(win1,"            |                 row (e)5    X    X    X   -2|  X    X    X")
+        WWrite(win1,"            |                    ")
+        WWrite(win1,"           [-y]               row (f)6    X    X    X   -3|  X    X    X")
+        WWrite(win1,"                                ")
+        WWrite(win1,"                              row (g)7    X    X    X   -4|  X    X    X")
+
+end
+
+procedure helpbox2()
+
+win1 := WOpen("size=800, 200", "fg=red", "bg=black")
+
+WWrite(win1,"/ is input prompt, \ is erase all")
+WWrite(win1,"cube=x,y,z,color") 
+WWrite(win1,"cyl=x,y,z,h,r1,r2,color") 
+WWrite(win1,"sphere=x,y,z,r,color")
+WWrite(win1,"plane=x,y,z of 4 corners,color")
+WWrite(win1,"Some example values:")
+WWrite(win1,"cyl(0_-1_-4_1_.5_.5_12000,65000,10000)")
+WWrite(win1,"sphere(0_0.1_-3_.5_65000,1000,1000)")
+WWrite(win1,"cube(0_0.5_-2_.5_1000,2000,65000)")
+WWrite(win1,"rcube01 = random displacement")
+WWrite(win1,"Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
+WWrite(win1,"randomcubecenter,randomcuberight, etc.")
 
 #####COLOR REFERENCE
+
+#WDone(win1)
+#WClose(win1)
+
+end
 
 ########################################################
 
@@ -246,6 +257,7 @@ procedure textin01()
 end
 
 ########################################################
+
 #open image
 
 procedure openImage()
@@ -253,7 +265,7 @@ procedure openImage()
         ReadImage("C:/Users/HHE3/Desktop/bg01.png",1,1)
 
 end
-########################################################
+
 ########################################################
 
 procedure inputCube01()
@@ -275,19 +287,22 @@ procedure inputCube01()
 end
 
 ################################################################
+
 procedure inputSphere01()
 
       s1 := WRead()
       s2 := WRead()
       s3 := WRead()
       s4 := WRead()
+      s5 := WRead()
       
       ipx := s1
       ipy := s2
       ipz := s3
-      ips := s4  
+      ips := s4
+      rgb := s5  
    
-  inpglsphere01(ipx,ipy,ipz,ips)
+  inpglsphere01(ipx,ipy,ipz,ips,rgb)
 
 end
 
@@ -301,21 +316,23 @@ procedure inputCyl01()
       s4 := WRead()
       s5 := WRead()
       s6 := WRead()
+      s7 := WRead()
       
       ipx := s1
       ipy := s2
       ipz := s3
       ips := s4 
       ipq := s5  
-      ipa := s6   
+      ipa := s6
+      rgb := s7   
    
-  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa,rgb)
 
 end
 
 ################################################################
 
-procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb)
 
 
       s1 := WRead()
@@ -330,6 +347,7 @@ procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
       s10 := WRead()
       s11 := WRead()
       s12 := WRead()
+      s13 := WRead()
         
       px  := s1
       py  := s2
@@ -342,10 +360,10 @@ procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
       pzzz := s9
       pxxxx := s10
       pyyyy := s11
-      pzzzz := s12           
+      pzzzz := s12 
+      pzrgb := s13          
    
-  inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
+  inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,pzrgb)
 
 end
 
@@ -579,10 +597,8 @@ end
 ###########################################################
 ##################################################
 
-
 procedure inpglcube01(ipx,ipy,ipz,ips,rgb)
 
-#Fg("red")
 Fg(rgb)
 DrawCube(ipx,ipy,ipz,ips)
 
@@ -590,9 +606,9 @@ end
 
 ##################################################
 
-procedure inpglsphere01(ipx,ipy,ipz,ips)
+procedure inpglsphere01(ipx,ipy,ipz,ips,rgb)
 
-Fg("green")
+Fg("rgb")
 DrawSphere(ipx,ipy,ipz,ips)
 
 end
@@ -601,22 +617,21 @@ end
 
 procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
 
-Fg("blue")
+Fg("rgb")
 DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
 
 end
 
 ##################################################
 
-procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,pzrgb)
 
-Fg("orange")
+Fg("pzrgb")
 FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
 
 ##################################################
-########################################################
 
 procedure inpglsphere02(ipx,ipy,ipz,ips)
 
@@ -654,8 +669,6 @@ end
 
 ##################################################
 ########################################################
-##################################################
-#following are experemental
 
 procedure inpgleye01()
 
@@ -695,21 +708,9 @@ DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
 
 end
 
-######################################################
-##
-
-
 ##############################################################
 
 #start preset cubes
-
-#for reference...please destroy me later
-#WWrite("DrawCylinder(0,-1,-4,1,.5,.5)")
-#WWrite("DrawSphere(0,0.1,-3,.5)")
-#WWrite("DrawCube(0,0.5,-2,.5)")
-#WWrite("FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)")
-
-##############################################################
 
 procedure presetCube01()
    
@@ -966,8 +967,6 @@ end
 
 ############################################################
 
-#procedure trimesh01(ha01,ha02,ha03,ha04,ha05,ha06,ha07,ha08,ha09,hb01,hb02,hb03,hb04,hb05,hb06,hb07,hb08,hb09,qa01,qa02,qa03,qa04,qa05,qa06,qa07,qa08,qa09)
-
 #add ? for params
 
 procedure trimesh01()
@@ -1008,6 +1007,7 @@ procedure trimesh01()
 (s59:=.2,s60:=.2,s61:=.2,s62:=.2,s63:=.2,s66:=.2,e77:=.2,e78:=.2,e79:=.2,e80:=.2,e81:=.2,e82:=.2,e83:=.2,e84:=.2,s69:=.2)
 (s47:=.2,s48:=.2,s49:=.2,s50:=.2,s51:=.2,e57:=.2,e58:=.2,e59:=.2,e60:=.2,s64:=.2,e61:=.2,e62:=.2,e63:=.2,e64:=.2,s67:=.2)
 (s51:=.2,s52:=.2,s53:=.2,s54:=.2,s55:=.2,s64:=.2,e65:=.2,e66:=.2,e67:=.2,s65:=.2,s67:=.2,e68:=.2,e69:=.2,e70:=.2,s68:=.2)
+
 ######################################################
 
 #group 1
@@ -1055,10 +1055,10 @@ tmod01(-4,s47,s48,s49,s50,s51,e57,e58,e59,e60,s64,e61,e62,e63,e64,s67,"green","r
 tmod01(-2,s51,s52,s53,s54,s55,s64,e65,e66,e67,s65,s67,e68,e69,e70,s68,"dark strong green","blue","medium weak green","purple",-3)
 
 end
+
 #######################################################
 ##################################################################
 #END OF PROGRAM########################################
-
 #####################################################################################################################
 
 
