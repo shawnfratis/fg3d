@@ -204,19 +204,17 @@ procedure helpbox3()
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
  #WAttrib("dx=1", "dy=1")
-
-        WWrite(win1,"           [+y]               ")
+WWrite(win1,"           [+y]               ")
         WWrite(win1,"            |                    ")
         WWrite(win1,"            |                 ")	 
-        WWrite(win1,"            |                    ")
-        WWrite(win1,"            |                 ")
-        WWrite(win1,"[-x]--------0-------[+x]         ")
-        WWrite(win1,"            |                 ")
+        WWrite(win1,"            |             These vals set objects at XYZ=0:")
+        WWrite(win1,"            |             cube 0,0,0,.5,10000,10000,20000")
+        WWrite(win1,"[-x]--------0-------[+x]  sphere 0,0,0,.5,20000,10000,10000")
+        WWrite(win1,"            |             cyl 0,0,0,1,.5,.5,10000,20000,10000")
         WWrite(win1,"            |                    ")
         WWrite(win1,"            |                 ")
         WWrite(win1,"            |                    ")
         WWrite(win1,"           [-y]              ")
-
 end
 
 procedure helpbox2()
