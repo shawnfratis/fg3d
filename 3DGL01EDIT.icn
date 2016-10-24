@@ -56,11 +56,17 @@ w := Active() | stop("Active fails")
 "\z": {
 	 
               WriteImage("C:/Users/meridith/Desktop/fg01.png")
-              }
-"\q":{
-                  texskyplane01()
 
               }
+"\q":{
+              texskyplane01()#test
+
+              }
+"\$": {      
+              texgroundplane01()#test
+
+              }
+
 "\g": {
               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
@@ -118,10 +124,7 @@ w := Active() | stop("Active fails")
               }
 "\S": {
               WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
-              }
-"\$": {      
-                   texgroundplane01()
-	       }
+              	       }
 "\%": {    
               Refresh()
               }
@@ -133,33 +136,41 @@ w := Active() | stop("Active fails")
               inpgleye01()
 
               }
-"\?": {  
-              helpbox1()
-
-              }
 "\\": {  
               EraseArea()
               }
 "\@": {
               exit()
               }
-"\:": { 
-              helpbox4()
-             }           
+          
 "\x": { 
               openImage()
+
               }
 "\/": {      
               inputprompt()
+
               }
 "\,": { 
-              trimesh01()   
-             }
+              trimesh01()
+
+              }
+"\?": {  
+              helpbox1()
+
+              }
+"\:": { 
+              helpbox4()
+
+              } 
+
 "\<": { 
               helpbox2()
-             }
+
+              }
 "\>": { 
               helpbox3()
+
 	}
     }
   }
@@ -299,6 +310,8 @@ procedure inputCube01()
    
   inpglcube01(ipx,ipy,ipz,ips,rgb)
 
+return()
+
 end
 
 ################################################################
@@ -318,6 +331,8 @@ procedure inputSphere01()
       rgb := s5  
    
   inpglsphere01(ipx,ipy,ipz,ips,rgb)
+
+return()
 
 end
 
@@ -342,6 +357,8 @@ procedure inputCyl01()
       rgb := s7   
    
   inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa,rgb)
+
+return()
 
 end
 
