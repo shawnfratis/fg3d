@@ -55,7 +55,7 @@ w := Active() | stop("Active fails")
 
 "\z": {
 	 
-              WriteImage("C:/Users/meridith/Desktop/fg01.png")
+              WriteImage("C:/Users/meridith/Desktop/fg01.png")#change as needed
 
               }
 "\q":{
@@ -66,67 +66,50 @@ w := Active() | stop("Active fails")
               texgroundplane01()#test
 
               }
-
 "\g": {
               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\h": {
-	      
-              WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.1,0.0,1.0")
+              WAttrib("eyepos=2.0,0.0,5.0","eyedir=0.0,0.0,1.0")
        
               }
-"\j": {
-	      
-              WAttrib("eyepos=0.0,0.0,2.0","eyedir=0.0,0.0,1.0")
+"\j": { 
+              WAttrib("eyepos=4.0,0.0,5.0","eyedir=0.0,0.0,1.0")
     
               }
 "\k": {
-	         WAttrib("eyepos=0.0,0.0,.5","eyedir=0.0,0.0,1.0")
-    
-              }
-"\l": {
-	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.4,0.0,1.0")
-    
-              }
-"\f": {
-	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.1,0.0,1.0")
-    
-              }
-"\d": {
-	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.2,0.0,1.0")
+	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
     
               }
 "\s": {
-	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.3,0.0,1.0")
+	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.0,0.0,1.0")
     
               }
 "\a": {
-	        WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.4,0.0,1.0")
+	         WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.0,0.0,1.0")
     
               }
 "\G": {
-              Eye(0,.2,0, 0,0,-1, 0,1,0)
+               # WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+               #Eye(0,.2,0, 0,0,-1, 0,1,0)
+              
               }
 "\H": {
-              WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.0,0.0,2.0")
+                WAttrib("eyepos=-2.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\J": {
-              WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.0,0.0,3.0")
+                WAttrib("eyepos=-4.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
-"\F": {
-              WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,3.0")
-              }
-"\D": {
-              WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
-              }
 "\S": {
-              WAttrib("eyepos=0.2,0.0,5.0","eyedir=-0.0,0.0,4.0")
-              	       }
+                 WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+
+              }
 "\%": {    
               Refresh()
+
               }
 "\[": {    
               #NOT USED
@@ -138,11 +121,12 @@ w := Active() | stop("Active fails")
               }
 "\\": {  
               EraseArea()
+
               }
 "\@": {
               exit()
+
               }
-          
 "\x": { 
               openImage()
 
@@ -163,7 +147,6 @@ w := Active() | stop("Active fails")
               helpbox4()
 
               } 
-
 "\<": { 
               helpbox2()
 
@@ -195,16 +178,17 @@ procedure helpbox1()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
-WWrite(win1,"Welcome to _________")
 WWrite(win1,"To come back to these instructions press ?")
+WWrite(win1,"< gives more in-depth instructions. > and : are reference guides")
 WWrite(win1,"Generating an example cube:") 
 WWrite(win1,"Press / to start command line. Type cube, then enter.")
 WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter.") 
 WWrite(win1,"Finally, type 60000,10000,10000 then enter.")  
 WWrite(win1,"This will create a red colored cube in the center of the screen.")
 WWrite(win1,"These numbers are the X, Y, Z, size and color values of the cube.")  
-WWrite(win1,"All elements can be created this way.") 
+WWrite(win1,"cam = position,direction,up : 0,0,-5,0,0,-1,0,1,0") 
 WWrite(win1,"__ __ __ and __ change views. __ is for a basic mouse navigation.")
+WWrite(win1,"After entering object, use views to refresh screen")
 
 end
 
@@ -418,6 +402,35 @@ procedure inputRCube01()
 end
 
 #################################################
+
+procedure seteyein()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+      s6 := WRead()
+      s7 := WRead()
+      s8 := WRead()
+      s9 := WRead()
+      
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4 
+      ipq := s5
+      ipw := s6
+      ipa := s7
+      ipb := s8
+      ipg := s9
+ 
+  seteye(ipx,ipy,ipz,ips,ipq,ipw,ipa,ipb,ipg)
+
+end
+
+#################################################
+
 procedure inputprompt()
  
         s1 := WRead()
@@ -441,7 +454,7 @@ procedure inputprompt()
         ss15 :=( "randomcuberight")
         ss16 :=( "randomcubeleft")
         ss17 :=( "randomcubecenterlow")
-        ss18 :=( "notused")
+        ss18 :=( "cam")
         ss19 :=( "notused")
         ss20 :=( "notused")
         ss21 :=( "notused")
@@ -483,7 +496,7 @@ procedure inputprompt()
         else
         if s1== ss17 then presetRCube04()
         else
-        if s1== ss18 then notused
+        if s1== ss18 then seteyein()
         else
         if s1== ss19 then notused
         else
@@ -533,6 +546,15 @@ Refresh()
 end
 
 ###########################################################
+
+procedure seteye(px,py,pz,dx,dy,dz,cx,cy,cz)
+
+#WAttrib("eyepos=px,py,pz","eyedir=dx,dy,dz")
+#Eye(0,.2,0, 0,0,-1, 0,1,0)
+Eye(px,py,pz,dx,dy,dz,cx,cy,cz)
+
+end
+
 ##################################################
 
 procedure inpglcube01(ipx,ipy,ipz,ips,rgb)
@@ -579,6 +601,8 @@ case Event() of {
 &ldrag:{
 
 Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
+
+#return()
 
 #Eye(&x,&y,&x,0 ,0,-1, 0,1,0)
 }
