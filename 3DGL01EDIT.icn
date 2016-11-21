@@ -112,7 +112,10 @@ w := Active() | stop("Active fails")
 
               }
 "\[": {    
-              voxgrid01()
+             # voxgrid03()
+             # voxgrid02()
+             voxgrid01()
+            #  voxgrid04()         
 
               }
 "\]": {       
@@ -420,12 +423,12 @@ procedure seteyein()
       ipz := s3
       ips := s4 
       ipq := s5
-      ipw := s6
-      ipa := s7
-      ipb := s8
-      ipg := s9
+      ipw := s6     
+      ipb := s7
+      ipu := s8
+      ipt := s9
  
-  seteye(ipx,ipy,ipz,ips,ipq,ipw,ipa,ipb,ipg)
+  seteye(ipx,ipy,ipz,ips,ipq,ipw,ipb,ipu,ipt)
 
 end
 
@@ -547,11 +550,11 @@ end
 
 ###########################################################
 
-procedure seteye(px,py,pz,dx,dy,dz,cx,cy,cz)
+procedure seteye(px,py,pz,dx,dy,dz,qx,qy,qz)
 
 #WAttrib("eyepos=px,py,pz","eyedir=dx,dy,dz")
 #Eye(0,.2,0, 0,0,-1, 0,1,0)
-Eye(px,py,pz,dx,dy,dz,cx,cy,cz)
+Eye(px,py,pz,dx,dy,dz,qx,qy,qz)
 
 end
 
@@ -1115,21 +1118,114 @@ end
 
 procedure voxgrid01()
 
-Fg("red")
+darkness := ["light", "medium", "dark", "deep"]
+      hue := ["red", "orange", "yellow", "green", "blue", "gray"]
+ # Fg(?darkness || " strong " || ?hue)
+
+#Fg(RandomColor())
 
 v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
 
-#v:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
+vv:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
 
+Fg(?hue)
 every x := !v do
-every y := !v do
+#every y := !v do
 every z := !v do
+every y := !vv do
 
-DrawCube(x,y,z,?.1)
+DrawCube(x,y,z,.2)
 
 end
 
 #######################################################
+
+procedure voxgrid02()
+
+Fg("blue")
+
+#v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+#vv:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+
+#every x := !v do
+#every y := !v do
+#every z := !v do
+
+#every xx := !v do
+#every yy := !vv do
+#every zz := !v do
+
+#DrawCube(xx,0,zz,.1)
+#DrawCube(xx,.5,zz,.1)
+
+va:=[[0,0.5,1,1.5,2,2.5,3,3.5,4],[0,0.5,1,1.5,2,2.5,3,3.5,4]]
+
+every x := !va[1] do
+#every y := !v do
+every z := !va[1] do
+
+every xx := !va[2] do
+#every yy := !vv do
+every zz := !va[2] do
+
+DrawCube(x,0,z,.1)
+DrawCube(xx,.5,zz,.1)
+
+end
+
+#######################################################
+
+procedure voxgrid03()
+
+voxBase(0,.1,0,0.5,1,1.5,2,2.5)
+voxBase(1,.1,0,0.5,1,1.5,2,2.5)
+
+end
+
+#######################################################
+
+procedure voxBase(yy,ss,x1,x2,x3,x4,x5,x6)
+
+#v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+v:=[x1,x2,x3,x4,x5,x6]
+
+every x := !v do
+every z := !v do
+
+y := yy 
+s := ss
+
+Fg("blue")
+
+DrawCube(x,y,z,s)
+
+end
+
+#######################################################
+procedure voxgrid04()
+
+#$define Width 600
+#$define Height 400
+#$define Spots 500
+#$define MaxRadius 40
+$define Width 1
+$define Height 1
+$define Spots 1
+$define MaxRadius .1
+
+  # local r
+
+   every 1 to Spots do {
+      Fg(RandomColor())
+      r := ?0 * ?0 * ?0 * MaxRadius
+
+#DrawCube(x,y,z,s)
+DrawCube(r + ?(Width - 2 * r), r + ?(Height - 2 * r),-8, .5)
+ #     FillCircle(r + ?(Width - 2 * r), r + ?(Height - 2 * r), r)
+      }
+   WDone()
+
+end
 ##################################################################
 #END OF PROGRAM########################################
 #####################################################################################################################
