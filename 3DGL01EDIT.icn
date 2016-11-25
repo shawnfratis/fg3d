@@ -58,6 +58,10 @@ w := Active() | stop("Active fails")
               WriteImage("C:/Users/meridith/Desktop/fg01.png")#change as needed
 
               }
+"\p": { 
+              texskysphere01()
+
+              }
 "\q":{
               texskyplane01()#test
 
@@ -112,10 +116,10 @@ w := Active() | stop("Active fails")
 
               }
 "\[": {    
-             # voxgrid03()
-             # voxgrid02()
-             voxgrid01()
-            #  voxgrid04()         
+             #voxgrid03()
+             #voxgrid02()
+             #voxgrid01()
+              voxgrid04()         
 
               }
 "\]": {       
@@ -130,10 +134,7 @@ w := Active() | stop("Active fails")
               exit()
 
               }
-"\x": { 
-              openImage()
 
-              }
 "\/": {      
               inputprompt()
 
@@ -231,6 +232,7 @@ WWrite(win1,"cube(0_0.5_-2_.5_1000,2000,65000)")
 WWrite(win1,"rcube01 = random displacement")
 WWrite(win1,"Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
 WWrite(win1,"randomcubecenter,randomcuberight, etc.")
+WWrite(win1,"p,q,$ for texplanes")
 
 end
 
@@ -611,6 +613,8 @@ Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
 }
 }
 }
+
+WDone()
    
 end
 
@@ -1029,6 +1033,8 @@ WAttrib("texture=F:\Shawn\3Dprogcodeanddat\tex04.png")
 
 DrawCube(ipx,ipy,ipz,ips)
 
+WAttrib("texmode=off") 
+
 end
 
 ##################################################
@@ -1041,6 +1047,8 @@ WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")
 
 DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
 
+WAttrib("texmode=off") 
+
 end
 
 ##################################################
@@ -1050,10 +1058,6 @@ procedure texplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 WAttrib("texmode=on")
 
 WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
-
-###########
-# -10 -1 -10 , 10 -1 -10 , 10 -1 1 , -10 -1 1
-##############
 
 FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
@@ -1067,18 +1071,20 @@ WAttrib("texmode=on")
 
 #WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
 
-WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png")
+WAttrib ("texture=C:/Users/meridith/Documents/dumdum/ssphere.png")
 
 x := -1
 y := 0
 z := -5
-r := 25
+r := 250
 
 #Rotate(45,290,2,90)
 
 #PushMatrix()
 
 DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
 
 end
 
@@ -1088,13 +1094,11 @@ procedure texgroundplane01()
 
 WAttrib("texmode=on")
 
-WAttrib("C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/gplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
 
-###########
-# -10 -1 -10 , 10 -1 -10 , 10 -1 1 , -10 -1 1
-##############
+FillPolygon(-129,-6,-249,129,-6,-249,129,-6,100,-129,-6,100)
 
-FillPolygon(-29,-.5,-49,29,-.5,-49,29,-.5,1,-29,-.5,1)
+WAttrib("texmode=off") 
 
 end
 
@@ -1104,13 +1108,11 @@ procedure texskyplane01()
 
 WAttrib("texmode=on")
 
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
 
-###########
-# -10 -1 -10 , 10 -1 -10 , 10 -1 1 , -10 -1 1
-##############
+FillPolygon(-129,1,-249,129,1,-249,129,1,100,-129,1,100)
 
-FillPolygon(-29,.3,-49,29,.3,-49,29,.3,1,-29,.3,1)
+WAttrib("texmode=off") 
 
 end
 
@@ -1119,8 +1121,8 @@ end
 procedure voxgrid01()
 
 darkness := ["light", "medium", "dark", "deep"]
-      hue := ["red", "orange", "yellow", "green", "blue", "gray"]
- # Fg(?darkness || " strong " || ?hue)
+hue := ["red", "orange", "yellow", "green", "blue", "gray"]
+#Fg(?darkness || " strong " || ?hue)
 
 #Fg(RandomColor())
 
@@ -1177,8 +1179,12 @@ end
 
 procedure voxgrid03()
 
-voxBase(0,.1,0,0.5,1,1.5,2,2.5)
-voxBase(1,.1,0,0.5,1,1.5,2,2.5)
+voxBase(0,.1,0,0.5,1,1.5,2,-2,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-3,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-4,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-5,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-6,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-7,.5)
 
 end
 
@@ -1186,7 +1192,6 @@ end
 
 procedure voxBase(yy,ss,x1,x2,x3,x4,x5,x6)
 
-#v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
 v:=[x1,x2,x3,x4,x5,x6]
 
 every x := !v do
@@ -1202,30 +1207,34 @@ DrawCube(x,y,z,s)
 end
 
 #######################################################
+
 procedure voxgrid04()
 
-#$define Width 600
-#$define Height 400
-#$define Spots 500
-#$define MaxRadius 40
-$define Width 1
-$define Height 1
-$define Spots 1
-$define MaxRadius .1
-
-  # local r
-
-   every 1 to Spots do {
-      Fg(RandomColor())
-      r := ?0 * ?0 * ?0 * MaxRadius
-
-#DrawCube(x,y,z,s)
-DrawCube(r + ?(Width - 2 * r), r + ?(Height - 2 * r),-8, .5)
- #     FillCircle(r + ?(Width - 2 * r), r + ?(Height - 2 * r), r)
-      }
-   WDone()
+voxgrid04master(18,1,-6,1)
+voxgrid04master(18,1,-5,1)
+voxgrid04master(18,1,-4,1)
+voxgrid04master(18,1,-3,1)
+voxgrid04master(14,1,-2,1)
+voxgrid04master(13,1,-1,1)
 
 end
+
+#######################################################
+
+procedure voxgrid04master(wq,oq,zq,sq)
+
+Fg("40000,40000,40000")
+
+   width := wq #80
+   offset := oq #5
+
+   every y := 0 to width - 1 do
+      every x := 0 to width - 1 do
+        
+   if iand(x, y) = 0 then DrawCube(x * offset, zq,y * offset,sq)
+
+end
+
 ##################################################################
 #END OF PROGRAM########################################
 #####################################################################################################################
