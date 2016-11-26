@@ -1,13 +1,16 @@
 
 #______________ 2016 FratisGraphics
 
-#Some of this code is from the University of Arizona and Rosetta Code.
+#Program to utilize Unicons 3D capabilities.
 
+#Some of this code is from the University of Arizona and Rosetta Code.
 #Please contact me if you would like specifics of this.
 #shawnfratis@gmail.com
 
 #Made in Unicon, with Unicon IDE
 #unicon.sourceforge.net
+
+#NOTE: paths to textures, images etc. must be created as needed within the code(for now).
 
 ###############################
 
@@ -23,7 +26,7 @@ link strings
 
 procedure main()
 
-&window := open("win", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
+&window := open("3DGL01", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
 
 Fg("green")
 
@@ -56,6 +59,9 @@ w := Active() | stop("Active fails")
 "\z": {
 	 
               WriteImage("C:/Users/meridith/Desktop/fg01.png")#change as needed
+}
+"\s": { 
+              texskysphere02()
 
               }
 "\p": { 
@@ -86,29 +92,25 @@ w := Active() | stop("Active fails")
 	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
     
               }
-"\s": {
-	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=-0.0,0.0,1.0")
-    
-              }
 "\a": {
 	         WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.0,0.0,1.0")
     
               }
 "\G": {
-               # WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
                #Eye(0,.2,0, 0,0,-1, 0,1,0)
               
               }
 "\H": {
-                WAttrib("eyepos=-2.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+               WAttrib("eyepos=-2.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\J": {
-                WAttrib("eyepos=-4.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+               WAttrib("eyepos=-4.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\S": {
-                 WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\%": {    
@@ -168,16 +170,6 @@ end
 
 #########################################################
 
-procedure inst()
-
-WAttrib("dx=1", "dy=1")
-
-Fg("green")
-
-end
-
-###############  ################  ######################
-
 procedure helpbox1()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
@@ -190,8 +182,10 @@ WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter.")
 WWrite(win1,"Finally, type 60000,10000,10000 then enter.")  
 WWrite(win1,"This will create a red colored cube in the center of the screen.")
 WWrite(win1,"These numbers are the X, Y, Z, size and color values of the cube.")  
-WWrite(win1,"cam = position,direction,up : 0,0,-5,0,0,-1,0,1,0") 
-WWrite(win1,"__ __ __ and __ change views. __ is for a basic mouse navigation.")
+WWrite(win1,"These vals set objects at XYZ=0:")
+WWrite(win1,"cube 0,0,0,.5,10000,10000,20000")
+WWrite(win1,"sphere 0,0,0,.5,20000,10000,10000")
+WWrite(win1,"cyl 0,0,0,1,.5,.5,10000,20000,10000")
 WWrite(win1,"After entering object, use views to refresh screen")
 
 end
@@ -206,14 +200,15 @@ win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 WWrite(win1,"           [+y]               ")
         WWrite(win1,"            |                    ")
         WWrite(win1,"            |                 ")	 
-        WWrite(win1,"            |             These vals set objects at XYZ=0:")
-        WWrite(win1,"            |             cube 0,0,0,.5,10000,10000,20000")
-        WWrite(win1,"[-x]--------0-------[+x]  sphere 0,0,0,.5,20000,10000,10000")
-        WWrite(win1,"            |             cyl 0,0,0,1,.5,.5,10000,20000,10000")
-        WWrite(win1,"            |                    ")
-        WWrite(win1,"            |                 ")
+        WWrite(win1,"            |                   cam = position,direction,up : 0,0,5,0,0,1,0,1,0")
+        WWrite(win1,"            |                   g hH jJ a k s change views.")
+        WWrite(win1,"[-x]--------0-------[+x]  ] is for a basic mouse navigation.")
+        WWrite(win1,"            |                   forward  0,0,5,0,0,1,0,1,0")
+        WWrite(win1,"            |                   angle up 0,2,8,0,0,1,0,1,0 ")
+        WWrite(win1,"            |                   angle side 4,0,5,0,0,1,0,1,0")                              
         WWrite(win1,"            |                    ")
         WWrite(win1,"           [-y]              ")
+
 end
 
 procedure helpbox2()
@@ -268,16 +263,6 @@ procedure textin01()
         WWrite("annotation:")
         s := WRead()
         WWrite("note:",image(s))
-
-end
-
-########################################################
-
-#open image
-
-procedure openImage()
-
-        ReadImage("C:/Users/HHE3/Desktop/bg01.png",1,1)
 
 end
 
@@ -520,15 +505,13 @@ end
 
 #############end input cubes etc#################
 ##############Begin OpenGL 3D##############################
-#FOR TEST
-procedure f01()
+#FOR TESTING PURPOSES..DELETE LATER
+#procedure f01()
 
-w := open("scene","gl", "bg=black", "size=100,100")
+#w := open("scene","gl", "bg=black", "size=100,100")
 
-WAttrib(w, "light0=diffuse white; ambient black; _
-specular white; position 0.0, 1.0, 0.0")
-
-#for testing
+#WAttrib(w, "light0=diffuse white; ambient black; _
+#specular white; position 0.0, 1.0, 0.0")
 #WAttrib("light0=on, ambient white","fg=specular white")
 #WAttrib("light0=on, ambient white,fg=specular white,position 0.0,-1,0.0")
 #WAttrib("light0=on, ambient  white")
@@ -543,19 +526,17 @@ specular white; position 0.0, 1.0, 0.0")
 #Fg("green")
 #FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
 
-Fg("yellow")
-DrawCube(0,0.5,-10,.5)
+#Fg("yellow")
+#DrawCube(0,0.5,-10,.5)
 
-Refresh()
+#Refresh()
 
-end
+#end
 
 ###########################################################
 
 procedure seteye(px,py,pz,dx,dy,dz,qx,qy,qz)
 
-#WAttrib("eyepos=px,py,pz","eyedir=dx,dy,dz")
-#Eye(0,.2,0, 0,0,-1, 0,1,0)
 Eye(px,py,pz,dx,dy,dz,qx,qy,qz)
 
 end
@@ -607,9 +588,6 @@ case Event() of {
 
 Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
 
-#return()
-
-#Eye(&x,&y,&x,0 ,0,-1, 0,1,0)
 }
 }
 }
@@ -621,10 +599,6 @@ end
 #####################################################
 
 procedure inpRglcube01(ipx,ipy,ipz,ips)
-
-#ipxx := ?1
-#ipyy := ?1
-#ipzz := ?1
 
 Fg("red")
 DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
@@ -707,7 +681,8 @@ procedure presetRCube04()
 end
 
 
-################################################################
+########################################################
+
 procedure presetSphere01()
     
   inpglsphere01(ipx,ipy,ipz,ips)
@@ -990,46 +965,12 @@ end
 
 ##############Begin OpenGL 3D TEX##############################
 
-#procedure f01(xpa,ypa,zpa,xra,yra,zra,xsa,ysa,zsa)
-procedure f011()
-
-#Eye(xpa,ypa,zpa,xra,yra,zra,xsa,ysa,zsa)
-
-#WAttrib("texmode=on")
-
-#WAttrib("texture=C:\Users\meridith\Documents\dumdum\check.png")
-Fg("ambient red")
-DrawCylinder(-1,-1,-4,2,.5,.5)
-
-#WAttrib("texture=C:\Users\meridith\Documents\dumdum\check.png")
-Fg("diffuse grey; emission black")
-DrawSphere(1,-1,-5,.5)
-
-#WAttrib("texture=C:\Users\meridith\Documents\dumdum\check.png")
-Fg("emission pale weak yellow")
-FillPolygon(-1.5,-1,-5,2,-1,-5,3,1,5,3,1,3)
-
-Refresh()
-
-end
-
-##################################################
-
-#procedure inpgleye01(ipx,ipy,ipz,ips,ipq,ipa,)
-
-#Eye(1.9,0,4, 1,0,0, 0,.5,0)
-#Eye(1.9,0,4, 1,0,0, 0,.5,0)
-
-#end
-
-
-##################################################
-
 procedure texcube01(ipx,ipy,ipz,ips)
 
 WAttrib("texmode=on")
 
-WAttrib("texture=F:\Shawn\3Dprogcodeanddat\tex04.png")
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")
+#change as needed
 
 DrawCube(ipx,ipy,ipz,ips)
 
@@ -1043,7 +984,7 @@ procedure texcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
 
 WAttrib("texmode=on")
 
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")#change as needed
 
 DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
 
@@ -1057,9 +998,33 @@ procedure texplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 WAttrib("texmode=on")
 
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
 
 FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+##################################################
+
+procedure texskysphere02()
+
+WAttrib("texmode=on")
+
+#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
+
+WAttrib ("texture=C:/Users/meridith/Documents/dumdum/ssphere2.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+#Rotate(45,290,2,90)
+
+#PushMatrix()
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
 
 end
 
@@ -1071,7 +1036,7 @@ WAttrib("texmode=on")
 
 #WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
 
-WAttrib ("texture=C:/Users/meridith/Documents/dumdum/ssphere.png")
+WAttrib ("texture=C:/Users/meridith/Documents/dumdum/ssphere.png")#change as needed
 
 x := -1
 y := 0
@@ -1094,9 +1059,9 @@ procedure texgroundplane01()
 
 WAttrib("texmode=on")
 
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/gplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/gplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
 
-FillPolygon(-129,-6,-249,129,-6,-249,129,-6,100,-129,-6,100)
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
 
 WAttrib("texmode=off") 
 
@@ -1108,15 +1073,16 @@ procedure texskyplane01()
 
 WAttrib("texmode=on")
 
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
 
-FillPolygon(-129,1,-249,129,1,-249,129,1,100,-129,1,100)
+FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
 
 WAttrib("texmode=off") 
 
 end
 
 ######begin voxel grids###################################
+#SOME EXPIREMENTAL
 
 procedure voxgrid01()
 
@@ -1210,12 +1176,19 @@ end
 
 procedure voxgrid04()
 
-voxgrid04master(18,1,-6,1)
-voxgrid04master(18,1,-5,1)
-voxgrid04master(18,1,-4,1)
-voxgrid04master(18,1,-3,1)
-voxgrid04master(14,1,-2,1)
-voxgrid04master(13,1,-1,1)
+voxgrid04master(18,1,0,1)
+voxgrid04master(18,1,1,1)
+voxgrid04master(18,1,2,1)
+voxgrid04master(18,1,3,1)
+voxgrid04master(14,1,4,1)
+voxgrid04master(13,1,5,1)
+
+#voxgrid04master(18,1,-6,1)
+#voxgrid04master(18,1,-5,1)
+#voxgrid04master(18,1,-4,1)
+#voxgrid04master(18,1,-3,1)
+#voxgrid04master(14,1,-2,1)
+#voxgrid04master(13,1,-1,1)
 
 end
 
