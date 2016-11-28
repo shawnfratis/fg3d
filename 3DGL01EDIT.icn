@@ -59,7 +59,7 @@ w := Active() | stop("Active fails")
 "\z": {
 	 
               WriteImage("C:/Users/meridith/Desktop/fg01.png")#change as needed
-}
+             }
 "\s": { 
               texskysphere02()
 
@@ -119,9 +119,9 @@ w := Active() | stop("Active fails")
               }
 "\[": {    
              #voxgrid03()
-             #voxgrid02()
+            # voxgrid02()
              #voxgrid01()
-              voxgrid04()         
+             # voxgrid04()         
 
               }
 "\]": {       
@@ -156,6 +156,10 @@ w := Active() | stop("Active fails")
 "\<": { 
               helpbox2()
 
+              } 
+"\=": { 
+              helpbox5()
+
               }
 "\>": { 
               helpbox3()
@@ -175,7 +179,7 @@ procedure helpbox1()
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
 WWrite(win1,"To come back to these instructions press ?")
-WWrite(win1,"< gives more in-depth instructions. > and : are reference guides")
+WWrite(win1,"< gives more in-depth instructions. >,= and : are reference guides")
 WWrite(win1,"Generating an example cube:") 
 WWrite(win1,"Press / to start command line. Type cube, then enter.")
 WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter.") 
@@ -227,7 +231,6 @@ WWrite(win1,"cube(0_0.5_-2_.5_1000,2000,65000)")
 WWrite(win1,"rcube01 = random displacement")
 WWrite(win1,"Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
 WWrite(win1,"randomcubecenter,randomcuberight, etc.")
-WWrite(win1,"p,q,$ for texplanes")
 
 end
 
@@ -249,6 +252,17 @@ WWrite(win1,"medium weak red         40959,24575,24575  very dark strong red    
 WWrite(win1,"medium moderate red     49151,16383,16383  very dark vivid red     21845,0,0")
 
 end
+
+procedure helpbox5()
+
+win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+
+WWrite(win1,"p,q,$ for texplanes")
+WWrite(win1,"vox1 = 18,0,1,1,rgb")
+WWrite(win1,"vox2 = x,?y,z,s,rgb")
+
+end
+
 
 ########################################################
 
@@ -421,6 +435,46 @@ end
 
 #################################################
 
+procedure voxin01()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+            
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4 
+      ipc := s5
+
+voxgrid05(ipx,ipy,ipz,ips,ipc)
+
+end
+
+#################################################
+
+procedure voxin02()
+
+      s1 := WRead()
+      s2 := WRead()
+      s3 := WRead()
+      s4 := WRead()
+      s5 := WRead()
+            
+      ipx := s1
+      ipy := s2
+      ipz := s3
+      ips := s4 
+      ipc := s5
+
+voxgrid01(ipx,ipy,ipz,ips,ipc)
+
+end
+
+#################################################
+
 procedure inputprompt()
  
         s1 := WRead()
@@ -445,8 +499,8 @@ procedure inputprompt()
         ss16 :=( "randomcubeleft")
         ss17 :=( "randomcubecenterlow")
         ss18 :=( "cam")
-        ss19 :=( "notused")
-        ss20 :=( "notused")
+        ss19 :=( "vox1")
+        ss20 :=( "vox2")
         ss21 :=( "notused")
         ss22 :=( "notused")
         ss23 :=( "notused")
@@ -488,9 +542,9 @@ procedure inputprompt()
         else
         if s1== ss18 then seteyein()
         else
-        if s1== ss19 then notused
+        if s1== ss19 then voxin01()
         else
-        if s1== ss20 then notused
+        if s1== ss20 then voxin02()
         else
         if s1== ss21 then notused 
         else
@@ -589,10 +643,14 @@ case Event() of {
 Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
 
 }
+	  "\e": break{
+    #  }
+
+}
 }
 }
 
-WDone()
+#return()
    
 end
 
@@ -1084,7 +1142,7 @@ end
 ######begin voxel grids###################################
 #SOME EXPIREMENTAL
 
-procedure voxgrid01()
+procedure voxexp01()
 
 darkness := ["light", "medium", "dark", "deep"]
 hue := ["red", "orange", "yellow", "green", "blue", "gray"]
@@ -1103,6 +1161,23 @@ every z := !v do
 every y := !vv do
 
 DrawCube(x,y,z,.2)
+
+end
+
+############################################################
+
+procedure voxgrid01(x,y,z,s,rgb)
+
+v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+
+vv:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
+
+Fg(rgb)
+every x := !v do
+every z := !v do
+every y := !vv do
+
+DrawCube(x,y,z,s)
 
 end
 
@@ -1183,20 +1258,21 @@ voxgrid04master(18,1,3,1)
 voxgrid04master(14,1,4,1)
 voxgrid04master(13,1,5,1)
 
-#voxgrid04master(18,1,-6,1)
-#voxgrid04master(18,1,-5,1)
-#voxgrid04master(18,1,-4,1)
-#voxgrid04master(18,1,-3,1)
-#voxgrid04master(14,1,-2,1)
-#voxgrid04master(13,1,-1,1)
+end
+
+#######################################################
+
+procedure voxgrid05(x,y,z,s,c)
+
+voxgrid04master(x,z,y,s,c)
 
 end
 
 #######################################################
 
-procedure voxgrid04master(wq,oq,zq,sq)
+procedure voxgrid04master(wq,oq,zq,sq,rgb)
 
-Fg("40000,40000,40000")
+Fg(rgb)
 
    width := wq #80
    offset := oq #5
