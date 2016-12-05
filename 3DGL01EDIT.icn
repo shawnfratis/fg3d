@@ -21,6 +21,10 @@ link numbers
 link options
 link button 
 link strings
+link colrlist
+link interact
+link random
+link printf
 
 ################################
 
@@ -118,12 +122,18 @@ w := Active() | stop("Active fails")
 
               }
 "\[": {    
+             #voxgrid01()#input
+             #voxgrid02()
              #voxgrid03()
-            # voxgrid02()
-             #voxgrid01()
-             # voxgrid04()         
+             #voxgrid04()         
+             #voxgrid05()#input
+             #voxgrid06()
+             #voxgrid07()
+             #voxgrid08()
+             voxgrid09()
+             #voxgrid10()
+             }
 
-              }
 "\]": {       
               inpgleye01()
 
@@ -257,7 +267,7 @@ procedure helpbox5()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
-WWrite(win1,"p,q,$ for texplanes")
+WWrite(win1,"p,q,$,s for texplanes")
 WWrite(win1,"vox1 = 18,0,1,1,rgb")
 WWrite(win1,"vox2 = x,?y,z,s,rgb")
 
@@ -1139,32 +1149,9 @@ WAttrib("texmode=off")
 
 end
 
-######begin voxel grids###################################
+###############################################################
+######begin voxel, etc grids###################################
 #SOME EXPIREMENTAL
-
-procedure voxexp01()
-
-darkness := ["light", "medium", "dark", "deep"]
-hue := ["red", "orange", "yellow", "green", "blue", "gray"]
-#Fg(?darkness || " strong " || ?hue)
-
-#Fg(RandomColor())
-
-v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
-
-vv:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
-
-Fg(?hue)
-every x := !v do
-#every y := !v do
-every z := !v do
-every y := !vv do
-
-DrawCube(x,y,z,.2)
-
-end
-
-############################################################
 
 procedure voxgrid01(x,y,z,s,rgb)
 
@@ -1284,7 +1271,242 @@ Fg(rgb)
 
 end
 
+#########################################################
+
+procedure voxgrid06()
+   #local col, color, colorlist, cx, cy, cz, d0_x, d0_y, d0_z, d1_x
+   #local d1_y, d1_z, d2_x, d2_y, d2_z, d3_x, d3_y, d3_z, dt, dt2
+   #local i, old_col, old_row, old_y, row, sx, sy, sz, x, x_angle
+   #local xt, y, y_angle, yt, z, z_angle, zt
+
+   x_angle  :=  rtod(45)
+   sx  :=  sin(x_angle)
+   cx  :=  cos(x_angle)
+   y_angle  :=  rtod(0)
+   sy  :=  sin(y_angle)
+   cy  :=  cos(y_angle)
+   z_angle  :=  rtod(90)
+   sz  :=  sin(z_angle)
+   cz  :=  cos(z_angle)
+
+     colorlist := ["red", "blue", "green", "magenta", "cyan", "yellow"]
+
+   color := colorlist[1]
+
+   x  :=  0.0
+   y  :=  1.0
+   z  :=  0.0
+   old_col  :=  round(y * 9 + 320)
+   old_row  :=  round(350 - 6.56 * z)
+   dt  :=  0.01
+   dt2  :=  dt / 2
+   every i := 0 to 800 do {
+      d0_x  :=  10 * (y-x) * dt2
+      d0_y  :=  (-x * z + 28 * x - y) * dt2
+      d0_z   :=  (x * y - 8 * z / 3) * dt2
+      xt  :=  x + d0_x
+      yt  :=  y + d0_y
+      zt  :=  z + d0_z
+      d1_x  :=  (10 * (yt-xt)) * dt2
+      d1_y  :=  (-xt * zt + 28 * xt - yt) * dt2
+      d1_z   := (xt * yt - 8 * zt / 3) * dt2
+      xt  :=  x + d1_x
+      yt  :=  y + d1_y
+      zt  :=  z + d1_z
+      d2_x  :=  (10 * (yt-xt)) * dt
+      d2_y  :=  (-xt * zt + 28 * xt - yt) * dt
+      d2_z   := (xt * yt - 8 * zt / 3) * dt
+      xt  :=  x + d2_x
+      yt  :=  y + d2_y
+      zt  :=  z + d2_z
+      d3_x  :=  (10 * (yt - xt)) * dt2
+      d3_y  :=  (-xt * zt + 28 * xt - yt) * dt2
+      d3_z  :=  (xt * yt - 8 * zt / 3) * dt2
+                     old_y  :=  y
+      x  :=  x + (d0_x + d1_x + d1_x + d2_x + d3_x) * 0.333333333
+      y  :=  y + (d0_y + d1_y + d1_y + d2_y + d3_y) * 0.333333333
+      z  :=  z +  (d0_z + d1_z + d1_z + d2_z + d3_z) * 0.333333333
+
+      col  :=  round(y * 9 + 320)
+      row  :=  round(350 - 6.56 * z)
+
+      if col < 320 then
+         if old_col >= 320 then {
+            color := get(colorlist)
+            put(colorlist, color)
+            }
+      else if col > 320 then
+         if old_col <= 320 then {
+            color := get(colorlist)
+            put(colorlist, color)
+            }
+
+      Fg(color)
+      DrawLine(old_col,old_row,1,col,row,1)
+      old_row := row
+      old_col := col
+ 
+      }
+
+   #Event()
+
+end
 ##################################################################
+
+procedure voxgrid07()
+   #local extent, size, colors, ncolors, k, x, i, y, j, c, palette
+   #local opts, init, incr, limit, run
+
+   #opts := options(args, "gs+p:i+k+l+")
+
+   palette := "c2"
+   extent := 256
+   init := 50
+   incr := 1
+   limit := (2 ^ 10)
+   #run := opts["g"]
+
+   size := extent / 2
+
+    colors := colrplte(palette) | ExitNotice("Invalid palette.")
+   ncolors := *colors
+
+   every k := seq(init, incr) \ limit do {
+      x := k
+      every i := 0 to size do {
+         y := x
+         every j := i to size do {
+            c := colors[?ncolors]
+            Fg(c)
+            DrawPoint(
+               i, j, 1,
+               j, i, 1,
+               j, -i, 1,
+               i, -j, 1,
+               -i, -j, 1,
+               -j, -i, 1,
+               -j, i, 1,
+               -i, j, 1,
+               )
+            y +:= k
+            }
+         x +:= k
+         }
+      Fg("black")
+      if /run then repeat case Event() of {
+         "q":   exit()
+         "s":   snapshot()
+         "n":   break
+         }
+      }
+
+end
+
+#######################################################
+
+procedure voxgrid08()
+#drawtree(400,500,-90,9)
+drawtree(14,15,-9,9)
+#WDone()
+end
+  
+procedure drawtree(x,y,angle,depth)
+if depth > 0 then {
+   x2 := integer(x + cos(dtor(angle)) * depth * 10)
+   y2 := integer(y + sin(dtor(angle)) * depth * 10)
+   DrawLine(x,y,1,x2,y2,1)   
+   drawtree(x2,y2,angle-20, depth-1)
+   drawtree(x2,y2,angle+20, depth-1)
+   }
+return
+end
+
+################################################################
+ 
+procedure voxgrid09(A)   #: XOR graphic
+   wsize := 25
+   cmax  := 90
+   wparms := ["Xmas Xor Graphic","g",sprintf("size=%d,%d",wsize),"bg=black"]
+   #&window := open!wparms | stop("Unable to open window")
+ 
+   every y := 0 to wsize -1 do
+      every x := 0 to wsize - 1 do {
+         c := cmax/wsize * iand(wsize-1,ixor(x,y))
+        # Fg(sprintf("%d,%d,%d",c,cmax-c,0))
+#Fg("65000,1,1")
+        # DrawCube(x,y,1,.5)
+#Fg("350,40000,1")
+        # DrawCube(x,y,3,.5)
+#Fg("10,65000,1000")
+        # DrawCube(x,y,5,.5)
+#Fg("1,650,24000")
+        # DrawCube(x,y,7,.5)
+#Fg("1,30,65000")
+        # DrawCube(x,y,9,.5)
+
+#Fg("65000,1,1")
+#         DrawCube(?x,?y,?1,.5)
+#Fg("350,40000,1")
+#        DrawCube(?x,?y,?3,.5)
+#Fg("10,65000,1000")
+#         DrawCube(?x,?y,?5,.5)
+#Fg("1,650,24000")
+#         DrawCube(?x,?y,?7,.5)
+#Fg("1,30,65000")
+#         DrawCube(?x,?y,?9,.5)
+
+Fg("65000,1,1")
+         DrawCube(?x,?y,1,1)
+Fg("350,40000,1")
+         DrawCube(?x,?y,2,1)
+Fg("10,65000,1000")
+         DrawCube(?x,?y,3,1)
+Fg("1,650,24000")
+         DrawCube(?x,?y,4,1)
+Fg("1,30,65000")
+         DrawCube(?x,?y,5,1)
+         }
+ 
+  end
+
+##########################################################
+
+procedure voxgrid10()
+
+    i := 7
+
+   size := 10
+   radius := size / .8
+   xc := yc := size / .8
+
+   angle := 0.0
+   incr := 2 * &pi / i
+
+   every j := 1 to i do {
+      spokes(xc + radius * cos(angle), yc + radius * sin(angle),
+         radius, i, angle)
+      angle +:= incr
+      }
+
+   #Event()
+
+end
+
+procedure spokes(x, y, r, i, angle)
+   local incr, j
+
+   incr := 2 * &pi / i 
+
+   every j := 1 to i do {
+     DrawLine(x, y, x,x + r * cos(angle), y + r * sin(angle),x)
+     #DrawCube(x, y, x + r * cos(angle), y + r * sin(angle))
+      angle +:= incr
+      }
+
+   return
+   
+end
+
 #END OF PROGRAM########################################
 #####################################################################################################################
 
