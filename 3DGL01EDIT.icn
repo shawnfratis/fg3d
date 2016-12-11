@@ -130,8 +130,12 @@ w := Active() | stop("Active fails")
              #voxgrid06()
              #voxgrid07()
              #voxgrid08()
-             voxgrid09()
+             # voxgrid09()
              #voxgrid10()
+             # voxgrid11()
+             # voxgrid12()
+              # voxgrid13()
+              voxgrid14()
              }
 
 "\]": {       
@@ -1426,7 +1430,7 @@ end
 procedure voxgrid09(A)   #: XOR graphic
    wsize := 25
    cmax  := 90
-   wparms := ["Xmas Xor Graphic","g",sprintf("size=%d,%d",wsize),"bg=black"]
+   wparms := ["test","g",sprintf("size=%d,%d",wsize),"bg=black"]
    #&window := open!wparms | stop("Unable to open window")
  
    every y := 0 to wsize -1 do
@@ -1506,6 +1510,160 @@ procedure spokes(x, y, r, i, angle)
    return
    
 end
+
+###############################################################
+
+#procedure voxgrid11(x,y,z,s,rgb)
+
+procedure voxgrid11()
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+
+vv:=[1,2,3,4,5,6,7,8]
+
+vvv := [2,4,6,8,0]
+
+#every y := !v do
+#every z := !v do
+#every x := !vv do
+
+   wsize := 25
+   cmax  := 90
+ 
+ every x := 0 to !v -1 do
+   every y  := 0 to !vv -1 do
+    every z  := 0 to !vvv -1 do {
+         #c := cmax/wsize * iand(wsize-1,ixor(x,y))
+        # Fg(sprintf("%d,%d,%d",c,cmax-c,0))
+Fg("65000,1,1")
+         DrawCube(x,?y,z,.5)
+#Fg("350,40000,1")
+        # DrawCube(x,y,3,.5)
+
+}
+
+end
+
+#procedure voxgrid12(x,y,z,s,rgb)
+procedure voxgrid12()
+
+#x := 0
+#y := 0
+s := .1
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+#v := [[1,2,3],[1,2,3]]
+
+vv:=[1,2,3,4]
+
+#every y := !v[1] do
+#every x := !v[2] do
+
+Fg("blue")
+every x := !v  do
+every y := !v do
+every xx := !vv do
+#every yy := !vvv do
+
+DrawCube(x,1,1,s)
+DrawCube(x,2,1,s)
+DrawCube(x,3,1,s)
+end
+#############################
+
+procedure voxgrid13()
+
+colors:= ["red", "blue", "green","yellow", "purple", "white", "black"] 
+
+#Rect:=[FiIIRectangle, DrawRectangle] 
+#Rect := [DrawCube]
+
+
+#WOpen("size=" II Width II"," II Height) 
+
+#repeat{ w:=?Width h:=?Height x:=?Width-w/2 Y:=?Height-h/2
+#repeat{
+
+w:=5
+h:= 3 
+x:=2-w/2 
+y:= 4-h/2 
+
+Fg(?colors) 
+DrawCube(x,y,w,h)
+
+ #WDelay(300) 
+#WDone()
+#}
+
+end
+
+procedure voxgrid14()
+
+#v:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v := [1,2,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,7,8,7,6,5,4,3,2,1,2,3,4,5,6]
+
+(x01:=v[1],x02:=v[2],x03:=v[3],x04:=v[4],x05:=v[5],x06:=v[6],x07:=v[7],x08:=v[8])
+(x09:=v[9],x10:=v[10],x11:=v[11],x12:=v[12],x13:=v[13],x14:=v[14],x15:=v[15])
+(x16:=v[16],x17:=v[17],x18:=v[18],x19:=v[19],x20:=v[20],x21:=v[21],x22:=v[22])
+(x23:=v[23],x24:=v[24],x25:=v[25],x26:=v[26],x27:=v[27],x28:=v[28],x29:=v[29],x30:=v[30],x31:=v[31],x32:=v[32])
+
+#every y := !v do
+#every z := !v do
+#every x := !vv do
+#  wsize := 25 
+# every x := 0 to !v -1 do
+  # every y  := 0 to !vv -1 do
+   # every z  := 0 to !vvv -1 do {
+
+q := Fg("blue")
+
+s := (1)
+
+#voxChunk01(1,1,1,1,1,1,s,q) #testr
+
+#voxChunkBlock01(1,1,1,1,1,1,1,1,1,1.1,1,1,1,1.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3,4,5,6,7,8,s,q)
+
+voxChunkBlock01(1,5,9,13,17,21,25,29,x01,x02,x03,x04,x05,x06,x07,x08,x09,x10,x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,x21,x22,x23,x24,x25,x26,x27,x28,x29,x30,x31,x32,1,1,1,1,1,1,1,1,s,q)
+
+end
+
+procedure voxChunkBlock01(xa,xaa,xb,xbb,xc,xcc,xd,xdd,ya,yya,yyya,yyyya,yb,yyb,yyyb,yyyyb,yc,yyc,yyyc,yyyyc,yd,yyd,yyyd,yyyyd,ye,yye,
+yyye,yyyye,yf,yyf,yyyf,yyyyf,yg,yyg,yyyg,yyyyg,yh,yyh,yyyh,yyyyh,za,zaa,zb,zbb,zc,zcc,zd,zdd,s,q)
+
+voxChunk01(xa,ya,yya,yyya,yyyya,za,s,q)
+voxChunk01(xaa,yb,yyb,yyyb,yyyyb,zaa,s,q)
+voxChunk01(xb,yc,yyc,yyyc,yyyyc,zb,s,q)
+voxChunk01(xbb,yd,yyd,yyyd,yyyyd,zbb,s,q)
+voxChunk01(xc,ye,yye,yyye,yyyye,zc,s,q)
+voxChunk01(xcc,yf,yyf,yyyf,yyyyf,zcc,s,q)
+voxChunk01(xd,yg,yyg,yyyg,yyyyg,zd,s,q)
+voxChunk01(xdd,yh,yyh,yyyh,yyyyh,zdd,s,q)
+
+#voxChunk01(xa,xxa,xxxa,xxxxa,ya,yya,yyya,yyyya,za,1,q)
+#voxChunk01(xb,xxb,xxxb,xxxxb,yb,yyb,yyyb,yyyyb,za,1,q)
+#voxChunk01(xc,xxc,xxxc,xxxxc,yc,yyc,yyyc,yyyyc,zb,1,q)
+#voxChunk01(xd,xxd,xxxd,xxxxd,yd,yyd,yyyd,yyyyd,zb,1,q)
+#voxChunk01(xe,xxe,xxxe,xxxxe,ye,yye,yyye,yyyye,zc,1,q)
+#voxChunk01(xf,xxf,xxxf,xxxxf,yf,yyf,yyyf,yyyyf,zc,1,q)
+#voxChunk01(xg,xxg,xxxg,xxxxg,yg,yyg,yyyg,yyyyg,zd,1,q)
+#voxChunk01(xh,xxh,xxxh,xxxxh,yh,yyh,yyyh,yyyyh,zd,1,q)
+
+
+end
+       
+procedure voxChunk01(x,y,yy,yyy,yyyy,z,s,rgb)
+
+Fg(rgb)
+
+         DrawCube(x,y,z,s)
+         DrawCube(x+1,yy,z,s)
+         DrawCube(x+2,yyy,z,s)
+         DrawCube(x+3,yyyy,z,s)
+        
+end
+
+
 
 #END OF PROGRAM########################################
 #####################################################################################################################
