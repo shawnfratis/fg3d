@@ -130,12 +130,13 @@ w := Active() | stop("Active fails")
              #voxgrid06()
              #voxgrid07()
              #voxgrid08()
-             # voxgrid09()
+             #voxgrid09()
              #voxgrid10()
-             # voxgrid11()
-             # voxgrid12()
-              # voxgrid13()
-              voxgrid14()
+             #voxgrid11()
+             #voxgrid12()
+             #voxgrid13()
+             voxgrid14()
+             
              }
 
 "\]": {       
@@ -1598,63 +1599,74 @@ DrawCube(x,y,w,h)
 
 end
 
-procedure voxgrid14()
+#################################################################
 
-#v:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v := [1,2,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,7,8,7,6,5,4,3,2,1,2,3,4,5,6]
+procedure voxgrid14()#fix me..error down
 
-(x01:=v[1],x02:=v[2],x03:=v[3],x04:=v[4],x05:=v[5],x06:=v[6],x07:=v[7],x08:=v[8])
-(x09:=v[9],x10:=v[10],x11:=v[11],x12:=v[12],x13:=v[13],x14:=v[14],x15:=v[15])
-(x16:=v[16],x17:=v[17],x18:=v[18],x19:=v[19],x20:=v[20],x21:=v[21],x22:=v[22])
-(x23:=v[23],x24:=v[24],x25:=v[25],x26:=v[26],x27:=v[27],x28:=v[28],x29:=v[29],x30:=v[30],x31:=v[31],x32:=v[32])
-
-#every y := !v do
-#every z := !v do
-#every x := !vv do
-#  wsize := 25 
-# every x := 0 to !v -1 do
-  # every y  := 0 to !vv -1 do
-   # every z  := 0 to !vvv -1 do {
-
-q := Fg("blue")
+qa := (blue)
+qb := (blue)
+qc := (blue)
+qd := (blue)
 
 s := (1)
 
-#voxChunk01(1,1,1,1,1,1,s,q) #testr
+va:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vb:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vc:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vd:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-#voxChunkBlock01(1,1,1,1,1,1,1,1,1,1.1,1,1,1,1.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3,4,5,6,7,8,s,q)
+(xa01:=va[1],xa02:=va[2],xa03:=va[3],xa04:=va[4],xa05:=va[5],xa06:=va[6],xa07:=va[7],xa08:=va[8])
+(xa09:=va[9],xa10:=va[10],xa11:=va[11],xa12:=va[12],xa13:=va[13],xa14:=va[14],xa15:=va[15])
+(xa16:=va[16],xa17:=va[17],xa18:=va[18],xa19:=va[19],xa20:=va[20],xa21:=va[21],ax22:=va[22])
+(xa23:=va[23],xa24:=va[24],xa25:=va[25],xa26:=va[26],xa27:=va[27],xa28:=va[28],xa29:=va[29],
+xa30:=va[30],xa31:=va[31],xa32:=va[32])
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,x01,x02,x03,x04,x05,x06,x07,x08,x09,x10,x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,x21,x22,x23,x24,x25,x26,x27,x28,x29,x30,x31,x32,1,1,1,1,1,1,1,1,s,q)
+(xb01:=vb[1],xb02:=vb[2],xb03:=vb[3],xb04:=vb[4],xb05:=vb[5],xb06:=vb[6],xb07:=vb[7],xb08:=vb[8])
+(xb09:=vb[9],xb10:=vb[10],xb11:=vb[11],xb12:=vb[12],xb13:=vb[13],xb14:=vb[14],xb15:=vb[15])
+(xb16:=vb[16],xb17:=vb[17],xb18:=vb[18],xb19:=vb[19],xb20:=vb[20],xb21:=vb[21],bx22:=vb[22])
+(xb23:=vb[23],xb24:=vb[24],xb25:=vb[25],xb26:=vb[26],xb27:=vb[27],xb28:=vb[28],xb29:=vb[29],
+xb30:=vb[30],xb31:=vb[31],xb32:=vb[32])
+
+(xc01:=vc[1],xc02:=vc[2],xc03:=vc[3],xc04:=vc[4],xc05:=vc[5],xc06:=vc[6],xc07:=vc[7],xc08:=vc[8])
+(xc09:=vc[9],xc10:=vc[10],xc11:=vc[11],xc12:=vc[12],xc13:=vc[13],xc14:=vc[14],xc15:=vc[15])
+(xc16:=vc[16],xc17:=vc[17],xc18:=vc[18],xc19:=vc[19],xc20:=vc[20],xc21:=vc[21],ax22:=vc[22])
+(xc23:=vc[23],xc24:=vc[24],xc25:=vc[25],xc26:=vc[26],xc27:=vc[27],xc28:=vc[28],xc29:=vc[29],
+xc30:=vc[30],xc31:=vc[31],xc32:=vc[32])
+
+(xd01:=vd[1],xd02:=vd[2],xd03:=vd[3],xd04:=vd[4],xd05:=vd[5],xd06:=vd[6],xd07:=vd[7],xd08:=vd[8])
+(xd09:=vd[9],xd10:=vd[10],xd11:=vd[11],xd12:=vd[12],xd13:=vd[13],xd14:=vd[14],xd15:=vd[15])
+(xd16:=vd[16],xd17:=vd[17],xd18:=vd[18],xd19:=vd[19],xd20:=vd[20],xd21:=vd[21],bx22:=vd[22])
+(xd23:=vd[23],xd24:=vd[24],xd25:=vd[25],xd26:=vd[26],xd27:=vd[27],xd28:=vd[28],xd29:=vd[29],
+xd30:=vd[30],xd31:=vd[31],xd32:=vd[32])
+
+voxChunkBlock01(1,5,9,13,17,21,25,29,xa01,xa02,xa03,xa04,xa05,xa06,xa07,xa08,xa09,xa10,xa11,xa12,xa13,xa14,xa15,xa16,xa17,xa18,xa19,xa20,xa21,xa22,xa23,xa24,xa25,xa26,xa27,xa28,xa29,xa30,xa31,xa32,1,1,1,1,1,1,1,1,s,qa,qb,qc,qd)
+
+voxChunkBlock01(1,5,9,13,17,21,25,29,xb01,xb02,xb03,xb04,xb05,xb06,xb07,xb08,xb09,xb10,xb11,xb12,xb13,xb14,xb15,xb16,xb17,xb18,xb19,xb20,xb21,xb22,xb23,xb24,xb25,xb26,xb27,xb28,xb29,xb30,xb31,xb32,2,2,2,2,2,2,2,2,s,qa,qb,qc,qd)
+
+voxChunkBlock01(1,5,9,13,17,21,25,29,xc01,xc02,xc03,xc04,xc05,xc06,xc07,xc08,xc09,xc10,xc11,xc12,xc13,xc14,xc15,xc16,xc17,xc18,xc19,xc20,xc21,xc22,xc23,xc24,xc25,xc26,xc27,xc28,xc29,xc30,xc31,xc32,3,3,3,3,3,3,3,3,s,qa,qb,qc,qd)
+
+voxChunkBlock01(1,5,9,13,17,21,25,29,xd01,xd02,xd03,xd04,xd05,xd06,xd07,xd08,xd09,xd10,xd11,xd12,xd13,xd14,xd15,xd16,xd17,xd18,xd19,xd20,xd21,xd22,xd23,xd24,xd25,xd26,xd27,xd28,xd29,xd30,xd31,xd32,4,4,4,4,4,4,4,4,s,qa,qb,qc,qd)
 
 end
 
 procedure voxChunkBlock01(xa,xaa,xb,xbb,xc,xcc,xd,xdd,ya,yya,yyya,yyyya,yb,yyb,yyyb,yyyyb,yc,yyc,yyyc,yyyyc,yd,yyd,yyyd,yyyyd,ye,yye,
-yyye,yyyye,yf,yyf,yyyf,yyyyf,yg,yyg,yyyg,yyyyg,yh,yyh,yyyh,yyyyh,za,zaa,zb,zbb,zc,zcc,zd,zdd,s,q)
+yyye,yyyye,yf,yyf,yyyf,yyyyf,yg,yyg,yyyg,yyyyg,yh,yyh,yyyh,yyyyh,za,zaa,zb,zbb,zc,zcc,zd,zdd,s,qa,qb,qc,qd)
 
-voxChunk01(xa,ya,yya,yyya,yyyya,za,s,q)
-voxChunk01(xaa,yb,yyb,yyyb,yyyyb,zaa,s,q)
-voxChunk01(xb,yc,yyc,yyyc,yyyyc,zb,s,q)
-voxChunk01(xbb,yd,yyd,yyyd,yyyyd,zbb,s,q)
-voxChunk01(xc,ye,yye,yyye,yyyye,zc,s,q)
-voxChunk01(xcc,yf,yyf,yyyf,yyyyf,zcc,s,q)
-voxChunk01(xd,yg,yyg,yyyg,yyyyg,zd,s,q)
-voxChunk01(xdd,yh,yyh,yyyh,yyyyh,zdd,s,q)
 
-#voxChunk01(xa,xxa,xxxa,xxxxa,ya,yya,yyya,yyyya,za,1,q)
-#voxChunk01(xb,xxb,xxxb,xxxxb,yb,yyb,yyyb,yyyyb,za,1,q)
-#voxChunk01(xc,xxc,xxxc,xxxxc,yc,yyc,yyyc,yyyyc,zb,1,q)
-#voxChunk01(xd,xxd,xxxd,xxxxd,yd,yyd,yyyd,yyyyd,zb,1,q)
-#voxChunk01(xe,xxe,xxxe,xxxxe,ye,yye,yyye,yyyye,zc,1,q)
-#voxChunk01(xf,xxf,xxxf,xxxxf,yf,yyf,yyyf,yyyyf,zc,1,q)
-#voxChunk01(xg,xxg,xxxg,xxxxg,yg,yyg,yyyg,yyyyg,zd,1,q)
-#voxChunk01(xh,xxh,xxxh,xxxxh,yh,yyh,yyyh,yyyyh,zd,1,q)
-
+voxChunk01(xa,ya,yya,yyya,yyyya,za,s,qa)
+voxChunk01(xaa,yb,yyb,yyyb,yyyyb,zaa,s,qa)
+voxChunk01(xb,yc,yyc,yyyc,yyyyc,zb,s,qb)
+voxChunk01(xbb,yd,yyd,yyyd,yyyyd,zbb,s,qb)
+voxChunk01(xc,ye,yye,yyye,yyyye,zc,s,qc)
+voxChunk01(xcc,yf,yyf,yyyf,yyyyf,zcc,s,qc)
+voxChunk01(xd,yg,yyg,yyyg,yyyyg,zd,s,qd)
+voxChunk01(xdd,yh,yyh,yyyh,yyyyh,zdd,s,qd)
 
 end
        
 procedure voxChunk01(x,y,yy,yyy,yyyy,z,s,rgb)
 
-Fg(rgb)
+Fg("rgb")
 
          DrawCube(x,y,z,s)
          DrawCube(x+1,yy,z,s)
