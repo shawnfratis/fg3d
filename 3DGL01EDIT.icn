@@ -1601,7 +1601,7 @@ end
 
 #################################################################
 
-procedure voxgrid14()#fix me..error down
+procedure voxgrid14()
 
 qa := (blue)
 qb := (blue)
@@ -1617,35 +1617,39 @@ vd:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 (xa01:=va[1],xa02:=va[2],xa03:=va[3],xa04:=va[4],xa05:=va[5],xa06:=va[6],xa07:=va[7],xa08:=va[8])
 (xa09:=va[9],xa10:=va[10],xa11:=va[11],xa12:=va[12],xa13:=va[13],xa14:=va[14],xa15:=va[15])
-(xa16:=va[16],xa17:=va[17],xa18:=va[18],xa19:=va[19],xa20:=va[20],xa21:=va[21],ax22:=va[22])
+(xa16:=va[16],xa17:=va[17],xa18:=va[18],xa19:=va[19],xa20:=va[20],xa21:=va[21],xa22:=va[22])
 (xa23:=va[23],xa24:=va[24],xa25:=va[25],xa26:=va[26],xa27:=va[27],xa28:=va[28],xa29:=va[29],
 xa30:=va[30],xa31:=va[31],xa32:=va[32])
 
 (xb01:=vb[1],xb02:=vb[2],xb03:=vb[3],xb04:=vb[4],xb05:=vb[5],xb06:=vb[6],xb07:=vb[7],xb08:=vb[8])
 (xb09:=vb[9],xb10:=vb[10],xb11:=vb[11],xb12:=vb[12],xb13:=vb[13],xb14:=vb[14],xb15:=vb[15])
-(xb16:=vb[16],xb17:=vb[17],xb18:=vb[18],xb19:=vb[19],xb20:=vb[20],xb21:=vb[21],bx22:=vb[22])
+(xb16:=vb[16],xb17:=vb[17],xb18:=vb[18],xb19:=vb[19],xb20:=vb[20],xb21:=vb[21],xb22:=vb[22])
 (xb23:=vb[23],xb24:=vb[24],xb25:=vb[25],xb26:=vb[26],xb27:=vb[27],xb28:=vb[28],xb29:=vb[29],
 xb30:=vb[30],xb31:=vb[31],xb32:=vb[32])
 
 (xc01:=vc[1],xc02:=vc[2],xc03:=vc[3],xc04:=vc[4],xc05:=vc[5],xc06:=vc[6],xc07:=vc[7],xc08:=vc[8])
 (xc09:=vc[9],xc10:=vc[10],xc11:=vc[11],xc12:=vc[12],xc13:=vc[13],xc14:=vc[14],xc15:=vc[15])
-(xc16:=vc[16],xc17:=vc[17],xc18:=vc[18],xc19:=vc[19],xc20:=vc[20],xc21:=vc[21],ax22:=vc[22])
+(xc16:=vc[16],xc17:=vc[17],xc18:=vc[18],xc19:=vc[19],xc20:=vc[20],xc21:=vc[21],xc22:=vc[22])
 (xc23:=vc[23],xc24:=vc[24],xc25:=vc[25],xc26:=vc[26],xc27:=vc[27],xc28:=vc[28],xc29:=vc[29],
 xc30:=vc[30],xc31:=vc[31],xc32:=vc[32])
 
 (xd01:=vd[1],xd02:=vd[2],xd03:=vd[3],xd04:=vd[4],xd05:=vd[5],xd06:=vd[6],xd07:=vd[7],xd08:=vd[8])
 (xd09:=vd[9],xd10:=vd[10],xd11:=vd[11],xd12:=vd[12],xd13:=vd[13],xd14:=vd[14],xd15:=vd[15])
-(xd16:=vd[16],xd17:=vd[17],xd18:=vd[18],xd19:=vd[19],xd20:=vd[20],xd21:=vd[21],bx22:=vd[22])
+(xd16:=vd[16],xd17:=vd[17],xd18:=vd[18],xd19:=vd[19],xd20:=vd[20],xd21:=vd[21],xd22:=vd[22])
 (xd23:=vd[23],xd24:=vd[24],xd25:=vd[25],xd26:=vd[26],xd27:=vd[27],xd28:=vd[28],xd29:=vd[29],
 xd30:=vd[30],xd31:=vd[31],xd32:=vd[32])
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xa01,xa02,xa03,xa04,xa05,xa06,xa07,xa08,xa09,xa10,xa11,xa12,xa13,xa14,xa15,xa16,xa17,xa18,xa19,xa20,xa21,xa22,xa23,xa24,xa25,xa26,xa27,xa28,xa29,xa30,xa31,xa32,1,1,1,1,1,1,1,1,s,qa,qb,qc,qd)
+voxChunkBlock01(1,5,9,13,17,21,25,29,xa01,xa02,xa03,xa04,xa05,xa06,xa07,xa08,xa09,xa10,xa11,xa12,xa13,xa14,xa15,xa16,xa17,xa18,xa19,xa20,xa21,xa22,xa23,xa24,xa25,xa26,xa27,xa28,xa29,xa30,xa31,xa32,
+1,1,1,1,1,1,1,1,s,qa,qb,qc,qd)
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xb01,xb02,xb03,xb04,xb05,xb06,xb07,xb08,xb09,xb10,xb11,xb12,xb13,xb14,xb15,xb16,xb17,xb18,xb19,xb20,xb21,xb22,xb23,xb24,xb25,xb26,xb27,xb28,xb29,xb30,xb31,xb32,2,2,2,2,2,2,2,2,s,qa,qb,qc,qd)
+voxChunkBlock01(1,5,9,13,17,21,25,29,xb01,xb02,xb03,xb04,xb05,xb06,xb07,xb08,xb09,xb10,xb11,xb12,xb13,xb14,xb15,xb16,xb17,xb18,xb19,xb20,xb21,xb22,xb23,xb24,xb25,xb26,xb27,xb28,xb29,xb30,xb31,xb32,
+2,2,2,2,2,2,2,2,s,qa,qb,qc,qd)
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xc01,xc02,xc03,xc04,xc05,xc06,xc07,xc08,xc09,xc10,xc11,xc12,xc13,xc14,xc15,xc16,xc17,xc18,xc19,xc20,xc21,xc22,xc23,xc24,xc25,xc26,xc27,xc28,xc29,xc30,xc31,xc32,3,3,3,3,3,3,3,3,s,qa,qb,qc,qd)
+voxChunkBlock01(1,5,9,13,17,21,25,29,xc01,xc02,xc03,xc04,xc05,xc06,xc07,xc08,xc09,xc10,xc11,xc12,xc13,xc14,xc15,xc16,xc17,xc18,xc19,xc20,xc21,xc22,xc23,xc24,xc25,xc26,xc27,xc28,xc29,xc30,xc31,xc32,
+3,3,3,3,3,3,3,3,s,qa,qb,qc,qd)
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xd01,xd02,xd03,xd04,xd05,xd06,xd07,xd08,xd09,xd10,xd11,xd12,xd13,xd14,xd15,xd16,xd17,xd18,xd19,xd20,xd21,xd22,xd23,xd24,xd25,xd26,xd27,xd28,xd29,xd30,xd31,xd32,4,4,4,4,4,4,4,4,s,qa,qb,qc,qd)
+voxChunkBlock01(1,5,9,13,17,21,25,29,xd01,xd02,xd03,xd04,xd05,xd06,xd07,xd08,xd09,xd10,xd11,xd12,xd13,xd14,xd15,xd16,xd17,xd18,xd19,xd20,xd21,xd22,xd23,xd24,xd25,xd26,xd27,xd28,xd29,xd30,xd31,xd32,
+4,4,4,4,4,4,4,4,s,qa,qb,qc,qd)
 
 end
 
