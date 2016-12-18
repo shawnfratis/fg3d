@@ -1603,17 +1603,40 @@ end
 
 procedure voxgrid14()
 
-qa := (blue)
-qb := (blue)
-qc := (blue)
-qd := (blue)
-
-s := (1)
+(xa:=1,xb:=5,xc:=9,xd:=13,xe:=17,xf:=21,xg:=25,xh:=29)
 
 va:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 vb:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 vc:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 vd:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+ve:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vf:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vg:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vh:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+(vza:=1,vzb:=2,vzc:=3,vzd:=4,vze:=5,vzf:=6,vzg:=7,vzh:=8)
+
+(vqa:="blue",vqb:="red",vqc:="green",vqd:="yellow",vqe:="blue",vqf:="blue",vqg:="blue",vqh:="blue",vqi:="blue",vqj:="blue",vqk:="blue",vql:="blue",vqm:="blue",vqn:="blue",vqo:="blue",vqp:="blue",vvqa:="blue",vvqb:="blue",vvqc:="blue",vvqd:="blue",vvqe:="blue",vvqf:="blue",vvqg:="blue",vvqh:="blue",vvqi:="blue",vvqj:="blue",vvqk:="blue",vvql:="blue",vvqm:="blue",vvqn:="blue",vvqo:="blue",vvqp:="blue")
+
+# # # #
+
+voxChunkBlock02(xa,xb,xc,xd,xe,xf,xg,xh,va[1],va[2],va[3],va[4],va[5],va[6],va[7],va[8],va[9],va[10],va[11],va[12],va[13],va[14],va[15],va[16],va[17],va[18],va[19],va[20],va[21],va[22],va[23],va[24],va[25],va[26],va[27],va[28],va[29],va[30],va[31],va[32],vb[1],vb[2],vb[3],vb[4],vb[5],vb[6],vb[7],vb[8],vb[9],vb[10],vb[11],vb[12],vb[13],vb[14],vb[15],vb[16],vb[17],vb[18],vb[19],vb[20],vb[21],vb[22],vb[23],vb[24],vb[25],vb[26],vb[27],vb[28],vb[29],vb[30],vb[31],vb[32],vc[1],vc[2],vc[3],vc[4],vc[5],vc[6],vc[7],vc[8],vc[9],vc[10],vc[11],vc[12],vc[13],vc[14],vc[15],vc[16],vc[17],vc[18],vc[19],vc[20],vc[21],vc[22],vc[23],vc[24],vc[25],vc[26],vc[27],vc[28],vc[29],vc[30],vc[31],vc[32],vd[1],vd[2],vd[3],vd[4],vd[5],vd[6],vd[7],vd[8],vd[9],vd[10],vd[11],vd[12],vd[13],vd[14],vd[15],vd[16],vd[17],vd[18],vd[19],vd[20],vd[21],vd[22],vd[23],vd[24],vd[25],vd[26],vd[27],vd[28],vd[29],vd[30],vd[31],vd[32],ve[1],ve[2],ve[3],ve[4],ve[5],ve[6],ve[7],ve[8],ve[9],ve[10],ve[11],ve[12],ve[13],ve[14],ve[15],ve[16],ve[17],ve[18],ve[19],ve[20],ve[21],ve[22],ve[23],ve[24],ve[25],ve[26],ve[27],ve[28],ve[29],ve[30],ve[31],ve[32],vf[1],vf[2],vf[3],vf[4],vf[5],vf[6],vf[7],vf[8],vf[9],vf[10],vf[11],vf[12],vf[13],vf[14],vf[15],vf[16],vf[17],vf[18],vf[19],vf[20],vf[21],vf[22],vf[23],vf[24],vf[25],vf[26],vf[27],vf[28],vf[29],vf[30],vf[31],vf[32],vg[1],vg[2],vg[3],vg[4],vg[5],vg[6],vg[7],vg[8],vg[9],vg[10],vg[11],vg[12],vg[13],vg[14],vg[15],vg[16],vg[17],vg[18],vg[19],vg[20],vg[21],vg[22],vg[23],vg[24],vg[25],vg[26],vg[27],vg[28],vg[29],vg[30],vg[31],vg[32],vh[1],vh[2],vh[3],vh[4],vh[5],vh[6],vh[7],vh[8],vh[9],vh[10],vh[11],vh[12],vh[13],vh[14],vh[15],vh[16],vh[17],vh[18],vh[19],vh[20],vh[21],vh[22],vh[23],vh[24],vh[25],vh[26],vh[27],vh[28],vh[29],vh[30],vh[31],vh[32],vza,vzb,vzc,vzd,vze,vzf,vzg,vzh,vqa,vqb,vqc,vqd,vqe,vqf,vqg,vqh,vqi,vqj,vqk,vql,vqm,vqn,vqo,vqp,vvqa,vvqb,vvqc,vvqd,vvqe,vvqf,vvqg,vvqh,vvqi,vvqj,vvqk,vvql,vvqm,vvqn,vvqo,vvqp)
+
+end
+
+procedure voxChunkBlock02(xa,xb,xc,xd,xe,xf,xg,xh,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32,b01,b02,b03,b04,b05,b06,b07,b08,b09,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,c01,c02,c03,c04,c05,c06,c07,c08,c09,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30,c31,c32,d01,d02,d03,d04,d05,d06,d07,d08,d09,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,f01,f02,f03,f04,f05,f06,f07,f08,f09,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20,f21,f22,f23,f24,f25,f26,f27,f28,f29,f30,f31,f32,g01,g02,g03,g04,g05,g06,g07,g08,g09,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28,g29,g30,g31,g32,h01,h02,h03,h04,h05,h06,h07,h08,h09,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23,h24,h25,h26,h27,h28,h29,h30,h31,h32,za,zb,zc,zd,ze,zf,zg,zh,qa,qb,qc,qd,qe,qf,qg,qh,qi,qj,qk,ql,qm,qn,qo,qp,qqa,qqb,qqc,qqd,qqe,qqf,qqg,qqh,qqi,qqj,qqk,qql,qqm,qqn,qqo,qqp)
+
+s := (1)
+
+va:=[a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32]
+vb:=[b01,b02,b03,b04,b05,b06,b07,b08,b09,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32]
+vc:=[c01,c02,c03,c04,c05,c06,c07,c08,c09,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30,c31,c32]
+vd:=[d01,d02,d03,d04,d05,d06,d07,d08,d09,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32]
+
+ve:=[e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32]
+vf:=[f01,f02,f03,f04,f05,f06,f07,f08,f09,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20,f21,f22,f23,f24,f25,f26,f27,f28,f29,f30,f31,f32]
+vg:=[g01,g02,g03,g04,g05,g06,g07,g08,g09,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28,g29,g30,g31,g32]
+vh:=[h01,h02,h03,h04,h05,h06,h07,h08,h09,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23,h24,h25,h26,h27,h28,h29,h30,h31,h32]
 
 (xa01:=va[1],xa02:=va[2],xa03:=va[3],xa04:=va[4],xa05:=va[5],xa06:=va[6],xa07:=va[7],xa08:=va[8])
 (xa09:=va[9],xa10:=va[10],xa11:=va[11],xa12:=va[12],xa13:=va[13],xa14:=va[14],xa15:=va[15])
@@ -1639,17 +1662,61 @@ xc30:=vc[30],xc31:=vc[31],xc32:=vc[32])
 (xd23:=vd[23],xd24:=vd[24],xd25:=vd[25],xd26:=vd[26],xd27:=vd[27],xd28:=vd[28],xd29:=vd[29],
 xd30:=vd[30],xd31:=vd[31],xd32:=vd[32])
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xa01,xa02,xa03,xa04,xa05,xa06,xa07,xa08,xa09,xa10,xa11,xa12,xa13,xa14,xa15,xa16,xa17,xa18,xa19,xa20,xa21,xa22,xa23,xa24,xa25,xa26,xa27,xa28,xa29,xa30,xa31,xa32,
-1,1,1,1,1,1,1,1,s,qa,qb,qc,qd)
+##################################################################
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xb01,xb02,xb03,xb04,xb05,xb06,xb07,xb08,xb09,xb10,xb11,xb12,xb13,xb14,xb15,xb16,xb17,xb18,xb19,xb20,xb21,xb22,xb23,xb24,xb25,xb26,xb27,xb28,xb29,xb30,xb31,xb32,
-2,2,2,2,2,2,2,2,s,qa,qb,qc,qd)
+(xe01:=ve[1],xe02:=ve[2],xe03:=ve[3],xe04:=ve[4],xe05:=ve[5],xe06:=ve[6],xe07:=ve[7],xe08:=ve[8])
+(xe09:=ve[9],xe10:=ve[10],xe11:=ve[11],xe12:=ve[12],xe13:=ve[13],xe14:=ve[14],xe15:=ve[15])
+(xe16:=ve[16],xe17:=ve[17],xe18:=ve[18],xe19:=ve[19],xe20:=ve[20],xe21:=ve[21],xe22:=ve[22])
+(xe23:=ve[23],xe24:=ve[24],xe25:=ve[25],xe26:=ve[26],xe27:=ve[27],xe28:=ve[28],xe29:=ve[29],
+xe30:=ve[30],xe31:=ve[31],xe32:=ve[32])
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xc01,xc02,xc03,xc04,xc05,xc06,xc07,xc08,xc09,xc10,xc11,xc12,xc13,xc14,xc15,xc16,xc17,xc18,xc19,xc20,xc21,xc22,xc23,xc24,xc25,xc26,xc27,xc28,xc29,xc30,xc31,xc32,
-3,3,3,3,3,3,3,3,s,qa,qb,qc,qd)
+(xf01:=vf[1],xf02:=vf[2],xf03:=vf[3],xf04:=vf[4],xf05:=vf[5],xf06:=vf[6],xf07:=vf[7],xf08:=vf[8])
+(xf09:=vf[9],xf10:=vf[10],xf11:=vf[11],xf12:=vf[12],xf13:=vf[13],xf14:=vf[14],xf15:=vf[15])
+(xf16:=vf[16],xf17:=vf[17],xf18:=vf[18],xf19:=vf[19],xf20:=vf[20],xf21:=vf[21],xf22:=vf[22])
+(xf23:=vf[23],xf24:=vf[24],xf25:=vf[25],xf26:=vf[26],xf27:=vf[27],xf28:=vf[28],xf29:=vf[29],
+xf30:=vf[30],xf31:=vf[31],xf32:=vf[32])
 
-voxChunkBlock01(1,5,9,13,17,21,25,29,xd01,xd02,xd03,xd04,xd05,xd06,xd07,xd08,xd09,xd10,xd11,xd12,xd13,xd14,xd15,xd16,xd17,xd18,xd19,xd20,xd21,xd22,xd23,xd24,xd25,xd26,xd27,xd28,xd29,xd30,xd31,xd32,
-4,4,4,4,4,4,4,4,s,qa,qb,qc,qd)
+(xg01:=vg[1],xg02:=vg[2],xg03:=vg[3],xg04:=vg[4],xg05:=vg[5],xg06:=vg[6],xg07:=vg[7],xg08:=vg[8])
+(xg09:=vg[9],xg10:=vg[10],xg11:=vg[11],xg12:=vg[12],xg13:=vg[13],xg14:=vg[14],xg15:=vg[15])
+(xg16:=vg[16],xg17:=vg[17],xg18:=vg[18],xg19:=vg[19],xg20:=vg[20],xg21:=vg[21],xg22:=vg[22])
+(xg23:=vg[23],xg24:=vg[24],xg25:=vg[25],xg26:=vg[26],xg27:=vg[27],xg28:=vg[28],xg29:=vg[29],
+xg30:=vg[30],xg31:=vg[31],xg32:=vg[32])
+
+(xh01:=vh[1],xh02:=vh[2],xh03:=vh[3],xh04:=vh[4],xh05:=vh[5],xh06:=vh[6],xh07:=vh[7],xh08:=vh[8])
+(xh09:=vh[9],xh10:=vh[10],xh11:=vh[11],xh12:=vh[12],xh13:=vh[13],xh14:=vh[14],xh15:=vh[15])
+(xh16:=vh[16],xh17:=vh[17],xh18:=vh[18],xh19:=vh[19],xh20:=vh[20],xh21:=vh[21],xh22:=vh[22])
+(xh23:=vh[23],xh24:=vh[24],xh25:=vh[25],xh26:=vh[26],xh27:=vh[27],xh28:=vh[28],xh29:=vh[29],
+xh30:=vh[30],xh31:=vh[31],xh32:=vh[32])
+
+################################################################
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xa01,xa02,xa03,xa04,xa05,xa06,xa07,xa08,xa09,xa10,xa11,xa12,xa13,xa14,xa15,xa16,xa17,xa18,xa19,xa20,xa21,xa22,xa23,xa24,xa25,xa26,xa27,xa28,xa29,xa30,xa31,xa32,
+za,za,za,za,za,za,za,za,s,qa,qb,qc,qd)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xb01,xb02,xb03,xb04,xb05,xb06,xb07,xb08,xb09,xb10,xb11,xb12,xb13,xb14,xb15,xb16,xb17,xb18,xb19,xb20,xb21,xb22,xb23,xb24,xb25,xb26,xb27,xb28,xb29,xb30,xb31,xb32,
+zb,zb,zb,zb,zb,zb,zb,zb,s,qe,qf,qg,qh)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xc01,xc02,xc03,xc04,xc05,xc06,xc07,xc08,xc09,xc10,xc11,xc12,xc13,xc14,xc15,xc16,xc17,xc18,xc19,xc20,xc21,xc22,xc23,xc24,xc25,xc26,xc27,xc28,xc29,xc30,xc31,xc32,
+zc,zc,zc,zc,zc,zc,zc,zc,s,qi,qj,qk,ql)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xd01,xd02,xd03,xd04,xd05,xd06,xd07,xd08,xd09,xd10,xd11,xd12,xd13,xd14,xd15,xd16,xd17,xd18,xd19,xd20,xd21,xd22,xd23,xd24,xd25,xd26,xd27,xd28,xd29,xd30,xd31,xd32,
+zd,zd,zd,zd,zd,zd,zd,zd,s,qm,qn,qo,qp)
+
+#################################################################
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xe01,xe02,xe03,xe04,xe05,xe06,xe07,xe08,xe09,xe10,xe11,xe12,xe13,xe14,xe15,xe16,xe17,xe18,xe19,xe20,xe21,xe22,xe23,xe24,xe25,xe26,xe27,xe28,xe29,xe30,xe31,xe32,
+ze,ze,ze,ze,ze,ze,ze,ze,s,qqa,qqb,qqc,qqd)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xf01,xf02,xf03,xf04,xf05,xf06,xf07,xf08,xf09,xf10,xf11,xf12,xf13,xf14,xf15,xf16,xf17,xf18,xf19,xf20,xf21,xf22,xf23,xf24,xf25,xf26,xf27,xf28,xf29,xf30,xf31,xf32,
+zf,zf,zf,zf,zf,zf,zf,zf,s,qqe,qqf,qqg,qqh)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xg01,xg02,xg03,xg04,xg05,xg06,xg07,xg08,xg09,xg10,xg11,xg12,xg13,xg14,xg15,xg16,xg17,xg18,xg19,xg20,xg21,xg22,xg23,xg24,xg25,xg26,xg27,xg28,xg29,xg30,xg31,xg32,
+zg,zg,zg,zg,zg,zg,zg,zg,s,qqi,qqj,qqk,qql)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xh01,xh02,xh03,xh04,xh05,xh06,xh07,xh08,xh09,xh10,xh11,xh12,xh13,xh14,xh15,xh16,xh17,xh18,xh19,xh20,xh21,xh22,xh23,xh24,xh25,xh26,xh27,xh28,xh29,xh30,xh31,xh32,
+zh,zh,zh,zh,zh,zh,zh,zh,s,qqm,qqn,qqo,qqp)
+
+#################################################################
 
 end
 
@@ -1670,7 +1737,7 @@ end
        
 procedure voxChunk01(x,y,yy,yyy,yyyy,z,s,rgb)
 
-Fg("rgb")
+Fg(rgb)
 
          DrawCube(x,y,z,s)
          DrawCube(x+1,yy,z,s)
