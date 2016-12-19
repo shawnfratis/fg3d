@@ -1614,9 +1614,17 @@ vf:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 vg:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 vh:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
+##########################################################
+
+(xva:=2,xvb:=1,xvc:=.5)
+
+(va[1] := xva+(va[2]+.5),va[2] := xvb+(va[3]+.5),va[3] := xvc+(va[4]+.5))
+
+#####################################################################
+
 (vza:=1,vzb:=2,vzc:=3,vzd:=4,vze:=5,vzf:=6,vzg:=7,vzh:=8)
 
-(vqa:="blue",vqb:="red",vqc:="green",vqd:="yellow",vqe:="blue",vqf:="blue",vqg:="blue",vqh:="blue",vqi:="blue",vqj:="blue",vqk:="blue",vql:="blue",vqm:="blue",vqn:="blue",vqo:="blue",vqp:="blue",vvqa:="blue",vvqb:="blue",vvqc:="blue",vvqd:="blue",vvqe:="blue",vvqf:="blue",vvqg:="blue",vvqh:="blue",vvqi:="blue",vvqj:="blue",vvqk:="blue",vvql:="blue",vvqm:="blue",vvqn:="blue",vvqo:="blue",vvqp:="blue")
+(vqa:="blue",vqb:="blue",vqc:="blue",vqd:="blue",vqe:="blue",vqf:="blue",vqg:="blue",vqh:="blue",vqi:="blue",vqj:="blue",vqk:="blue",vql:="blue",vqm:="blue",vqn:="blue",vqo:="blue",vqp:="blue",vvqa:="blue",vvqb:="blue",vvqc:="blue",vvqd:="blue",vvqe:="blue",vvqf:="blue",vvqg:="blue",vvqh:="blue",vvqi:="blue",vvqj:="blue",vvqk:="blue",vvql:="blue",vvqm:="blue",vvqn:="blue",vvqo:="blue",vvqp:="blue")
 
 # # # #
 
