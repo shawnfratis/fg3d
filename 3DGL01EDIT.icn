@@ -30,7 +30,7 @@ link printf
 
 procedure main()
 
-&window := open("3DGL01", "gl", "size=1000,700", "bg=black") | stop("can't even open window, bro")
+&window := open("3DGL01", "gl", "size=1000,700", "bg=black") | stop("can't open window")
 
 Fg("green")
 
@@ -101,20 +101,20 @@ w := Active() | stop("Active fails")
     
               }
 "\G": {
-               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+              WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
                #Eye(0,.2,0, 0,0,-1, 0,1,0)
               
               }
 "\H": {
-               WAttrib("eyepos=-2.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+              WAttrib("eyepos=-2.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\J": {
-               WAttrib("eyepos=-4.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+              WAttrib("eyepos=-4.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\S": {
-               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+              WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
 "\%": {    
@@ -122,6 +122,7 @@ w := Active() | stop("Active fails")
 
               }
 "\[": {    
+#These are for switching between voxel experiments-decomment as needed
              #voxgrid01()#input
              #voxgrid02()
              #voxgrid03()
@@ -198,14 +199,12 @@ WWrite(win1,"< gives more in-depth instructions. >,= and : are reference guides"
 WWrite(win1,"Generating an example cube:") 
 WWrite(win1,"Press / to start command line. Type cube, then enter.")
 WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter.") 
-WWrite(win1,"Finally, type 60000,10000,10000 then enter.")  
+WWrite(win1,"Finally, type 60000,10000,10000 then enter.")
+WWrite(win1,"After entering object, press g or h refresh screen.") 
 WWrite(win1,"This will create a red colored cube in the center of the screen.")
 WWrite(win1,"These numbers are the X, Y, Z, size and color values of the cube.")  
-WWrite(win1,"These vals set objects at XYZ=0:")
-WWrite(win1,"cube 0,0,0,.5,10000,10000,20000")
-WWrite(win1,"sphere 0,0,0,.5,20000,10000,10000")
-WWrite(win1,"cyl 0,0,0,1,.5,.5,10000,20000,10000")
-WWrite(win1,"After entering object, use views to refresh screen")
+
+
 
 end
 
@@ -219,12 +218,12 @@ win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 WWrite(win1,"           [+y]               ")
         WWrite(win1,"            |                    ")
         WWrite(win1,"            |                 ")	 
-        WWrite(win1,"            |                   cam = position,direction,up : 0,0,5,0,0,1,0,1,0")
-        WWrite(win1,"            |                   g hH jJ a k s change views.")
-        WWrite(win1,"[-x]--------0-------[+x]  ] is for a basic mouse navigation.")
-        WWrite(win1,"            |                   forward  0,0,5,0,0,1,0,1,0")
-        WWrite(win1,"            |                   angle up 0,2,8,0,0,1,0,1,0 ")
-        WWrite(win1,"            |                   angle side 4,0,5,0,0,1,0,1,0")                              
+        WWrite(win1,"            |               cam = position,direction,up : 0,0,5,0,0,1,0,1,0")
+        WWrite(win1,"            |               g hH jJ a k s change views.")
+        WWrite(win1,"[-x]--------0-------[+x]    ] is for a basic mouse navigation. ESC after using.")
+        WWrite(win1,"            |               forward  0,0,5,0,0,1,0,1,0")
+        WWrite(win1,"            |               angle up 0,2,8,0,0,1,0,1,0 ")
+        WWrite(win1,"            |               angle side 4,0,5,0,0,1,0,1,0")                              
         WWrite(win1,"            |                    ")
         WWrite(win1,"           [-y]              ")
 
@@ -243,9 +242,10 @@ WWrite(win1,"Some example values:")
 WWrite(win1,"cyl(0_-1_-4_1_.5_.5_12000,65000,10000)")
 WWrite(win1,"sphere(0_0.1_-3_.5_65000,1000,1000)")
 WWrite(win1,"cube(0_0.5_-2_.5_1000,2000,65000)")
-WWrite(win1,"rcube01 = random displacement")
-WWrite(win1,"Preset pos:cubecenter,cuberight,cubeleft,cubecenterlow")
-WWrite(win1,"randomcubecenter,randomcuberight, etc.")
+WWrite(win1,"cube 0,0,0,.5,10000,10000,20000")
+WWrite(win1,"sphere 0,0,0,.5,20000,10000,10000")
+WWrite(win1,"cyl 0,0,0,1,.5,.5,10000,20000,10000")
+
 
 end
 
@@ -272,9 +272,10 @@ procedure helpbox5()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
-WWrite(win1,"p,q,$,s for texplanes")
+WWrite(win1,"p,q,$,s for texplanes (will error if paths not set)")
 WWrite(win1,"vox1 = 18,0,1,1,rgb")
 WWrite(win1,"vox2 = x,?y,z,s,rgb")
+WWrite(win1,"[ is voxel test")
 
 end
 
@@ -494,8 +495,6 @@ procedure inputprompt()
  
         s1 := WRead()
 
-        #WAttrib("dx=1", "dy=1")
-
         ss1 :=( "cube")
         ss2 :=( "plane")
         ss3 :=( "cyl")
@@ -566,7 +565,6 @@ procedure inputprompt()
         if s1== ss22 then notused
         else
         if s1== ss23 then notused 
-     
 
     return
 
@@ -574,35 +572,6 @@ end
 
 #############end input cubes etc#################
 ##############Begin OpenGL 3D##############################
-#FOR TESTING PURPOSES..DELETE LATER
-#procedure f01()
-
-#w := open("scene","gl", "bg=black", "size=100,100")
-
-#WAttrib(w, "light0=diffuse white; ambient black; _
-#specular white; position 0.0, 1.0, 0.0")
-#WAttrib("light0=on, ambient white","fg=specular white")
-#WAttrib("light0=on, ambient white,fg=specular white,position 0.0,-1,0.0")
-#WAttrib("light0=on, ambient  white")
-#WAttrib("light0=on, ambient blue-green","fg=specular white")
-#DrawCylinder(w, 0.0, -0.2, -3.5, 0.75, 0.5, 0.0)
-#DrawTorus(w,0.0, -0.2, -3.5, 0.3, 0.7)
-#DrawSphere(w,0.0, 0.59, -2.2, 0.3)
-#Fg("red")
-#DrawCylinder(0,-1,-4,1,.5,.5)
-#Fg("blue")
-#DrawSphere(0,0.1,-3,.5)
-#Fg("green")
-#FillPolygon(-3,-1,-8,3,-1,-8,3,-1,5,-3,-1,5)
-
-#Fg("yellow")
-#DrawCube(0,0.5,-10,.5)
-
-#Refresh()
-
-#end
-
-###########################################################
 
 procedure seteye(px,py,pz,dx,dy,dz,qx,qy,qz)
 
@@ -659,13 +628,10 @@ Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
 
 }
 	  "\e": break{
-    #  }
-
+    
 }
 }
 }
-
-#return()
    
 end
 
@@ -947,7 +913,8 @@ end
 
 ############################################################
 
-#add ? for params
+#add ? for params as an option?
+#holes still need to be fixed
 
 procedure trimesh01()
 
@@ -1156,7 +1123,7 @@ end
 
 ###############################################################
 ######begin voxel, etc grids###################################
-#SOME EXPIREMENTAL
+#SOME EXPERIMENTAL
 
 procedure voxgrid01(x,y,z,s,rgb)
 
@@ -1279,11 +1246,7 @@ end
 #########################################################
 
 procedure voxgrid06()
-   #local col, color, colorlist, cx, cy, cz, d0_x, d0_y, d0_z, d1_x
-   #local d1_y, d1_z, d2_x, d2_y, d2_z, d3_x, d3_y, d3_z, dt, dt2
-   #local i, old_col, old_row, old_y, row, sx, sy, sz, x, x_angle
-   #local xt, y, y_angle, yt, z, z_angle, zt
-
+   
    x_angle  :=  rtod(45)
    sx  :=  sin(x_angle)
    cx  :=  cos(x_angle)
@@ -1353,16 +1316,10 @@ procedure voxgrid06()
  
       }
 
-   #Event()
-
 end
 ##################################################################
 
 procedure voxgrid07()
-   #local extent, size, colors, ncolors, k, x, i, y, j, c, palette
-   #local opts, init, incr, limit, run
-
-   #opts := options(args, "gs+p:i+k+l+")
 
    palette := "c2"
    extent := 256
@@ -1618,7 +1575,7 @@ vh:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 (xva:=2,xvb:=1,xvc:=.5)
 
-(va[1] := xva+(va[2]+.5),va[2] := xvb+(va[3]+.5),va[3] := xvc+(va[4]+.5))
+#(va[1] := xva+(va[2]+.5),va[2] := xvb+(va[3]+.5),va[3] := xvc+(va[4]+.5))#test y-value control
 
 #####################################################################
 
@@ -1753,7 +1710,6 @@ Fg(rgb)
          DrawCube(x+3,yyyy,z,s)
         
 end
-
 
 
 #END OF PROGRAM########################################
