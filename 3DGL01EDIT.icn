@@ -276,6 +276,7 @@ WWrite(win1,"p,q,$,s for texplanes (will error if paths not set)")
 WWrite(win1,"vox1 = 18,0,1,1,rgb")
 WWrite(win1,"vox2 = x,?y,z,s,rgb")
 WWrite(win1,"[ is voxel test")
+WWrite(win1,"Note: voxels might take a few secs to generate.")
 
 end
 
