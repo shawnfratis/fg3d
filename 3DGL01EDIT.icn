@@ -1558,11 +1558,14 @@ end
 
 procedure voxgrid14()
 
-voxChunkBlock04(4,10)
+x1 := [2,3,4,5]
+x2 := [2,3,4,5]
+
+voxChunkBlock04(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],15,x2[4])
 
 end
 
-procedure voxChunkBlock04(my,ay)
+procedure voxChunkBlock04(my,ay,m2y,a2y,m3y,a3y,m4y,a4y,qy,bxy,q2y,b2y,q3y,b3y,q4y,b4y)
 
 #########################################################
 
@@ -1607,12 +1610,79 @@ v3h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 #################################################################
 
+#1st cube line# # # # # # # #
+
+#1stinstance
+
 (ml := (my + 1),mr := (my - 1))
 (mt := (my + 0),mb := (my - 0))
 
 aay := (ay - .5)
 
 (vd[my] := ay) + ((vd[ml]:= aay)+(vd[mr]:= aay)+(vc[mt]:= aay)+(ve[mb]:= aay))
+
+#2dinstance
+
+(m2l := (m2y + 1),m2r := (m2y - 1))
+(m2t := (m2y + 0),m2b := (m2y - 0))
+
+a2ay := (a2y - .5)
+
+(vd[m2y] := a2y) + ((vd[m2l]:= a2ay)+(vd[m2r]:= a2ay)+(vc[m2t]:= a2ay)+(ve[m2b]:= a2ay))
+
+#3rdinstance
+
+(m3l := (m3y + 1),m3r := (m3y - 1))
+(m3t := (m3y + 0),m3b := (m3y - 0))
+
+a3ay := (a3y - .5)
+
+(vd[m3y] := a3y) + ((vd[m3l]:= a3ay)+(vd[m3r]:= a3ay)+(vc[m3t]:= a3ay)+(ve[m3b]:= a3ay))
+
+#4thinstance
+
+(m4l := (m4y + 1),m4r := (m4y - 1))
+(m4t := (m4y + 0),m4b := (m4y - 0))
+
+a4ay := (a4y - .5)
+
+(vd[m4y] := a4y) + ((vd[m4l]:= a4ay)+(vd[m4r]:= a4ay)+(vc[m4t]:= a4ay)+(ve[m4b]:= a4ay))
+
+#2nd cube line# # # # # # # #
+
+(ql := (qy + 1),qr := (qy - 1))
+(qt := (qy + 0),qb := (qy - 0))
+
+bby := (bxy - .5)
+
+(ve[qy] := bxy) + ((ve[ql]:= bby)+(ve[qr]:= bby)+(vd[qt]:= bby)+(vf[qb]:= bby))
+
+#2dinstbnce
+
+(q2l := (q2y + 1),q2r := (q2y - 1))
+(q2t := (q2y + 0),q2b := (q2y - 0))
+
+b2by := (b2y - .5)
+
+(ve[q2y] := b2y) + ((ve[q2l]:= b2by)+(ve[q2r]:= b2by)+(vd[q2t]:= b2by)+(vf[q2b]:= b2by))
+
+#3rdinstbnce
+
+(q3l := (q3y + 1),q3r := (q3y - 1))
+(q3t := (q3y + 0),q3b := (q3y - 0))
+
+b3by := (b3y - .5)
+
+(ve[q3y] := b3y) + ((ve[q3l]:= b3by)+(ve[q3r]:= b3by)+(vd[q3t]:= b3by)+(vf[q3b]:= b3by))
+
+#4thinstbnce
+
+(q4l := (q4y + 1),q4r := (q4y - 1))
+(q4t := (q4y + 0),q4b := (q4y - 0))
+
+b4by := (b4y - .5)
+
+(ve[q4y] := b4y) + ((ve[q4l]:= b4by)+(ve[q4r]:= b4by)+(vd[q4t]:= b4by)+(vf[q4b]:= b4by))
 
 ##################################################################
 
@@ -1632,15 +1702,15 @@ aay := (ay - .5)
 
 ################################################################
 
-(vqa:="blue",vqb:="blue",vqc:="blue",vqd:="blue",vqe:="blue",vqf:="blue",vqg:="blue",vqh:="blue",vqi:="blue",vqj:="blue",vqk:="blue",vql:="blue",vqm:="blue",vqn:="blue",vqo:="blue",vqp:="blue",vvqa:="blue",vvqb:="blue",vvqc:="blue",vvqd:="blue",vvqe:="blue",vvqf:="blue",vvqg:="blue",vvqh:="blue",vvqi:="blue",vvqj:="blue",vvqk:="blue",vvql:="blue",vvqm:="blue",vvqn:="blue",vvqo:="blue",vvqp:="blue")
+(vqa:="gray",vqb:="gray",vqc:="gray",vqd:="gray",vqe:="gray",vqf:="gray",vqg:="gray",vqh:="gray",vqi:="gray",vqj:="gray",vqk:="gray",vql:="gray",vqm:="gray",vqn:="gray",vqo:="gray",vqp:="gray",vvqa:="gray",vvqb:="gray",vvqc:="gray",vvqd:="gray",vvqe:="gray",vvqf:="gray",vvqg:="gray",vvqh:="gray",vvqi:="gray",vvqj:="gray",vvqk:="gray",vvql:="gray",vvqm:="gray",vvqn:="gray",vvqo:="gray",vvqp:="gray")
 
-(v1qa:="blue",v1qb:="blue",v1qc:="blue",v1qd:="blue",v1qe:="blue",v1qf:="blue",v1qg:="blue",v1qh:="blue",v1qi:="blue",v1qj:="blue",v1qk:="blue",v1ql:="blue",v1qm:="blue",v1qn:="blue",v1qo:="blue",v1qp:="blue",v1v1qa:="blue",v1v1qb:="blue",v1v1qc:="blue",v1v1qd:="blue",v1v1qe:="blue",v1v1qf:="blue",v1v1qg:="blue",v1v1qh:="blue",v1v1qi:="blue",v1v1qj:="blue",v1v1qk:="blue",v1v1ql:="blue",v1v1qm:="blue",v1v1qn:="blue",v1v1qo:="blue",v1v1qp:="blue")
+(v1qa:="gray",v1qb:="gray",v1qc:="gray",v1qd:="gray",v1qe:="gray",v1qf:="gray",v1qg:="gray",v1qh:="gray",v1qi:="gray",v1qj:="gray",v1qk:="gray",v1ql:="gray",v1qm:="gray",v1qn:="gray",v1qo:="gray",v1qp:="gray",v1v1qa:="gray",v1v1qb:="gray",v1v1qc:="gray",v1v1qd:="gray",v1v1qe:="gray",v1v1qf:="gray",v1v1qg:="gray",v1v1qh:="gray",v1v1qi:="gray",v1v1qj:="gray",v1v1qk:="gray",v1v1ql:="gray",v1v1qm:="gray",v1v1qn:="gray",v1v1qo:="gray",v1v1qp:="gray")
 
 ################################################################
 
-(v2qa:="blue",v2qb:="blue",v2qc:="blue",v2qd:="blue",v2qe:="blue",v2qf:="blue",v2qg:="blue",v2qh:="blue",v2qi:="blue",v2qj:="blue",v2qk:="blue",v2ql:="blue",v2qm:="blue",v2qn:="blue",v2qo:="blue",v2qp:="blue",v2vqa:="blue",v2vqb:="blue",v2vqc:="blue",v2vqd:="blue",v2vqe:="blue",v2vqf:="blue",v2vqg:="blue",v2vqh:="blue",v2vqi:="blue",v2vqj:="blue",v2vqk:="blue",v2vql:="blue",v2vqm:="blue",v2vqn:="blue",v2vqo:="blue",v2vqp:="blue")
+(v2qa:="gray",v2qb:="gray",v2qc:="gray",v2qd:="gray",v2qe:="gray",v2qf:="gray",v2qg:="gray",v2qh:="gray",v2qi:="gray",v2qj:="gray",v2qk:="gray",v2ql:="gray",v2qm:="gray",v2qn:="gray",v2qo:="gray",v2qp:="gray",v2vqa:="gray",v2vqb:="gray",v2vqc:="gray",v2vqd:="gray",v2vqe:="gray",v2vqf:="gray",v2vqg:="gray",v2vqh:="gray",v2vqi:="gray",v2vqj:="gray",v2vqk:="gray",v2vql:="gray",v2vqm:="gray",v2vqn:="gray",v2vqo:="gray",v2vqp:="gray")
 
-(v3qa:="blue",v3qb:="blue",v3qc:="blue",v3qd:="blue",v3qe:="blue",v3qf:="blue",v3qg:="blue",v3qh:="blue",v3qi:="blue",v3qj:="blue",v3qk:="blue",v3ql:="blue",v3qm:="blue",v3qn:="blue",v3qo:="blue",v3qp:="blue",v3v3qa:="blue",v3v3qb:="blue",v3v3qc:="blue",v3v3qd:="blue",v3v3qe:="blue",v3v3qf:="blue",v3v3qg:="blue",v3v3qh:="blue",v3v3qi:="blue",v3v3qj:="blue",v3v3qk:="blue",v3v3ql:="blue",v3v3qm:="blue",v3v3qn:="blue",v3v3qo:="blue",v3v3qp:="blue")
+(v3qa:="gray",v3qb:="gray",v3qc:="gray",v3qd:="gray",v3qe:="gray",v3qf:="gray",v3qg:="gray",v3qh:="gray",v3qi:="gray",v3qj:="gray",v3qk:="gray",v3ql:="gray",v3qm:="gray",v3qn:="gray",v3qo:="gray",v3qp:="gray",v3v3qa:="gray",v3v3qb:="gray",v3v3qc:="gray",v3v3qd:="gray",v3v3qe:="gray",v3v3qf:="gray",v3v3qg:="gray",v3v3qh:="gray",v3v3qi:="gray",v3v3qj:="gray",v3v3qk:="gray",v3v3ql:="gray",v3v3qm:="gray",v3v3qn:="gray",v3v3qo:="gray",v3v3qp:="gray")
 
 ################################################################
 
