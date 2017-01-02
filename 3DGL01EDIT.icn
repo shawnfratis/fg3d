@@ -1557,9 +1557,14 @@ end
 #################################################################
 
 procedure voxgrid14()
-#procedure voxChunkBlock04()
 
-#x2!
+voxChunkBlock04(10,3)
+
+end
+
+procedure voxChunkBlock04(my,ay)
+
+#########################################################
 
 va:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 vb:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
@@ -1580,21 +1585,73 @@ v1g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 v1h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
 
+################################################################
+
+v2a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+v3a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+#################################################################
+
+(ml := (my + 1),mr := (my -1))
+
+(va[my] := (ay + (va[ml]:= .5)+(va[mr]:= .5)))
+
+#(va[my] := (ay + (va[ml]+ (ay - .5))+(va[mr] + (ay - .5)))
+
+##################################################################
+
 (xa:=1,xb:=5,xc:=9,xd:=13,xe:=17,xf:=21,xg:=25,xh:=29)
 
-
+##################################################################
 
 (vza:=1,vzb:=2,vzc:=3,vzd:=4,vze:=5,vzf:=6,vzg:=7,vzh:=8)
 
 (v1za:=9,v1zb:=10,v1zc:=11,v1zd:=12,v1ze:=13,v1zf:=14,v1zg:=15,v1zh:=16)
 
+################################################################
+
+(v2za:=17,v2zb:=18,v2zc:=19,v2zd:=20,v2ze:=21,v2zf:=22,v2zg:=23,v2zh:=24)
+
+(v3za:=25,v3zb:=26,v3zc:=27,v3zd:=28,v3ze:=29,v3zf:=30,v3zg:=31,v3zh:=32)
+
+################################################################
+
 (vqa:="blue",vqb:="blue",vqc:="blue",vqd:="blue",vqe:="blue",vqf:="blue",vqg:="blue",vqh:="blue",vqi:="blue",vqj:="blue",vqk:="blue",vql:="blue",vqm:="blue",vqn:="blue",vqo:="blue",vqp:="blue",vvqa:="blue",vvqb:="blue",vvqc:="blue",vvqd:="blue",vvqe:="blue",vvqf:="blue",vvqg:="blue",vvqh:="blue",vvqi:="blue",vvqj:="blue",vvqk:="blue",vvql:="blue",vvqm:="blue",vvqn:="blue",vvqo:="blue",vvqp:="blue")
 
 (v1qa:="blue",v1qb:="blue",v1qc:="blue",v1qd:="blue",v1qe:="blue",v1qf:="blue",v1qg:="blue",v1qh:="blue",v1qi:="blue",v1qj:="blue",v1qk:="blue",v1ql:="blue",v1qm:="blue",v1qn:="blue",v1qo:="blue",v1qp:="blue",v1v1qa:="blue",v1v1qb:="blue",v1v1qc:="blue",v1v1qd:="blue",v1v1qe:="blue",v1v1qf:="blue",v1v1qg:="blue",v1v1qh:="blue",v1v1qi:="blue",v1v1qj:="blue",v1v1qk:="blue",v1v1ql:="blue",v1v1qm:="blue",v1v1qn:="blue",v1v1qo:="blue",v1v1qp:="blue")
 
+################################################################
+
+(v2qa:="blue",v2qb:="blue",v2qc:="blue",v2qd:="blue",v2qe:="blue",v2qf:="blue",v2qg:="blue",v2qh:="blue",v2qi:="blue",v2qj:="blue",v2qk:="blue",v2ql:="blue",v2qm:="blue",v2qn:="blue",v2qo:="blue",v2qp:="blue",v2vqa:="blue",v2vqb:="blue",v2vqc:="blue",v2vqd:="blue",v2vqe:="blue",v2vqf:="blue",v2vqg:="blue",v2vqh:="blue",v2vqi:="blue",v2vqj:="blue",v2vqk:="blue",v2vql:="blue",v2vqm:="blue",v2vqn:="blue",v2vqo:="blue",v2vqp:="blue")
+
+(v3qa:="blue",v3qb:="blue",v3qc:="blue",v3qd:="blue",v3qe:="blue",v3qf:="blue",v3qg:="blue",v3qh:="blue",v3qi:="blue",v3qj:="blue",v3qk:="blue",v3ql:="blue",v3qm:="blue",v3qn:="blue",v3qo:="blue",v3qp:="blue",v3v3qa:="blue",v3v3qb:="blue",v3v3qc:="blue",v3v3qd:="blue",v3v3qe:="blue",v3v3qf:="blue",v3v3qg:="blue",v3v3qh:="blue",v3v3qi:="blue",v3v3qj:="blue",v3v3qk:="blue",v3v3ql:="blue",v3v3qm:="blue",v3v3qn:="blue",v3v3qo:="blue",v3v3qp:="blue")
+
+################################################################
+
 voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,vza,vzb,vzc,vzd,vze,vzf,vzg,vzh,va[1],va[2],va[3],va[4],va[5],va[6],va[7],va[8],va[9],va[10],va[11],va[12],va[13],va[14],va[15],va[16],va[17],va[18],va[19],va[20],va[21],va[22],va[23],va[24],va[25],va[26],va[27],va[28],va[29],va[30],va[31],va[32],vb[1],vb[2],vb[3],vb[4],vb[5],vb[6],vb[7],vb[8],vb[9],vb[10],vb[11],vb[12],vb[13],vb[14],vb[15],vb[16],vb[17],vb[18],vb[19],vb[20],vb[21],vb[22],vb[23],vb[24],vb[25],vb[26],vb[27],vb[28],vb[29],vb[30],vb[31],vb[32],vc[1],vc[2],vc[3],vc[4],vc[5],vc[6],vc[7],vc[8],vc[9],vc[10],vc[11],vc[12],vc[13],vc[14],vc[15],vc[16],vc[17],vc[18],vc[19],vc[20],vc[21],vc[22],vc[23],vc[24],vc[25],vc[26],vc[27],vc[28],vc[29],vc[30],vc[31],vc[32],vd[1],vd[2],vd[3],vd[4],vd[5],vd[6],vd[7],vd[8],vd[9],vd[10],vd[11],vd[12],vd[13],vd[14],vd[15],vd[16],vd[17],vd[18],vd[19],vd[20],vd[21],vd[22],vd[23],vd[24],vd[25],vd[26],vd[27],vd[28],vd[29],vd[30],vd[31],vd[32],ve[1],ve[2],ve[3],ve[4],ve[5],ve[6],ve[7],ve[8],ve[9],ve[10],ve[11],ve[12],ve[13],ve[14],ve[15],ve[16],ve[17],ve[18],ve[19],ve[20],ve[21],ve[22],ve[23],ve[24],ve[25],ve[26],ve[27],ve[28],ve[29],ve[30],ve[31],ve[32],vf[1],vf[2],vf[3],vf[4],vf[5],vf[6],vf[7],vf[8],vf[9],vf[10],vf[11],vf[12],vf[13],vf[14],vf[15],vf[16],vf[17],vf[18],vf[19],vf[20],vf[21],vf[22],vf[23],vf[24],vf[25],vf[26],vf[27],vf[28],vf[29],vf[30],vf[31],vf[32],vg[1],vg[2],vg[3],vg[4],vg[5],vg[6],vg[7],vg[8],vg[9],vg[10],vg[11],vg[12],vg[13],vg[14],vg[15],vg[16],vg[17],vg[18],vg[19],vg[20],vg[21],vg[22],vg[23],vg[24],vg[25],vg[26],vg[27],vg[28],vg[29],vg[30],vg[31],vg[32],vh[1],vh[2],vh[3],vh[4],vh[5],vh[6],vh[7],vh[8],vh[9],vh[10],vh[11],vh[12],vh[13],vh[14],vh[15],vh[16],vh[17],vh[18],vh[19],vh[20],vh[21],vh[22],vh[23],vh[24],vh[25],vh[26],vh[27],vh[28],vh[29],vh[30],vh[31],vh[32],vqa,vqb,vqc,vqd,vqe,vqf,vqg,vqh,vqi,vqj,vqk,vql,vqm,vqn,vqo,vqp,vvqa,vvqb,vvqc,vvqd,vvqe,vvqf,vvqg,vvqh,vvqi,vvqj,vvqk,vvql,vvqm,vvqn,vvqo,vvqp)
 
 voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v1za,v1zb,v1zc,v1zd,v1ze,v1zf,v1zg,v1zh,v1a[1],v1a[2],v1a[3],v1a[4],v1a[5],v1a[6],v1a[7],v1a[8],v1a[9],v1a[10],v1a[11],v1a[12],v1a[13],v1a[14],v1a[15],v1a[16],v1a[17],v1a[18],v1a[19],v1a[20],v1a[21],v1a[22],v1a[23],v1a[24],v1a[25],v1a[26],v1a[27],v1a[28],v1a[29],v1a[30],v1a[31],v1a[32],v1b[1],v1b[2],v1b[3],v1b[4],v1b[5],v1b[6],v1b[7],v1b[8],v1b[9],v1b[10],v1b[11],v1b[12],v1b[13],v1b[14],v1b[15],v1b[16],v1b[17],v1b[18],v1b[19],v1b[20],v1b[21],v1b[22],v1b[23],v1b[24],v1b[25],v1b[26],v1b[27],v1b[28],v1b[29],v1b[30],v1b[31],v1b[32],v1c[1],v1c[2],v1c[3],v1c[4],v1c[5],v1c[6],v1c[7],v1c[8],v1c[9],v1c[10],v1c[11],v1c[12],v1c[13],v1c[14],v1c[15],v1c[16],v1c[17],v1c[18],v1c[19],v1c[20],v1c[21],v1c[22],v1c[23],v1c[24],v1c[25],v1c[26],v1c[27],v1c[28],v1c[29],v1c[30],v1c[31],v1c[32],v1d[1],v1d[2],v1d[3],v1d[4],v1d[5],v1d[6],v1d[7],v1d[8],v1d[9],v1d[10],v1d[11],v1d[12],v1d[13],v1d[14],v1d[15],v1d[16],v1d[17],v1d[18],v1d[19],v1d[20],v1d[21],v1d[22],v1d[23],v1d[24],v1d[25],v1d[26],v1d[27],v1d[28],v1d[29],v1d[30],v1d[31],v1d[32],v1e[1],v1e[2],v1e[3],v1e[4],v1e[5],v1e[6],v1e[7],v1e[8],v1e[9],v1e[10],v1e[11],v1e[12],v1e[13],v1e[14],v1e[15],v1e[16],v1e[17],v1e[18],v1e[19],v1e[20],v1e[21],v1e[22],v1e[23],v1e[24],v1e[25],v1e[26],v1e[27],v1e[28],v1e[29],v1e[30],v1e[31],v1e[32],v1f[1],v1f[2],v1f[3],v1f[4],v1f[5],v1f[6],v1f[7],v1f[8],v1f[9],v1f[10],v1f[11],v1f[12],v1f[13],v1f[14],v1f[15],v1f[16],v1f[17],v1f[18],v1f[19],v1f[20],v1f[21],v1f[22],v1f[23],v1f[24],v1f[25],v1f[26],v1f[27],v1f[28],v1f[29],v1f[30],v1f[31],v1f[32],v1g[1],v1g[2],v1g[3],v1g[4],v1g[5],v1g[6],v1g[7],v1g[8],v1g[9],v1g[10],v1g[11],v1g[12],v1g[13],v1g[14],v1g[15],v1g[16],v1g[17],v1g[18],v1g[19],v1g[20],v1g[21],v1g[22],v1g[23],v1g[24],v1g[25],v1g[26],v1g[27],v1g[28],v1g[29],v1g[30],v1g[31],v1g[32],v1h[1],v1h[2],v1h[3],v1h[4],v1h[5],v1h[6],v1h[7],v1h[8],v1h[9],v1h[10],v1h[11],v1h[12],v1h[13],v1h[14],v1h[15],v1h[16],v1h[17],v1h[18],v1h[19],v1h[20],v1h[21],v1h[22],v1h[23],v1h[24],v1h[25],v1h[26],v1h[27],v1h[28],v1h[29],v1h[30],v1h[31],v1h[32],v1qa,v1qb,v1qc,v1qd,v1qe,v1qf,v1qg,v1qh,v1qi,v1qj,v1qk,v1ql,v1qm,v1qn,v1qo,v1qp,v1v1qa,v1v1qb,v1v1qc,v1v1qd,v1v1qe,v1v1qf,v1v1qg,v1v1qh,v1v1qi,v1v1qj,v1v1qk,v1v1ql,v1v1qm,v1v1qn,v1v1qo,v1v1qp)
+
+#################################################################
+
+voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v2za,v2zb,v2zc,v2zd,v2ze,v2zf,v2zg,v2zh,v2a[1],v2a[2],v2a[3],v2a[4],v2a[5],v2a[6],v2a[7],v2a[8],v2a[9],v2a[10],v2a[11],v2a[12],v2a[13],v2a[14],v2a[15],v2a[16],v2a[17],v2a[18],v2a[19],v2a[20],v2a[21],v2a[22],v2a[23],v2a[24],v2a[25],v2a[26],v2a[27],v2a[28],v2a[29],v2a[30],v2a[31],v2a[32],v2b[1],v2b[2],v2b[3],v2b[4],v2b[5],v2b[6],v2b[7],v2b[8],v2b[9],v2b[10],v2b[11],v2b[12],v2b[13],v2b[14],v2b[15],v2b[16],v2b[17],v2b[18],v2b[19],v2b[20],v2b[21],v2b[22],v2b[23],v2b[24],v2b[25],v2b[26],v2b[27],v2b[28],v2b[29],v2b[30],v2b[31],v2b[32],v2c[1],v2c[2],v2c[3],v2c[4],v2c[5],v2c[6],v2c[7],v2c[8],v2c[9],v2c[10],v2c[11],v2c[12],v2c[13],v2c[14],v2c[15],v2c[16],v2c[17],v2c[18],v2c[19],v2c[20],v2c[21],v2c[22],v2c[23],v2c[24],v2c[25],v2c[26],v2c[27],v2c[28],v2c[29],v2c[30],v2c[31],v2c[32],v2d[1],v2d[2],v2d[3],v2d[4],v2d[5],v2d[6],v2d[7],v2d[8],v2d[9],v2d[10],v2d[11],v2d[12],v2d[13],v2d[14],v2d[15],v2d[16],v2d[17],v2d[18],v2d[19],v2d[20],v2d[21],v2d[22],v2d[23],v2d[24],v2d[25],v2d[26],v2d[27],v2d[28],v2d[29],v2d[30],v2d[31],v2d[32],v2e[1],v2e[2],v2e[3],v2e[4],v2e[5],v2e[6],v2e[7],v2e[8],v2e[9],v2e[10],v2e[11],v2e[12],v2e[13],v2e[14],v2e[15],v2e[16],v2e[17],v2e[18],v2e[19],v2e[20],v2e[21],v2e[22],v2e[23],v2e[24],v2e[25],v2e[26],v2e[27],v2e[28],v2e[29],v2e[30],v2e[31],v2e[32],v2f[1],v2f[2],v2f[3],v2f[4],v2f[5],v2f[6],v2f[7],v2f[8],v2f[9],v2f[10],v2f[11],v2f[12],v2f[13],v2f[14],v2f[15],v2f[16],v2f[17],v2f[18],v2f[19],v2f[20],v2f[21],v2f[22],v2f[23],v2f[24],v2f[25],v2f[26],v2f[27],v2f[28],v2f[29],v2f[30],v2f[31],v2f[32],v2g[1],v2g[2],v2g[3],v2g[4],v2g[5],v2g[6],v2g[7],v2g[8],v2g[9],v2g[10],v2g[11],v2g[12],v2g[13],v2g[14],v2g[15],v2g[16],v2g[17],v2g[18],v2g[19],v2g[20],v2g[21],v2g[22],v2g[23],v2g[24],v2g[25],v2g[26],v2g[27],v2g[28],v2g[29],v2g[30],v2g[31],v2g[32],v2h[1],v2h[2],v2h[3],v2h[4],v2h[5],v2h[6],v2h[7],v2h[8],v2h[9],v2h[10],v2h[11],v2h[12],v2h[13],v2h[14],v2h[15],v2h[16],v2h[17],v2h[18],v2h[19],v2h[20],v2h[21],v2h[22],v2h[23],v2h[24],v2h[25],v2h[26],v2h[27],v2h[28],v2h[29],v2h[30],v2h[31],v2h[32],v2qa,v2qb,v2qc,v2qd,v2qe,v2qf,v2qg,v2qh,v2qi,v2qj,v2qk,v2ql,v2qm,v2qn,v2qo,v2qp,v2vqa,v2vqb,v2vqc,v2vqd,v2vqe,v2vqf,v2vqg,v2vqh,v2vqi,v2vqj,v2vqk,v2vql,v2vqm,v2vqn,v2vqo,v2vqp)
+
+voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v3za,v3zb,v3zc,v3zd,v3ze,v3zf,v3zg,v3zh,v3a[1],v3a[2],v3a[3],v3a[4],v3a[5],v3a[6],v3a[7],v3a[8],v3a[9],v3a[10],v3a[11],v3a[12],v3a[13],v3a[14],v3a[15],v3a[16],v3a[17],v3a[18],v3a[19],v3a[20],v3a[21],v3a[22],v3a[23],v3a[24],v3a[25],v3a[26],v3a[27],v3a[28],v3a[29],v3a[30],v3a[31],v3a[32],v3b[1],v3b[2],v3b[3],v3b[4],v3b[5],v3b[6],v3b[7],v3b[8],v3b[9],v3b[10],v3b[11],v3b[12],v3b[13],v3b[14],v3b[15],v3b[16],v3b[17],v3b[18],v3b[19],v3b[20],v3b[21],v3b[22],v3b[23],v3b[24],v3b[25],v3b[26],v3b[27],v3b[28],v3b[29],v3b[30],v3b[31],v3b[32],v3c[1],v3c[2],v3c[3],v3c[4],v3c[5],v3c[6],v3c[7],v3c[8],v3c[9],v3c[10],v3c[11],v3c[12],v3c[13],v3c[14],v3c[15],v3c[16],v3c[17],v3c[18],v3c[19],v3c[20],v3c[21],v3c[22],v3c[23],v3c[24],v3c[25],v3c[26],v3c[27],v3c[28],v3c[29],v3c[30],v3c[31],v3c[32],v3d[1],v3d[2],v3d[3],v3d[4],v3d[5],v3d[6],v3d[7],v3d[8],v3d[9],v3d[10],v3d[11],v3d[12],v3d[13],v3d[14],v3d[15],v3d[16],v3d[17],v3d[18],v3d[19],v3d[20],v3d[21],v3d[22],v3d[23],v3d[24],v3d[25],v3d[26],v3d[27],v3d[28],v3d[29],v3d[30],v3d[31],v3d[32],v3e[1],v3e[2],v3e[3],v3e[4],v3e[5],v3e[6],v3e[7],v3e[8],v3e[9],v3e[10],v3e[11],v3e[12],v3e[13],v3e[14],v3e[15],v3e[16],v3e[17],v3e[18],v3e[19],v3e[20],v3e[21],v3e[22],v3e[23],v3e[24],v3e[25],v3e[26],v3e[27],v3e[28],v3e[29],v3e[30],v3e[31],v3e[32],v3f[1],v3f[2],v3f[3],v3f[4],v3f[5],v3f[6],v3f[7],v3f[8],v3f[9],v3f[10],v3f[11],v3f[12],v3f[13],v3f[14],v3f[15],v3f[16],v3f[17],v3f[18],v3f[19],v3f[20],v3f[21],v3f[22],v3f[23],v3f[24],v3f[25],v3f[26],v3f[27],v3f[28],v3f[29],v3f[30],v3f[31],v3f[32],v3g[1],v3g[2],v3g[3],v3g[4],v3g[5],v3g[6],v3g[7],v3g[8],v3g[9],v3g[10],v3g[11],v3g[12],v3g[13],v3g[14],v3g[15],v3g[16],v3g[17],v3g[18],v3g[19],v3g[20],v3g[21],v3g[22],v3g[23],v3g[24],v3g[25],v3g[26],v3g[27],v3g[28],v3g[29],v3g[30],v3g[31],v3g[32],v3h[1],v3h[2],v3h[3],v3h[4],v3h[5],v3h[6],v3h[7],v3h[8],v3h[9],v3h[10],v3h[11],v3h[12],v3h[13],v3h[14],v3h[15],v3h[16],v3h[17],v3h[18],v3h[19],v3h[20],v3h[21],v3h[22],v3h[23],v3h[24],v3h[25],v3h[26],v3h[27],v3h[28],v3h[29],v3h[30],v3h[31],v3h[32],v3qa,v3qb,v3qc,v3qd,v3qe,v3qf,v3qg,v3qh,v3qi,v3qj,v3qk,v3ql,v3qm,v3qn,v3qo,v3qp,v3v3qa,v3v3qb,v3v3qc,v3v3qd,v3v3qe,v3v3qf,v3v3qg,v3v3qh,v3v3qi,v3v3qj,v3v3qk,v3v3ql,v3v3qm,v3v3qn,v3v3qo,v3v3qp)
 
 end
 
