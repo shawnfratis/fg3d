@@ -25,6 +25,7 @@ link colrlist
 link interact
 link random
 link printf
+link io
 
 ################################
 
@@ -1555,15 +1556,68 @@ DrawCube(x,y,w,h)
 end
 
 #################################################################
+#procedure voxgrid14()
+#procedure main()
+#write(readlinex("foo.txt",2)|"failed")
+#while n := "cow" do {
+#write("dinkey")
+#}
+#end 
+#procedure readlinex(f,n)                         # return n'th #line of file f
+#f := open(\f,"r") | fail                        # open file
+#every  i := n & line := |read(f) \ n do i -:= 1  #  <== here
+#close(f)
+#if i = 0 then return line
+#end
+#write(line)
+#q := line
+#L  := []
+#while put(L,read(line))
+#close(line)
+#end
+#procedure voxgrid14()
+#procedure textin01()
+#write(readlinexx("foo.txt",1)|"failed")
+#while n := 2 do {
+#write(n)
+#}
+#procedure voxgrid144()
+#q := 7
+#L := []
+#while put(L,!line)
 
 procedure voxgrid14()
 
-x1 := [2,3,4,5]
+win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+WWrite(win1,"Note: voxels might take a while to generate.")
+WWrite(win1,"Minimize this window.")
+
+#f := open("foo.txt","r") | stop("cannot open file ",fn)
+#while line := read(f)do{
+ #every put(L := [],|read(line))
+#}
+#write(line)
+f := open("foo.txt","r") | fail                 
+   every put(F := [],|read(f,4))           
+  close(f)
+#every F[]  := q
+#x1 := F[]
+
+x1 := [1,4,5,7]
 x2 := [2,3,4,5]
 
 voxChunkBlock04(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],15,x2[4])
 
 end
+
+############################################################
+#procedure readlinexx(f,n)                          
+#f := open(\f,"r") | fail                        
+#every  i := n & line := |read(f) \ n do i -:= 1  
+#close(f)
+#if i = 0 then return line
+#end
+###########################################################
 
 procedure voxChunkBlock04(my,ay,m2y,a2y,m3y,a3y,m4y,a4y,qy,bxy,q2y,b2y,q3y,b3y,q4y,b4y)
 
