@@ -40,7 +40,7 @@ WWrite("< gives more in-depth instructions. > and : are reference guides")
 
 ###############################
       
-        repeat {
+repeat {
 
 w := Active() | stop("Active fails")
 
@@ -48,23 +48,24 @@ w := Active() | stop("Active fails")
 
 #not presently used - can be modified to introduce extra mouse events.
    
-       case e := Event(w) of {
+case e := Event(w) of {
 
 &lpress | &mpress | &rpress: {
-	      x1 := &x
-	      y1 := &y
-	      x2 := y2 := &null
+x1 := &x
+y1 := &y
+x2 := y2 := &null
 }
 
 ################################
+
 #begin basic keyboard commands.
 #Image paths currently set for Windows.
 #You will have to modify it for other platforms or locations. 
 
 "\z": {
-	 
-              WriteImage("C:/Users/meridith/Desktop/fg01.png")#change as needed
-             }
+	             WriteImage("C:/Users/meridith/Desktop/fg01.png")#change as needed
+              }
+
 "\s": { 
               texskysphere02()
 
@@ -122,8 +123,9 @@ w := Active() | stop("Active fails")
               Refresh()
 
               }
-"\[": {    
-#These are for switching between voxel experiments-decomment as needed
+"\[": {  
+  
+#These are for switching between voxel etc. experiments-decomment as needed
              #voxgrid01()#input sierpinski
              #voxgrid02()#flat square grid of cubes
              #voxgrid03()#line of cubes
@@ -137,8 +139,10 @@ w := Active() | stop("Active fails")
              #voxgrid11()#matrix exp
              #voxgrid12()#matrix exp ! gen
              #voxgrid13()#single cube? color rand/grad?
-             voxgrid14()#vox plank for y-vals
-             
+             #voxgrid14()#vox plank for y-vals
+             #RTtest01()
+             int()
+
              }
 
 "\]": {       
@@ -205,8 +209,6 @@ WWrite(win1,"After entering object, press g or h refresh screen.")
 WWrite(win1,"This will create a red colored cube in the center of the screen.")
 WWrite(win1,"These numbers are the X, Y, Z, size and color values of the cube.")  
 
-
-
 end
 
 ################################################
@@ -216,7 +218,7 @@ procedure helpbox3()
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
  #WAttrib("dx=1", "dy=1")
-WWrite(win1,"           [+y]               ")
+        WWrite(win1,"           [+y]               ")
         WWrite(win1,"            |                    ")
         WWrite(win1,"            |                 ")	 
         WWrite(win1,"            |               cam = position,direction,up : 0,0,5,0,0,1,0,1,0")
@@ -229,6 +231,8 @@ WWrite(win1,"           [+y]               ")
         WWrite(win1,"           [-y]              ")
 
 end
+
+##################################################
 
 procedure helpbox2()
 
@@ -247,10 +251,11 @@ WWrite(win1,"cube 0,0,0,.5,10000,10000,20000")
 WWrite(win1,"sphere 0,0,0,.5,20000,10000,10000")
 WWrite(win1,"cyl 0,0,0,1,.5,.5,10000,20000,10000")
 
-
 end
 
 procedure helpbox4()
+
+#####################################################
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
@@ -269,6 +274,8 @@ WWrite(win1,"medium moderate red     49151,16383,16383  very dark vivid red     
 
 end
 
+######################################################
+
 procedure helpbox5()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
@@ -280,7 +287,6 @@ WWrite(win1,"[ is voxel test")
 WWrite(win1,"Note: voxels might take a few secs to generate.")
 
 end
-
 
 ########################################################
 
@@ -371,7 +377,6 @@ end
 ################################################################
 
 procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb)
-
 
       s1 := WRead()
       s2 := WRead()
@@ -517,7 +522,7 @@ procedure inputprompt()
         ss18 :=( "cam")
         ss19 :=( "vox1")
         ss20 :=( "vox2")
-        ss21 :=( "notused")
+        ss21 :=( "int")
         ss22 :=( "notused")
         ss23 :=( "notused")
       
@@ -562,7 +567,7 @@ procedure inputprompt()
         else
         if s1== ss20 then voxin02()
         else
-        if s1== ss21 then notused 
+        if s1== ss21 then int()
         else
         if s1== ss22 then notused
         else
@@ -629,8 +634,7 @@ case Event() of {
 Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
 
 }
-	  "\e": break{
-    
+"\e": break{
 }
 }
 }
@@ -741,8 +745,7 @@ end
 ################################################################
 
 procedure 
-
-presetPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+            presetPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
 
@@ -1045,6 +1048,7 @@ WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0
 FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
+
 ##################################################
 
 procedure texskysphere02()
@@ -1235,13 +1239,13 @@ procedure voxgrid04master(wq,oq,zq,sq,rgb)
 
 Fg(rgb)
 
-   width := wq #80
-   offset := oq #5
+width := wq #80
+offset := oq #5
 
-   every y := 0 to width - 1 do
-      every x := 0 to width - 1 do
+every y := 0 to width - 1 do
+every x := 0 to width - 1 do
         
-   if iand(x, y) = 0 then DrawCube(x * offset, zq,y * offset,sq)
+if iand(x, y) = 0 then DrawCube(x * offset, zq,y * offset,sq)
 
 end
 
@@ -1319,6 +1323,7 @@ procedure voxgrid06()
       }
 
 end
+
 ##################################################################
 
 procedure voxgrid07()
@@ -1386,16 +1391,17 @@ return
 end
 
 ################################################################
+# somethings wrong here - must fix
  
-procedure voxgrid09(A)   #: XOR graphic
-   wsize := 25
-   cmax  := 90
-   wparms := ["test","g",sprintf("size=%d,%d",wsize),"bg=black"]
-   #&window := open!wparms | stop("Unable to open window")
+#procedure voxgrid09(A)   # XOR graphic
+  # wsize := 56
+  # cmax  := 90
+  # wparms := ["test","g",sprintf("size=%d,%d",wsize),"bg=black"][
+  # &window := open!wparms | stop("Unable to open window")
  
-   every y := 0 to wsize -1 do
-      every x := 0 to wsize - 1 do {
-         c := cmax/wsize * iand(wsize-1,ixor(x,y))
+   #every y := 0 to wsize -1 do
+    #  every x := 0 to wsize - 1 do {
+       #  c := cmax/wsize * iand(wsize-1,ixor(x,y))
         # Fg(sprintf("%d,%d,%d",c,cmax-c,0))
 #Fg("65000,1,1")
         # DrawCube(x,y,1,.5)
@@ -1419,19 +1425,19 @@ procedure voxgrid09(A)   #: XOR graphic
 #Fg("1,30,65000")
 #         DrawCube(?x,?y,?9,.5)
 
-Fg("65000,1,1")
-         DrawCube(?x,?y,1,1)
-Fg("350,40000,1")
-         DrawCube(?x,?y,2,1)
-Fg("10,65000,1000")
-         DrawCube(?x,?y,3,1)
-Fg("1,650,24000")
-         DrawCube(?x,?y,4,1)
-Fg("1,30,65000")
-         DrawCube(?x,?y,5,1)
-         }
+#Fg("65000,1,1")
+ #        DrawSphere(?x,?y,1,1)
+#Fg("350,40000,1")
+ #        DrawSphere(?x,?y,2,1)
+#Fg("10,65000,1000")
+ #        DrawSphere(?x,?y,3,1)
+#Fg("1,650,24000")
+ #        DrawSphere(?x,?y,4,1)
+#Fg("1,30,65000")
+ #        DrawSphere(?x,?y,5,1)
+ #       }
  
-  end
+ #end
 
 ##########################################################
 
@@ -1448,7 +1454,7 @@ procedure voxgrid10()
 
    every j := 1 to i do {
       spokes(xc + radius * cos(angle), yc + radius * sin(angle),
-         radius, i, angle)
+      radius, i, angle)
       angle +:= incr
       }
 
@@ -1471,7 +1477,7 @@ procedure spokes(x, y, r, i, angle)
    
 end
 
-###############################################################
+##########################################################
 
 #procedure voxgrid11(x,y,z,s,rgb)
 
@@ -1503,6 +1509,8 @@ Fg("65000,1,1")
 }
 
 end
+
+#########################################################################################
 
 #procedure voxgrid12(x,y,z,s,rgb)
 procedure voxgrid12()
@@ -1594,12 +1602,12 @@ WWrite(win1,"Minimize this window.")
 
 #f := open("foo.txt","r") | stop("cannot open file ",fn)
 #while line := read(f)do{
- #every put(L := [],|read(line))
+#every put(L := [],|read(line))
 #}
 #write(line)
 f := open("foo.txt","r") | fail                 
-   every put(F := [],|read(f,4))           
-  close(f)
+every put(F := [],|read(f,4))           
+close(f)
 #every F[]  := q
 #x1 := F[]
 
@@ -1921,6 +1929,484 @@ Fg(rgb)
         
 end
 
+#################################################################
+
+#################################################################
+
+#################################################################
+
+#################################################################
+
+#BEGIN BAKED-IN SHADOW TEXTURE/REFLECTION TEST
+
+procedure RTtest01()
+
+#WAttrib("texmode=on")
+
+#WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")
+#change as needed
+
+#DrawCube()
+
+#WAttrib("texmode=off") 
+
+##################################################
+
+#WAttrib("texmode=on")
+
+#WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")#change as needed
+
+#DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+#WAttrib("texmode=off") 
+
+####################################################3
+
+WAttrib("texmode=on")
+
+#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTskyground.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
+
+WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTskygref.png")#change as needed
+
+x := -1
+y := 5
+z := -5
+r := 5
+
+#Rotate(45,290,2,90)
+
+#PushMatrix()
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+##################################################
+
+#procedure texskysphere02()
+
+WAttrib("texmode=on")
+
+#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTsky.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
+
+WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTsky.png")
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+#Rotate(45,290,2,90)
+
+#PushMatrix()
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+##################################################
+
+WAttrib("texmode=on")
+
+WAttrib("texture=C:/Users/meridith/Documents/dumdum/RTgplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+#WAttrib("texture=C:/Users/meridith/Documents/dumdum/RTground.png")
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+##################################################
+
+#WAttrib("texmode=on")
+
+#WAttrib("texture=C:/Users/meridith/Documents/dumdum/RT.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+#FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+#WAttrib("texmode=off") 
+
+##################################################
+
+#WAttrib("texmode=on")
+
+#WAttrib("texture=C:/Users/meridith/Documents/dumdum/splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+#FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
+
+#WAttrib("texmode=off") 
+
+end
+
+######################################################
+
+#begin input based on interperet prog
+
+global	WHITE,	# the white space cset
+	MFLAG,	# the modified flag
+	PRTBL	# the program table
+
+procedure int(arg)
+   local line, lno, pline
+
+#	define the needed cset
+	WHITE := ' \t\n\f'
+
+#	initialize the program table
+	PRTBL := table()
+
+#	initialize the modified flag
+	MFLAG := 0
+
+#	get all the input
+     #  writes("Icon> ")
+	WWrites("Icon> ")
+	#while line := read() do {
+        while line := WRead() do {
+
+#		scan the input line
+		line ? {
+
+#			skip any initial white space
+			tab(many(WHITE))
+
+#			check for program lines (they have line numbers)
+			if lno := tab(many(&digits)) & tab(many(WHITE)) then {
+
+#				get the program line
+				pline := tab(0)
+
+#				store the line in the program table
+				PRTBL[numeric(lno)] := pline
+
+#				set the modified flag
+				MFLAG +:= 1
+			}
+
+#			read command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("read" | "r") then {
+				readprog()
+
+#				clear the modified flag
+				MFLAG := 0
+			}
+
+#			write command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("write" | "w") then {
+				writeprog()
+
+#				clear the modified flag
+				MFLAG := 0
+			}
+
+#			delete command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("delete" | "d") then {
+				delprog()
+
+#				set the modified flag
+				MFLAG +:= 1
+			}
+
+#			sequence command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("sequence" | "s") then {
+				seqprog()
+			}
+
+#			list command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("list" | "l") then {
+				listprog()
+			}
+
+#			execute command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("execute" | "e") then {
+				execprog()
+			}
+
+#			help command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("help" | "h" | "?") then {
+				helpprog()
+			}
+
+#			quit command
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("quit" | "q") then {
+				quitprog()
+			}
+
+#			invalid syntax input
+			else {
+			       #	write("Syntax Error: ",line)
+                                WWrite("Syntax Error: ",line)
+				helpprog()
+			}
+		}
+
+
+	#	writes("Icon> ")
+                WWrites("Icon> ")
+	}
+
+#"\e": break{  #make me work
+
+#}
+
+
+
+
+end
+
+procedure execprog()
+   local runargs, out, prog, line, command
+
+	static	tmpfile
+
+	initial tmpfile := "TMPFILE.icn"
+
+#	get any runtime arguments
+	runargs := tab(0)
+
+#	create the temporary Icon file
+	(out := open(tmpfile,"w")) |
+
+#	or mention the problem and fail
+	(write("I can't open '",tmpfile,"' for writing") & fail)
+
+#	sort the program table
+	prog := sort(PRTBL)
+
+#	put the program in the file
+	every line := !prog do {
+		write(out,line[2])
+	}
+	close(out)
+
+#	format the command to execute the program
+	#command := "icont -s " || tmpfile || " -x " || runargs
+  #   command := "unicon " || tmpfile || " -x " || runargs
+        command := "wicont -s " || tmpfile || " -x " || runargs
+
+#	add the command to remove the temporary file
+	command ||:= " ; rm -f " || tmpfile
+
+#	execute the command
+	system(command)
+
+end
+
+procedure seqprog()
+   local begno, incno, prog, lno, l
+
+#	initialize the sequencing numbers
+	begno := incno := 10
+
+#	skip any white space
+	tab(many(WHITE))
+
+#	get an initial line number
+	begno := numeric(tab(many(&digits)))
+
+#	skip any white space
+	tab(many(WHITE))
+
+#	get a increment number
+	incno := numeric(tab(many(&digits)))
+
+#	sort the program table
+	prog := sort(PRTBL)
+
+#	reinitialize it
+	PRTBL := table()
+
+#	sequence the program lines starting with begno by incno
+	lno := begno
+	every l := !prog do {
+		PRTBL[lno] := l[2]
+		lno +:= incno
+	}
+
+end
+
+procedure readprog()
+   local readfile, response, in, lno, line
+
+#	get a possible command line file name
+	tab(many(WHITE))
+	readfile := tab(upto(WHITE) | 0)
+
+#	if there was no file with the command get one
+	if /readfile | *readfile = 0 then {
+		writes("Read file name: ")
+		readfile := read()
+	}
+
+#	make sure a modified file has been written
+	if MFLAG > 0 then {
+		writes("Write before reading over current program? ")
+		response := read()
+		if any('yY',response) then
+			writeprog()
+	}
+
+#	initialize the program table
+	PRTBL := table()
+
+#	read the program from the read file
+	in := open(readfile,"r")
+	lno := 10
+	every line := !in do {
+		PRTBL[lno] := line
+		lno +:= 10
+	}
+	close(in)
+
+#	tell them what you did
+	write("Read '",readfile,"'...",*PRTBL," lines")
+
+end
+
+procedure writeprog()
+   local writefile, prog, out, l
+
+#	get a possible command line file name
+	tab(many(WHITE))
+	writefile := tab(upto(WHITE) | 0)
+
+#	if there was no file with the command get one
+	if /writefile | *writefile = 0 then {
+		writes("Write file name: ")
+		writefile := read()
+	}
+
+#	sort the program table
+	prog := sort(PRTBL)
+
+#	write the program to the write file
+	out := open(writefile,"w")
+	every l := !prog do {
+		write(out,l[2])
+	}
+	close(out)
+
+#	tell them what you did
+	write("Write '",writefile,"'...",*PRTBL," lines")
+
+end
+
+procedure delprog()
+   local begno, endno, prog, l, lno
+
+#	initialize the line numbers
+	begno := 0
+	endno := 99999
+
+#	skip any white space
+	tab(many(WHITE))
+
+#	get an initial line number
+	begno := endno := numeric(tab(many(&digits)))
+
+#	skip any white space
+	tab(many(WHITE))
+
+#	get a final line number
+	endno := numeric(tab(many(&digits)))
+
+#	sort the program table
+	prog := sort(PRTBL)
+
+#	reinitialize it
+	PRTBL := table()
+
+#	delete the program lines between the optional numbers
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno < begno) | (lno > endno) then PRTBL[lno] := l[2]
+	}
+
+end
+
+procedure listprog()
+   local begno, endno, prog, l, lno
+
+#	initialize the line numbers
+	begno := 0
+	endno := 99999
+
+#	skip any white space
+	tab(many(WHITE))
+
+#	get an initial line number
+	begno := endno := numeric(tab(many(&digits)))
+
+#	skip any white space
+	tab(many(WHITE))
+
+#	get a final line number
+	endno := numeric(tab(many(&digits)))
+
+#	sort the program table
+	prog := sort(PRTBL)
+
+#	list the program lines between the optional numbers
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure helpprog()
+
+	static helpmsg
+
+#	define the help message
+	initial {
+		helpmsg := [
+		"<<< Icon Expression Syntax >>>",
+		"",
+		"lineno expression",
+		"",
+		"<<< Command Summary >>>",
+		" (1st character works)",
+		"",
+		"read [ file ]",
+		"write [ file ]",
+		"list [ begno [ endno ] ]",
+		"delete [ begno [ endno ] ]",
+		"sequence [ begno [ increment ] ]",
+		"execute [ args ]",
+		"quit",
+		"help"
+		]
+	}
+
+#	print it
+	every write(!helpmsg)
+
+end
+
+procedure quitprog()
+   local response
+
+#	make sure a modified file has been written
+	if MFLAG > 0 then {
+		writes("Write before quitting? ")
+		response := read()
+		if any('yY',response) then
+			writeprog()
+	}
+
+	stop("Goodbye.")
+
+end
 
 #END OF PROGRAM########################################
 #####################################################################################################################
