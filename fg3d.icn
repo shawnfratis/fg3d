@@ -58,7 +58,7 @@ x2 := y2 := &null
 #begin basic keyboard commands.
 
 "\z": {
-	         WriteImage("C:/fg01.png")#change as needed
+	         WriteImage("fg01.png")#change as needed
               }
 
 "\s": { 
@@ -118,24 +118,8 @@ x2 := y2 := &null
 
               }
 "\[": {  
-  
-#These are for switching between voxel etc. experiments-decomment as needed
-             #voxgrid01()#input sierpinski
-             #voxgrid02()#flat square grid of cubes
-             #voxgrid03()#line of cubes
-             #voxgrid04()#voxgrid error      
-             #voxgrid05()#input y vertice
-             #voxgrid09()#rgb cube explode
-             voxgrid10()#green spokes
-             #voxgrid11()#matrix exp
-             #voxgrid12()#matrix exp ! gen
-             #voxgrid13()#single cube? color rand/grad?
-             #voxgrid14()#vox plank for y-vals
-             #voxgrid15()#vox plank w children
-             #RTtest01()
-             #testModule01()
-             #testModule02()
-             }
+              #not used
+              }
 
 "\]": {       
               inpgleye01()
@@ -271,12 +255,12 @@ procedure helpbox5()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
-WWrite(win1,"vox1 = 18,0,1,1,rgb")
-WWrite(win1,"vox2 = x,?y,z,s,rgb")
-WWrite(win1,"[ is voxel test")
+WWrite(win1,"inpvox1 = 18,0,1,1,rgb")
+WWrite(win1,"inpvox2 = x,?y,z,s,rgb")
 WWrite(win1,"Note: voxels might take a few secs to generate.")
 WWrite(win1,"% for interpereter.")
-WWrite(win1,"input psplane + color for preset plane")
+WWrite(win1,"input psplane + color for preset plane.")
+WWrite(win1,"input vox3 thru vox9 for voxel functions.")
 end
 
 ########################################################
@@ -478,21 +462,21 @@ procedure inputprompt()
         ss3 :=( "cyl")
         ss4 :=( "sphere")
         ss5 :=( "psplane")
-        ss6 :=( "notused")
+        ss6 :=( "spokes")
         ss7 :=( "notused")
         ss8 :=( "notused")
-        ss9 :=( "notused")
-        ss10 :=( "notused")
-        ss11 :=( "notused")
-        ss12 :=( "notused")
-        ss13 :=( "notused")
-        ss14 :=( "notused")
-        ss15 :=( "notused")
+        ss9 :=( "vox3")
+        ss10 :=( "vox4")
+        ss11 :=( "vox5")
+        ss12 :=( "vox6")
+        ss13 :=( "vox7")
+        ss14 :=( "vox8")
+        ss15 :=( "vox9")
         ss16 :=( "notused")
         ss17 :=( "notused")
         ss18 :=( "cam")
-        ss19 :=( "vox1")
-        ss20 :=( "vox2")
+        ss19 :=( "inpvox1")
+        ss20 :=( "inpvox2")
         ss21 :=( "int")
         ss22 :=( "notused")
         ss23 :=( "notused")
@@ -508,25 +492,25 @@ procedure inputprompt()
         else
         if s1== ss5 then psplane01()
         else
-        if s1== ss6 then notused 
+        if s1== ss6 then spokes01()
         else
-        if s1== ss7 then notused 
+        if s1== ss7 then voxgrid01() 
         else
-        if s1== ss8 then notused 
+        if s1== ss8 then voxgrid02() 
         else
-        if s1== ss9 then notused
+        if s1== ss9 then voxgrid03()
         else
-        if s1== ss10 then notused
+        if s1== ss10 then voxgrid04()
         else
-        if s1== ss11 then notused
+        if s1== ss11 then voxgrid05()
         else
-        if s1== ss12 then notused
+        if s1== ss12 then voxgrid06()
         else
-        if s1== ss13 then notused
+        if s1== ss13 then voxgrid07()
         else
-        if s1== ss14 then notused
+        if s1== ss14 then voxgrid08()
         else
-        if s1== ss15 then notused
+        if s1== ss15 then voxgrid09()
         else
         if s1== ss16 then notused
         else
@@ -1461,7 +1445,7 @@ end
 
 ######################################################
 
-procedure voxgrid10()
+procedure spokes01()
 
 i := 15
 
@@ -1618,9 +1602,9 @@ end
 
 ##########################################################
 
-#procedure voxgrid11(x,y,z,s,rgb)
+#procedure voxgrid06(x,y,z,s,rgb)
 
-procedure voxgrid11()
+procedure voxgrid06()
 
 v:=[0,0.5,1,1.5,2,2.5,3,1]
 
@@ -1651,8 +1635,8 @@ end
 
 #################################################################
 
-#procedure voxgrid12(x,y,z,s,rgb)
-procedure voxgrid12()
+#procedure voxgrid07(x,y,z,s,rgb)
+procedure voxgrid07()
 
 #x := 0
 #y := 0
@@ -1679,7 +1663,7 @@ end
 
 #############################
 
-procedure voxgrid13()
+procedure voxgrid08()
 
 colors:= ["red", "blue", "green","yellow", "purple", "white", "black"] 
 
@@ -1704,7 +1688,7 @@ end
 
 ###############################################################
 
-procedure voxgrid15()
+procedure voxgrid09()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 WWrite(win1,"Note: voxels might take a while to generate.")
@@ -1717,5 +1701,6 @@ voxChunkBlock04(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],1
 
 end
 
+###########################################################
 #END OF PROGRAM########################################
 #######################################################
