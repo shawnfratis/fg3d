@@ -1,5 +1,5 @@
 
-#fg3d 2016 FratisGraphics
+#fg3d 2017 FratisGraphics
 
 #Program to utilize Unicons 3D capabilities.
 
@@ -8,8 +8,6 @@
 
 #Made in Unicon, with Unicon IDE
 #unicon.sourceforge.net
-
-#NOTE: paths to textures, images etc. must be created as needed within the code(for now).
 
 ###############################
 
@@ -58,27 +56,25 @@ x2 := y2 := &null
 ################################
 
 #begin basic keyboard commands.
-#Image paths currently set for Windows.
-#You will have to modify it for other platforms or locations. 
 
 "\z": {
-	             WriteImage("C:/Users/meridith/Desktop/fg01.png")#change as needed
+	         WriteImage("C:/fg01.png")#change as needed
               }
 
 "\s": { 
-              texskysphere02()
+              #not used
 
               }
 "\p": { 
-              texskysphere01()
+              #not used
 
               }
 "\q":{
-              texskyplane01()#test
+              #not used
 
               }
 "\$": {      
-              texgroundplane01()#test
+              Refresh()
 
               }
 "\g": {
@@ -103,8 +99,7 @@ x2 := y2 := &null
               }
 "\G": {
               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
-               #Eye(0,.2,0, 0,0,-1, 0,1,0)
-              
+                          
               }
 "\H": {
               WAttrib("eyepos=-2.0,0.0,5.0","eyedir=0.0,0.0,1.0")
@@ -118,8 +113,7 @@ x2 := y2 := &null
               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
 
               }
-"\%": {    
-              #Refresh()
+"\%": {  
               int()
 
               }
@@ -131,11 +125,8 @@ x2 := y2 := &null
              #voxgrid03()#line of cubes
              #voxgrid04()#voxgrid error      
              #voxgrid05()#input y vertice
-             #voxgrid06()#lorenz
-             #voxgrid07()#error
-             #voxgrid08()#tree
              #voxgrid09()#rgb cube explode
-             #voxgrid10()#green spokes
+             voxgrid10()#green spokes
              #voxgrid11()#matrix exp
              #voxgrid12()#matrix exp ! gen
              #voxgrid13()#single cube? color rand/grad?
@@ -143,7 +134,7 @@ x2 := y2 := &null
              #voxgrid15()#vox plank w children
              #RTtest01()
              #testModule01()
-             testModule02()
+             #testModule02()
              }
 
 "\]": {       
@@ -240,7 +231,7 @@ procedure helpbox2()
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
 WWrite(win1,"/ is input prompt, \ is erase all")
-WWrite(win1,"cube=x,y,z,color") 
+WWrite(win1,"cube=x,y,z,s,color") 
 WWrite(win1,"cyl=x,y,z,h,r1,r2,color") 
 WWrite(win1,"sphere=x,y,z,r,color")
 WWrite(win1,"plane=x,y,z of 4 corners,color")
@@ -248,9 +239,8 @@ WWrite(win1,"Some example values:")
 WWrite(win1,"cyl(0_-1_-4_1_.5_.5_12000,65000,10000)")
 WWrite(win1,"sphere(0_0.1_-3_.5_65000,1000,1000)")
 WWrite(win1,"cube(0_0.5_-2_.5_1000,2000,65000)")
-WWrite(win1,"cube 0,0,0,.5,10000,10000,20000")
-WWrite(win1,"sphere 0,0,0,.5,20000,10000,10000")
-WWrite(win1,"cyl 0,0,0,1,.5,.5,10000,20000,10000")
+WWrite(win1,"cube 0_0_0_.5_10000,10000,20000")
+WWrite(win1,"sphere 0_0_0_.5_20000,10000,10000")
 
 end
 
@@ -258,7 +248,7 @@ procedure helpbox4()
 
 #####################################################
 
-win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+win1 := WOpen("size=900, 200", "fg=yellow", "bg=black")
 
 WWrite(win1,"Color (RGB) values must be entered in this format: 65000,65000,65000")
 WWrite(win1,"Here are some examples for different shades of red:")
@@ -281,29 +271,12 @@ procedure helpbox5()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 
-WWrite(win1,"p,q,$,s for texplanes (will error if paths not set)")
 WWrite(win1,"vox1 = 18,0,1,1,rgb")
 WWrite(win1,"vox2 = x,?y,z,s,rgb")
 WWrite(win1,"[ is voxel test")
 WWrite(win1,"Note: voxels might take a few secs to generate.")
 WWrite(win1,"% for interpereter.")
-
-end
-
-########################################################
-
-#straighten this up a bit
-
-procedure textin01()
-
-        WAttrib("dx=1", "dy=1")
-
-        Fg("green")
-
-        WWrite("annotation:")
-        s := WRead()
-        WWrite("note:",image(s))
-
+WWrite(win1,"input psplane + color for preset plane")
 end
 
 ########################################################
@@ -328,7 +301,7 @@ return()
 
 end
 
-################################################################
+#########################################################
 
 procedure inputSphere01()
 
@@ -410,27 +383,11 @@ procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb
    
   inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,pzrgb)
 
+return()
+
 end
 
 ########################################################
-
-procedure inputRCube01()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4  
-   
-  inpRglcube01(ipx,ipy,ipz,ips)
-
-end
-
-#################################################
 
 procedure seteyein()
 
@@ -500,6 +457,18 @@ end
 
 #################################################
 
+procedure psplane01()
+
+      s1 := WRead()
+             
+      ipx := s1
+   
+     PresetPlane(ipx)
+
+end
+
+#################################################
+
 procedure inputprompt()
  
         s1 := WRead()
@@ -508,19 +477,19 @@ procedure inputprompt()
         ss2 :=( "plane")
         ss3 :=( "cyl")
         ss4 :=( "sphere")
-        ss5 :=( "cube02")
-        ss6 :=( "plane02")
-        ss7 :=( "cyl02")
-        ss8 :=( "sphere02")
-        ss9 :=( "rcube01")
-        ss10 :=( "cubecenter")
-        ss11 :=( "cuberight")
-        ss12 :=( "cubeleft")
-        ss13 :=( "cubecenterlow")
-        ss14 :=( "randomcubecenter")
-        ss15 :=( "randomcuberight")
-        ss16 :=( "randomcubeleft")
-        ss17 :=( "randomcubecenterlow")
+        ss5 :=( "psplane")
+        ss6 :=( "notused")
+        ss7 :=( "notused")
+        ss8 :=( "notused")
+        ss9 :=( "notused")
+        ss10 :=( "notused")
+        ss11 :=( "notused")
+        ss12 :=( "notused")
+        ss13 :=( "notused")
+        ss14 :=( "notused")
+        ss15 :=( "notused")
+        ss16 :=( "notused")
+        ss17 :=( "notused")
         ss18 :=( "cam")
         ss19 :=( "vox1")
         ss20 :=( "vox2")
@@ -537,31 +506,31 @@ procedure inputprompt()
         else
         if s1== ss4 then inputSphere01() 
         else
-        if s1== ss5 then inputCube02() 
+        if s1== ss5 then psplane01()
         else
-        if s1== ss6 then inputPlane02() 
+        if s1== ss6 then notused 
         else
-        if s1== ss7 then inputCyl02() 
+        if s1== ss7 then notused 
         else
-        if s1== ss8 then inputSphere02() 
+        if s1== ss8 then notused 
         else
-        if s1== ss9  then inputRCube01()
+        if s1== ss9 then notused
         else
-        if s1== ss10 then presetCube01()
+        if s1== ss10 then notused
         else
-        if s1== ss11 then presetCube02()
+        if s1== ss11 then notused
         else
-        if s1== ss12 then presetCube03()
+        if s1== ss12 then notused
         else
-        if s1== ss13 then presetCube04()
+        if s1== ss13 then notused
         else
-        if s1== ss14 then presetRCube01()
+        if s1== ss14 then notused
         else
-        if s1== ss15 then presetRCube02()
+        if s1== ss15 then notused
         else
-        if s1== ss16 then presetRCube03()
+        if s1== ss16 then notused
         else
-        if s1== ss17 then presetRCube04()
+        if s1== ss17 then notused
         else
         if s1== ss18 then seteyein()
         else
@@ -595,31 +564,35 @@ procedure inpglcube01(ipx,ipy,ipz,ips,rgb)
 Fg(rgb)
 DrawCube(ipx,ipy,ipz,ips)
 
+return()
+
 end
 
 ##################################################
 
 procedure inpglsphere01(ipx,ipy,ipz,ips,rgb)
 
-Fg("rgb")
+Fg(rgb)
 DrawSphere(ipx,ipy,ipz,ips)
+
+return()
 
 end
 
 ##################################################
 
-procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa,rgb)
 
-Fg("rgb")
+Fg(rgb)
 DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
 
 end
 
 ##################################################
 
-procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,pzrgb)
+procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb)
 
-Fg("pzrgb")
+Fg(rgb)
 FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 
 end
@@ -643,144 +616,14 @@ Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
    
 end
 
-#####################################################
-
-procedure inpRglcube01(ipx,ipy,ipz,ips)
-
-Fg("red")
-DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
-
-Fg("red")
-DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
-
-Fg("red")
-DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
-
-Fg("red")
-DrawCube(ipx + ?0.01,ipy + ?0.01,ipz + ?0.01,ips)
-
-end
-
 ##############################################################
 
-#start preset cubes
+procedure PresetPlane(rgb)
 
-procedure presetCube01()
-   
-  inpglcube01(0,0.5,-2,.5)
+Fg(rgb)
 
-end
+FillPolygon(-15,0,15,15,0,15,15,0,-15,-15,0,-15)
 
-##############################################################
-
-procedure presetCube02()
-   
-  inpglcube01(1,0.5,-2,.5)
-
-end
-
-##############################################################
-
-procedure presetCube03()
-   
-  inpglcube01(-1,0.5,-2,.5)
-
-end
-
-##############################################################
-
-procedure presetCube04()
-   
-  inpglcube01(0,0.1,-2,.5)
-
-end
-
-###############################################
-
-procedure presetRCube01()
-   
-  inpRglcube01(0,0.5,-2,.5)
-
-end
-
-###############################################
-
-procedure presetRCube02()
-   
-  inpRglcube01(1,0.5,-2,.5)
-
-end
-
-###############################################
-
-procedure presetRCube03()
-   
-  inpRglcube01(-1,0.5,-2,.5)
-
-end
-
-###############################################
-
-procedure presetRCube04()
-   
-  inpRglcube01(0,0.1,-2,.5)
-
-end
-
-
-########################################################
-
-procedure presetSphere01()
-    
-  inpglsphere01(ipx,ipy,ipz,ips)
-
-end
-
-########################################################
-
-procedure presetCyl01()
-   
-  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
-
-end
-
-################################################################
-
-procedure 
-            presetPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
-end
-
-########################################################
-
-procedure presetSphere02()
-   
-  inpglsphere02(ipx,ipy,ipz,ips)
-
-end
-
-########################################################
-
-procedure presetrCube02()
-   
-  inpglcube02(ipx,ipy,ipz,ips)
-
-end
-
-################################################################
-
-procedure presetCyl02()
-   
-  inpglcylinder02(ipx,ipy,ipz,ips,ipq,ipa)
-
-end
-
-################################################################
-
-procedure 
-
-presetPlane02(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)        
- 
 end
 
 ##########################################################
@@ -1010,578 +853,7 @@ tmod01(-2,s51,s52,s53,s54,s55,s64,e65,e66,e67,s65,s67,e68,e69,e70,s68,"dark stro
 
 end
 
-##############Begin OpenGL 3D TEX##############################
-############################################################
-
-procedure texcube01(ipx,ipy,ipz,ips)
-
-WAttrib("texmode=on")
-
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")
-#change as needed
-
-DrawCube(ipx,ipy,ipz,ips)
-
-WAttrib("texmode=off") 
-
-end
-
-##################################################
-
-procedure texcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
-
-WAttrib("texmode=on")
-
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")#change as needed
-
-DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
-
-WAttrib("texmode=off") 
-
-end
-
-##################################################
-
-procedure texplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
-WAttrib("texmode=on")
-
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
-
-FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
-
-end
-
-##################################################
-
-procedure texskysphere02()
-
-WAttrib("texmode=on")
-
-#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
-
-WAttrib ("texture=C:/Users/meridith/Documents/dumdum/ssphere2.png")#change as needed
-
-x := -1
-y := 0
-z := -5
-r := 250
-
-#Rotate(45,290,2,90)
-
-#PushMatrix()
-
-DrawSphere(x,y,z,r)
-
-WAttrib("texmode=off") 
-
-end
-
-##################################################
-
-procedure texskysphere01()
-
-WAttrib("texmode=on")
-
-#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/check.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
-
-WAttrib ("texture=C:/Users/meridith/Documents/dumdum/ssphere.png")#change as needed
-
-x := -1
-y := 0
-z := -5
-r := 250
-
-#Rotate(45,290,2,90)
-
-#PushMatrix()
-
-DrawSphere(x,y,z,r)
-
-WAttrib("texmode=off") 
-
-end
-
-##################################################
-
-procedure texgroundplane01()
-
-WAttrib("texmode=on")
-
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/gplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
-
-FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
-
-WAttrib("texmode=off") 
-
-end
-
-##################################################
-
-procedure texskyplane01()
-
-WAttrib("texmode=on")
-
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
-
-FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
-
-WAttrib("texmode=off") 
-
-end
-
 ###############################################################
-######begin voxel, etc grids###################################
-#SOME EXPERIMENTAL
-
-procedure voxgrid01(x,y,z,s,rgb)
-
-v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
-
-vv:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
-
-Fg(rgb)
-every x := !v do
-every z := !v do
-every y := !vv do
-
-DrawCube(x,y,z,s)
-
-end
-
-#######################################################
-
-procedure voxgrid02()
-
-Fg("blue")
-
-#v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
-#vv:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
-
-#every x := !v do
-#every y := !v do
-#every z := !v do
-
-#every xx := !v do
-#every yy := !vv do
-#every zz := !v do
-
-#DrawCube(xx,0,zz,.1)
-#DrawCube(xx,.5,zz,.1)
-
-va:=[[0,0.5,1,1.5,2,2.5,3,3.5,4],[0,0.5,1,1.5,2,2.5,3,3.5,4]]
-
-every x := !va[1] do
-#every y := !v do
-every z := !va[1] do
-
-every xx := !va[2] do
-#every yy := !vv do
-every zz := !va[2] do
-
-DrawCube(x,0,z,.1)
-DrawCube(xx,.5,zz,.1)
-
-end
-
-#######################################################
-
-procedure voxgrid03()
-
-voxBase(0,.1,0,0.5,1,1.5,2,-2,.5)
-voxBase(1,.1,0,0.5,1,1.5,2,-3,.5)
-voxBase(1,.1,0,0.5,1,1.5,2,-4,.5)
-voxBase(1,.1,0,0.5,1,1.5,2,-5,.5)
-voxBase(1,.1,0,0.5,1,1.5,2,-6,.5)
-voxBase(1,.1,0,0.5,1,1.5,2,-7,.5)
-
-end
-
-#######################################################
-
-procedure voxBase(yy,ss,x1,x2,x3,x4,x5,x6)
-
-v:=[x1,x2,x3,x4,x5,x6]
-
-every x := !v do
-every z := !v do
-
-y := yy 
-s := ss
-
-Fg("blue")
-
-DrawCube(x,y,z,s)
-
-end
-
-#######################################################
-
-procedure voxgrid04()
-
-voxgrid04master(18,1,0,1)
-voxgrid04master(18,1,1,1)
-voxgrid04master(18,1,2,1)
-voxgrid04master(18,1,3,1)
-voxgrid04master(14,1,4,1)
-voxgrid04master(13,1,5,1)
-
-end
-
-#######################################################
-
-procedure voxgrid05(x,y,z,s,c)
-
-voxgrid04master(x,z,y,s,c)
-
-end
-
-#######################################################
-
-procedure voxgrid04master(wq,oq,zq,sq,rgb)
-
-Fg(rgb)
-
-width := wq #80
-offset := oq #5
-
-every y := 0 to width - 1 do
-every x := 0 to width - 1 do
-        
-if iand(x, y) = 0 then DrawCube(x * offset, zq,y * offset,sq)
-
-end
-
-#########################################################
-
-procedure voxgrid06()
-   
-   x_angle  :=  rtod(45)
-   sx  :=  sin(x_angle)
-   cx  :=  cos(x_angle)
-   y_angle  :=  rtod(0)
-   sy  :=  sin(y_angle)
-   cy  :=  cos(y_angle)
-   z_angle  :=  rtod(90)
-   sz  :=  sin(z_angle)
-   cz  :=  cos(z_angle)
-
-     colorlist := ["red", "blue", "green", "magenta", "cyan", "yellow"]
-
-   color := colorlist[1]
-
-   x  :=  0.0
-   y  :=  1.0
-   z  :=  0.0
-   old_col  :=  round(y * 9 + 320)
-   old_row  :=  round(350 - 6.56 * z)
-   dt  :=  0.01
-   dt2  :=  dt / 2
-   every i := 0 to 800 do {
-      d0_x  :=  10 * (y-x) * dt2
-      d0_y  :=  (-x * z + 28 * x - y) * dt2
-      d0_z   :=  (x * y - 8 * z / 3) * dt2
-      xt  :=  x + d0_x
-      yt  :=  y + d0_y
-      zt  :=  z + d0_z
-      d1_x  :=  (10 * (yt-xt)) * dt2
-      d1_y  :=  (-xt * zt + 28 * xt - yt) * dt2
-      d1_z   := (xt * yt - 8 * zt / 3) * dt2
-      xt  :=  x + d1_x
-      yt  :=  y + d1_y
-      zt  :=  z + d1_z
-      d2_x  :=  (10 * (yt-xt)) * dt
-      d2_y  :=  (-xt * zt + 28 * xt - yt) * dt
-      d2_z   := (xt * yt - 8 * zt / 3) * dt
-      xt  :=  x + d2_x
-      yt  :=  y + d2_y
-      zt  :=  z + d2_z
-      d3_x  :=  (10 * (yt - xt)) * dt2
-      d3_y  :=  (-xt * zt + 28 * xt - yt) * dt2
-      d3_z  :=  (xt * yt - 8 * zt / 3) * dt2
-                     old_y  :=  y
-      x  :=  x + (d0_x + d1_x + d1_x + d2_x + d3_x) * 0.333333333
-      y  :=  y + (d0_y + d1_y + d1_y + d2_y + d3_y) * 0.333333333
-      z  :=  z +  (d0_z + d1_z + d1_z + d2_z + d3_z) * 0.333333333
-
-      col  :=  round(y * 9 + 320)
-      row  :=  round(350 - 6.56 * z)
-
-      if col < 320 then
-         if old_col >= 320 then {
-            color := get(colorlist)
-            put(colorlist, color)
-            }
-      else if col > 320 then
-         if old_col <= 320 then {
-            color := get(colorlist)
-            put(colorlist, color)
-            }
-
-      Fg(color)
-      DrawLine(old_col,old_row,1,col,row,1)
-      old_row := row
-      old_col := col
- 
-      }
-
-end
-
-##################################################################
-
-procedure voxgrid07()
-
-   palette := "c2"
-   extent := 256
-   init := 50
-   incr := 1
-   limit := (2 ^ 10)
-   #run := opts["g"]
-
-   size := extent / 2
-
-    colors := colrplte(palette) | ExitNotice("Invalid palette.")
-   ncolors := *colors
-
-   every k := seq(init, incr) \ limit do {
-      x := k
-      every i := 0 to size do {
-         y := x
-         every j := i to size do {
-            c := colors[?ncolors]
-            Fg(c)
-            DrawPoint(
-               i, j, 1,
-               j, i, 1,
-               j, -i, 1,
-               i, -j, 1,
-               -i, -j, 1,
-               -j, -i, 1,
-               -j, i, 1,
-               -i, j, 1,
-               )
-            y +:= k
-            }
-         x +:= k
-         }
-      Fg("black")
-      if /run then repeat case Event() of {
-         "q":   exit()
-         "s":   snapshot()
-         "n":   break
-         }
-      }
-
-end
-
-#######################################################
-
-procedure voxgrid08()
-#drawtree(400,500,-90,9)
-drawtree(14,15,-9,9)
-#WDone()
-end
-  
-procedure drawtree(x,y,angle,depth)
-if depth > 0 then {
-   x2 := integer(x + cos(dtor(angle)) * depth * 10)
-   y2 := integer(y + sin(dtor(angle)) * depth * 10)
-   DrawLine(x,y,1,x2,y2,1)   
-   drawtree(x2,y2,angle-20, depth-1)
-   drawtree(x2,y2,angle+20, depth-1)
-   }
-return
-end
-
-################################################################
-# somethings wrong here - must fix
- 
-#procedure voxgrid09(A)   # XOR graphic
-  # wsize := 56
-  # cmax  := 90
-  # wparms := ["test","g",sprintf("size=%d,%d",wsize),"bg=black"][
-  # &window := open!wparms | stop("Unable to open window")
- 
-   #every y := 0 to wsize -1 do
-    #  every x := 0 to wsize - 1 do {
-       #  c := cmax/wsize * iand(wsize-1,ixor(x,y))
-        # Fg(sprintf("%d,%d,%d",c,cmax-c,0))
-#Fg("65000,1,1")
-        # DrawCube(x,y,1,.5)
-#Fg("350,40000,1")
-        # DrawCube(x,y,3,.5)
-#Fg("10,65000,1000")
-        # DrawCube(x,y,5,.5)
-#Fg("1,650,24000")
-        # DrawCube(x,y,7,.5)
-#Fg("1,30,65000")
-        # DrawCube(x,y,9,.5)
-
-#Fg("65000,1,1")
-#         DrawCube(?x,?y,?1,.5)
-#Fg("350,40000,1")
-#        DrawCube(?x,?y,?3,.5)
-#Fg("10,65000,1000")
-#         DrawCube(?x,?y,?5,.5)
-#Fg("1,650,24000")
-#         DrawCube(?x,?y,?7,.5)
-#Fg("1,30,65000")
-#         DrawCube(?x,?y,?9,.5)
-
-#Fg("65000,1,1")
- #        DrawSphere(?x,?y,1,1)
-#Fg("350,40000,1")
- #        DrawSphere(?x,?y,2,1)
-#Fg("10,65000,1000")
- #        DrawSphere(?x,?y,3,1)
-#Fg("1,650,24000")
- #        DrawSphere(?x,?y,4,1)
-#Fg("1,30,65000")
- #        DrawSphere(?x,?y,5,1)
- #       }
- 
- #end
-
-##########################################################
-
-procedure voxgrid10()
-
-    i := 7
-
-   size := 10
-   radius := size / .8
-   xc := yc := size / .8
-
-   angle := 0.0
-   incr := 2 * &pi / i
-
-   every j := 1 to i do {
-      spokes(xc + radius * cos(angle), yc + radius * sin(angle),
-      radius, i, angle)
-      angle +:= incr
-      }
-
-   #Event()
-
-end
-
-procedure spokes(x, y, r, i, angle)
-   local incr, j
-
-   incr := 2 * &pi / i 
-
-   every j := 1 to i do {
-     DrawLine(x, y, x,x + r * cos(angle), y + r * sin(angle),x)
-     #DrawCube(x, y, x + r * cos(angle), y + r * sin(angle))
-      angle +:= incr
-      }
-
-   return
-   
-end
-
-##########################################################
-
-#procedure voxgrid11(x,y,z,s,rgb)
-
-procedure voxgrid11()
-
-v:=[0,0.5,1,1.5,2,2.5,3,1]
-
-vv:=[1,2,3,4,5,6,7,8]
-
-vvv := [2,4,6,8,0]
-
-#every y := !v do
-#every z := !v do
-#every x := !vv do
-
-   wsize := 25
-   cmax  := 90
- 
- every x := 0 to !v -1 do
-   every y  := 0 to !vv -1 do
-    every z  := 0 to !vvv -1 do {
-         #c := cmax/wsize * iand(wsize-1,ixor(x,y))
-        # Fg(sprintf("%d,%d,%d",c,cmax-c,0))
-Fg("65000,1,1")
-         DrawCube(x,?y,z,.5)
-#Fg("350,40000,1")
-        # DrawCube(x,y,3,.5)
-
-}
-
-end
-
-#########################################################################################
-
-#procedure voxgrid12(x,y,z,s,rgb)
-procedure voxgrid12()
-
-#x := 0
-#y := 0
-s := .1
-
-v:=[0,0.5,1,1.5,2,2.5,3,1]
-#v := [[1,2,3],[1,2,3]]
-
-vv:=[1,2,3,4]
-
-#every y := !v[1] do
-#every x := !v[2] do
-
-Fg("blue")
-every x := !v  do
-every y := !v do
-every xx := !vv do
-#every yy := !vvv do
-
-DrawCube(x,1,1,s)
-DrawCube(x,2,1,s)
-DrawCube(x,3,1,s)
-end
-
-#############################
-
-procedure voxgrid13()
-
-colors:= ["red", "blue", "green","yellow", "purple", "white", "black"] 
-
-#Rect:=[FiIIRectangle, DrawRectangle] 
-#Rect := [DrawCube]
-
-
-#WOpen("size=" II Width II"," II Height) 
-
-#repeat{ w:=?Width h:=?Height x:=?Width-w/2 Y:=?Height-h/2
-#repeat{
-
-w:=5
-h:= 3 
-x:=2-w/2 
-y:= 4-h/2 
-
-Fg(?colors) 
-DrawCube(x,y,w,h)
-
-end
-
-###############################################################
-
-procedure voxgrid15()
-
-win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
-WWrite(win1,"Note: voxels might take a while to generate.")
-WWrite(win1,"Minimize this window.")
-
-x1 := [1,4,5,7]
-x2 := [2,3,4,5]
-
-voxChunkBlock04(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],15,x2[4])
-
-end
-
-#################################################################
 
 procedure voxChunkBlock04(my,ay,m2y,a2y,m3y,a3y,m4y,a4y,qy,bxy,q2y,b2y,q3y,b3y,q4y,b4y)
 
@@ -1885,116 +1157,9 @@ Fg(rgb)
         
 end
 
-#################################################################
-
-#################################################################
-
-#################################################################
-
-#################################################################
-
-#BEGIN BAKED-IN SHADOW TEXTURE/REFLECTION TEST
-
-procedure RTtest01()
-
-#WAttrib("texmode=on")
-
-#WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")
-#change as needed
-
-#DrawCube()
-
-#WAttrib("texmode=off") 
-
-##################################################
-
-#WAttrib("texmode=on")
-
-#WAttrib("texture=C:/Users/meridith/Documents/dumdum/check.png")#change as needed
-
-#DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
-
-#WAttrib("texmode=off") 
-
-####################################################3
-
-WAttrib("texmode=on")
-
-#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTskyground.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
-
-WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTskygref.png")#change as needed
-
-x := -1
-y := 5
-z := -5
-r := 5
-
-#Rotate(45,290,2,90)
-
-#PushMatrix()
-
-DrawSphere(x,y,z,r)
-
-WAttrib("texmode=off") 
-
-##################################################
-
-#procedure texskysphere02()
-
-WAttrib("texmode=on")
-
-#WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTsky.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,.0.50,0.50")
-
-WAttrib ("texture=C:/Users/meridith/Documents/dumdum/RTsky.png")
-
-x := -1
-y := 0
-z := -5
-r := 250
-
-#Rotate(45,290,2,90)
-
-#PushMatrix()
-
-DrawSphere(x,y,z,r)
-
-WAttrib("texmode=off") 
-
-##################################################
-
-WAttrib("texmode=on")
-
-WAttrib("texture=C:/Users/meridith/Documents/dumdum/RTgplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
-#WAttrib("texture=C:/Users/meridith/Documents/dumdum/RTground.png")
-
-FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
-
-WAttrib("texmode=off") 
-
-##################################################
-
-#WAttrib("texmode=on")
-
-#WAttrib("texture=C:/Users/meridith/Documents/dumdum/RT.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
-
-#FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
-
-#WAttrib("texmode=off") 
-
-##################################################
-
-#WAttrib("texmode=on")
-
-#WAttrib("texture=C:/Users/meridith/Documents/dumdum/splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
-
-#FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
-
-#WAttrib("texmode=off") 
-
-end
-
 ######################################################
 ######################################################
+
 #begin interpereter
 
 global WHITE,MFLAG,PRTBL	
@@ -2294,11 +1459,252 @@ procedure quitprog()
 
 end
 
-##############################################################
-##############################################################
-#begin interpereter edit modules
+######################################################
 
-procedure voxgrid14()
+procedure voxgrid10()
+
+i := 15
+
+   size := 10
+   radius := size / .8
+   xc := yc := size / .8
+
+   angle := 0.0
+   incr := 2 * &pi / i
+
+   every j := 1 to i do {
+      spokes(xc + radius * cos(angle), yc + radius * sin(angle),
+      radius, i, angle)
+      angle +:= incr
+      }
+
+ 
+end
+
+procedure spokes(x, y, r, i, angle)
+   local incr, j
+
+   incr := 2 * &pi / i 
+Fg("red")
+   every j := 1 to i do {
+DrawCube(x + r * cos(angle),y + r * sin(angle), 0, .5)
+
+      angle +:= incr
+      }
+
+   return
+   
+end
+
+###### begin voxel, grids###################################
+
+procedure voxgrid01(x,y,z,s,rgb)
+
+v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+
+vv:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
+
+Fg(rgb)
+every x := !v do
+every z := !v do
+every y := !vv do
+
+DrawCube(x,y,z,s)
+
+end
+
+#######################################################
+
+procedure voxgrid02()
+
+Fg("blue")
+
+#v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+#vv:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+
+#every x := !v do
+#every y := !v do
+#every z := !v do
+
+#every xx := !v do
+#every yy := !vv do
+#every zz := !v do
+
+#DrawCube(xx,0,zz,.1)
+#DrawCube(xx,.5,zz,.1)
+
+va:=[[0,0.5,1,1.5,2,2.5,3,3.5,4],[0,0.5,1,1.5,2,2.5,3,3.5,4]]
+
+every x := !va[1] do
+#every y := !v do
+every z := !va[1] do
+
+every xx := !va[2] do
+#every yy := !vv do
+every zz := !va[2] do
+
+DrawCube(x,0,z,.1)
+DrawCube(xx,.5,zz,.1)
+
+end
+
+#######################################################
+
+procedure voxgrid03()
+
+voxBase(0,.1,0,0.5,1,1.5,2,-2,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-3,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-4,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-5,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-6,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-7,.5)
+
+end
+
+#######################################################
+
+procedure voxBase(yy,ss,x1,x2,x3,x4,x5,x6)
+
+v:=[x1,x2,x3,x4,x5,x6]
+
+every x := !v do
+every z := !v do
+
+y := yy 
+s := ss
+
+Fg("blue")
+
+DrawCube(x,y,z,s)
+
+end
+
+#######################################################
+
+procedure voxgrid04()
+
+voxgrid04master(18,1,0,1)
+voxgrid04master(18,1,1,1)
+voxgrid04master(18,1,2,1)
+voxgrid04master(18,1,3,1)
+voxgrid04master(14,1,4,1)
+voxgrid04master(13,1,5,1)
+
+end
+
+#######################################################
+
+procedure voxgrid05(x,y,z,s,c)
+
+voxgrid04master(x,z,y,s,c)
+
+end
+
+#######################################################
+
+procedure voxgrid04master(wq,oq,zq,sq,rgb)
+
+Fg(rgb)
+
+width := wq #80
+offset := oq #5
+
+every y := 0 to width - 1 do
+every x := 0 to width - 1 do
+        
+if iand(x, y) = 0 then DrawCube(x * offset, zq,y * offset,sq)
+
+end
+
+##########################################################
+
+#procedure voxgrid11(x,y,z,s,rgb)
+
+procedure voxgrid11()
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+
+vv:=[1,2,3,4,5,6,7,8]
+
+vvv := [2,4,6,8,0]
+
+#every y := !v do
+#every z := !v do
+#every x := !vv do
+
+   wsize := 25
+   cmax  := 90
+ 
+ every x := 0 to !v -1 do
+   every y  := 0 to !vv -1 do
+    every z  := 0 to !vvv -1 do {
+         #c := cmax/wsize * iand(wsize-1,ixor(x,y))
+        # Fg(sprintf("%d,%d,%d",c,cmax-c,0))
+Fg("65000,1,1")
+         DrawCube(x,?y,z,.5)
+#Fg("350,40000,1")
+        # DrawCube(x,y,3,.5)
+
+}
+
+end
+
+#################################################################
+
+#procedure voxgrid12(x,y,z,s,rgb)
+procedure voxgrid12()
+
+#x := 0
+#y := 0
+s := .1
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+#v := [[1,2,3],[1,2,3]]
+
+vv:=[1,2,3,4]
+
+#every y := !v[1] do
+#every x := !v[2] do
+
+Fg("blue")
+every x := !v  do
+every y := !v do
+every xx := !vv do
+#every yy := !vvv do
+
+DrawCube(x,1,1,s)
+DrawCube(x,2,1,s)
+DrawCube(x,3,1,s)
+end
+
+#############################
+
+procedure voxgrid13()
+
+colors:= ["red", "blue", "green","yellow", "purple", "white", "black"] 
+
+#Rect:=[FiIIRectangle, DrawRectangle] 
+#Rect := [DrawCube]
+
+
+#WOpen("size=" II Width II"," II Height) 
+
+#repeat{ w:=?Width h:=?Height x:=?Width-w/2 Y:=?Height-h/2
+#repeat{
+
+w:=5
+h:= 3 
+x:=2-w/2 
+y:= 4-h/2 
+
+Fg(?colors) 
+DrawCube(x,y,w,h)
+
+end
+
+###############################################################
+
+procedure voxgrid15()
 
 win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
 WWrite(win1,"Note: voxels might take a while to generate.")
@@ -2311,206 +1717,5 @@ voxChunkBlock04(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],1
 
 end
 
-################################################################
-
-procedure testModule01()
-hue := ["green","red","blue","yellow","orange"]
-
-every i := 1 to *hue do{
-Fg(hue[i])
-   
-every x := 1 to 10 do{
-every y := ?1 to 1 do{
-every z := 1 to 10 do{
-DrawCube(x,y,z,.5)
-}
-}
-}
-}
-
-return()
-
-end
-
-##################################################################
-#subtractive laser cut test-work w gcode
-
-procedure testModule02()
-
-x1 := [1,4,-5,7]
-x2 := [2,3,4,5]
-
-voxChunkBlock044(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],15,x2[4])
-
-end
-
-#################################################################
-
-procedure voxChunkBlock044(my,ay,m2y,a2y,m3y,a3y,m4y,a4y,qy,bxy,q2y,b2y,q3y,b3y,q4y,b4y)
-
-#########################################################
-
-va:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-vb:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-vc:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-vd:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-ve:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-vf:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-vg:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-vh:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-
-v1a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v1b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v1c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v1d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v1e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v1f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v1g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v1h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-
-
-################################################################
-
-v2a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v2b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v2c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v2d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v2e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v2f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v2g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v2h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-
-v3a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v3b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v3c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v3d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v3e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v3f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v3g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-v3h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-
-#################################################################
-
-#1st cube line# # # # # # # #
-
-#1stinstance
-
-(ml := (my + 1),mr := (my - 1))
-(mt := (my + 0),mb := (my - 0))
-
-aay := (ay - .5)
-
-(vd[my] := ay) + ((vd[ml]:= aay)+(vd[mr]:= aay)+(vc[mt]:= aay)+(ve[mb]:= aay))
-
-#2dinstance
-
-(m2l := (m2y + 1),m2r := (m2y - 1))
-(m2t := (m2y + 0),m2b := (m2y - 0))
-
-a2ay := (a2y - .5)
-
-(vd[m2y] := a2y) + ((vd[m2l]:= a2ay)+(vd[m2r]:= a2ay)+(vc[m2t]:= a2ay)+(ve[m2b]:= a2ay))
-
-#3rdinstance
-
-(m3l := (m3y + 1),m3r := (m3y - 1))
-(m3t := (m3y + 0),m3b := (m3y - 0))
-
-a3ay := (a3y - .5)
-
-(vd[m3y] := a3y) + ((vd[m3l]:= a3ay)+(vd[m3r]:= a3ay)+(vc[m3t]:= a3ay)+(ve[m3b]:= a3ay))
-
-#4thinstance
-
-(m4l := (m4y + 1),m4r := (m4y - 1))
-(m4t := (m4y + 0),m4b := (m4y - 0))
-
-a4ay := (a4y - .5)
-
-(vd[m4y] := a4y) + ((vd[m4l]:= a4ay)+(vd[m4r]:= a4ay)+(vc[m4t]:= a4ay)+(ve[m4b]:= a4ay))
-
-#2nd cube line# # # # # # # #
-
-(ql := (qy + 1),qr := (qy - 1))
-(qt := (qy + 0),qb := (qy - 0))
-
-bby := (bxy - .5)
-
-(ve[qy] := bxy) + ((ve[ql]:= bby)+(ve[qr]:= bby)+(vd[qt]:= bby)+(vf[qb]:= bby))
-
-#2dinstbnce
-
-(q2l := (q2y + 1),q2r := (q2y - 1))
-(q2t := (q2y + 0),q2b := (q2y - 0))
-
-b2by := (b2y - .5)
-
-(ve[q2y] := b2y) + ((ve[q2l]:= b2by)+(ve[q2r]:= b2by)+(vd[q2t]:= b2by)+(vf[q2b]:= b2by))
-
-#3rdinstbnce
-
-(q3l := (q3y + 1),q3r := (q3y - 1))
-(q3t := (q3y + 0),q3b := (q3y - 0))
-
-b3by := (b3y - .5)
-
-(ve[q3y] := b3y) + ((ve[q3l]:= b3by)+(ve[q3r]:= b3by)+(vd[q3t]:= b3by)+(vf[q3b]:= b3by))
-
-#4thinstbnce
-
-(q4l := (q4y + 1),q4r := (q4y - 1))
-(q4t := (q4y + 0),q4b := (q4y - 0))
-
-b4by := (b4y - .5)
-
-(ve[q4y] := b4y) + ((ve[q4l]:= b4by)+(ve[q4r]:= b4by)+(vd[q4t]:= b4by)+(vf[q4b]:= b4by))
-
-##################################################################
-
-(xa:=1,xb:=5,xc:=9,xd:=13,xe:=17,xf:=21,xg:=25,xh:=29)
-
-##################################################################
-
-(vza:=1,vzb:=2,vzc:=3,vzd:=4,vze:=5,vzf:=6,vzg:=7,vzh:=8)
-
-(v1za:=9,v1zb:=10,v1zc:=11,v1zd:=12,v1ze:=13,v1zf:=14,v1zg:=15,v1zh:=16)
-
-################################################################
-
-(v2za:=17,v2zb:=18,v2zc:=19,v2zd:=20,v2ze:=21,v2zf:=22,v2zg:=23,v2zh:=24)
-
-(v3za:=25,v3zb:=26,v3zc:=27,v3zd:=28,v3ze:=29,v3zf:=30,v3zg:=31,v3zh:=32)
-
-################################################################
-
-(vqa:="gray",vqb:="gray",vqc:="gray",vqd:="gray",vqe:="gray",vqf:="gray",vqg:="gray",vqh:="gray",vqi:="gray",vqj:="gray",vqk:="gray",vql:="gray",vqm:="gray",vqn:="gray",vqo:="gray",vqp:="gray",vvqa:="gray",vvqb:="gray",vvqc:="gray",vvqd:="gray",vvqe:="gray",vvqf:="gray",vvqg:="gray",vvqh:="gray",vvqi:="gray",vvqj:="gray",vvqk:="gray",vvql:="gray",vvqm:="gray",vvqn:="gray",vvqo:="gray",vvqp:="gray")
-
-(v1qa:="gray",v1qb:="gray",v1qc:="gray",v1qd:="gray",v1qe:="gray",v1qf:="gray",v1qg:="gray",v1qh:="gray",v1qi:="gray",v1qj:="gray",v1qk:="gray",v1ql:="gray",v1qm:="gray",v1qn:="gray",v1qo:="gray",v1qp:="gray",v1v1qa:="gray",v1v1qb:="gray",v1v1qc:="gray",v1v1qd:="gray",v1v1qe:="gray",v1v1qf:="gray",v1v1qg:="gray",v1v1qh:="gray",v1v1qi:="gray",v1v1qj:="gray",v1v1qk:="gray",v1v1ql:="gray",v1v1qm:="gray",v1v1qn:="gray",v1v1qo:="gray",v1v1qp:="gray")
-
-################################################################
-
-(v2qa:="gray",v2qb:="gray",v2qc:="gray",v2qd:="gray",v2qe:="gray",v2qf:="gray",v2qg:="gray",v2qh:="gray",v2qi:="gray",v2qj:="gray",v2qk:="gray",v2ql:="gray",v2qm:="gray",v2qn:="gray",v2qo:="gray",v2qp:="gray",v2vqa:="gray",v2vqb:="gray",v2vqc:="gray",v2vqd:="gray",v2vqe:="gray",v2vqf:="gray",v2vqg:="gray",v2vqh:="gray",v2vqi:="gray",v2vqj:="gray",v2vqk:="gray",v2vql:="gray",v2vqm:="gray",v2vqn:="gray",v2vqo:="gray",v2vqp:="gray")
-
-(v3qa:="gray",v3qb:="gray",v3qc:="gray",v3qd:="gray",v3qe:="gray",v3qf:="gray",v3qg:="gray",v3qh:="gray",v3qi:="gray",v3qj:="gray",v3qk:="gray",v3ql:="gray",v3qm:="gray",v3qn:="gray",v3qo:="gray",v3qp:="gray",v3v3qa:="gray",v3v3qb:="gray",v3v3qc:="gray",v3v3qd:="gray",v3v3qe:="gray",v3v3qf:="gray",v3v3qg:="gray",v3v3qh:="gray",v3v3qi:="gray",v3v3qj:="gray",v3v3qk:="gray",v3v3ql:="gray",v3v3qm:="gray",v3v3qn:="gray",v3v3qo:="gray",v3v3qp:="gray")
-
-################################################################
-
-voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,vza,vzb,vzc,vzd,vze,vzf,vzg,vzh,va[1],va[2],va[3],va[4],va[5],va[6],va[7],va[8],va[9],va[10],va[11],va[12],va[13],va[14],va[15],va[16],va[17],va[18],va[19],va[20],va[21],va[22],va[23],va[24],va[25],va[26],va[27],va[28],va[29],va[30],va[31],va[32],vb[1],vb[2],vb[3],vb[4],vb[5],vb[6],vb[7],vb[8],vb[9],vb[10],vb[11],vb[12],vb[13],vb[14],vb[15],vb[16],vb[17],vb[18],vb[19],vb[20],vb[21],vb[22],vb[23],vb[24],vb[25],vb[26],vb[27],vb[28],vb[29],vb[30],vb[31],vb[32],vc[1],vc[2],vc[3],vc[4],vc[5],vc[6],vc[7],vc[8],vc[9],vc[10],vc[11],vc[12],vc[13],vc[14],vc[15],vc[16],vc[17],vc[18],vc[19],vc[20],vc[21],vc[22],vc[23],vc[24],vc[25],vc[26],vc[27],vc[28],vc[29],vc[30],vc[31],vc[32],vd[1],vd[2],vd[3],vd[4],vd[5],vd[6],vd[7],vd[8],vd[9],vd[10],vd[11],vd[12],vd[13],vd[14],vd[15],vd[16],vd[17],vd[18],vd[19],vd[20],vd[21],vd[22],vd[23],vd[24],vd[25],vd[26],vd[27],vd[28],vd[29],vd[30],vd[31],vd[32],ve[1],ve[2],ve[3],ve[4],ve[5],ve[6],ve[7],ve[8],ve[9],ve[10],ve[11],ve[12],ve[13],ve[14],ve[15],ve[16],ve[17],ve[18],ve[19],ve[20],ve[21],ve[22],ve[23],ve[24],ve[25],ve[26],ve[27],ve[28],ve[29],ve[30],ve[31],ve[32],vf[1],vf[2],vf[3],vf[4],vf[5],vf[6],vf[7],vf[8],vf[9],vf[10],vf[11],vf[12],vf[13],vf[14],vf[15],vf[16],vf[17],vf[18],vf[19],vf[20],vf[21],vf[22],vf[23],vf[24],vf[25],vf[26],vf[27],vf[28],vf[29],vf[30],vf[31],vf[32],vg[1],vg[2],vg[3],vg[4],vg[5],vg[6],vg[7],vg[8],vg[9],vg[10],vg[11],vg[12],vg[13],vg[14],vg[15],vg[16],vg[17],vg[18],vg[19],vg[20],vg[21],vg[22],vg[23],vg[24],vg[25],vg[26],vg[27],vg[28],vg[29],vg[30],vg[31],vg[32],vh[1],vh[2],vh[3],vh[4],vh[5],vh[6],vh[7],vh[8],vh[9],vh[10],vh[11],vh[12],vh[13],vh[14],vh[15],vh[16],vh[17],vh[18],vh[19],vh[20],vh[21],vh[22],vh[23],vh[24],vh[25],vh[26],vh[27],vh[28],vh[29],vh[30],vh[31],vh[32],vqa,vqb,vqc,vqd,vqe,vqf,vqg,vqh,vqi,vqj,vqk,vql,vqm,vqn,vqo,vqp,vvqa,vvqb,vvqc,vvqd,vvqe,vvqf,vvqg,vvqh,vvqi,vvqj,vvqk,vvql,vvqm,vvqn,vvqo,vvqp)
-
-voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v1za,v1zb,v1zc,v1zd,v1ze,v1zf,v1zg,v1zh,v1a[1],v1a[2],v1a[3],v1a[4],v1a[5],v1a[6],v1a[7],v1a[8],v1a[9],v1a[10],v1a[11],v1a[12],v1a[13],v1a[14],v1a[15],v1a[16],v1a[17],v1a[18],v1a[19],v1a[20],v1a[21],v1a[22],v1a[23],v1a[24],v1a[25],v1a[26],v1a[27],v1a[28],v1a[29],v1a[30],v1a[31],v1a[32],v1b[1],v1b[2],v1b[3],v1b[4],v1b[5],v1b[6],v1b[7],v1b[8],v1b[9],v1b[10],v1b[11],v1b[12],v1b[13],v1b[14],v1b[15],v1b[16],v1b[17],v1b[18],v1b[19],v1b[20],v1b[21],v1b[22],v1b[23],v1b[24],v1b[25],v1b[26],v1b[27],v1b[28],v1b[29],v1b[30],v1b[31],v1b[32],v1c[1],v1c[2],v1c[3],v1c[4],v1c[5],v1c[6],v1c[7],v1c[8],v1c[9],v1c[10],v1c[11],v1c[12],v1c[13],v1c[14],v1c[15],v1c[16],v1c[17],v1c[18],v1c[19],v1c[20],v1c[21],v1c[22],v1c[23],v1c[24],v1c[25],v1c[26],v1c[27],v1c[28],v1c[29],v1c[30],v1c[31],v1c[32],v1d[1],v1d[2],v1d[3],v1d[4],v1d[5],v1d[6],v1d[7],v1d[8],v1d[9],v1d[10],v1d[11],v1d[12],v1d[13],v1d[14],v1d[15],v1d[16],v1d[17],v1d[18],v1d[19],v1d[20],v1d[21],v1d[22],v1d[23],v1d[24],v1d[25],v1d[26],v1d[27],v1d[28],v1d[29],v1d[30],v1d[31],v1d[32],v1e[1],v1e[2],v1e[3],v1e[4],v1e[5],v1e[6],v1e[7],v1e[8],v1e[9],v1e[10],v1e[11],v1e[12],v1e[13],v1e[14],v1e[15],v1e[16],v1e[17],v1e[18],v1e[19],v1e[20],v1e[21],v1e[22],v1e[23],v1e[24],v1e[25],v1e[26],v1e[27],v1e[28],v1e[29],v1e[30],v1e[31],v1e[32],v1f[1],v1f[2],v1f[3],v1f[4],v1f[5],v1f[6],v1f[7],v1f[8],v1f[9],v1f[10],v1f[11],v1f[12],v1f[13],v1f[14],v1f[15],v1f[16],v1f[17],v1f[18],v1f[19],v1f[20],v1f[21],v1f[22],v1f[23],v1f[24],v1f[25],v1f[26],v1f[27],v1f[28],v1f[29],v1f[30],v1f[31],v1f[32],v1g[1],v1g[2],v1g[3],v1g[4],v1g[5],v1g[6],v1g[7],v1g[8],v1g[9],v1g[10],v1g[11],v1g[12],v1g[13],v1g[14],v1g[15],v1g[16],v1g[17],v1g[18],v1g[19],v1g[20],v1g[21],v1g[22],v1g[23],v1g[24],v1g[25],v1g[26],v1g[27],v1g[28],v1g[29],v1g[30],v1g[31],v1g[32],v1h[1],v1h[2],v1h[3],v1h[4],v1h[5],v1h[6],v1h[7],v1h[8],v1h[9],v1h[10],v1h[11],v1h[12],v1h[13],v1h[14],v1h[15],v1h[16],v1h[17],v1h[18],v1h[19],v1h[20],v1h[21],v1h[22],v1h[23],v1h[24],v1h[25],v1h[26],v1h[27],v1h[28],v1h[29],v1h[30],v1h[31],v1h[32],v1qa,v1qb,v1qc,v1qd,v1qe,v1qf,v1qg,v1qh,v1qi,v1qj,v1qk,v1ql,v1qm,v1qn,v1qo,v1qp,v1v1qa,v1v1qb,v1v1qc,v1v1qd,v1v1qe,v1v1qf,v1v1qg,v1v1qh,v1v1qi,v1v1qj,v1v1qk,v1v1ql,v1v1qm,v1v1qn,v1v1qo,v1v1qp)
-
-#################################################################
-
-voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v2za,v2zb,v2zc,v2zd,v2ze,v2zf,v2zg,v2zh,v2a[1],v2a[2],v2a[3],v2a[4],v2a[5],v2a[6],v2a[7],v2a[8],v2a[9],v2a[10],v2a[11],v2a[12],v2a[13],v2a[14],v2a[15],v2a[16],v2a[17],v2a[18],v2a[19],v2a[20],v2a[21],v2a[22],v2a[23],v2a[24],v2a[25],v2a[26],v2a[27],v2a[28],v2a[29],v2a[30],v2a[31],v2a[32],v2b[1],v2b[2],v2b[3],v2b[4],v2b[5],v2b[6],v2b[7],v2b[8],v2b[9],v2b[10],v2b[11],v2b[12],v2b[13],v2b[14],v2b[15],v2b[16],v2b[17],v2b[18],v2b[19],v2b[20],v2b[21],v2b[22],v2b[23],v2b[24],v2b[25],v2b[26],v2b[27],v2b[28],v2b[29],v2b[30],v2b[31],v2b[32],v2c[1],v2c[2],v2c[3],v2c[4],v2c[5],v2c[6],v2c[7],v2c[8],v2c[9],v2c[10],v2c[11],v2c[12],v2c[13],v2c[14],v2c[15],v2c[16],v2c[17],v2c[18],v2c[19],v2c[20],v2c[21],v2c[22],v2c[23],v2c[24],v2c[25],v2c[26],v2c[27],v2c[28],v2c[29],v2c[30],v2c[31],v2c[32],v2d[1],v2d[2],v2d[3],v2d[4],v2d[5],v2d[6],v2d[7],v2d[8],v2d[9],v2d[10],v2d[11],v2d[12],v2d[13],v2d[14],v2d[15],v2d[16],v2d[17],v2d[18],v2d[19],v2d[20],v2d[21],v2d[22],v2d[23],v2d[24],v2d[25],v2d[26],v2d[27],v2d[28],v2d[29],v2d[30],v2d[31],v2d[32],v2e[1],v2e[2],v2e[3],v2e[4],v2e[5],v2e[6],v2e[7],v2e[8],v2e[9],v2e[10],v2e[11],v2e[12],v2e[13],v2e[14],v2e[15],v2e[16],v2e[17],v2e[18],v2e[19],v2e[20],v2e[21],v2e[22],v2e[23],v2e[24],v2e[25],v2e[26],v2e[27],v2e[28],v2e[29],v2e[30],v2e[31],v2e[32],v2f[1],v2f[2],v2f[3],v2f[4],v2f[5],v2f[6],v2f[7],v2f[8],v2f[9],v2f[10],v2f[11],v2f[12],v2f[13],v2f[14],v2f[15],v2f[16],v2f[17],v2f[18],v2f[19],v2f[20],v2f[21],v2f[22],v2f[23],v2f[24],v2f[25],v2f[26],v2f[27],v2f[28],v2f[29],v2f[30],v2f[31],v2f[32],v2g[1],v2g[2],v2g[3],v2g[4],v2g[5],v2g[6],v2g[7],v2g[8],v2g[9],v2g[10],v2g[11],v2g[12],v2g[13],v2g[14],v2g[15],v2g[16],v2g[17],v2g[18],v2g[19],v2g[20],v2g[21],v2g[22],v2g[23],v2g[24],v2g[25],v2g[26],v2g[27],v2g[28],v2g[29],v2g[30],v2g[31],v2g[32],v2h[1],v2h[2],v2h[3],v2h[4],v2h[5],v2h[6],v2h[7],v2h[8],v2h[9],v2h[10],v2h[11],v2h[12],v2h[13],v2h[14],v2h[15],v2h[16],v2h[17],v2h[18],v2h[19],v2h[20],v2h[21],v2h[22],v2h[23],v2h[24],v2h[25],v2h[26],v2h[27],v2h[28],v2h[29],v2h[30],v2h[31],v2h[32],v2qa,v2qb,v2qc,v2qd,v2qe,v2qf,v2qg,v2qh,v2qi,v2qj,v2qk,v2ql,v2qm,v2qn,v2qo,v2qp,v2vqa,v2vqb,v2vqc,v2vqd,v2vqe,v2vqf,v2vqg,v2vqh,v2vqi,v2vqj,v2vqk,v2vql,v2vqm,v2vqn,v2vqo,v2vqp)
-
-voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v3za,v3zb,v3zc,v3zd,v3ze,v3zf,v3zg,v3zh,v3a[1],v3a[2],v3a[3],v3a[4],v3a[5],v3a[6],v3a[7],v3a[8],v3a[9],v3a[10],v3a[11],v3a[12],v3a[13],v3a[14],v3a[15],v3a[16],v3a[17],v3a[18],v3a[19],v3a[20],v3a[21],v3a[22],v3a[23],v3a[24],v3a[25],v3a[26],v3a[27],v3a[28],v3a[29],v3a[30],v3a[31],v3a[32],v3b[1],v3b[2],v3b[3],v3b[4],v3b[5],v3b[6],v3b[7],v3b[8],v3b[9],v3b[10],v3b[11],v3b[12],v3b[13],v3b[14],v3b[15],v3b[16],v3b[17],v3b[18],v3b[19],v3b[20],v3b[21],v3b[22],v3b[23],v3b[24],v3b[25],v3b[26],v3b[27],v3b[28],v3b[29],v3b[30],v3b[31],v3b[32],v3c[1],v3c[2],v3c[3],v3c[4],v3c[5],v3c[6],v3c[7],v3c[8],v3c[9],v3c[10],v3c[11],v3c[12],v3c[13],v3c[14],v3c[15],v3c[16],v3c[17],v3c[18],v3c[19],v3c[20],v3c[21],v3c[22],v3c[23],v3c[24],v3c[25],v3c[26],v3c[27],v3c[28],v3c[29],v3c[30],v3c[31],v3c[32],v3d[1],v3d[2],v3d[3],v3d[4],v3d[5],v3d[6],v3d[7],v3d[8],v3d[9],v3d[10],v3d[11],v3d[12],v3d[13],v3d[14],v3d[15],v3d[16],v3d[17],v3d[18],v3d[19],v3d[20],v3d[21],v3d[22],v3d[23],v3d[24],v3d[25],v3d[26],v3d[27],v3d[28],v3d[29],v3d[30],v3d[31],v3d[32],v3e[1],v3e[2],v3e[3],v3e[4],v3e[5],v3e[6],v3e[7],v3e[8],v3e[9],v3e[10],v3e[11],v3e[12],v3e[13],v3e[14],v3e[15],v3e[16],v3e[17],v3e[18],v3e[19],v3e[20],v3e[21],v3e[22],v3e[23],v3e[24],v3e[25],v3e[26],v3e[27],v3e[28],v3e[29],v3e[30],v3e[31],v3e[32],v3f[1],v3f[2],v3f[3],v3f[4],v3f[5],v3f[6],v3f[7],v3f[8],v3f[9],v3f[10],v3f[11],v3f[12],v3f[13],v3f[14],v3f[15],v3f[16],v3f[17],v3f[18],v3f[19],v3f[20],v3f[21],v3f[22],v3f[23],v3f[24],v3f[25],v3f[26],v3f[27],v3f[28],v3f[29],v3f[30],v3f[31],v3f[32],v3g[1],v3g[2],v3g[3],v3g[4],v3g[5],v3g[6],v3g[7],v3g[8],v3g[9],v3g[10],v3g[11],v3g[12],v3g[13],v3g[14],v3g[15],v3g[16],v3g[17],v3g[18],v3g[19],v3g[20],v3g[21],v3g[22],v3g[23],v3g[24],v3g[25],v3g[26],v3g[27],v3g[28],v3g[29],v3g[30],v3g[31],v3g[32],v3h[1],v3h[2],v3h[3],v3h[4],v3h[5],v3h[6],v3h[7],v3h[8],v3h[9],v3h[10],v3h[11],v3h[12],v3h[13],v3h[14],v3h[15],v3h[16],v3h[17],v3h[18],v3h[19],v3h[20],v3h[21],v3h[22],v3h[23],v3h[24],v3h[25],v3h[26],v3h[27],v3h[28],v3h[29],v3h[30],v3h[31],v3h[32],v3qa,v3qb,v3qc,v3qd,v3qe,v3qf,v3qg,v3qh,v3qi,v3qj,v3qk,v3ql,v3qm,v3qn,v3qo,v3qp,v3v3qa,v3v3qb,v3v3qc,v3v3qd,v3v3qe,v3v3qf,v3v3qg,v3v3qh,v3v3qi,v3v3qj,v3v3qk,v3v3ql,v3v3qm,v3v3qn,v3v3qo,v3v3qp)
-
-end
-
-
-
 #END OF PROGRAM########################################
-#####################################################################################################################
-
-
-
+#######################################################
