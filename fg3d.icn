@@ -173,7 +173,7 @@ end
 
 procedure helpbox1()
 
-win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
 WWrite(win1,"To come back to these instructions press ?")
 WWrite(win1,"< gives more in-depth instructions. >,= and : are reference guides")
@@ -191,7 +191,7 @@ end
 
 procedure helpbox3()
 
-win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
  #WAttrib("dx=1", "dy=1")
         WWrite(win1,"           [+y]               ")
@@ -212,7 +212,7 @@ end
 
 procedure helpbox2()
 
-win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
 WWrite(win1,"/ is input prompt, \ is erase all")
 WWrite(win1,"cube=x,y,z,s,color") 
@@ -232,7 +232,7 @@ procedure helpbox4()
 
 #####################################################
 
-win1 := WOpen("size=900, 200", "fg=yellow", "bg=black")
+win1 := WOpen("size=900,200", "fg=yellow", "bg=black")
 
 WWrite(win1,"Color (RGB) values must be entered in this format: 65000,65000,65000")
 WWrite(win1,"Here are some examples for different shades of red:")
@@ -253,7 +253,7 @@ end
 
 procedure helpbox5()
 
-win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
 WWrite(win1,"inpvox1 = 18,0,1,1,rgb")
 WWrite(win1,"inpvox2 = x,?y,z,s,rgb")
