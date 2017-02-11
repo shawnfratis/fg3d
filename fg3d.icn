@@ -261,6 +261,8 @@ WWrite(win1,"Note: voxels might take a few secs to generate.")
 WWrite(win1,"% for interpereter.")
 WWrite(win1,"input psplane + color for preset plane.")
 WWrite(win1,"input vox3 thru vox9 for voxel functions.")
+WWrite(win1,"input skysphere1,skysphere2,groundplane,skyplane")
+WWrite(win1,"for textured objects")
 end
 
 ########################################################
@@ -463,8 +465,8 @@ procedure inputprompt()
         ss4 :=( "sphere")
         ss5 :=( "psplane")
         ss6 :=( "spokes")
-        ss7 :=( "notused")
-        ss8 :=( "notused")
+        ss7 :=( "skysphere1")
+        ss8 :=( "skysphere2")
         ss9 :=( "vox3")
         ss10 :=( "vox4")
         ss11 :=( "vox5")
@@ -472,8 +474,8 @@ procedure inputprompt()
         ss13 :=( "vox7")
         ss14 :=( "vox8")
         ss15 :=( "vox9")
-        ss16 :=( "notused")
-        ss17 :=( "notused")
+        ss16 :=( "groundplane")
+        ss17 :=( "skyplane")
         ss18 :=( "cam")
         ss19 :=( "inpvox1")
         ss20 :=( "inpvox2")
@@ -494,9 +496,9 @@ procedure inputprompt()
         else
         if s1== ss6 then spokes01()
         else
-        if s1== ss7 then voxgrid01() 
+        if s1== ss7 then texskysphere01() 
         else
-        if s1== ss8 then voxgrid02() 
+        if s1== ss8 then texskysphere02() 
         else
         if s1== ss9 then voxgrid03()
         else
@@ -512,9 +514,9 @@ procedure inputprompt()
         else
         if s1== ss15 then voxgrid09()
         else
-        if s1== ss16 then notused
+        if s1== ss16 then texgroundplane01()
         else
-        if s1== ss17 then notused
+        if s1== ss17 then texskyplane01()
         else
         if s1== ss18 then seteyein()
         else
@@ -607,6 +609,113 @@ procedure PresetPlane(rgb)
 Fg(rgb)
 
 FillPolygon(-15,0,15,15,0,15,15,0,-15,-15,0,-15)
+
+end
+
+##############Begin OpenGL 3D TEX##############################
+############################################################
+
+procedure texcube01(ipx,ipy,ipz,ips)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png")#change as needed
+
+DrawCube(ipx,ipy,ipz,ips)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png")#change as needed
+
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png","texcoord 0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+
+procedure texskysphere02()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=sphere2.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texskysphere01()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=sphere1.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texgroundplane01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=gplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texskyplane01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
+
+WAttrib("texmode=off") 
 
 end
 
@@ -1703,4 +1812,6 @@ end
 
 ###########################################################
 #END OF PROGRAM########################################
-#######################################################
+#####################################################
+
+
