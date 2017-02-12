@@ -32,8 +32,7 @@ procedure main()
 
 Fg("green")
 
-WWrite("Welcome to fg3d. Press ? for basic instruction screen")
-WWrite("< gives more in-depth instructions. > and : are reference guides")
+message()
 
 ###############################
       
@@ -135,7 +134,7 @@ x2 := y2 := &null
               }
 
 "\/": {      
-              inputprompt()
+              comlist01()
 
               }
 "\,": { 
@@ -170,6 +169,17 @@ WDone()
 end
 
 #########################################################
+
+procedure message()
+
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
+
+WWrite(win1,"Welcome to fg3d. Press ? for basic instruction screen")
+WWrite(win1,"< gives more in-depth instructions. > and : are reference guides")
+
+end
+
+###########################################################
 
 procedure helpbox1()
 
@@ -264,144 +274,8 @@ WWrite(win1,"input vox3 thru vox9 for voxel functions.")
 WWrite(win1,"input skysphere1,skysphere2,groundplane,skyplane")
 WWrite(win1,"for textured objects")
 end
-
-########################################################
-
-procedure inputCube01()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4
-      rgb := s5  
-   
-  inpglcube01(ipx,ipy,ipz,ips,rgb)
-
-return()
-
-end
-
 #########################################################
-
-procedure inputSphere01()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4
-      rgb := s5  
-   
-  inpglsphere01(ipx,ipy,ipz,ips,rgb)
-
-return()
-
-end
-
-########################################################
-
-procedure inputCyl01()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-      s6 := WRead()
-      s7 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4 
-      ipq := s5  
-      ipa := s6
-      rgb := s7   
-   
-  inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa,rgb)
-
-return()
-
-end
-
-################################################################
-
-procedure inputPlane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb)
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-      s6 := WRead()
-      s7 := WRead()
-      s8 := WRead()
-      s9 := WRead()
-      s10 := WRead()
-      s11 := WRead()
-      s12 := WRead()
-      s13 := WRead()
-        
-      px  := s1
-      py  := s2
-      pz  := s3
-      pxx := s4
-      pyy := s5 
-      pzz := s6  
-      pxxx := s7
-      pyyy := s8
-      pzzz := s9
-      pxxxx := s10
-      pyyyy := s11
-      pzzzz := s12 
-      pzrgb := s13          
-   
-  inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,pzrgb)
-
-return()
-
-end
-
-########################################################
-
-procedure seteyein()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-      s6 := WRead()
-      s7 := WRead()
-      s8 := WRead()
-      s9 := WRead()
-      
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4 
-      ipq := s5
-      ipw := s6     
-      ipb := s7
-      ipu := s8
-      ipt := s9
- 
-  seteye(ipx,ipy,ipz,ips,ipq,ipw,ipb,ipu,ipt)
-
-end
-
-#################################################
+#########################################################
 
 procedure voxin01()
 
@@ -454,86 +328,6 @@ procedure psplane01()
 end
 
 #################################################
-
-procedure inputprompt()
- 
-        s1 := WRead()
-
-        ss1 :=( "cube")
-        ss2 :=( "plane")
-        ss3 :=( "cyl")
-        ss4 :=( "sphere")
-        ss5 :=( "psplane")
-        ss6 :=( "spokes")
-        ss7 :=( "skysphere1")
-        ss8 :=( "skysphere2")
-        ss9 :=( "vox3")
-        ss10 :=( "vox4")
-        ss11 :=( "vox5")
-        ss12 :=( "vox6")
-        ss13 :=( "vox7")
-        ss14 :=( "vox8")
-        ss15 :=( "vox9")
-        ss16 :=( "groundplane")
-        ss17 :=( "skyplane")
-        ss18 :=( "cam")
-        ss19 :=( "inpvox1")
-        ss20 :=( "inpvox2")
-        ss21 :=( "int")
-        ss22 :=( "notused")
-        ss23 :=( "notused")
-      
-
-        if s1== ss1 then inputCube01() 
-        else
-        if s1== ss2 then inputPlane01() 
-        else
-        if s1== ss3 then inputCyl01() 
-        else
-        if s1== ss4 then inputSphere01() 
-        else
-        if s1== ss5 then psplane01()
-        else
-        if s1== ss6 then spokes01()
-        else
-        if s1== ss7 then texskysphere01() 
-        else
-        if s1== ss8 then texskysphere02() 
-        else
-        if s1== ss9 then voxgrid03()
-        else
-        if s1== ss10 then voxgrid04()
-        else
-        if s1== ss11 then voxgrid05()
-        else
-        if s1== ss12 then voxgrid06()
-        else
-        if s1== ss13 then voxgrid07()
-        else
-        if s1== ss14 then voxgrid08()
-        else
-        if s1== ss15 then voxgrid09()
-        else
-        if s1== ss16 then texgroundplane01()
-        else
-        if s1== ss17 then texskyplane01()
-        else
-        if s1== ss18 then seteyein()
-        else
-        if s1== ss19 then voxin01()
-        else
-        if s1== ss20 then voxin02()
-        else
-        if s1== ss21 then int()
-        else
-        if s1== ss22 then notused
-        else
-        if s1== ss23 then notused 
-
-    return
-
-end
-
 #############end input cubes etc#################
 ##############Begin OpenGL 3D##############################
 
@@ -1256,12 +1050,12 @@ end
 ######################################################
 
 #begin interpereter
-
-global WHITE,MFLAG,PRTBL	
+global WHITE,MFLAG,PRTBL 	
 
 procedure int(arg)
-   
+
    local line, lno, pline
+
    WClose()
 
 	WHITE := ' \t\n\f'
@@ -1325,6 +1119,11 @@ procedure int(arg)
 			else if (tab(upto(WHITE)) | tab(0)) ==
 				("help" | "h" | "?") then {
 				helpprog()
+                 }
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("commands" | "c" | "!") then {
+				commandlist()
 			}
 
 			else if (tab(upto(WHITE)) | tab(0)) ==
@@ -1334,7 +1133,6 @@ procedure int(arg)
 
 			else {
 			       	write("Syntax Error: ",line)
-                               # WWrite("Syntax Error: ",line)
 				helpprog()
 			}
 		}
@@ -1343,10 +1141,6 @@ procedure int(arg)
 		writes("Input> ")
                
 	}
-
-#"\e": break{  #make me work
-
-#}
 
 end
 
@@ -1537,6 +1331,34 @@ procedure helpprog()
 	}
 
 	every write(!helpmsg)
+
+end
+
+procedure commandlist()
+
+	static comlst
+
+	initial {
+		comlist := [
+		"<<< command list goes here>>>",
+		"",
+		"lineno expression",
+		"",
+		"<<< Command Summary >>>",
+		" (1st character works)",
+		"",
+		"read [ file ]",
+		"write [ file ]",
+		"list [ begno [ endno ] ]",
+		"delete [ begno [ endno ] ]",
+		"sequence [ begno [ increment ] ]",
+		"execute [ args ]",
+		"quit",
+		"help"
+		]
+	}
+
+	every write(!comlist)
 
 end
 
@@ -1817,5 +1639,28 @@ end
 ###########################################################
 #END OF PROGRAM########################################
 #####################################################
+
+procedure comlist01()
+
+#inpglcube01()#xyzsc
+#inpglsphere01()#xyzsc
+#inpglcylinder01()#xyzstbc
+#inpglplane01()#xyzxyzxyzxyz
+#seteye()#_________
+#voxgrid01()#_____
+#voxgrid02()#_____
+#psplane01()#c
+#texcube01()#xyzs tex
+#texcylinder01()#xyzstb tex
+#texplane01() #tex
+#texskysphere02() #tex
+#texskysphere01() #tex
+#texgroundplane01() #tex
+#texskyplane01() #tex
+#tmod01#()#xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed
+#trimesh01()#
+#voxgrids
+
+end
 
 
