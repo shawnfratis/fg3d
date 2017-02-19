@@ -176,6 +176,7 @@ win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
 WWrite(win1,"Welcome to fg3d. Press ? for basic instruction screen")
 WWrite(win1,"< gives more in-depth instructions. > and : are reference guides")
+WWrite(win1,"NOTES: Minimize this window. Voxels might take a while to generate.")
 
 end
 
@@ -274,47 +275,8 @@ WWrite(win1,"input vox3 thru vox9 for voxel functions.")
 WWrite(win1,"input skysphere1,skysphere2,groundplane,skyplane")
 WWrite(win1,"for textured objects")
 end
-#########################################################
-#########################################################
-
-procedure voxin01()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-            
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4 
-      ipc := s5
-
-voxgrid05(ipx,ipy,ipz,ips,ipc)
-
-end
 
 #################################################
-
-procedure voxin02()
-
-      s1 := WRead()
-      s2 := WRead()
-      s3 := WRead()
-      s4 := WRead()
-      s5 := WRead()
-            
-      ipx := s1
-      ipy := s2
-      ipz := s3
-      ips := s4 
-      ipc := s5
-
-voxgrid01(ipx,ipy,ipz,ips,ipc)
-
-end
-
 #################################################
 
 procedure psplane01()
@@ -327,9 +289,8 @@ procedure psplane01()
 
 end
 
-#################################################
 #############end input cubes etc#################
-##############Begin OpenGL 3D##############################
+##############Begin OpenGL 3D####################
 
 procedure seteye(px,py,pz,dx,dy,dz,qx,qy,qz)
 
@@ -1111,6 +1072,52 @@ procedure int(arg)
 				listprog()
 			}
 
+                #########################################
+
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene01" | "l") then {
+				listprog01()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene02" | "l") then {
+				listprog02()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene03" | "l") then {
+				listprog03()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene04" | "l") then {
+				listprog04()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene05" | "l") then {
+				listprog05()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene06" | "l") then {
+				listprog06()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene07" | "l") then {
+				listprog07()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene08" | "l") then {
+				listprog08()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene09" | "l") then {
+				listprog09()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene10" | "l") then {
+				listprog10()
+			}
+
+
+                #########################################
+
 			else if (tab(upto(WHITE)) | tab(0)) ==
 				("execute" | "e") then {
 				execprog()
@@ -1171,9 +1178,7 @@ procedure execprog()
 	command ||:= " ; rm -f " || tmpfile
 
 	system(command)
-
-   #WClose()
-
+ 
 end
 
 procedure seqprog()
@@ -1222,10 +1227,10 @@ procedure readprog()
 	PRTBL := table()
 
 	in := open(readfile,"r")
-	lno := 10
+	lno := 1
 	every line := !in do {
 		PRTBL[lno] := line
-		lno +:= 10
+		lno +:= 1
 	}
 	close(in)
 
@@ -1305,7 +1310,259 @@ procedure listprog()
 	}
 
 end
+###################################################
 
+procedure listprog01()
+   local begno, endno, prog, l, lno
+
+	begno := 1641
+	endno := 1673
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog02()
+   local begno, endno, prog, l, lno
+
+	begno := 1677
+	endno := 1690
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog03()
+   local begno, endno, prog, l, lno
+
+	begno := 1694
+	endno := 1725
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog04()
+   local begno, endno, prog, l, lno
+
+	begno := 1729
+	endno := 1738
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog05()
+   local begno, endno, prog, l, lno
+
+	begno := 1760
+	endno := 1769
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog06()
+   local begno, endno, prog, l, lno
+
+	begno := 1773
+	endno := 1785
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog07()
+   local begno, endno, prog, l, lno
+
+	begno := 1789
+	endno := 1816
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog08()
+   local begno, endno, prog, l, lno
+
+	begno := 1820
+	endno := 1843
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog09()
+   local begno, endno, prog, l, lno
+
+	begno := 1847
+	endno := 1868
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog10()
+   local begno, endno, prog, l, lno
+
+	begno := 1874
+	endno := 1880
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+#######################################################
 procedure helpprog()
 
 	static helpmsg
@@ -1341,20 +1598,22 @@ procedure commandlist()
 	initial {
 		comlist := [
 		"<<< command list goes here>>>",
-		"",
-		"lineno expression",
-		"",
-		"<<< Command Summary >>>",
-		" (1st character works)",
-		"",
-		"read [ file ]",
-		"write [ file ]",
-		"list [ begno [ endno ] ]",
-		"delete [ begno [ endno ] ]",
-		"sequence [ begno [ increment ] ]",
-		"execute [ args ]",
-		"quit",
-		"help"
+		"inpglcube01() #xyzsc",
+           "inpglsphere01() #xyzsc",
+           "inpglcylinder01() #xyzstbc",
+           "inpglplane01() #xyzxyzxyzxyzc",
+           "seteye() #px,py,pz,dx,dy,dz,qx,qy,qz",
+           "psplane01() #c",
+           "texcube01() #xyzs tex",
+           "texcylinder01() #xyzstb tex",
+           "texplane01() #tex",
+           "texskysphere02() #tex",
+           "texskysphere01() #tex",
+           "texgroundplane01() #tex",
+           "texskyplane01() #tex",
+           "trimesh01() #",
+           "scenes 01-10 #"
+
 		]
 	}
 
@@ -1379,8 +1638,7 @@ end
 ######################################################
 ###############################################################
 
-
-procedure spokes01()
+procedure scene01()
 
 i := 15
 
@@ -1396,7 +1654,6 @@ i := 15
       radius, i, angle)
       angle +:= incr
       }
-
  
 end
 
@@ -1415,9 +1672,9 @@ DrawCube(x + r * cos(angle),y + r * sin(angle), 0, .5)
    
 end
 
-###### begin voxel, grids###################################
+###################################################
 
-procedure voxgrid01(x,y,z,s,rgb)
+procedure scene02()
 
 v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
 
@@ -1434,7 +1691,7 @@ end
 
 #######################################################
 
-procedure voxgrid02()
+procedure scene03()
 
 Fg("blue")
 
@@ -1469,7 +1726,7 @@ end
 
 #######################################################
 
-procedure voxgrid03()
+procedure scene04()
 
 voxBase(0,.1,0,0.5,1,1.5,2,-2,.5)
 voxBase(1,.1,0,0.5,1,1.5,2,-3,.5)
@@ -1500,28 +1757,20 @@ end
 
 #######################################################
 
-procedure voxgrid04()
+procedure scene05()
 
-voxgrid04master(18,1,0,1)
-voxgrid04master(18,1,1,1)
-voxgrid04master(18,1,2,1)
-voxgrid04master(18,1,3,1)
-voxgrid04master(14,1,4,1)
-voxgrid04master(13,1,5,1)
-
-end
-
-#######################################################
-
-procedure voxgrid05(x,y,z,s,c)
-
-voxgrid04master(x,z,y,s,c)
+scene06(18,1,0,1)
+scene06(18,1,1,1)
+scene06(18,1,2,1)
+scene06(18,1,3,1)
+scene06(14,1,4,1)
+scene06(13,1,5,1)
 
 end
 
 #######################################################
 
-procedure voxgrid04master(wq,oq,zq,sq,rgb)
+procedure scene06()
 
 Fg(rgb)
 
@@ -1537,9 +1786,7 @@ end
 
 ##########################################################
 
-#procedure voxgrid06(x,y,z,s,rgb)
-
-procedure voxgrid06()
+procedure scene07()
 
 v:=[0,0.5,1,1.5,2,2.5,3,1]
 
@@ -1570,8 +1817,7 @@ end
 
 #################################################################
 
-#procedure voxgrid07(x,y,z,s,rgb)
-procedure voxgrid07()
+procedure scene08()
 
 #x := 0
 #y := 0
@@ -1598,7 +1844,7 @@ end
 
 #############################
 
-procedure voxgrid08()
+procedure scene09()
 
 colors:= ["red", "blue", "green","yellow", "purple", "white", "black"] 
 
@@ -1623,11 +1869,7 @@ end
 
 ###############################################################
 
-procedure voxgrid09()
-
-win1 := WOpen("size=800, 200", "fg=yellow", "bg=black")
-WWrite(win1,"Note: voxels might take a while to generate.")
-WWrite(win1,"Minimize this window.")
+procedure scene10()
 
 x1 := [1,4,5,7]
 x2 := [2,3,4,5]
@@ -1642,24 +1884,23 @@ end
 
 procedure comlist01()
 
-#inpglcube01()#xyzsc
-#inpglsphere01()#xyzsc
-#inpglcylinder01()#xyzstbc
-#inpglplane01()#xyzxyzxyzxyz
-#seteye()#_________
-#voxgrid01()#_____
-#voxgrid02()#_____
-#psplane01()#c
-#texcube01()#xyzs tex
-#texcylinder01()#xyzstb tex
+#inpglcube01() #xyzsc
+#inpglsphere01() #xyzsc
+#inpglcylinder01() #xyzstbc
+#inpglplane01() #xyzxyzxyzxyzc
+#seteye() #px,py,pz,dx,dy,dz,qx,qy,qz
+#psplane01() #c
+#texcube01() #xyzs tex
+#texcylinder01() #xyzstb tex
 #texplane01() #tex
 #texskysphere02() #tex
 #texskysphere01() #tex
 #texgroundplane01() #tex
 #texskyplane01() #tex
-#tmod01#()#xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed
-#trimesh01()#
-#voxgrids
+#tmod01#() #xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed
+#trimesh01() #
+#scenes 01-10 #
+#WriteImage("fg01.png")
 
 end
 
