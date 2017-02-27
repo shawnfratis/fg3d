@@ -61,15 +61,15 @@ x2 := y2 := &null
               }
 
 "\s": { 
-              #not used
+              tank01()             
 
               }
-"\p": { 
-              #not used
+"\q": { 
+              tank02()
 
               }
-"\q":{
-              #not used
+"\a":{
+              tank03()
 
               }
 "\$": {      
@@ -92,7 +92,7 @@ x2 := y2 := &null
 	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
     
               }
-"\a": {
+"\p": {
 	         WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.0,0.0,1.0")
     
               }
@@ -176,6 +176,7 @@ win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
 WWrite(win1,"Welcome to fg3d. Press ? for basic instruction screen")
 WWrite(win1,"< gives more in-depth instructions. > and : are reference guides")
+WWrite(win1,"% to jump into interpeter.")
 WWrite(win1,"NOTES: Minimize this window. Voxels might take a while to generate.")
 
 end
@@ -188,13 +189,6 @@ win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
 WWrite(win1,"To come back to these instructions press ?")
 WWrite(win1,"< gives more in-depth instructions. >,= and : are reference guides")
-WWrite(win1,"Generating an example cube:") 
-WWrite(win1,"Press / to start command line. Type cube, then enter.")
-WWrite(win1,"Type 0, enter. Type 0.5, enter. Type -2, enter. Type .5, enter.") 
-WWrite(win1,"Finally, type 60000,10000,10000 then enter.")
-WWrite(win1,"After entering object, press g or h refresh screen.") 
-WWrite(win1,"This will create a red colored cube in the center of the screen.")
-WWrite(win1,"These numbers are the X, Y, Z, size and color values of the cube.")  
 
 end
 
@@ -225,7 +219,7 @@ procedure helpbox2()
 
 win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
-WWrite(win1,"/ is input prompt, \ is erase all")
+WWrite(win1,"/ main command, \ is erase all")
 WWrite(win1,"cube=x,y,z,s,color") 
 WWrite(win1,"cyl=x,y,z,h,r1,r2,color") 
 WWrite(win1,"sphere=x,y,z,r,color")
@@ -266,14 +260,77 @@ procedure helpbox5()
 
 win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
 
-WWrite(win1,"inpvox1 = 18,0,1,1,rgb")
-WWrite(win1,"inpvox2 = x,?y,z,s,rgb")
 WWrite(win1,"Note: voxels might take a few secs to generate.")
 WWrite(win1,"% for interpereter.")
-WWrite(win1,"input psplane + color for preset plane.")
-WWrite(win1,"input vox3 thru vox9 for voxel functions.")
-WWrite(win1,"input skysphere1,skysphere2,groundplane,skyplane")
-WWrite(win1,"for textured objects")
+
+end
+
+#################################################
+#################################################
+
+procedure tank01()   
+
+repeat {
+case Event() of {
+&ldrag:{
+Eye(0,&y,0,0 ,&y,-1, 0,1,0)
+}
+"\e": break{
+}
+}
+}
+       
+end
+
+#################################################
+
+procedure tank02()   
+
+repeat {
+case Event() of {
+&ldrag:{
+Eye(0,&x,0,0 ,0,-1, 0,1,0)
+}
+"\e": break{
+}
+}
+}
+       
+end
+
+#################################################
+
+procedure tank03()   
+
+repeat {
+case Event() of {
+&ldrag:{
+Eye(0,0,&x,0 ,0,-1, 0,1,0)
+}
+"\e": break{
+}
+}
+}
+       
+end
+
+#################################################
+
+procedure inpgleye01()
+
+repeat {
+
+case Event() of {
+&ldrag:{
+
+Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
+
+}
+"\e": break{
+}
+}
+}
+   
 end
 
 #################################################
@@ -282,7 +339,7 @@ end
 procedure psplane01()
 
       s1 := WRead()
-             
+               
       ipx := s1
    
      PresetPlane(ipx)
@@ -339,25 +396,6 @@ FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
 end
 
 ##################################################
-
-procedure inpgleye01()
-
-repeat {
-
-case Event() of {
-&ldrag:{
-
-Eye(&x,&y,&y,0 ,0,-1, 0,1,0)
-
-}
-"\e": break{
-}
-}
-}
-   
-end
-
-##############################################################
 
 procedure PresetPlane(rgb)
 
@@ -610,98 +648,6 @@ Fg(dad)
 end
 
 ############################################################
-
-#add ? for params as an option?
-#holes still need to be fixed
-
-procedure trimesh01()
-
-(ha01 := -.1,ha02 := -.2,ha03 := -.1,ha04 := -.2,ha05 := -.1,ha06 := -.2,ha07 := -.1,ha08 := -.2,ha09 := -.1,ha10 := -.2,ha11 := -.1,ha12 := -.2,ha13 := -.1,ha14 := -.2,ha15 := -.1,ha16 := -.2,ha17 := -.1)
-
-(hb01 := -.2,hb02 := -.1,hb03 := -.2,hb04 := -.1,hb05 := -.2,hb06 := -.1,hb07 := -.2,hb08 := -.1,hb09 := -.2,hb10 := -.1,hb11 := -.2,hb12 := -.1,hb13 := -.2,hb14 := -.1,hb15 := -.2,hb16 := -.1,hb17 := -.2)
-
-(qa01 := -.1,qa02 := -.2,qa03 := -.1,qa04 := -.2,qa05 := -.1,qa06 := -.2,qa07 := -.1,qa08 := -.2,qa09 := -.1,qa10 := -.2,qa11 := -.1,qa12 := -.2,qa13 := -.1,qa14 := -.2,qa15 := -.1,qa16 := -.2,qa17 := -.1)
-
-(he01 := -.2,he02 := -.1,he03 := -.2,he04 := -.1,he05 := -.2,he06 := -.1,he07 := -.2,he08 := -.1,he09 := -.2,he10 := -.1,he11 := -.2,he12 := -.1,he13 := -.2,he14 := -.1,he15 := -.2,he16 := -.1,he17 := -.2)
-
-(qb01 := -.1,qb02 := -.2,qb03 := -.1,qb04 := -.2,qb05 := -.1,qb06 := -.2,qb07 := -.1,qb08 := -.2,qb09 := -.1,qb10 := -.2,qb11 := -.1,qb12 := -.2,qb13 := -.1,qb14 := -.2,qb15 := -.1,qb16 := -.2,qb17 := -.1)
-
-(hh01 := -.2,hh02 := -.1,hh03 := -.2,hh04 := -.1,hh05 := -.2,hh06 := -.1,hh07 := -.2,hh08 := -.1,hh09 := -.2,hh10 := -.1,hh11 := -.2,hh12 := -.1,hh13 := -.2,hh14 := -.1,hh15 := -.2,hh16 := -.1,hh17 := -.2)
-
-(qc01 := -.1,qc02 := -.2,qc03 := -.1,qc04 := -.2,qc05 := -.1,qc06 := -.2,qc07 := -.1,qc08 := -.2,qc09 := -.1,qc10 := -.2,qc11 := -.1,qc12 := -.2,qc13 := -.1,qc14 := -.2,qc15 := -.1,qc16 := -.2,qc17 := -.1)
-
-(hk01 := -.2,hk02 := -.1,hk03 := -.2,hk04 := -.1,hk05 := -.2,hk06 := -.1,hk07 := -.2,hk08 := -.1,hk09 := -.2,hk10 := -.1,hk11 := -.2,hk12 := -.1,hk13 := -.2,hk14 := -.1,hk15 := -.2,hk16 := -.1,hk17 := -.2)
-
-(hl01 := -.1,hl02 := -.2,hl03 := -.1,hl04 := -.2,hl05 := -.1,hl06 := -.2,hl07 := -.1,hl08 := -.2,hl09 := -.1,hl10 := -.2,hl11 := -.1,hl12 := -.2,hl13 := -.1,hl14 := -.2,hl15 := -.1,hl16 := -.2,hl17 := -.1)
-
-#####################################################
-
-(s01:=.2,e01:=.2,e02:=.2,e03:=.2,s03:=.2,s05:=.2,e04:=.2,e05:=.2,e06:=.2,s06:=.2,s15:=.2,s16:=.2,s17:=.2,s18:=.2,s19:=.2)
-(s03:=.2,e07:=.2,e08:=.2,e09:=.2,e10:=.2,s06:=.2,e11:=.2,e12:=.2,e13:=.2,e133:=.2,s19:=.2,s20:=.2,s21:=.2,s22:=.2,s23:=.2)
-(e14:=.2,e15:=.2,e16:=.2,e17:=.2,s02:=.2,e18:=.2,e19:=.2,e20:=.2,e21:=.2,s05:=.2,s11:=.2,s12:=.2,s13:=.2,s14:=.2,s15:=.2)
-(e22:=.2,e23:=.2,e24:=.2,e25:=.2,s01:=.2,e26:=.2,e27:=.2,e28:=.2,e29:=.2,s04:=.2,s07:=.2,s08:=.2,s09:=.2,s10:=.2,s11:=.2)                                    
-(s07:=.2,s08:=.2,s09:=.2,s10:=.2,s11:=.2,e30:=.2,e31:=.2,e32:=.2,e33:=.2,s24:=.2,s27:=.2,s28:=.2,s29:=.2,s30:=.2,s31:=.2)
-(s19:=.2,s20:=.2,s21:=.2,s22:=.2,s23:=.2,s26:=.2,e37:=.2,e38:=.2,e39:=.2,e399:=.2,s39:=.2,s40:=.2,s41:=.2,s42:=.2,s43:=.2)
-(s11:=.2,s12:=.2,s13:=.2,s14:=.2,s15:=.2,s24:=.2,e34:=.2,e35:=.2,e36:=.2,s25:=.2,s31:=.2,s32:=.2,s33:=.2,s34:=.2,s35:=.2)
-(s07:=.2,s08:=.2,s09:=.2,s10:=.2,s11:=.2,e40:=.2,e41:=.2,e42:=.2,e43:=.2,s24:=.2,s27:=.2,s28:=.2,s29:=.2,s30:=.2,s31:=.2)
-(s35:=.2,s36:=.2,s37:=.2,s38:=.2,s39:=.2,s45:=.2,e51:=.2,e52:=.2,e53:=.2,s46:=.2,s55:=.2,s56:=.2,s57:=.2,s58:=.2,s59:=.2)
-(s39:=.2,s40:=.2,s41:=.2,s42:=.2,s43:=.2,s46:=.2,e54:=.2,e55:=.2,e56:=.2,e566:=.2,s59:=.2,s60:=.2,s61:=.2,s62:=.2,s63:=.2)
-(s27:=.2,s28:=.2,s29:=.2,s30:=.2,s31:=.2,e44:=.2,e45:=.2,e46:=.2,e47:=.2,s44:=.2,s47:=.2,s48:=.2,s49:=.2,s50:=.2,s51:=.2)
-(s31:=.2,s32:=.2,s33:=.2,s34:=.2,s35:=.2,s44:=.2,e48:=.2,e49:=.2,e50:=.2,s45:=.2,s51:=.2,s52:=.2,s53:=.2,s54:=.2,s55:=.2)
-(s55:=.2,s56:=.2,s57:=.2,s58:=.2,s59:=.2,s65:=.2,e71:=.2,e72:=.2,e73:=.2,s66:=.2,s68:=.2,e74:=.2,e75:=.2,e76:=.2,s69:=.2)
-(s59:=.2,s60:=.2,s61:=.2,s62:=.2,s63:=.2,s66:=.2,e77:=.2,e78:=.2,e79:=.2,e80:=.2,e81:=.2,e82:=.2,e83:=.2,e84:=.2,s69:=.2)
-(s47:=.2,s48:=.2,s49:=.2,s50:=.2,s51:=.2,e57:=.2,e58:=.2,e59:=.2,e60:=.2,s64:=.2,e61:=.2,e62:=.2,e63:=.2,e64:=.2,s67:=.2)
-(s51:=.2,s52:=.2,s53:=.2,s54:=.2,s55:=.2,s64:=.2,e65:=.2,e66:=.2,e67:=.2,s65:=.2,s67:=.2,e68:=.2,e69:=.2,e70:=.2,s68:=.2)
-
-######################################################
-
-#group 1
-
-#2nd
-tmod01(0,s01,e01,e02,e03,s03,s05,e04,e05,e06,s06,s15,s16,s17,s18,s19,"green","red","yellow","orange",0)
-#4th
-tmod01(2,s03,e07,e08,e09,e10,s06,e11,e12,e13,e133,s19,s20,s21,s22,s23,"dark strong green","blue","medium weak green","purple",0)
-#1st
-tmod01(-2,e14,e15,e16,e17,s02,e18,e19,e20,e21,s05,s11,s12,s13,s14,s15,"medium weak red","magenta","dark moderate orange","cyan",0)
-#3rd
-tmod01(-4,e22,e23,e24,e25,s01,e26,e27,e28,e29,s04,s07,s08,s09,s10,s11,"dark strong blue","brown","medium weak red","2000,30000,2000",0)
-
-#group 2   
-                                     
-#2nd
-tmod01(0,s07,s08,s09,s10,s11,e30,e31,e32,e33,s24,s27,s28,s29,s30,s31,"green","red","yellow","orange",-1)
-#4th
-tmod01(2,s19,s20,s21,s22,s23,s26,e37,e38,e39,e399,s39,s40,s41,s42,s43,"dark strong green","blue","medium weak green","purple",-1)
-#1st
-tmod01(-2,s11,s12,s13,s14,s15,s24,e34,e35,e36,s25,s31,s32,s33,s34,s35,"medium weak red","magenta","dark moderate orange","cyan",-1)
-#3rd
-tmod01(-4,s07,s08,s09,s10,s11,e40,e41,e42,e43,s24,s27,s28,s29,s30,s31,"dark strong blue","brown","medium weak red","2000,30000,2000",-1)
-
-#group 3
-
-#2nd
-tmod01(0,s35,s36,s37,s38,s39,s45,e51,e52,e53,s46,s55,s56,s57,s58,s59,"medium weak red","magenta","dark moderate orange","cyan",-2)
-#4th
-tmod01(2,s39,s40,s41,s42,s43,s46,e54,e55,e56,e566,s59,s60,s61,s62,s63,"dark strong blue","brown","medium weak red","2000,30000,2000",-2)
-#3rd
-tmod01(-4,s27,s28,s29,s30,s31,e44,e45,e46,e47,s44,s47,s48,s49,s50,s51,"green","red","yellow","orange",-2)
-#1st
-tmod01(-2,s31,s32,s33,s34,s35,s44,e48,e49,e50,s45,s51,s52,s53,s54,s55,"dark strong green","blue","medium weak green","purple",-2)
-
-#group 4
-
-#2nd
-tmod01(0,s55,s56,s57,s58,s59,s65,e71,e72,e73,s66,s68,e74,e75,e76,s69,"medium weak red","magenta","dark moderate orange","cyan",-3)
-#4th
-tmod01(2,s59,s60,s61,s62,s63,s66,e77,e78,e79,e80,e81,e82,e83,e84,s69,"dark strong blue","brown","medium weak red","2000,30000,2000",-3)
-#3rd
-tmod01(-4,s47,s48,s49,s50,s51,e57,e58,e59,e60,s64,e61,e62,e63,e64,s67,"green","red","yellow","orange",-3)
-#1st
-tmod01(-2,s51,s52,s53,s54,s55,s64,e65,e66,e67,s65,s67,e68,e69,e70,s68,"dark strong green","blue","medium weak green","purple",-3)
-
-end
-
-###############################################################
 ###############################################################
 
 
@@ -1315,8 +1261,8 @@ end
 procedure listprog01()
    local begno, endno, prog, l, lno
 
-	begno := 1641
-	endno := 1673
+	begno := 1572
+	endno := 1606
 
 	tab(many(WHITE))
 
@@ -1340,8 +1286,8 @@ end
 procedure listprog02()
    local begno, endno, prog, l, lno
 
-	begno := 1677
-	endno := 1690
+	begno := 1610
+	endno := 1623
 
 	tab(many(WHITE))
 
@@ -1365,8 +1311,8 @@ end
 procedure listprog03()
    local begno, endno, prog, l, lno
 
-	begno := 1694
-	endno := 1725
+	begno := 1578
+	endno := 1609
 
 	tab(many(WHITE))
 
@@ -1390,8 +1336,8 @@ end
 procedure listprog04()
    local begno, endno, prog, l, lno
 
-	begno := 1729
-	endno := 1738
+	begno := 1613
+	endno := 1622
 
 	tab(many(WHITE))
 
@@ -1415,8 +1361,8 @@ end
 procedure listprog05()
    local begno, endno, prog, l, lno
 
-	begno := 1760
-	endno := 1769
+	begno := 1646
+	endno := 1653
 
 	tab(many(WHITE))
 
@@ -1440,8 +1386,8 @@ end
 procedure listprog06()
    local begno, endno, prog, l, lno
 
-	begno := 1773
-	endno := 1785
+	begno := 1657
+	endno := 1669
 
 	tab(many(WHITE))
 
@@ -1465,8 +1411,8 @@ end
 procedure listprog07()
    local begno, endno, prog, l, lno
 
-	begno := 1789
-	endno := 1816
+	begno := 1675
+	endno := 1698
 
 	tab(many(WHITE))
 
@@ -1490,8 +1436,8 @@ end
 procedure listprog08()
    local begno, endno, prog, l, lno
 
-	begno := 1820
-	endno := 1843
+	begno := 1702
+	endno := 1725
 
 	tab(many(WHITE))
 
@@ -1515,8 +1461,8 @@ end
 procedure listprog09()
    local begno, endno, prog, l, lno
 
-	begno := 1847
-	endno := 1868
+	begno := 1729
+	endno := 1746
 
 	tab(many(WHITE))
 
@@ -1540,8 +1486,8 @@ end
 procedure listprog10()
    local begno, endno, prog, l, lno
 
-	begno := 1874
-	endno := 1880
+	begno := 1750
+	endno := 1757
 
 	tab(many(WHITE))
 
@@ -1597,23 +1543,8 @@ procedure commandlist()
 
 	initial {
 		comlist := [
-		"<<< command list goes here>>>",
-		"inpglcube01() #xyzsc",
-           "inpglsphere01() #xyzsc",
-           "inpglcylinder01() #xyzstbc",
-           "inpglplane01() #xyzxyzxyzxyzc",
-           "seteye() #px,py,pz,dx,dy,dz,qx,qy,qz",
-           "psplane01() #c",
-           "texcube01() #xyzs tex",
-           "texcylinder01() #xyzstb tex",
-           "texplane01() #tex",
-           "texskysphere02() #tex",
-           "texskysphere01() #tex",
-           "texgroundplane01() #tex",
-           "texskyplane01() #tex",
-           "trimesh01() #",
-           "scenes 01-10 #"
-
+		"<<< command list goes here?>>>",
+	
 		]
 	}
 
@@ -1636,7 +1567,7 @@ procedure quitprog()
 end
 
 ######################################################
-###############################################################
+######################################################
 
 procedure scene01()
 
@@ -1669,6 +1600,8 @@ DrawCube(x + r * cos(angle),y + r * sin(angle), 0, .5)
       }
 
    return
+
+#x,y,r
    
 end
 
@@ -1805,11 +1738,9 @@ vvv := [2,4,6,8,0]
    every y  := 0 to !vv -1 do
     every z  := 0 to !vvv -1 do {
          #c := cmax/wsize * iand(wsize-1,ixor(x,y))
-        # Fg(sprintf("%d,%d,%d",c,cmax-c,0))
+         #Fg(sprintf("%d,%d,%d",c,cmax-c,0))
 Fg("65000,1,1")
          DrawCube(x,?y,z,.5)
-#Fg("350,40000,1")
-        # DrawCube(x,y,3,.5)
 
 }
 
@@ -1851,11 +1782,7 @@ colors:= ["red", "blue", "green","yellow", "purple", "white", "black"]
 #Rect:=[FiIIRectangle, DrawRectangle] 
 #Rect := [DrawCube]
 
-
-#WOpen("size=" II Width II"," II Height) 
-
 #repeat{ w:=?Width h:=?Height x:=?Width-w/2 Y:=?Height-h/2
-#repeat{
 
 w:=5
 h:= 3 
@@ -1884,23 +1811,21 @@ end
 
 procedure comlist01()
 
-#inpglcube01() #xyzsc
-#inpglsphere01() #xyzsc
-#inpglcylinder01() #xyzstbc
-#inpglplane01() #xyzxyzxyzxyzc
-#seteye() #px,py,pz,dx,dy,dz,qx,qy,qz
-#psplane01() #c
-#texcube01() #xyzs tex
-#texcylinder01() #xyzstb tex
-#texplane01() #tex
-#texskysphere02() #tex
-#texskysphere01() #tex
-#texgroundplane01() #tex
-#texskyplane01() #tex
-#tmod01#() #xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed
-#trimesh01() #
-#scenes 01-10 #
-#WriteImage("fg01.png")
+#inpglcube01()#xyzsc
+#inpglsphere01()#xyzsc
+#inpglcylinder01()#xyzstbc
+#inpglplane01()#xyzxyzxyzxyzc
+#seteye()#px,py,pz,dx,dy,dz,qx,qy,qz
+#psplane01()#c
+#texcube01()#xyzs tex
+#texcylinder01()#xyzstb tex
+#texplane01()#tex
+#texskysphere02()#tex
+#texskysphere01()#tex
+#texgroundplane01()#tex
+#texskyplane01()#tex
+#tmod01()#xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed
+#scenes 01-10#
 
 end
 
