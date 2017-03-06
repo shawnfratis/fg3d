@@ -79,10 +79,10 @@ x2 := y2 := &null
               WAttrib("eyepos=4.0,0.0,5.0","eyedir=0.0,0.0,1.0")
               }
 "\k": {
-	         WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
+	        WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")
               }
 "\p": {
-	         WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.0,0.0,1.0")
+	        WAttrib("eyepos=0.0,2.0,8.0","eyedir=-0.0,0.0,1.0")
               }
 "\G": {
               WAttrib("eyepos=0.0,0.0,5.0","eyedir=0.0,0.0,1.0")            
@@ -115,7 +115,7 @@ x2 := y2 := &null
               comlist01()
               }
 "\,": { 
-              trimesh01()
+              #not used
               }
 "\?": {  
               helpbox1()
@@ -245,7 +245,7 @@ procedure tank01()
 repeat {
 case Event() of {
 &ldrag:{
-Eye(0,&y,0,0 ,&y,-1, 0,1,0)
+Eye(&x,&y,0,0 ,&y,-1, 0,1,0)
 }
 "\e": break{
 }
@@ -261,7 +261,7 @@ procedure tank02()
 repeat {
 case Event() of {
 &ldrag:{
-Eye(0,&x,0,0 ,0,-1, 0,1,0)
+Eye(&x,0,&x,0 ,0,-1, 0,1,0)
 }
 "\e": break{
 }
@@ -277,7 +277,7 @@ procedure tank03()
 repeat {
 case Event() of {
 &ldrag:{
-Eye(0,0,&x,0 ,0,-1, 0,1,0)
+Eye(0,0,&x,0,0,-1, 0,1,0)
 }
 "\e": break{
 }
@@ -1245,7 +1245,7 @@ procedure spokes(x, y, r, i, angle)
    local incr, j
 
    incr := 2 * &pi / i 
-Fg("red")
+  Fg("red")
    every j := 1 to i do {
 DrawCube(x + r * cos(angle),y + r * sin(angle), 0, .5)
 
@@ -1446,7 +1446,7 @@ y:= 4-h/2
 
 every z := 1 to 10 do {
 every x := 1 to 10 do {
-#inpglcube01(x,(y := ?x/&pi),z,s,"blue")
+
 Fg(?colors) 
 DrawCube(x,(y := ?x/&pi),z,s)
 
@@ -1463,7 +1463,7 @@ procedure comlist01()
 
 #WAttrib("light0=diffuse white; ambient black; specular white; position 0.0, 1.0, 0.0")
 
-#Fg(”diffuse light grey; ambient grey; specular black; emission black; shininess 50”)
+#Fg("diffuse light grey; ambient grey; specular black; emission black; shininess 50")
 
 #inpglcube01()#xyzsc
 #inpglsphere01()#xyzsc
