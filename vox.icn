@@ -1,0 +1,1699 @@
+
+#fg3d 2017 FratisGraphics
+
+#Program to utilize Unicons 3D capabilities.
+
+#Some of this code is from the University of Arizona and Rosetta Code. Please contact me if you would like specifics of this.
+#shawnfratis@gmail.com
+
+#Integrated with Jafar Al-Gharaibeh's Unicon 3D viewer.
+
+#Made in Unicon, with Unicon IDE
+#unicon.sourceforge.net
+
+##############################
+
+link wopen
+link color
+link graphics
+link numbers
+link options
+link button 
+link strings
+link colrlist
+link interact
+link random
+link printf
+link io
+
+################################
+
+procedure mainx()
+
+&window := open("fg3d", "gl", "size=1000,700", "bg=black") | stop("can't open window")
+
+###############################
+      
+WDone()
+
+end
+
+#########################################################
+
+procedure message()
+
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
+
+WWrite(win1,"Welcome to fg3d. Press ? for basic instruction screen")
+WWrite(win1,"< gives more in-depth instructions. > and : are reference guides")
+WWrite(win1,"% to jump into interpeter.")
+WWrite(win1,"NOTES: Minimize this window. Voxels might take a while to generate.")
+
+end
+
+###########################################################
+
+procedure helpbox1()
+
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
+
+WWrite(win1,"To come back to these instructions press ?")
+WWrite(win1,"< gives more in-depth instructions. >,= and : are reference guides")
+
+end
+
+################################################
+
+procedure helpbox3()
+
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
+
+ #WAttrib("dx=1", "dy=1")
+        WWrite(win1,"           [+y]               ")
+        WWrite(win1,"            |                    ")
+        WWrite(win1,"            |                 ")	 
+        WWrite(win1,"            |               cam = position,direction,up : 0,0,5,0,0,1,0,1,0")
+        WWrite(win1,"            |               g hH jJ a k s change views.")
+        WWrite(win1,"[-x]--------0-------[+x]    ] is for a basic mouse navigation. ESC after using.")
+        WWrite(win1,"            |               forward  0,0,5,0,0,1,0,1,0")
+        WWrite(win1,"            |               angle up 0,2,8,0,0,1,0,1,0 ")
+        WWrite(win1,"            |               angle side 4,0,5,0,0,1,0,1,0")                              
+        WWrite(win1,"            |                    ")
+        WWrite(win1,"           [-y]              ")
+
+end
+
+##################################################
+
+procedure helpbox2()
+
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
+
+WWrite(win1,"/ main command, \ is erase all")
+WWrite(win1,"cube=x,y,z,s,color") 
+WWrite(win1,"cyl=x,y,z,h,r1,r2,color") 
+WWrite(win1,"sphere=x,y,z,r,color")
+WWrite(win1,"plane=x,y,z of 4 corners,color")
+WWrite(win1,"Some example values:")
+WWrite(win1,"cyl(0_-1_-4_1_.5_.5_12000,65000,10000)")
+WWrite(win1,"sphere(0_0.1_-3_.5_65000,1000,1000)")
+WWrite(win1,"cube(0_0.5_-2_.5_1000,2000,65000)")
+WWrite(win1,"cube 0_0_0_.5_10000,10000,20000")
+WWrite(win1,"sphere 0_0_0_.5_20000,10000,10000")
+
+end
+
+procedure helpbox4()
+
+#####################################################
+
+win1 := WOpen("size=900,200", "fg=yellow", "bg=black")
+
+WWrite(win1,"Color (RGB) values must be entered in this format: 65000,65000,65000")
+WWrite(win1,"Here are some examples for different shades of red:")
+WWrite(win1,"very light weak red     57343,51881,51881  medium strong red       57343,8191,8191")
+WWrite(win1,"very light moderate red 60073,49151,49151  medium vivid red        65535,0,0")
+WWrite(win1,"very light strong red   62804,46420,46420  dark weak red           27306,16383,16383")
+WWrite(win1,"very light vivid red    65535,43689,43689  dark moderate red       32767,10922,10922")
+WWrite(win1,"light weak red          49151,38228,38228  dark strong red         38228,5461,5461")
+WWrite(win1,"light moderate red      54612,32767,32767  dark vivid red          43690,0,0")
+WWrite(win1,"light strong red        60073,27306,27306  very dark weak red      13653,8191,8191")
+WWrite(win1,"light vivid red         65535,21845,21845  very dark moderate red  16383,5461,5461")
+WWrite(win1,"medium weak red         40959,24575,24575  very dark strong red    19114,2730,2730")
+WWrite(win1,"medium moderate red     49151,16383,16383  very dark vivid red     21845,0,0")
+
+end
+
+######################################################
+
+procedure helpbox5()
+
+win1 := WOpen("size=800,200", "fg=yellow", "bg=black")
+
+WWrite(win1,"Note: voxels might take a few secs to generate.")
+WWrite(win1,"% for interpereter.")
+
+end
+
+#################################################
+
+procedure snapPic()
+
+WriteImage("fg01.png")#change as needed
+             
+end
+
+##################################################
+
+procedure paint01() 
+
+#PresetPlane("red")
+Fg("blue")
+
+repeat {
+case Event() of {
+&lpress: {
+DrawCube(&x,&y,&x,1)
+x :=&x
+y :=&y
+}
+&ldrag: {
+DrawCube(x,y,x,1)
+#DrawLine(x, y, &x, &y)
+x :=&x
+y :=&y
+}
+&rpress | &rdrag: {
+EraseArea(&x - 2, &y - 2,5,5)
+#}
+#"q": exit()
+#}
+#}
+#end
+#########################
+#Fg(rgb)
+#Fg("blue")
+
+#repeat {
+#case Event() of {
+#&ldrag:{
+
+#DrawCube(&x,&y,&x,1)
+#DrawCube(?&x,?&y,?&x,1)
+
+#Eye(0,&y,0,0 ,&y,-1, 0,1,0)
+}
+"\e": break{
+}
+}
+}
+       
+end
+
+#################################################
+
+procedure psplane01()
+
+      s1 := WRead()
+               
+      ipx := s1
+   
+     PresetPlane(ipx)
+
+end
+
+#############end input cubes etc#################
+##############Begin OpenGL 3D####################
+
+procedure seteye(px,py,pz,dx,dy,dz,qx,qy,qz)
+
+Eye(px,py,pz,dx,dy,dz,qx,qy,qz)
+
+end
+
+##################################################
+
+procedure inpglcube01(ipx,ipy,ipz,ips,rgb)
+
+Fg(rgb)
+DrawCube(ipx,ipy,ipz,ips)
+
+return()
+
+end
+
+##################################################
+
+procedure inpglsphere01(ipx,ipy,ipz,ips,rgb)
+
+Fg(rgb)
+DrawSphere(ipx,ipy,ipz,ips)
+
+return()
+
+end
+
+##################################################
+
+procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa,rgb)
+
+Fg(rgb)
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+##################################################
+
+procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb)
+
+Fg(rgb)
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+
+procedure PresetPlane(a)
+
+#WOpen("fg3d", "gl", "size=1000,700", "bg=black") | stop("can't open window")
+
+Fg("red")
+
+DrawSphere(a,1,1,1)
+
+#FillPolygon(-15,1,15,15,0,15,15,-1,-15,-15,0,-15)
+
+end
+
+##############Begin OpenGL 3D TEX##############################
+############################################################
+
+procedure texcube01(ipx,ipy,ipz,ips)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png")#change as needed
+
+DrawCube(ipx,ipy,ipz,ips)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png")#change as needed
+
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png","texcoord 0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+
+procedure texskysphere02()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=sphere2.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texskysphere01()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=sphere1.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texgroundplane01()
+
+texskysphere01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=gplane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texskyplane01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##########################################################
+#BEGIN MESH ELEMENTS
+##########################################################
+
+procedure tmod01(xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed)
+
+(zq1 := -5+zed,zq2 := -4.5+zed, zq3 := -4+zed)
+
+duk := cc
+dad := dd
+daq := ee
+daz := ff
+
+######################################################
+
+(ya1 := -1+v01,ya2 := -1+v02,ya3 := -1+v03,ya4 := -1+v04,ya5 := -1+v05,ya6 := -1+v06,ya7 := -1+v07,ya8 := -1+v08,ya9 := -1+v09,yn1 := -1+v10,yn2 := -1+v11,yn3 := -1+v12,yn4 := -1+v13,yn5 := -1+v14,yn6 := -1+v15)
+
+######################################################
+
+(xa1 := 0+xdd,xa2 := .5+xdd,xa3 := 1+xdd,xa4 := 1.5+xdd,xa5 := 2+xdd,xa6 := 0+xdd,xa7 := .5+xdd,xa8 := 1+xdd,xa9 := 1.5+xdd,x10 := 2+xdd,x11 := 0+xdd,x12 := .5+xdd,x13 := 1+xdd,x14 := 1.5+xdd,x15 := 2+xdd)
+
+##############
+
+xq1 := xa1 
+xq2 := xa2  
+xq3 := xa3 
+ 
+xq4 := xa4  
+xq5 := xa5 
+xq6 := xa6 
+ 
+xq7 := xa7  
+xq8 := xa8  
+xq9 := xa9
+ 
+xm1 := x10  
+xm2 := x11 
+xm3 := x12 
+
+xm4 := x13 
+xm5 := x14  
+xm6 := x15
+
+##############################################
+
+yq1 := ya1 
+yq2 := ya2  
+yq3 := ya3 
+ 
+yq4 := ya4 
+yq5 := ya5 
+yq6 := ya6 
+ 
+yq7 := ya7 
+yq8 := ya8 
+yq9 := ya9 
+ 
+ym1 := yn1  
+ym2 := yn2
+ym3 := yn3 
+
+ym4 := yn4 
+ym5 := yn5  
+ym6 := yn6 
+
+######################################################
+
+Fg(duk)
+#1
+ FillPolygon(xq1,yq1,zq1,xq2,yq2,zq1,xq6,yq6,zq2)
+
+Fg(daq)
+#2  
+ FillPolygon(xq2,yq2,zq1,xq7,yq7,zq2,xq6,yq6,zq2)
+
+Fg(daz)
+#3  
+ FillPolygon(xq2,yq2,zq1,xq3,yq3,zq1,xq7,yq7,zq2)
+
+Fg(dad)
+#4  
+ FillPolygon(xq3,yq3,zq1,xq8,yq8,zq2,xq7,yq7,zq2)
+
+Fg(duk)
+#5
+ FillPolygon(xq3,yq3,zq1,xq4,yq4,zq1,xq8,yq8,zq2)
+
+Fg(daq)
+#6  
+ FillPolygon(xq4,yq4,zq1,xq9,yq9,zq2,xq8,yq8,zq2)
+
+Fg(daz)
+#7
+ FillPolygon(xq4,yq4,zq1,xq5,yq5,zq1,xq9,yq9,zq2)
+
+Fg(dad)
+#8  
+ FillPolygon(xq5,yq5,zq1,xm1,ym1,zq2,xq9,yq9,zq2)
+
+######################################################
+
+Fg(duk)
+#9  
+ FillPolygon(xq6,yq6,zq2,xq7,yq7,zq2,xm2,ym2,zq3)
+
+Fg(daq)
+#10  
+ FillPolygon(xq7,yq7,zq2,xm3,ym3,zq3,xm2,ym2,zq3)
+
+Fg(daz)
+#11
+ FillPolygon(xq7,yq7,zq2,xq8,yq8,zq2,xm3,ym3,zq3)
+
+Fg(dad)
+#12  
+ FillPolygon(xq8,yq8,zq2,xm4,ym4,zq3,xm3,ym3,zq3)
+
+Fg(duk)
+#13
+ FillPolygon(xq8,yq8,zq2,xq9,yq9,zq2,xm4,ym4,zq3)
+
+Fg(daq)
+#14  
+ FillPolygon(xq9,yq9,zq2,xm5,ym5,zq3,xm4,ym4,zq3)
+
+Fg(daz)
+#15  
+ FillPolygon(xq9,yq9,zq2,xm1,ym1,zq2,xm5,ym5,zq3)
+
+Fg(dad)
+#16  
+ FillPolygon(xm1,ym1,zq2,xm6,ym6,zq3,xm5,ym5,zq3)
+ 
+end
+
+############################################################
+###############################################################
+
+
+procedure voxChunkBlock04(my,ay,m2y,a2y,m3y,a3y,m4y,a4y,qy,bxy,q2y,b2y,q3y,b3y,q4y,b4y)
+
+#########################################################
+
+va:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vb:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vc:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vd:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+ve:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vf:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vg:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+vh:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+v1a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v1b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v1c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v1d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v1e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v1f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v1g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v1h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+
+################################################################
+
+v2a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v2h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+v3a:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3b:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3c:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3d:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3e:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3f:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3g:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+v3h:=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+#################################################################
+
+#1st cube line# # # # # # # #
+
+#1stinstance
+
+(ml := (my + 1),mr := (my - 1))
+(mt := (my + 0),mb := (my - 0))
+
+aay := (ay - .5)
+
+(vd[my] := ay) + ((vd[ml]:= aay)+(vd[mr]:= aay)+(vc[mt]:= aay)+(ve[mb]:= aay))
+
+#2dinstance
+
+(m2l := (m2y + 1),m2r := (m2y - 1))
+(m2t := (m2y + 0),m2b := (m2y - 0))
+
+a2ay := (a2y - .5)
+
+(vd[m2y] := a2y) + ((vd[m2l]:= a2ay)+(vd[m2r]:= a2ay)+(vc[m2t]:= a2ay)+(ve[m2b]:= a2ay))
+
+#3rdinstance
+
+(m3l := (m3y + 1),m3r := (m3y - 1))
+(m3t := (m3y + 0),m3b := (m3y - 0))
+
+a3ay := (a3y - .5)
+
+(vd[m3y] := a3y) + ((vd[m3l]:= a3ay)+(vd[m3r]:= a3ay)+(vc[m3t]:= a3ay)+(ve[m3b]:= a3ay))
+
+#4thinstance
+
+(m4l := (m4y + 1),m4r := (m4y - 1))
+(m4t := (m4y + 0),m4b := (m4y - 0))
+
+a4ay := (a4y - .5)
+
+(vd[m4y] := a4y) + ((vd[m4l]:= a4ay)+(vd[m4r]:= a4ay)+(vc[m4t]:= a4ay)+(ve[m4b]:= a4ay))
+
+#2nd cube line# # # # # # # #
+
+(ql := (qy + 1),qr := (qy - 1))
+(qt := (qy + 0),qb := (qy - 0))
+
+bby := (bxy - .5)
+
+(ve[qy] := bxy) + ((ve[ql]:= bby)+(ve[qr]:= bby)+(vd[qt]:= bby)+(vf[qb]:= bby))
+
+#2dinstbnce
+
+(q2l := (q2y + 1),q2r := (q2y - 1))
+(q2t := (q2y + 0),q2b := (q2y - 0))
+
+b2by := (b2y - .5)
+
+(ve[q2y] := b2y) + ((ve[q2l]:= b2by)+(ve[q2r]:= b2by)+(vd[q2t]:= b2by)+(vf[q2b]:= b2by))
+
+#3rdinstbnce
+
+(q3l := (q3y + 1),q3r := (q3y - 1))
+(q3t := (q3y + 0),q3b := (q3y - 0))
+
+b3by := (b3y - .5)
+
+(ve[q3y] := b3y) + ((ve[q3l]:= b3by)+(ve[q3r]:= b3by)+(vd[q3t]:= b3by)+(vf[q3b]:= b3by))
+
+#4thinstbnce
+
+(q4l := (q4y + 1),q4r := (q4y - 1))
+(q4t := (q4y + 0),q4b := (q4y - 0))
+
+b4by := (b4y - .5)
+
+(ve[q4y] := b4y) + ((ve[q4l]:= b4by)+(ve[q4r]:= b4by)+(vd[q4t]:= b4by)+(vf[q4b]:= b4by))
+
+##################################################################
+
+(xa:=1,xb:=5,xc:=9,xd:=13,xe:=17,xf:=21,xg:=25,xh:=29)
+
+##################################################################
+
+(vza:=1,vzb:=2,vzc:=3,vzd:=4,vze:=5,vzf:=6,vzg:=7,vzh:=8)
+
+(v1za:=9,v1zb:=10,v1zc:=11,v1zd:=12,v1ze:=13,v1zf:=14,v1zg:=15,v1zh:=16)
+
+################################################################
+
+(v2za:=17,v2zb:=18,v2zc:=19,v2zd:=20,v2ze:=21,v2zf:=22,v2zg:=23,v2zh:=24)
+
+(v3za:=25,v3zb:=26,v3zc:=27,v3zd:=28,v3ze:=29,v3zf:=30,v3zg:=31,v3zh:=32)
+
+################################################################
+
+(vqa:="gray",vqb:="gray",vqc:="gray",vqd:="gray",vqe:="gray",vqf:="gray",vqg:="gray",vqh:="gray",vqi:="gray",vqj:="gray",vqk:="gray",vql:="gray",vqm:="gray",vqn:="gray",vqo:="gray",vqp:="gray",vvqa:="gray",vvqb:="gray",vvqc:="gray",vvqd:="gray",vvqe:="gray",vvqf:="gray",vvqg:="gray",vvqh:="gray",vvqi:="gray",vvqj:="gray",vvqk:="gray",vvql:="gray",vvqm:="gray",vvqn:="gray",vvqo:="gray",vvqp:="gray")
+
+(v1qa:="gray",v1qb:="gray",v1qc:="gray",v1qd:="gray",v1qe:="gray",v1qf:="gray",v1qg:="gray",v1qh:="gray",v1qi:="gray",v1qj:="gray",v1qk:="gray",v1ql:="gray",v1qm:="gray",v1qn:="gray",v1qo:="gray",v1qp:="gray",v1v1qa:="gray",v1v1qb:="gray",v1v1qc:="gray",v1v1qd:="gray",v1v1qe:="gray",v1v1qf:="gray",v1v1qg:="gray",v1v1qh:="gray",v1v1qi:="gray",v1v1qj:="gray",v1v1qk:="gray",v1v1ql:="gray",v1v1qm:="gray",v1v1qn:="gray",v1v1qo:="gray",v1v1qp:="gray")
+
+################################################################
+
+(v2qa:="gray",v2qb:="gray",v2qc:="gray",v2qd:="gray",v2qe:="gray",v2qf:="gray",v2qg:="gray",v2qh:="gray",v2qi:="gray",v2qj:="gray",v2qk:="gray",v2ql:="gray",v2qm:="gray",v2qn:="gray",v2qo:="gray",v2qp:="gray",v2vqa:="gray",v2vqb:="gray",v2vqc:="gray",v2vqd:="gray",v2vqe:="gray",v2vqf:="gray",v2vqg:="gray",v2vqh:="gray",v2vqi:="gray",v2vqj:="gray",v2vqk:="gray",v2vql:="gray",v2vqm:="gray",v2vqn:="gray",v2vqo:="gray",v2vqp:="gray")
+
+(v3qa:="gray",v3qb:="gray",v3qc:="gray",v3qd:="gray",v3qe:="gray",v3qf:="gray",v3qg:="gray",v3qh:="gray",v3qi:="gray",v3qj:="gray",v3qk:="gray",v3ql:="gray",v3qm:="gray",v3qn:="gray",v3qo:="gray",v3qp:="gray",v3v3qa:="gray",v3v3qb:="gray",v3v3qc:="gray",v3v3qd:="gray",v3v3qe:="gray",v3v3qf:="gray",v3v3qg:="gray",v3v3qh:="gray",v3v3qi:="gray",v3v3qj:="gray",v3v3qk:="gray",v3v3ql:="gray",v3v3qm:="gray",v3v3qn:="gray",v3v3qo:="gray",v3v3qp:="gray")
+
+################################################################
+
+voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,vza,vzb,vzc,vzd,vze,vzf,vzg,vzh,va[1],va[2],va[3],va[4],va[5],va[6],va[7],va[8],va[9],va[10],va[11],va[12],va[13],va[14],va[15],va[16],va[17],va[18],va[19],va[20],va[21],va[22],va[23],va[24],va[25],va[26],va[27],va[28],va[29],va[30],va[31],va[32],vb[1],vb[2],vb[3],vb[4],vb[5],vb[6],vb[7],vb[8],vb[9],vb[10],vb[11],vb[12],vb[13],vb[14],vb[15],vb[16],vb[17],vb[18],vb[19],vb[20],vb[21],vb[22],vb[23],vb[24],vb[25],vb[26],vb[27],vb[28],vb[29],vb[30],vb[31],vb[32],vc[1],vc[2],vc[3],vc[4],vc[5],vc[6],vc[7],vc[8],vc[9],vc[10],vc[11],vc[12],vc[13],vc[14],vc[15],vc[16],vc[17],vc[18],vc[19],vc[20],vc[21],vc[22],vc[23],vc[24],vc[25],vc[26],vc[27],vc[28],vc[29],vc[30],vc[31],vc[32],vd[1],vd[2],vd[3],vd[4],vd[5],vd[6],vd[7],vd[8],vd[9],vd[10],vd[11],vd[12],vd[13],vd[14],vd[15],vd[16],vd[17],vd[18],vd[19],vd[20],vd[21],vd[22],vd[23],vd[24],vd[25],vd[26],vd[27],vd[28],vd[29],vd[30],vd[31],vd[32],ve[1],ve[2],ve[3],ve[4],ve[5],ve[6],ve[7],ve[8],ve[9],ve[10],ve[11],ve[12],ve[13],ve[14],ve[15],ve[16],ve[17],ve[18],ve[19],ve[20],ve[21],ve[22],ve[23],ve[24],ve[25],ve[26],ve[27],ve[28],ve[29],ve[30],ve[31],ve[32],vf[1],vf[2],vf[3],vf[4],vf[5],vf[6],vf[7],vf[8],vf[9],vf[10],vf[11],vf[12],vf[13],vf[14],vf[15],vf[16],vf[17],vf[18],vf[19],vf[20],vf[21],vf[22],vf[23],vf[24],vf[25],vf[26],vf[27],vf[28],vf[29],vf[30],vf[31],vf[32],vg[1],vg[2],vg[3],vg[4],vg[5],vg[6],vg[7],vg[8],vg[9],vg[10],vg[11],vg[12],vg[13],vg[14],vg[15],vg[16],vg[17],vg[18],vg[19],vg[20],vg[21],vg[22],vg[23],vg[24],vg[25],vg[26],vg[27],vg[28],vg[29],vg[30],vg[31],vg[32],vh[1],vh[2],vh[3],vh[4],vh[5],vh[6],vh[7],vh[8],vh[9],vh[10],vh[11],vh[12],vh[13],vh[14],vh[15],vh[16],vh[17],vh[18],vh[19],vh[20],vh[21],vh[22],vh[23],vh[24],vh[25],vh[26],vh[27],vh[28],vh[29],vh[30],vh[31],vh[32],vqa,vqb,vqc,vqd,vqe,vqf,vqg,vqh,vqi,vqj,vqk,vql,vqm,vqn,vqo,vqp,vvqa,vvqb,vvqc,vvqd,vvqe,vvqf,vvqg,vvqh,vvqi,vvqj,vvqk,vvql,vvqm,vvqn,vvqo,vvqp)
+
+voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v1za,v1zb,v1zc,v1zd,v1ze,v1zf,v1zg,v1zh,v1a[1],v1a[2],v1a[3],v1a[4],v1a[5],v1a[6],v1a[7],v1a[8],v1a[9],v1a[10],v1a[11],v1a[12],v1a[13],v1a[14],v1a[15],v1a[16],v1a[17],v1a[18],v1a[19],v1a[20],v1a[21],v1a[22],v1a[23],v1a[24],v1a[25],v1a[26],v1a[27],v1a[28],v1a[29],v1a[30],v1a[31],v1a[32],v1b[1],v1b[2],v1b[3],v1b[4],v1b[5],v1b[6],v1b[7],v1b[8],v1b[9],v1b[10],v1b[11],v1b[12],v1b[13],v1b[14],v1b[15],v1b[16],v1b[17],v1b[18],v1b[19],v1b[20],v1b[21],v1b[22],v1b[23],v1b[24],v1b[25],v1b[26],v1b[27],v1b[28],v1b[29],v1b[30],v1b[31],v1b[32],v1c[1],v1c[2],v1c[3],v1c[4],v1c[5],v1c[6],v1c[7],v1c[8],v1c[9],v1c[10],v1c[11],v1c[12],v1c[13],v1c[14],v1c[15],v1c[16],v1c[17],v1c[18],v1c[19],v1c[20],v1c[21],v1c[22],v1c[23],v1c[24],v1c[25],v1c[26],v1c[27],v1c[28],v1c[29],v1c[30],v1c[31],v1c[32],v1d[1],v1d[2],v1d[3],v1d[4],v1d[5],v1d[6],v1d[7],v1d[8],v1d[9],v1d[10],v1d[11],v1d[12],v1d[13],v1d[14],v1d[15],v1d[16],v1d[17],v1d[18],v1d[19],v1d[20],v1d[21],v1d[22],v1d[23],v1d[24],v1d[25],v1d[26],v1d[27],v1d[28],v1d[29],v1d[30],v1d[31],v1d[32],v1e[1],v1e[2],v1e[3],v1e[4],v1e[5],v1e[6],v1e[7],v1e[8],v1e[9],v1e[10],v1e[11],v1e[12],v1e[13],v1e[14],v1e[15],v1e[16],v1e[17],v1e[18],v1e[19],v1e[20],v1e[21],v1e[22],v1e[23],v1e[24],v1e[25],v1e[26],v1e[27],v1e[28],v1e[29],v1e[30],v1e[31],v1e[32],v1f[1],v1f[2],v1f[3],v1f[4],v1f[5],v1f[6],v1f[7],v1f[8],v1f[9],v1f[10],v1f[11],v1f[12],v1f[13],v1f[14],v1f[15],v1f[16],v1f[17],v1f[18],v1f[19],v1f[20],v1f[21],v1f[22],v1f[23],v1f[24],v1f[25],v1f[26],v1f[27],v1f[28],v1f[29],v1f[30],v1f[31],v1f[32],v1g[1],v1g[2],v1g[3],v1g[4],v1g[5],v1g[6],v1g[7],v1g[8],v1g[9],v1g[10],v1g[11],v1g[12],v1g[13],v1g[14],v1g[15],v1g[16],v1g[17],v1g[18],v1g[19],v1g[20],v1g[21],v1g[22],v1g[23],v1g[24],v1g[25],v1g[26],v1g[27],v1g[28],v1g[29],v1g[30],v1g[31],v1g[32],v1h[1],v1h[2],v1h[3],v1h[4],v1h[5],v1h[6],v1h[7],v1h[8],v1h[9],v1h[10],v1h[11],v1h[12],v1h[13],v1h[14],v1h[15],v1h[16],v1h[17],v1h[18],v1h[19],v1h[20],v1h[21],v1h[22],v1h[23],v1h[24],v1h[25],v1h[26],v1h[27],v1h[28],v1h[29],v1h[30],v1h[31],v1h[32],v1qa,v1qb,v1qc,v1qd,v1qe,v1qf,v1qg,v1qh,v1qi,v1qj,v1qk,v1ql,v1qm,v1qn,v1qo,v1qp,v1v1qa,v1v1qb,v1v1qc,v1v1qd,v1v1qe,v1v1qf,v1v1qg,v1v1qh,v1v1qi,v1v1qj,v1v1qk,v1v1ql,v1v1qm,v1v1qn,v1v1qo,v1v1qp)
+
+#################################################################
+
+voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v2za,v2zb,v2zc,v2zd,v2ze,v2zf,v2zg,v2zh,v2a[1],v2a[2],v2a[3],v2a[4],v2a[5],v2a[6],v2a[7],v2a[8],v2a[9],v2a[10],v2a[11],v2a[12],v2a[13],v2a[14],v2a[15],v2a[16],v2a[17],v2a[18],v2a[19],v2a[20],v2a[21],v2a[22],v2a[23],v2a[24],v2a[25],v2a[26],v2a[27],v2a[28],v2a[29],v2a[30],v2a[31],v2a[32],v2b[1],v2b[2],v2b[3],v2b[4],v2b[5],v2b[6],v2b[7],v2b[8],v2b[9],v2b[10],v2b[11],v2b[12],v2b[13],v2b[14],v2b[15],v2b[16],v2b[17],v2b[18],v2b[19],v2b[20],v2b[21],v2b[22],v2b[23],v2b[24],v2b[25],v2b[26],v2b[27],v2b[28],v2b[29],v2b[30],v2b[31],v2b[32],v2c[1],v2c[2],v2c[3],v2c[4],v2c[5],v2c[6],v2c[7],v2c[8],v2c[9],v2c[10],v2c[11],v2c[12],v2c[13],v2c[14],v2c[15],v2c[16],v2c[17],v2c[18],v2c[19],v2c[20],v2c[21],v2c[22],v2c[23],v2c[24],v2c[25],v2c[26],v2c[27],v2c[28],v2c[29],v2c[30],v2c[31],v2c[32],v2d[1],v2d[2],v2d[3],v2d[4],v2d[5],v2d[6],v2d[7],v2d[8],v2d[9],v2d[10],v2d[11],v2d[12],v2d[13],v2d[14],v2d[15],v2d[16],v2d[17],v2d[18],v2d[19],v2d[20],v2d[21],v2d[22],v2d[23],v2d[24],v2d[25],v2d[26],v2d[27],v2d[28],v2d[29],v2d[30],v2d[31],v2d[32],v2e[1],v2e[2],v2e[3],v2e[4],v2e[5],v2e[6],v2e[7],v2e[8],v2e[9],v2e[10],v2e[11],v2e[12],v2e[13],v2e[14],v2e[15],v2e[16],v2e[17],v2e[18],v2e[19],v2e[20],v2e[21],v2e[22],v2e[23],v2e[24],v2e[25],v2e[26],v2e[27],v2e[28],v2e[29],v2e[30],v2e[31],v2e[32],v2f[1],v2f[2],v2f[3],v2f[4],v2f[5],v2f[6],v2f[7],v2f[8],v2f[9],v2f[10],v2f[11],v2f[12],v2f[13],v2f[14],v2f[15],v2f[16],v2f[17],v2f[18],v2f[19],v2f[20],v2f[21],v2f[22],v2f[23],v2f[24],v2f[25],v2f[26],v2f[27],v2f[28],v2f[29],v2f[30],v2f[31],v2f[32],v2g[1],v2g[2],v2g[3],v2g[4],v2g[5],v2g[6],v2g[7],v2g[8],v2g[9],v2g[10],v2g[11],v2g[12],v2g[13],v2g[14],v2g[15],v2g[16],v2g[17],v2g[18],v2g[19],v2g[20],v2g[21],v2g[22],v2g[23],v2g[24],v2g[25],v2g[26],v2g[27],v2g[28],v2g[29],v2g[30],v2g[31],v2g[32],v2h[1],v2h[2],v2h[3],v2h[4],v2h[5],v2h[6],v2h[7],v2h[8],v2h[9],v2h[10],v2h[11],v2h[12],v2h[13],v2h[14],v2h[15],v2h[16],v2h[17],v2h[18],v2h[19],v2h[20],v2h[21],v2h[22],v2h[23],v2h[24],v2h[25],v2h[26],v2h[27],v2h[28],v2h[29],v2h[30],v2h[31],v2h[32],v2qa,v2qb,v2qc,v2qd,v2qe,v2qf,v2qg,v2qh,v2qi,v2qj,v2qk,v2ql,v2qm,v2qn,v2qo,v2qp,v2vqa,v2vqb,v2vqc,v2vqd,v2vqe,v2vqf,v2vqg,v2vqh,v2vqi,v2vqj,v2vqk,v2vql,v2vqm,v2vqn,v2vqo,v2vqp)
+
+voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,v3za,v3zb,v3zc,v3zd,v3ze,v3zf,v3zg,v3zh,v3a[1],v3a[2],v3a[3],v3a[4],v3a[5],v3a[6],v3a[7],v3a[8],v3a[9],v3a[10],v3a[11],v3a[12],v3a[13],v3a[14],v3a[15],v3a[16],v3a[17],v3a[18],v3a[19],v3a[20],v3a[21],v3a[22],v3a[23],v3a[24],v3a[25],v3a[26],v3a[27],v3a[28],v3a[29],v3a[30],v3a[31],v3a[32],v3b[1],v3b[2],v3b[3],v3b[4],v3b[5],v3b[6],v3b[7],v3b[8],v3b[9],v3b[10],v3b[11],v3b[12],v3b[13],v3b[14],v3b[15],v3b[16],v3b[17],v3b[18],v3b[19],v3b[20],v3b[21],v3b[22],v3b[23],v3b[24],v3b[25],v3b[26],v3b[27],v3b[28],v3b[29],v3b[30],v3b[31],v3b[32],v3c[1],v3c[2],v3c[3],v3c[4],v3c[5],v3c[6],v3c[7],v3c[8],v3c[9],v3c[10],v3c[11],v3c[12],v3c[13],v3c[14],v3c[15],v3c[16],v3c[17],v3c[18],v3c[19],v3c[20],v3c[21],v3c[22],v3c[23],v3c[24],v3c[25],v3c[26],v3c[27],v3c[28],v3c[29],v3c[30],v3c[31],v3c[32],v3d[1],v3d[2],v3d[3],v3d[4],v3d[5],v3d[6],v3d[7],v3d[8],v3d[9],v3d[10],v3d[11],v3d[12],v3d[13],v3d[14],v3d[15],v3d[16],v3d[17],v3d[18],v3d[19],v3d[20],v3d[21],v3d[22],v3d[23],v3d[24],v3d[25],v3d[26],v3d[27],v3d[28],v3d[29],v3d[30],v3d[31],v3d[32],v3e[1],v3e[2],v3e[3],v3e[4],v3e[5],v3e[6],v3e[7],v3e[8],v3e[9],v3e[10],v3e[11],v3e[12],v3e[13],v3e[14],v3e[15],v3e[16],v3e[17],v3e[18],v3e[19],v3e[20],v3e[21],v3e[22],v3e[23],v3e[24],v3e[25],v3e[26],v3e[27],v3e[28],v3e[29],v3e[30],v3e[31],v3e[32],v3f[1],v3f[2],v3f[3],v3f[4],v3f[5],v3f[6],v3f[7],v3f[8],v3f[9],v3f[10],v3f[11],v3f[12],v3f[13],v3f[14],v3f[15],v3f[16],v3f[17],v3f[18],v3f[19],v3f[20],v3f[21],v3f[22],v3f[23],v3f[24],v3f[25],v3f[26],v3f[27],v3f[28],v3f[29],v3f[30],v3f[31],v3f[32],v3g[1],v3g[2],v3g[3],v3g[4],v3g[5],v3g[6],v3g[7],v3g[8],v3g[9],v3g[10],v3g[11],v3g[12],v3g[13],v3g[14],v3g[15],v3g[16],v3g[17],v3g[18],v3g[19],v3g[20],v3g[21],v3g[22],v3g[23],v3g[24],v3g[25],v3g[26],v3g[27],v3g[28],v3g[29],v3g[30],v3g[31],v3g[32],v3h[1],v3h[2],v3h[3],v3h[4],v3h[5],v3h[6],v3h[7],v3h[8],v3h[9],v3h[10],v3h[11],v3h[12],v3h[13],v3h[14],v3h[15],v3h[16],v3h[17],v3h[18],v3h[19],v3h[20],v3h[21],v3h[22],v3h[23],v3h[24],v3h[25],v3h[26],v3h[27],v3h[28],v3h[29],v3h[30],v3h[31],v3h[32],v3qa,v3qb,v3qc,v3qd,v3qe,v3qf,v3qg,v3qh,v3qi,v3qj,v3qk,v3ql,v3qm,v3qn,v3qo,v3qp,v3v3qa,v3v3qb,v3v3qc,v3v3qd,v3v3qe,v3v3qf,v3v3qg,v3v3qh,v3v3qi,v3v3qj,v3v3qk,v3v3ql,v3v3qm,v3v3qn,v3v3qo,v3v3qp)
+
+end
+
+#################################################################
+
+procedure voxChunkBlock03(xa,xb,xc,xd,xe,xf,xg,xh,vza,vzb,vzc,vzd,vze,vzf,vzg,vzh,va1,va2,va3,va4,va5,va6,va7,va8,va9,va10,va11,va12,va13,va14,va15,va16,va17,va18,va19,va20,va21,va22,va23,va24,va25,va26,va27,va28,va29,va30,va31,va32,vb1,vb2,vb3,vb4,vb5,vb6,vb7,vb8,vb9,vb10,vb11,vb12,vb13,vb14,vb15,vb16,vb17,vb18,vb19,vb20,vb21,vb22,vb23,vb24,vb25,vb26,vb27,vb28,vb29,vb30,vb31,vb32,vc1,vc2,vc3,vc4,vc5,vc6,vc7,vc8,vc9,vc10,vc11,vc12,vc13,vc14,vc15,vc16,vc17,vc18,vc19,vc20,vc21,vc22,vc23,vc24,vc25,vc26,vc27,vc28,vc29,vc30,vc31,vc32,vd1,vd2,vd3,vd4,vd5,vd6,vd7,vd8,vd9,vd10,vd11,vd12,vd13,vd14,vd15,vd16,vd17,vd18,vd19,vd20,vd21,vd22,vd23,vd24,vd25,vd26,vd27,vd28,vd29,vd30,vd31,vd32,ve1,ve2,ve3,ve4,ve5,ve6,ve7,ve8,ve9,ve10,ve11,ve12,ve13,ve14,ve15,ve16,ve17,ve18,ve19,ve20,ve21,ve22,ve23,ve24,ve25,ve26,ve27,ve28,ve29,ve30,ve31,ve32,vf1,vf2,vf3,vf4,vf5,vf6,vf7,vf8,vf9,vf10,vf11,vf12,vf13,vf14,vf15,vf16,vf17,vf18,vf19,vf20,vf21,vf22,vf23,vf24,vf25,vf26,vf27,vf28,vf29,vf30,vf31,vf32,vg1,vg2,vg3,vg4,vg5,vg6,vg7,vg8,vg9,vg10,vg11,vg12,vg13,vg14,vg15,vg16,vg17,vg18,vg19,vg20,vg21,vg22,vg23,vg24,vg25,vg26,vg27,vg28,vg29,vg30,vg31,vg32,vh1,vh2,vh3,vh4,vh5,vh6,vh7,vh8,vh9,vh10,vh11,vh12,vh13,vh14,vh15,vh16,vh17,vh18,vh19,vh20,vh21,vh22,vh23,vh24,vh25,vh26,vh27,vh28,vh29,vh30,vh31,vh32,vqa,vqb,vqc,vqd,vqe,vqf,vqg,vqh,vqi,vqj,vqk,vql,vqm,vqn,vqo,vqp,vvqa,vvqb,vvqc,vvqd,vvqe,vvqf,vvqg,vvqh,vvqi,vvqj,vvqk,vvql,vvqm,vvqn,vvqo,vvqp)
+
+#(xa:=1,xb:=5,xc:=9,xd:=13,xe:=17,xf:=21,xg:=25,xh:=29)
+
+va:=[va1,va2,va3,va4,va5,va6,va7,va8,va9,va10,va11,va12,va13,va14,va15,va16,va17,va18,va19,va20,va21,va22,va23,va24,va25,va26,va27,va28,va29,va30,va31,va32]
+vb:=[vb1,vb2,vb3,vb4,vb5,vb6,vb7,vb8,vb9,vb10,vb11,vb12,vb13,vb14,vb15,vb16,vb17,vb18,vb19,vb20,vb21,vb22,vb23,vb24,vb25,vb26,vb27,vb28,vb29,vb30,vb31,vb32]
+vc:=[vc1,vc2,vc3,vc4,vc5,vc6,vc7,vc8,vc9,vc10,vc11,vc12,vc13,vc14,vc15,vc16,vc17,vc18,vc19,vc20,vc21,vc22,vc23,vc24,vc25,vc26,vc27,vc28,vc29,vc30,vc31,vc32]
+vd:=[vd1,vd2,vd3,vd4,vd5,vd6,vd7,vd8,vd9,vd10,vd11,vd12,vd13,vd14,vd15,vd16,vd17,vd18,vd19,vd20,vd21,vd22,vd23,vd24,vd25,vd26,vd27,vd28,vd29,vd30,vd31,vd32]
+ve:=[ve1,ve2,ve3,ve4,ve5,ve6,ve7,ve8,ve9,ve10,ve11,ve12,ve13,ve14,ve15,ve16,ve17,ve18,ve19,ve20,ve21,ve22,ve23,ve24,ve25,ve26,ve27,ve28,ve29,ve30,ve31,ve32]
+vf:=[vf1,vf2,vf3,vf4,vf5,vf6,vf7,vf8,vf9,vf10,vf11,vf12,vf13,vf14,vf15,vf16,vf17,vf18,vf19,vf20,vf21,vf22,vf23,vf24,vf25,vf26,vf27,vf28,vf29,vf30,vf31,vf32]
+vg:=[vg1,vg2,vg3,vg4,vg5,vg6,vg7,vg8,vg9,vg10,vg11,vg12,vg13,vg14,vg15,vg16,vg17,vg18,vg19,vg20,vg21,vg22,vg23,vg24,vg25,vg26,vg27,vg28,vg29,vg30,vg31,vg32]
+vh:=[vh1,vh2,vh3,vh4,vh5,vh6,vh7,vh8,vh9,vh10,vh11,vh12,vh13,vh14,vh15,vh16,vh17,vh18,vh19,vh20,vh21,vh22,vh23,vh24,vh25,vh26,vh27,vh28,vh29,vh30,vh31,vh32]
+
+#(vza:=1,vzb:=2,vzc:=3,vzd:=4,vze:=5,vzf:=6,vzg:=7,vzh:=8)
+
+#(vqa:="blue",vqb:="blue",vqc:="blue",vqd:="blue",vqe:="blue",vqf:="blue",vqg:="blue",vqh:="blue",vqi:="blue",vqj:="blue",vqk:="blue",vql:="blue",vqm:="blue",vqn:="blue",vqo:="blue",vqp:="blue",vvqa:="blue",vvqb:="blue",vvqc:="blue",vvqd:="blue",vvqe:="blue",vvqf:="blue",vvqg:="blue",vvqh:="blue",vvqi:="blue",vvqj:="blue",vvqk:="blue",vvql:="blue",vvqm:="blue",vvqn:="blue",vvqo:="blue",vvqp:="blue")
+
+# # # #
+
+voxChunkBlock02(xa,xb,xc,xd,xe,xf,xg,xh,va[1],va[2],va[3],va[4],va[5],va[6],va[7],va[8],va[9],va[10],va[11],va[12],va[13],va[14],va[15],va[16],va[17],va[18],va[19],va[20],va[21],va[22],va[23],va[24],va[25],va[26],va[27],va[28],va[29],va[30],va[31],va[32],vb[1],vb[2],vb[3],vb[4],vb[5],vb[6],vb[7],vb[8],vb[9],vb[10],vb[11],vb[12],vb[13],vb[14],vb[15],vb[16],vb[17],vb[18],vb[19],vb[20],vb[21],vb[22],vb[23],vb[24],vb[25],vb[26],vb[27],vb[28],vb[29],vb[30],vb[31],vb[32],vc[1],vc[2],vc[3],vc[4],vc[5],vc[6],vc[7],vc[8],vc[9],vc[10],vc[11],vc[12],vc[13],vc[14],vc[15],vc[16],vc[17],vc[18],vc[19],vc[20],vc[21],vc[22],vc[23],vc[24],vc[25],vc[26],vc[27],vc[28],vc[29],vc[30],vc[31],vc[32],vd[1],vd[2],vd[3],vd[4],vd[5],vd[6],vd[7],vd[8],vd[9],vd[10],vd[11],vd[12],vd[13],vd[14],vd[15],vd[16],vd[17],vd[18],vd[19],vd[20],vd[21],vd[22],vd[23],vd[24],vd[25],vd[26],vd[27],vd[28],vd[29],vd[30],vd[31],vd[32],ve[1],ve[2],ve[3],ve[4],ve[5],ve[6],ve[7],ve[8],ve[9],ve[10],ve[11],ve[12],ve[13],ve[14],ve[15],ve[16],ve[17],ve[18],ve[19],ve[20],ve[21],ve[22],ve[23],ve[24],ve[25],ve[26],ve[27],ve[28],ve[29],ve[30],ve[31],ve[32],vf[1],vf[2],vf[3],vf[4],vf[5],vf[6],vf[7],vf[8],vf[9],vf[10],vf[11],vf[12],vf[13],vf[14],vf[15],vf[16],vf[17],vf[18],vf[19],vf[20],vf[21],vf[22],vf[23],vf[24],vf[25],vf[26],vf[27],vf[28],vf[29],vf[30],vf[31],vf[32],vg[1],vg[2],vg[3],vg[4],vg[5],vg[6],vg[7],vg[8],vg[9],vg[10],vg[11],vg[12],vg[13],vg[14],vg[15],vg[16],vg[17],vg[18],vg[19],vg[20],vg[21],vg[22],vg[23],vg[24],vg[25],vg[26],vg[27],vg[28],vg[29],vg[30],vg[31],vg[32],vh[1],vh[2],vh[3],vh[4],vh[5],vh[6],vh[7],vh[8],vh[9],vh[10],vh[11],vh[12],vh[13],vh[14],vh[15],vh[16],vh[17],vh[18],vh[19],vh[20],vh[21],vh[22],vh[23],vh[24],vh[25],vh[26],vh[27],vh[28],vh[29],vh[30],vh[31],vh[32],vza,vzb,vzc,vzd,vze,vzf,vzg,vzh,vqa,vqb,vqc,vqd,vqe,vqf,vqg,vqh,vqi,vqj,vqk,vql,vqm,vqn,vqo,vqp,vvqa,vvqb,vvqc,vvqd,vvqe,vvqf,vvqg,vvqh,vvqi,vvqj,vvqk,vvql,vvqm,vvqn,vvqo,vvqp)
+
+end
+
+########################################################
+
+procedure voxChunkBlock02(xa,xb,xc,xd,xe,xf,xg,xh,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32,b01,b02,b03,b04,b05,b06,b07,b08,b09,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32,c01,c02,c03,c04,c05,c06,c07,c08,c09,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30,c31,c32,d01,d02,d03,d04,d05,d06,d07,d08,d09,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,f01,f02,f03,f04,f05,f06,f07,f08,f09,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20,f21,f22,f23,f24,f25,f26,f27,f28,f29,f30,f31,f32,g01,g02,g03,g04,g05,g06,g07,g08,g09,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28,g29,g30,g31,g32,h01,h02,h03,h04,h05,h06,h07,h08,h09,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23,h24,h25,h26,h27,h28,h29,h30,h31,h32,za,zb,zc,zd,ze,zf,zg,zh,qa,qb,qc,qd,qe,qf,qg,qh,qi,qj,qk,ql,qm,qn,qo,qp,qqa,qqb,qqc,qqd,qqe,qqf,qqg,qqh,qqi,qqj,qqk,qql,qqm,qqn,qqo,qqp)
+
+s := (1)
+
+va:=[a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32]
+vb:=[b01,b02,b03,b04,b05,b06,b07,b08,b09,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25,b26,b27,b28,b29,b30,b31,b32]
+vc:=[c01,c02,c03,c04,c05,c06,c07,c08,c09,c10,c11,c12,c13,c14,c15,c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30,c31,c32]
+vd:=[d01,d02,d03,d04,d05,d06,d07,d08,d09,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32]
+
+ve:=[e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32]
+vf:=[f01,f02,f03,f04,f05,f06,f07,f08,f09,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20,f21,f22,f23,f24,f25,f26,f27,f28,f29,f30,f31,f32]
+vg:=[g01,g02,g03,g04,g05,g06,g07,g08,g09,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28,g29,g30,g31,g32]
+vh:=[h01,h02,h03,h04,h05,h06,h07,h08,h09,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23,h24,h25,h26,h27,h28,h29,h30,h31,h32]
+
+(xa01:=va[1],xa02:=va[2],xa03:=va[3],xa04:=va[4],xa05:=va[5],xa06:=va[6],xa07:=va[7],xa08:=va[8])
+(xa09:=va[9],xa10:=va[10],xa11:=va[11],xa12:=va[12],xa13:=va[13],xa14:=va[14],xa15:=va[15])
+(xa16:=va[16],xa17:=va[17],xa18:=va[18],xa19:=va[19],xa20:=va[20],xa21:=va[21],xa22:=va[22])
+(xa23:=va[23],xa24:=va[24],xa25:=va[25],xa26:=va[26],xa27:=va[27],xa28:=va[28],xa29:=va[29],xa30:=va[30],xa31:=va[31],xa32:=va[32])
+
+(xb01:=vb[1],xb02:=vb[2],xb03:=vb[3],xb04:=vb[4],xb05:=vb[5],xb06:=vb[6],xb07:=vb[7],xb08:=vb[8])
+(xb09:=vb[9],xb10:=vb[10],xb11:=vb[11],xb12:=vb[12],xb13:=vb[13],xb14:=vb[14],xb15:=vb[15])
+(xb16:=vb[16],xb17:=vb[17],xb18:=vb[18],xb19:=vb[19],xb20:=vb[20],xb21:=vb[21],xb22:=vb[22])
+(xb23:=vb[23],xb24:=vb[24],xb25:=vb[25],xb26:=vb[26],xb27:=vb[27],xb28:=vb[28],xb29:=vb[29],xb30:=vb[30],xb31:=vb[31],xb32:=vb[32])
+
+(xc01:=vc[1],xc02:=vc[2],xc03:=vc[3],xc04:=vc[4],xc05:=vc[5],xc06:=vc[6],xc07:=vc[7],xc08:=vc[8])
+(xc09:=vc[9],xc10:=vc[10],xc11:=vc[11],xc12:=vc[12],xc13:=vc[13],xc14:=vc[14],xc15:=vc[15])
+(xc16:=vc[16],xc17:=vc[17],xc18:=vc[18],xc19:=vc[19],xc20:=vc[20],xc21:=vc[21],xc22:=vc[22])
+(xc23:=vc[23],xc24:=vc[24],xc25:=vc[25],xc26:=vc[26],xc27:=vc[27],xc28:=vc[28],xc29:=vc[29],xc30:=vc[30],xc31:=vc[31],xc32:=vc[32])
+
+(xd01:=vd[1],xd02:=vd[2],xd03:=vd[3],xd04:=vd[4],xd05:=vd[5],xd06:=vd[6],xd07:=vd[7],xd08:=vd[8])
+(xd09:=vd[9],xd10:=vd[10],xd11:=vd[11],xd12:=vd[12],xd13:=vd[13],xd14:=vd[14],xd15:=vd[15])
+(xd16:=vd[16],xd17:=vd[17],xd18:=vd[18],xd19:=vd[19],xd20:=vd[20],xd21:=vd[21],xd22:=vd[22])
+(xd23:=vd[23],xd24:=vd[24],xd25:=vd[25],xd26:=vd[26],xd27:=vd[27],xd28:=vd[28],xd29:=vd[29],xd30:=vd[30],xd31:=vd[31],xd32:=vd[32])
+
+##################################################################
+
+(xe01:=ve[1],xe02:=ve[2],xe03:=ve[3],xe04:=ve[4],xe05:=ve[5],xe06:=ve[6],xe07:=ve[7],xe08:=ve[8])
+(xe09:=ve[9],xe10:=ve[10],xe11:=ve[11],xe12:=ve[12],xe13:=ve[13],xe14:=ve[14],xe15:=ve[15])
+(xe16:=ve[16],xe17:=ve[17],xe18:=ve[18],xe19:=ve[19],xe20:=ve[20],xe21:=ve[21],xe22:=ve[22])
+(xe23:=ve[23],xe24:=ve[24],xe25:=ve[25],xe26:=ve[26],xe27:=ve[27],xe28:=ve[28],xe29:=ve[29],xe30:=ve[30],xe31:=ve[31],xe32:=ve[32])
+
+(xf01:=vf[1],xf02:=vf[2],xf03:=vf[3],xf04:=vf[4],xf05:=vf[5],xf06:=vf[6],xf07:=vf[7],xf08:=vf[8])
+(xf09:=vf[9],xf10:=vf[10],xf11:=vf[11],xf12:=vf[12],xf13:=vf[13],xf14:=vf[14],xf15:=vf[15])
+(xf16:=vf[16],xf17:=vf[17],xf18:=vf[18],xf19:=vf[19],xf20:=vf[20],xf21:=vf[21],xf22:=vf[22])
+(xf23:=vf[23],xf24:=vf[24],xf25:=vf[25],xf26:=vf[26],xf27:=vf[27],xf28:=vf[28],xf29:=vf[29],xf30:=vf[30],xf31:=vf[31],xf32:=vf[32])
+
+(xg01:=vg[1],xg02:=vg[2],xg03:=vg[3],xg04:=vg[4],xg05:=vg[5],xg06:=vg[6],xg07:=vg[7],xg08:=vg[8])
+(xg09:=vg[9],xg10:=vg[10],xg11:=vg[11],xg12:=vg[12],xg13:=vg[13],xg14:=vg[14],xg15:=vg[15])
+(xg16:=vg[16],xg17:=vg[17],xg18:=vg[18],xg19:=vg[19],xg20:=vg[20],xg21:=vg[21],xg22:=vg[22])
+(xg23:=vg[23],xg24:=vg[24],xg25:=vg[25],xg26:=vg[26],xg27:=vg[27],xg28:=vg[28],xg29:=vg[29],xg30:=vg[30],xg31:=vg[31],xg32:=vg[32])
+
+(xh01:=vh[1],xh02:=vh[2],xh03:=vh[3],xh04:=vh[4],xh05:=vh[5],xh06:=vh[6],xh07:=vh[7],xh08:=vh[8])
+(xh09:=vh[9],xh10:=vh[10],xh11:=vh[11],xh12:=vh[12],xh13:=vh[13],xh14:=vh[14],xh15:=vh[15])
+(xh16:=vh[16],xh17:=vh[17],xh18:=vh[18],xh19:=vh[19],xh20:=vh[20],xh21:=vh[21],xh22:=vh[22])
+(xh23:=vh[23],xh24:=vh[24],xh25:=vh[25],xh26:=vh[26],xh27:=vh[27],xh28:=vh[28],xh29:=vh[29],xh30:=vh[30],xh31:=vh[31],xh32:=vh[32])
+
+################################################################
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xa01,xa02,xa03,xa04,xa05,xa06,xa07,xa08,xa09,xa10,xa11,xa12,xa13,xa14,xa15,xa16,xa17,xa18,xa19,xa20,xa21,xa22,xa23,xa24,xa25,xa26,xa27,xa28,xa29,xa30,xa31,xa32,
+za,za,za,za,za,za,za,za,s,qa,qb,qc,qd)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xb01,xb02,xb03,xb04,xb05,xb06,xb07,xb08,xb09,xb10,xb11,xb12,xb13,xb14,xb15,xb16,xb17,xb18,xb19,xb20,xb21,xb22,xb23,xb24,xb25,xb26,xb27,xb28,xb29,xb30,xb31,xb32,
+zb,zb,zb,zb,zb,zb,zb,zb,s,qe,qf,qg,qh)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xc01,xc02,xc03,xc04,xc05,xc06,xc07,xc08,xc09,xc10,xc11,xc12,xc13,xc14,xc15,xc16,xc17,xc18,xc19,xc20,xc21,xc22,xc23,xc24,xc25,xc26,xc27,xc28,xc29,xc30,xc31,xc32,
+zc,zc,zc,zc,zc,zc,zc,zc,s,qi,qj,qk,ql)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xd01,xd02,xd03,xd04,xd05,xd06,xd07,xd08,xd09,xd10,xd11,xd12,xd13,xd14,xd15,xd16,xd17,xd18,xd19,xd20,xd21,xd22,xd23,xd24,xd25,xd26,xd27,xd28,xd29,xd30,xd31,xd32,
+zd,zd,zd,zd,zd,zd,zd,zd,s,qm,qn,qo,qp)
+
+#################################################################
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xe01,xe02,xe03,xe04,xe05,xe06,xe07,xe08,xe09,xe10,xe11,xe12,xe13,xe14,xe15,xe16,xe17,xe18,xe19,xe20,xe21,xe22,xe23,xe24,xe25,xe26,xe27,xe28,xe29,xe30,xe31,xe32,
+ze,ze,ze,ze,ze,ze,ze,ze,s,qqa,qqb,qqc,qqd)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xf01,xf02,xf03,xf04,xf05,xf06,xf07,xf08,xf09,xf10,xf11,xf12,xf13,xf14,xf15,xf16,xf17,xf18,xf19,xf20,xf21,xf22,xf23,xf24,xf25,xf26,xf27,xf28,xf29,xf30,xf31,xf32,
+zf,zf,zf,zf,zf,zf,zf,zf,s,qqe,qqf,qqg,qqh)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xg01,xg02,xg03,xg04,xg05,xg06,xg07,xg08,xg09,xg10,xg11,xg12,xg13,xg14,xg15,xg16,xg17,xg18,xg19,xg20,xg21,xg22,xg23,xg24,xg25,xg26,xg27,xg28,xg29,xg30,xg31,xg32,
+zg,zg,zg,zg,zg,zg,zg,zg,s,qqi,qqj,qqk,qql)
+
+voxChunkBlock01(xa,xb,xc,xd,xe,xf,xg,xh,xh01,xh02,xh03,xh04,xh05,xh06,xh07,xh08,xh09,xh10,xh11,xh12,xh13,xh14,xh15,xh16,xh17,xh18,xh19,xh20,xh21,xh22,xh23,xh24,xh25,xh26,xh27,xh28,xh29,xh30,xh31,xh32,
+zh,zh,zh,zh,zh,zh,zh,zh,s,qqm,qqn,qqo,qqp)
+
+#################################################################
+
+end
+
+procedure voxChunkBlock01(xa,xaa,xb,xbb,xc,xcc,xd,xdd,ya,yya,yyya,yyyya,yb,yyb,yyyb,yyyyb,yc,yyc,yyyc,yyyyc,yd,yyd,yyyd,yyyyd,ye,yye,
+yyye,yyyye,yf,yyf,yyyf,yyyyf,yg,yyg,yyyg,yyyyg,yh,yyh,yyyh,yyyyh,za,zaa,zb,zbb,zc,zcc,zd,zdd,s,qa,qb,qc,qd)
+
+
+voxChunk01(xa,ya,yya,yyya,yyyya,za,s,qa)
+voxChunk01(xaa,yb,yyb,yyyb,yyyyb,zaa,s,qa)
+voxChunk01(xb,yc,yyc,yyyc,yyyyc,zb,s,qb)
+voxChunk01(xbb,yd,yyd,yyyd,yyyyd,zbb,s,qb)
+voxChunk01(xc,ye,yye,yyye,yyyye,zc,s,qc)
+voxChunk01(xcc,yf,yyf,yyyf,yyyyf,zcc,s,qc)
+voxChunk01(xd,yg,yyg,yyyg,yyyyg,zd,s,qd)
+voxChunk01(xdd,yh,yyh,yyyh,yyyyh,zdd,s,qd)
+
+end
+       
+procedure voxChunk01(x,y,yy,yyy,yyyy,z,s,rgb)
+
+Fg(rgb)
+
+         DrawCube(x,y,z,s)
+         DrawCube(x+1,yy,z,s)
+         DrawCube(x+2,yyy,z,s)
+         DrawCube(x+3,yyyy,z,s)
+        
+end
+
+######################################################
+######################################################
+
+#begin interpereter
+global WHITE,MFLAG,PRTBL 	
+
+procedure int(arg)
+
+   local line, lno, pline
+
+   WClose()
+
+	WHITE := ' \t\n\f'
+
+	PRTBL := table()
+
+	MFLAG := 0
+
+       writes("Input> ")
+	while line := read() do {
+       
+		line ? {
+
+			tab(many(WHITE))
+
+			if lno := tab(many(&digits)) & tab(many(WHITE)) then {
+
+				pline := tab(0)
+
+				PRTBL[numeric(lno)] := pline
+
+				MFLAG +:= 1
+			}
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("read" | "r") then {
+				readprog()
+
+				MFLAG := 0
+			}
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("write" | "w") then {
+				writeprog()
+
+				MFLAG := 0
+			}
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("delete" | "d") then {
+				delprog()
+
+				MFLAG +:= 1
+			}
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("sequence" | "s") then {
+				seqprog()
+			}
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("list" | "l") then {
+				listprog()
+			}
+
+                #########################################
+
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene01" | "l") then {
+				listprog01()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene02" | "l") then {
+				listprog02()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene03" | "l") then {
+				listprog03()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene04" | "l") then {
+				listprog04()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene05" | "l") then {
+				listprog05()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene06" | "l") then {
+				listprog06()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene07" | "l") then {
+				listprog07()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene08" | "l") then {
+				listprog08()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene09" | "l") then {
+				listprog09()
+			}
+                 else if (tab(upto(WHITE)) | tab(0)) ==
+				("scene10" | "l") then {
+				listprog10()
+			}
+
+
+                #########################################
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("execute" | "e") then {
+				execprog()
+			}
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("help" | "h" | "?") then {
+				helpprog()
+                 }
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("commands" | "c" | "!") then {
+				commandlist()
+			}
+
+			else if (tab(upto(WHITE)) | tab(0)) ==
+				("quit" | "q") then {
+				quitprog()
+			}
+
+			else {
+			       	write("Syntax Error: ",line)
+				helpprog()
+			}
+		}
+
+
+		writes("Input> ")
+               
+	}
+
+end
+
+procedure execprog()
+   local runargs, out, prog, line, command
+
+	static	tmpfile
+
+	initial tmpfile := "TMPFILE.icn"
+
+	runargs := tab(0)
+
+	(out := open(tmpfile,"w")) |
+
+	(write("I can't open '",tmpfile,"' for writing") & fail)
+
+	prog := sort(PRTBL)
+
+	every line := !prog do {
+		write(out,line[2])
+	}
+	close(out)
+
+	#command := "icont -s " || tmpfile || " -x " || runargs
+      #command := "unicon " || tmpfile || " -x " || runargs
+        command := "wicont -s " || tmpfile || " -x " || runargs
+
+	command ||:= " ; rm -f " || tmpfile
+
+	system(command)
+ 
+end
+
+procedure seqprog()
+   local begno, incno, prog, lno, l
+
+	begno := incno := 10
+
+	tab(many(WHITE))
+
+	begno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	incno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	PRTBL := table()
+
+	lno := begno
+	every l := !prog do {
+		PRTBL[lno] := l[2]
+		lno +:= incno
+	}
+
+end
+
+procedure readprog()
+   local readfile, response, in, lno, line
+
+	tab(many(WHITE))
+	readfile := tab(upto(WHITE) | 0)
+
+	if /readfile | *readfile = 0 then {
+		writes("Read file name: ")
+		readfile := read()
+	}
+
+	if MFLAG > 0 then {
+		writes("Write before reading over current program? ")
+		response := read()
+		if any('yY',response) then
+			writeprog()
+	}
+
+	PRTBL := table()
+
+	in := open(readfile,"r")
+	lno := 1
+	every line := !in do {
+		PRTBL[lno] := line
+		lno +:= 1
+	}
+	close(in)
+
+	write("Read '",readfile,"'...",*PRTBL," lines")
+
+end
+
+procedure writeprog()
+   local writefile, prog, out, l
+
+	tab(many(WHITE))
+	writefile := tab(upto(WHITE) | 0)
+
+	if /writefile | *writefile = 0 then {
+		writes("Write file name: ")
+		writefile := read()
+	}
+
+	prog := sort(PRTBL)
+
+	out := open(writefile,"w")
+	every l := !prog do {
+		write(out,l[2])
+	}
+	close(out)
+
+	write("Write '",writefile,"'...",*PRTBL," lines")
+
+end
+
+procedure delprog()
+   local begno, endno, prog, l, lno
+
+	begno := 0
+	endno := 99999
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	PRTBL := table()
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno < begno) | (lno > endno) then PRTBL[lno] := l[2]
+	}
+
+end
+
+procedure listprog()
+   local begno, endno, prog, l, lno
+
+	begno := 0
+	endno := 99999
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+###################################################
+
+procedure listprog01()
+   local begno, endno, prog, l, lno
+
+	begno := 1572
+	endno := 1606
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog02()
+   local begno, endno, prog, l, lno
+
+	begno := 1610
+	endno := 1623
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog03()
+   local begno, endno, prog, l, lno
+
+	begno := 1578
+	endno := 1609
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog04()
+   local begno, endno, prog, l, lno
+
+	begno := 1613
+	endno := 1622
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog05()
+   local begno, endno, prog, l, lno
+
+	begno := 1646
+	endno := 1653
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog06()
+   local begno, endno, prog, l, lno
+
+	begno := 1657
+	endno := 1669
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog07()
+   local begno, endno, prog, l, lno
+
+	begno := 1675
+	endno := 1698
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog08()
+   local begno, endno, prog, l, lno
+
+	begno := 1702
+	endno := 1725
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog09()
+   local begno, endno, prog, l, lno
+
+	begno := 1729
+	endno := 1746
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+procedure listprog10()
+   local begno, endno, prog, l, lno
+
+	begno := 1750
+	endno := 1757
+
+	tab(many(WHITE))
+
+	begno := endno := numeric(tab(many(&digits)))
+
+	tab(many(WHITE))
+
+	endno := numeric(tab(many(&digits)))
+
+	prog := sort(PRTBL)
+
+	every l := !prog do {
+		lno := numeric(l[1])
+		if (lno >= begno) & (lno <= endno) then
+			write(right(lno,5),": ",l[2])
+		if lno > endno then break
+	}
+
+end
+
+#######################################################
+procedure helpprog()
+
+	static helpmsg
+
+	initial {
+		helpmsg := [
+		"<<< Icon-based Expression Syntax >>>",
+		"",
+		"lineno expression",
+		"",
+		"<<< Command Summary >>>",
+		" (1st character works)",
+		"",
+		"read [ file ]",
+		"write [ file ]",
+		"list [ begno [ endno ] ]",
+		"delete [ begno [ endno ] ]",
+		"sequence [ begno [ increment ] ]",
+		"execute [ args ]",
+		"quit",
+		"help"
+		]
+	}
+
+	every write(!helpmsg)
+
+end
+
+procedure commandlist()
+
+	static comlst
+
+	initial {
+		comlist := [
+		"<<< command list goes here?>>>",
+	
+		]
+	}
+
+	every write(!comlist)
+
+end
+
+procedure quitprog()
+   local response
+
+	if MFLAG > 0 then {
+		writes("Write before quitting? ")
+		response := read()
+		if any('yY',response) then
+			writeprog()
+	}
+
+	stop("Goodbye.")
+
+end
+
+######################################################
+######################################################
+
+procedure scene01(b)
+
+   (xc := 0,yc := 0)
+
+   i := 15
+
+   size := b #was 10
+   radius := size / .8
+   xc := yc := size / .8
+
+   angle := 0.0
+   incr := 2 * &pi / i
+
+   every j := 1 to i do {
+      spokes(xc + radius * cos(angle), yc + radius * sin(angle),
+      radius, i, angle)
+      angle +:= incr
+      }
+ 
+end
+
+procedure spokes(x, y, r, i, angle)
+   local incr, j
+
+   incr := 2 * &pi / i 
+  Fg("red")
+   every j := 1 to i do {
+DrawCube(x + r * cos(angle),y + r * sin(angle), 0, .5)
+
+      angle +:= incr
+      }
+
+   return
+
+#radii..use x,y,r
+   
+end
+
+###################################################
+
+procedure scene02(x,y,z,s)
+
+v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+
+vv:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
+
+Fg("blue")
+every x := !v do
+every z := !v do
+every y := !vv do
+
+DrawCube(x,y,z,s)
+
+end
+
+#######################################################
+
+procedure scene03(x,xx,z,zz)
+
+Fg("blue")
+
+#v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+#vv:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+
+#every x := !v do
+#every y := !v do
+#every z := !v do
+
+#every xx := !v do
+#every yy := !vv do
+#every zz := !v do
+
+#DrawCube(xx,0,zz,.1)
+#DrawCube(xx,.5,zz,.1)
+
+va:=[[0,0.5,1,1.5,2,2.5,3,3.5,4],[0,0.5,1,1.5,2,2.5,3,3.5,4]]
+
+every x := !va[1] do
+#every y := !v do
+every z := !va[1] do
+
+every xx := !va[2] do
+#every yy := !vv do
+every zz := !va[2] do
+
+DrawCube(x,0,z,.1)
+DrawCube(xx,.5,zz,.1)
+
+end
+
+#######################################################
+
+procedure scene04()
+
+voxBase(0,.1,0,0.5,1,1.5,2,-2,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-3,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-4,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-5,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-6,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-7,.5)
+
+end
+
+#######################################################
+
+procedure voxBase(yy,ss,x1,x2,x3,x4,x5,x6)
+
+v:=[x1,x2,x3,x4,x5,x6]
+
+every x := !v do
+every z := !v do
+
+y := yy 
+s := ss
+
+Fg("blue")
+
+DrawCube(x,y,z,s)
+
+end
+
+#######################################################
+
+procedure scene05()
+
+scene06(18,1,0,1)
+scene06(18,1,1,1)
+scene06(18,1,2,1)
+scene06(18,1,3,1)
+scene06(14,1,4,1)
+scene06(13,1,5,1)
+
+end
+
+#######################################################
+
+procedure scene06(x,zq,y,sq,wq,oq)
+
+Fg("green")
+
+width := wq #80
+offset := oq #5
+
+every y := 0 to width - 1 do
+every x := 0 to width - 1 do
+        
+if iand(x, y) = 0 then DrawCube(x * offset, zq,y * offset,sq)
+
+end
+
+##########################################################
+
+procedure scene07(x,y,z)
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+
+vv:=[1,2,3,4,5,6,7,8]
+
+vvv := [2,4,6,8,0]
+
+#every y := !v do
+#every z := !v do
+#every x := !vv do
+
+   wsize := 25
+   cmax  := 90
+ 
+ every x := 0 to !v -1 do
+   every y  := 0 to !vv -1 do
+    every z  := 0 to !vvv -1 do {
+         #c := cmax/wsize * iand(wsize-1,ixor(x,y))
+         #Fg(sprintf("%d,%d,%d",c,cmax-c,0))
+Fg("65000,1,1")
+         DrawCube(x,?y,z,.5)
+
+}
+
+end
+
+#################################################################
+
+procedure scene08(x,y,xx,s)
+
+#x := 0
+#y := 0
+s := .1
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+#v := [[1,2,3],[1,2,3]]
+
+vv:=[1,2,3,4]
+
+#every y := !v[1] do
+#every x := !v[2] do
+
+Fg("blue")
+every x := !v  do
+every y := !v do
+every xx := !vv do
+#every yy := !vvv do
+
+DrawCube(x,1,1,s)
+DrawCube(x,2,1,s)
+DrawCube(x,3,1,s)
+end
+
+#############################
+
+procedure scene09(x,y,w,h)
+
+colors:= ["red", "blue", "green","yellow", "purple", "white", "black"] 
+
+#Rect:=[FiIIRectangle, DrawRectangle] 
+#Rect := [DrawCube]
+
+#repeat{ w:=?Width h:=?Height x:=?Width-w/2 Y:=?Height-h/2
+
+w:=5
+h:= 3 
+x:=2-w/2 
+y:= 4-h/2 
+
+Fg(?colors) 
+DrawCube(x,y,w,h)
+
+end
+
+###############################################################
+
+procedure scene10()
+
+x1 := [1,4,5,7]
+x2 := [2,3,4,5]
+
+voxChunkBlock04(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],15,x2[4])
+
+end
+
+#every x := 0 to points do
+#DrawPoint(xoff + x, base + yscale *-sin«2 * &pi * x) / xscale»
+
+procedure comlist01(ax)
+#(x := 0,z := 0,y := 0)
+every z := 1 to ax do{
+every x := 1 to 10 do{
+every y := 1 to 10 do{ #these were 100
+#1 * sin(2 * &pi) / x
+inpglcube01(x,y,z,.5,"green")
+#inpglsphere01()#xyzsc
+#inpglcylinder01()#xyzstbc
+#inpglplane01()#xyzxyzxyzxyzc
+#seteye()#px,py,pz,dx,dy,dz,qx,qy,qz
+#psplane01()#c
+#texcube01()#xyzs tex
+#texcylinder01()#xyzstb tex
+#texplane01()#tex
+#texskysphere02()#tex
+#texskysphere01()#tex
+#texgroundplane01()#tex
+#texskyplane01()#tex
+#tmod01()#xdd,v01,v02,v03,v04,v05,v06,v07,v08,v09,v10,v11,v12,v13,v14,v15,cc,dd,ee,ff,zed
+#scenes 01-10#
+}
+}
+}
+end
