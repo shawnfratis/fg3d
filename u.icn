@@ -291,14 +291,14 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
 
   ############################################
    
-   method on_text_button_1(ev)
-   comlist01(text_field_1.get_contents())
-   #comlist01()
-   end
-
    method on_text_button_2(ev)
    scene01(text_field_2.get_contents())
    #scene01()
+   end
+
+   method on_text_button_1(ev)
+   comlist01(text_field_1.get_contents())
+   #comlist01()
    end
 
    method on_text_button_3(ev)
@@ -309,15 +309,15 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
    texskyplane01()
    end
 
-   method on_text_field_1(ev)
-   comlist01(text_field_1.get_contents())
-   #put_line("Contents = " || text_field.get_contents())
-   end
-
    method on_text_field_2(ev)
    scene01(text_field_2.get_contents())
    end
 
+   method on_text_field_1(ev)
+   comlist01(text_field_1.get_contents())
+   #put_line("Contents = " || text_field.get_contents())
+   end
+   
    method on_text_field_3(ev)
    end
 

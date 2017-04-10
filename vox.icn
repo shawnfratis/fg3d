@@ -1672,13 +1672,25 @@ end
 #every x := 0 to points do
 #DrawPoint(xoff + x, base + yscale *-sin«2 * &pi * x) / xscale»
 
-procedure comlist01(ax)
-#(x := 0,z := 0,y := 0)
-every z := 1 to ax do{
-every x := 1 to 10 do{
-every y := 1 to 10 do{ #these were 100
+procedure comlist01(at)
+
+#until integer() do {
+
+#qs := "."
+ax := at[1]
+#qs := at[2]
+bx := at[2]
+#qs := at[4] 
+cx := at[3]
+
+#}
+
+every x := 1 to ax do{
+every y := 1 to bx do{
+every z := 1 to cx do{ #these were 100---by number
+
 #1 * sin(2 * &pi) / x
-inpglcube01(x,y,z,.5,"green")
+inpglcube01(x,y,z,.5,"blue")
 #inpglsphere01()#xyzsc
 #inpglcylinder01()#xyzstbc
 #inpglplane01()#xyzxyzxyzxyzc
