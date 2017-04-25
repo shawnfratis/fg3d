@@ -999,11 +999,6 @@ return()
 
 end
 
-#procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa,rgb)
-
-#Fg(rgb)
-#DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
-
 #############################################################
 
 procedure scene01(b)
@@ -1121,7 +1116,6 @@ inpglcube01(x,y,z,.5,c)
 
 return()
 
-
 end
 
 ############################################################
@@ -1183,20 +1177,33 @@ procedure tmod01(tt)
 
 (xdd := tt[1],zed := tt[2])
 
-(v01 := tt[3],v02 := tt[4],v03 := tt[5])
-(v04 := tt[6],v05 := tt[7],v06 := tt[8])
-(v07 := tt[9],v08 := tt[10],v09 := tt[11])
-(v10 := tt[12],v11 := tt[13],v12 := tt[14])
-(v13 := tt[15],v14 := tt[16],v15 := tt[17])
-
 (zq1 := -5+zed,zq2 := -4.5+zed, zq3 := -4+zed)
 
-duk := "blue"#ct[c1]
-dad := "green"#ct[c2]
-daq := "red"#ct[c3]
-daz := "orange"#ct[c4]
+v01 := (tt[3]||"."||tt[4])
+v02 := (tt[5]||"."||tt[6])
+v03 := (tt[7]||"."||tt[8])
+v04 := (tt[9]||"."||tt[10])
+v05 := (tt[11]||"."||tt[12])
+v06 := (tt[13]||"."||tt[14])
+v07 := (tt[15]||"."||tt[16])
+v08 := (tt[17]||"."||tt[18])
+v09 := (tt[19]||"."||tt[20])
+v10 := (tt[21]||"."||tt[22])
+v11 := (tt[23]||"."||tt[24])
+v12 := (tt[25]||"."||tt[26])
+v13 := (tt[27]||"."||tt[28])
+v14 := (tt[29]||"."||tt[30])
+v15 := (tt[31]||"."||tt[32])
 
-#ct := ["red","green","blue","yellow","orange","magenta"]
+c1 := tt[33]
+c2 := tt[34]
+c3 := tt[35] 
+c4 := tt[36]
+
+duk := colorTable(c1)
+dad := colorTable(c2)
+daq := colorTable(c3)
+daz := colorTable(c4)
 
 ######################################################
 
