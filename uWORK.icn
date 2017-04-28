@@ -360,6 +360,7 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
    end
 
    method on_b5(ev)
+   iscan()
    end
 
    method on_tblandsky(ev)
