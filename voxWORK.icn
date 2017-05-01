@@ -1339,11 +1339,10 @@ end
 
 procedure iscan()
 
-ax :=      ["0,0,0",0,4,1,4,2,4,156,49,161,49,164,49,169,49,172,49,177,49,180,49]
+ax :=      ["0,0,0",0,4,1,6,3,11,156,49,161,49,164,49,169,49,172,49,177,49,180,49]
 
 (aq := ax[2],bx := ax[4],cx := ax[6])
-(dx := ax[4],ex := ax[5],fx := ax[6])
-(gx := ax[7],hx := ax[8],ix := ax[9])
+(dx := ax[3],ex := ax[5],fx := ax[7])
 
 if ax[1] := ("0,0,0") then {
 
@@ -1351,13 +1350,13 @@ y := 1
 
 #c := colorTable(jq)
 
-every x := 1 to (aq||bx||cx) do{
+every x := (aq|bx|cx) do{ #ALMOST
 
-z := 1 
+ every z := (dx|ex|fx) do{
 
 inpglcube01(x,y,z,.5,"blue")
 
-#}
+}
 }
 }
 
