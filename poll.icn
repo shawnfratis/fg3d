@@ -1,0 +1,47 @@
+link lists
+link wopen
+
+procedure main(args)
+   local colors, width, height, x, y, c
+
+   WOpen("image=" || args[1]) | stop("*** own a cat")
+
+   colors := table()
+
+   width := WAttrib("width")
+   height := WAttrib("height")
+
+   x := y := 0
+
+   #  Build table of argument lists for colors
+
+   every c := Pixel() do {
+      x +:= 1
+      if x % width = 0 then {
+         x := 0
+         y +:= 1
+         }
+      /colors[c] := []			# new color
+      put(colors[c], x, y)
+      }
+
+   write("pixels:=[")
+
+   every c := key(colors) do {
+      push(colors[c], c)
+      write(limage(colors[c]), ",")
+      }
+
+   write("[", width, ",", height, ",", *colors,  "]")
+   write("]")
+
+#write("[", width,  "]")
+  # write("]")
+
+#write("[", height, "]")
+ #  write("]")
+
+#write("[", *colors,  "]")
+ #  write("]")
+
+end

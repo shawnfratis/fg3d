@@ -1,0 +1,24 @@
+link graphics
+procedure main()
+local x, y
+WOpen("size=50,50") 
+repeat {
+case Event() of {
+&lpress: {
+DrawPoint(&x, &y)
+x :=&x
+y:=&y
+}
+&ldrag: {
+DrawLine(x, y, &x, &y)
+x :=&x
+y:=&y
+}
+&rpress | &rdrag: {
+EraseArea(&x - 2, &y - 2,5,5)
+}
+"q": exit()
+"z":  WriteImage("fg01.png")
+}
+}
+end

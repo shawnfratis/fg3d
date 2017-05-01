@@ -1006,34 +1006,39 @@ end
 
 procedure scene01(b)
 
-   (bx := b[1],bq := b[2],bz := b[3])
+(ax := b[1],bx := b[2],cx := b[3])
+(dx := b[4],ex := b[5],fx := b[6])
+(gx := b[7],hx := b[8],ix := b[9])
+(ss := b[10],jq := b[11])
+
+cc := colorTable(jq)
 
    (xc := 0,yc := 0)
 
-   i := bq  #15
+   i := (dx||ex||fx)   #15
 
-   size := bx #was 10
+   size := (ax||bx||cx)  #was 10
    radius := size / .8
    xc := yc := size / .8
 
    angle := 0.0
-   incr := bz * &pi / i
+   incr := (gx||hx||ix) * &pi / i
 
    every j := 1 to i do {
       spokes(xc + radius * cos(angle), yc + radius * sin(angle),
-      radius, i, angle)
+      radius, i, angle,ss,cc)
       angle +:= incr
       }
  
 end
 
-procedure spokes(x, y, r, i, angle)
+procedure spokes(x, y, r, i, angle,s,c)
    local incr, j
 
    incr := 2 * &pi / i 
-  Fg("red")
+  Fg(c)
    every j := 1 to i do {
-DrawCube(x + r * cos(angle),0,y + r * sin(angle), .5)
+DrawSphere(x + r * cos(angle),0,y + r * sin(angle), s)
 
       angle +:= incr
       }
@@ -1334,25 +1339,25 @@ end
 
 procedure iscan()
 
-ax :=      ["60909,7196,9252",1,3,2,3,3,3,4,3,5,3,1,6,2,6,3,6,4,6,5,6,1,9,2,9,3,9,4,9,5,9,6,9,1,12,2,12,3,12,4,12,5,12,6,12,1,15,2,
-15,3,15,4,15,5,15,6,15,7,15,2,18,3,18,4,18,5,18,6,18,7,18,2,21,3,21,4,21,5,21,6,21]
+ax :=      ["0,0,0",0,4,1,4,2,4,156,49,161,49,164,49,169,49,172,49,177,49,180,49]
 
-if ax[1] := ("60909,7196,9252") then {
+(aq := ax[2],bx := ax[4],cx := ax[6])
+(dx := ax[4],ex := ax[5],fx := ax[6])
+(gx := ax[7],hx := ax[8],ix := ax[9])
 
-y := 1.5
+if ax[1] := ("0,0,0") then {
 
-}
+y := 1
 
 #c := colorTable(jq)
 
-every y := 1 to #ax[1] do{
+every x := 1 to (aq||bx||cx) do{
 
-every x := 1 to ax[2,4,6,8,10] do{
-every z := 1 to ax[3,5,7,9,11] do{ 
+z := 1 
 
-inpglsphere01(x,y,z,.5,"blue")
+inpglcube01(x,y,z,.5,"blue")
 
-}
+#}
 }
 }
 
@@ -1361,49 +1366,6 @@ return()
 end
 
 ###############################################
-
-link lists
-link wopen
-
-procedure mainq(args)
-   local colors, width, height, x, y, c
-
-   WOpen("image=" || args[1]) | stop("*** cannot open image")
-
-   colors := table()
-
-   width := WAttrib("width")
-   height := WAttrib("height")
-
-   x := y := 0
-
-   #  Build table of argument lists for colors
-
-   every c := Pixel() do {
-      x +:= 1
-      if x % width = 0 then {
-         x := 0
-         y +:= 1
-         }
-      /colors[c] := []			# new color
-      put(colors[c], x, y)
-      }
-
-   
-   write("pixels:=[")
-
-   every c := key(colors) do {
-      push(colors[c], c)
-      write(limage(colors[c]), ",")
-      }
-
-   write("[", width, ",", height, ",", *colors,  "]")
-   write("]")
-
-end
-
-
-
 
 
 
