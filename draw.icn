@@ -17,8 +17,8 @@ y:=&y
 &rpress | &rdrag: {
 EraseArea(&x - 2, &y - 2,5,5)
 }
-"q": Fg("black")
-"w": Fg("red")
+"g": Fg("black")
+"h": Fg("red")
 "a": Fg("green")
 "s": Fg("blue")
 "z": WriteImage("fg01.png")

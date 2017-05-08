@@ -25,6 +25,7 @@ link interact
 link random
 link printf
 link io
+link lists
 
 #########################################################
 
@@ -131,7 +132,7 @@ end
 
 procedure snapPic()
 
-WriteImage("fg01.png")#change as needed
+WriteImage("fg02.png")#change as needed
              
 end
 
@@ -1336,82 +1337,92 @@ Fg(dad)
 end
 
 ############################################################
+############################################################
+#begin vox draw
+
+procedure maind()
+local x, y
+WOpen("size=20,20") 
+repeat {
+case Event() of {
+&lpress: {
+DrawPoint(&x, &y)
+x :=&x
+y:=&y
+}
+&ldrag: {
+DrawLine(x, y, &x, &y)
+x :=&x
+y:=&y
+}
+&rpress | &rdrag: {
+EraseArea(&x - 2, &y - 2,5,5)
+}
+"g": Fg("black")
+"h": Fg("red")
+"a": Fg("green")
+"s": Fg("blue")
+"z": WriteImage("fg01.png")
+"q": exit()
+}
+}
+return()
+end
+
+##############################################
+
+procedure mainp()
+   local colors, width, height, x, y, c
+
+   WOpen("image=" || "fg01.png") | stop("*** own a cat")
+
+   colors := table()
+
+   width := WAttrib("width")
+   height := WAttrib("height")
+
+   x := y := 0
+
+   every c := Pixel() do {
+      x +:= 1
+      if x % width = 0 then {
+         x := 0
+         y +:= 1
+         }
+      /colors[c] := []			
+      put(colors[c], x, y)
+      }
+
+     f := open("input.txt","w")
+     every c := key(colors) do {
+      push(colors[c], c)
+      write(f,limage(colors[c]))
+      }
+return()
+
+end
+
+####################################################
 
 procedure iscan()
 
-ax := ["0,0,0",26,17,27,17,26,18,28,18,29,19,30,20,30,21,31,22,31,23,31,24,31,25,31,26,32,27,33,27,33,28,34,29,34,30,35,30,35]
+write(readlinea("input.txt",1)|"failed")
+write(readlinea("input.txt",2)|"failed")
 
-aq := ["65535,0,0",32,18,32,19,32,20,32,21,32,22,32,23,32,24,33,24,33,25,33,26,34,26,35,26,36,27,37,27,37,28,38,28,39,29]
+#(ax := ct[1],bx := ct[2])
+#procedure cube01(at)
+#(ax := at[1],bx := at[2],cx := at[3])
+#(dx := at[4],ex := at[5],fx := at[6])
+#(gx := at[7],hx := at[8],ix := at[9])
+#(jx := at[10],jq := at[11])
+#c := colorTable(jq)
+#x := (ax||bx||cx) 
+#if ax[1] := ("0,0,0") then {
+#xy := 0
+#}
 
-az := ["0,65535,0",36,12,35,13,35,14,35,15,35,16,35,17,35,18,35,19,35,20,35,21,35,22,36,23,37,23,37,24,38,25,39,26,39,27]
-
-ay := ["0,0,65535",37,15,37,16,37,17,38,17,38,18,39,19,40,19,40,20,41,21,42,21,42,22,43,23,43,24,43,25,43,26,44,27,45,28,46,29
-]
-
-
-if ax[1] := ("0,0,0") then {
-
-xy := 0
-
-}
-
-if aq[1] := ("65535,0,0") then {
-
-qy := 1
-
-}
-
-if az[1] := ("0,65535,0") then {
-
-zy := 2
-
-}
-
-if ay[1] := ("0,0,65535") then {
-
-yy := 3
-
-}
-
-inpglcube01(ax[2],xy,ax[3],1,"blue")
-inpglcube01(ax[4],xy,ax[5],1,"blue")
-inpglcube01(ax[6],xy,ax[7],1,"blue")
-inpglcube01(ax[8],xy,ax[9],1,"blue")
-inpglcube01(ax[10],xy,ax[11],1,"blue")
-inpglcube01(ax[12],xy,ax[13],1,"blue")
-inpglcube01(ax[14],xy,ax[15],1,"blue")
-inpglcube01(ax[16],xy,ax[17],1,"blue")
-inpglcube01(ax[18],xy,ax[19],1,"blue")
-
-inpglcube01(aq[2],qy,aq[3],1,"blue")
-inpglcube01(aq[4],qy,aq[5],1,"blue")
-inpglcube01(aq[6],qy,aq[7],1,"blue")
-inpglcube01(aq[8],qy,aq[9],1,"blue")
-inpglcube01(aq[10],qy,aq[11],1,"blue")
-inpglcube01(aq[12],qy,aq[13],1,"blue")
-inpglcube01(aq[14],qy,aq[15],1,"blue")
-inpglcube01(aq[16],qy,aq[17],1,"blue")
-inpglcube01(aq[18],qy,aq[19],1,"blue")
-
-inpglcube01(az[2],zy,az[3],1,"blue")
-inpglcube01(az[4],zy,az[5],1,"blue")
-inpglcube01(az[6],zy,az[7],1,"blue")
-inpglcube01(az[8],zy,az[9],1,"blue")
-inpglcube01(az[10],zy,az[11],1,"blue")
-inpglcube01(az[12],zy,az[13],1,"blue")
-inpglcube01(az[14],zy,az[15],1,"blue")
-inpglcube01(az[16],zy,az[17],1,"blue")
-inpglcube01(az[18],zy,az[19],1,"blue")
-
-inpglcube01(ay[2],yy,ay[3],1,"blue")
-inpglcube01(ay[4],yy,ay[5],1,"blue")
-inpglcube01(ay[6],yy,ay[7],1,"blue")
-inpglcube01(ay[8],yy,ay[9],1,"blue")
-inpglcube01(ay[10],yy,ay[11],1,"blue")
-inpglcube01(ay[12],yy,ay[13],1,"blue")
-inpglcube01(ay[14],yy,ay[15],1,"blue")
-inpglcube01(ay[16],yy,ay[17],1,"blue")
-inpglcube01(ay[18],yy,ay[19],1,"blue")
+#inpglcube01(ax[2],xy,ax[3],1,"blue")
+#inpglcube01(ax[4],xy,ax[5],1,"blue")
 
 return()
 
@@ -1419,5 +1430,11 @@ end
 
 ###############################################
 
+procedure readlinea(f,n)                         # return n'th line of file f
+f := open(\f,"r") | fail                        # open file
+every  i := n & line := |read(f) \ n do i -:= 1  #  <== here
+close(f)
+if i = 0 then return line
+end
 
 
