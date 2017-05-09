@@ -413,7 +413,8 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
 
    ########################################################
 
-   method on_text_button_10(ev)   
+   method on_text_button_10(ev)
+   maind()   
    end   
 
    method on_text_button_11(ev)
