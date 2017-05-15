@@ -5,7 +5,7 @@ link printf
 procedure main()
    local colors, width, height, x, y, c
 
-   WOpen("image=" || "fg01.png") | stop("*** own a cat")
+   WOpen("image=" || "i.xpm") | stop("*** own a cat")
 
    colors := table()
 
