@@ -46,8 +46,8 @@ procedure main(argv)
    colors := [ "red", "green", "blue" ]
    i := 1
    XBM := ".xpm"
-   WIDTH  := 32
-   HEIGHT := 32
+   WIDTH  := 99
+   HEIGHT := 99
    if *argv>0 & argv[1][1:5]=="-geo" then {
       i +:= 1
       if *argv>1 then argv[2] ? {
