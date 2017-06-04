@@ -167,11 +167,11 @@ procedure PresetPlane(a)
 
 #WOpen("fg3d", "gl", "size=1000,700", "bg=black") | stop("can't open window")
 
-Fg("red")
+#Fg("red")
 
-DrawSphere(a,1,1,1)
+#DrawSphere(a,1,1,1)
 
-#FillPolygon(-15,1,15,15,0,15,15,-1,-15,-15,0,-15)
+FillPolygon(-15,1,15,15,0,15,15,-1,-15,-15,0,-15)
 
 end
 
@@ -1442,6 +1442,10 @@ procedure inpgltexsphere01(x,y,z,r,tex)
 WAttrib("texmode=on")
 
 WAttrib("texture="||(tex)||".png")
+
+PushMatrix()
+
+Rotate(-90,1.0,0,0)
    
 DrawSphere(x,y,z,r)
 
@@ -1506,7 +1510,7 @@ s1 := jx
 s2 := jy
 c := jq
 
-inpglcylindertex01(x,y,z,p1,s1,s2,c)
+inpglcylindertex02(x,y,z,p1,s1,s2,c)
 
 return()
 
@@ -1514,7 +1518,7 @@ end
 
 ######################################################
 
-procedure inpglcylindertex01(ipx,ipy,ipz,ips,ipq,ipa,tex)
+procedure inpglcylindertex02(ipx,ipy,ipz,ips,ipq,ipa,tex)
 
 WAttrib("texmode=on")
 
@@ -1530,7 +1534,7 @@ end
 
 ##################################################
 
-procedure texplane01(at)
+procedure texplane02(at)
 
 (ax := at[1],bx := at[2],cx := at[3])
 (dx := at[4],ex := at[5],fx := at[6])
@@ -1568,20 +1572,20 @@ pzzzz := (ggggx||hhhhx||iiiix)
 
 c := jq
 
-inptexcyl(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,c)
+inptexpln(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,c)
 
 end
 
 ####################################################
 
 procedure
-inptexcyl(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,tex)
+inptexpln(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,tex)
 
 WAttrib("texmode=on")
 
-WAttrib("texture="||(tex)||".png")
+WAttrib("texture="||(tex)||".png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
 
-FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+FillPolygon(0+px,1+py,0+pz,1+pxx,1+pyy,0+pzz,1+pxxx,0+pyyy,0+pzzz,0+pxxxx,0+pyyyy,0+pzzzz)
 
 WAttrib("texmode=off") 
 
@@ -1592,6 +1596,39 @@ end
 ############################################################
 ############################################################
 
+procedure edittexskysphere05()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=8.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure edittexgroundplane05()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=9.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+end
+
+############################################################
+############################################################
 
 #begin voronoi experiment
 
