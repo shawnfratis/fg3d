@@ -1,0 +1,55 @@
+These are usage instructions for the very Beta, in-progress version of fg3d.
+
+If you do not have an executable version, continue reading. Otherwise skip to Section 2-.
+
+Section 1-
+
+To build from source:
+https://github.com/shawnfratis/fg3d
+
+To build you will need the Unicon compiler. More info here:
+https://unicon.sourceforge.io/
+
+pme.icn and poll.icn must be compiled as separate .exe's. 
+
+voxw.icn, uw.icn, w.icn and s.icn must be compiled together. 
+
+Everything, including .png's, must be in the same folder.
+
+Section 2-
+
+Unzip all contents to one folder.
+
+Double-click fg3d.exe. 
+
+Go to File/Load Model and then load warrior.x (presently, fg3d will not run without this file).
+
+On the left hand side are numerical input boxes. On the bottom of the screen are function buttons. Labels marked "label" and "button" presently don't do anything.
+
+Animation controls and message box also are not presently functional, but will be in the future.
+
+Section 3-
+
+To create a red cube,place your cursor in the "cube" entry box and enter 00100100111.
+This will place a red cube in the scene.
+
+The first three numbers are the X value (001).
+The next three numbers are the Y value (001).
+The next three numbers after that are the Z value (001).
+The 10th number is the size of the cube (1).
+The last number is the color, which in this case is red (1).
+
+Numbers must be entered in order with no spaces, hashes or commas. X,Y and Z values are 3 digits each. Size and color are 1 digit each (1-9).
+
+This number method is the same for sphere. Other functions vary slightly.
+
+Section 4-
+
+VOX RAD
+
+VOX R ARRAY
+
+
+
+
+
