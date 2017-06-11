@@ -362,8 +362,6 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
    maind()   
    end 
   
-   ########################################################
-
    method on_text_button_11(ev)
    edittexskysphere05()
    end
@@ -371,6 +369,24 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
    method on_text_button_12(ev)
    edittexgroundplane05()
    end
+   
+   method on_text_field_12(ev)
+   texeditsphere01(text_field_12.get_contents())
+   end
+
+   method on_tfi2(ev)
+   texeditcube01(tfi2.get_contents())
+   end
+
+   method on_tfi4(ev)
+   cyltex01(tfi4.get_contents())
+   end
+
+   method on_tfi3(ev)
+   texplane02(tfi3.get_contents())
+   end
+
+   ###########################################################
 
    method on_text_button_13(ev)
    end
@@ -384,10 +400,6 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
    method on_text_button_9(ev)
    end
 
-   method on_text_field_12(ev)
-   texeditsphere01(text_field_12.get_contents())
-   end
-
    method on_text_field_13(ev)
    end
 
@@ -399,8 +411,6 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
 
    method on_text_field_16(ev)
    end
-
-   ###########################################################
 
    method on_text_button_15(ev)
    end
@@ -429,14 +439,6 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
    method on_text_field_9(ev)
    end
 
-   method on_tfi2(ev)
-   texeditcube01(tfi2.get_contents())
-   end
-
-   method on_tfi4(ev)
-   cyltex01(tfi4.get_contents())
-   end
-
    method on_text_field_21(ev)
    end
 
@@ -449,12 +451,10 @@ class U3DViewer : Dialog(view_model3d, mFile, miLoadModel, miQuit,
    method on_text_field_24(ev)
    end
 
-   method on_tfi3(ev)
-   texplane02(tfi3.get_contents())
-   end
+   ####################################################   
 
    method setup()
-      self.set_attribs("size=1400,800", "bg=very dark gray", "label=fg3d gui TEST")
+      self.set_attribs("size=1400,800", "bg=very dark gray", "label=fg3d")
       menubar := MenuBar()
       menubar.set_pos("0", "0")
       mFile := Menu()

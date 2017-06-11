@@ -1,8 +1,12 @@
-These are usage instructions for the very Beta, in-progress version of fg3d.
+These are usage instructions for the VERY beta, in-progress version of fg3d.
 
 If you do not have an executable version, continue reading. Otherwise skip to Section 2-.
 
+###############################################################################
+
 Section 1-
+
+Basic build:
 
 To build from source:
 https://github.com/shawnfratis/fg3d
@@ -10,13 +14,17 @@ https://github.com/shawnfratis/fg3d
 To build you will need the Unicon compiler. More info here:
 https://unicon.sourceforge.io/
 
-pme.icn and poll.icn must be compiled as separate .exe's. 
-
 voxw.icn, uw.icn, w.icn and s.icn must be compiled together. 
 
-Everything, including .png's, must be in the same folder.
+pme.icn and poll.icn must be compiled as separate .exe's. 
+
+Everything, including .png's and .exe's, must be in the same folder.
+
+###############################################################################
 
 Section 2-
+
+Basic install:
 
 Unzip all contents to one folder.
 
@@ -28,10 +36,13 @@ On the left hand side are numerical input boxes. On the bottom of the screen are
 
 Animation controls and message box also are not presently functional, but will be in the future.
 
+###############################################################################
+
 Section 3-
 
-To create a red cube,place your cursor in the "cube" entry box and enter 00100100111.
-This will place a red cube in the scene.
+Basic example:
+
+To create a red cube, place your cursor in the "cube" entry box and enter 00100100111. This will place a red cube in the scene.
 
 The first three numbers are the X value (001).
 The next three numbers are the Y value (001).
@@ -43,11 +54,160 @@ Numbers must be entered in order with no spaces, hashes or commas. X,Y and Z val
 
 This number method is the same for sphere. Other functions vary slightly.
 
+###############################################################################
+
 Section 4-
 
+Entry boxes:
+
 VOX RAD
+Voxel radii: 00100100112. XYZ values set objects in radial pattern. Last two numbers set size and color (currently set to spheres).
 
 VOX R ARRAY
+Voxel random array: 00100100112. XYZ values set cubes in random array. Last two numbers set size and color.
+
+VOX ARRAY
+Voxel array: 00100100112. XYZ values set cubes in array. Last two numbers set size and color.
+
+VOX T ARRAY
+Voxel trigonemetric array: 001001001123. XYZ values set cubes in array. next two numbers set size and color. Last number sets trig value.
+
+POLY ARRAY
+Polygon array: 111010101010101010101010101010101234. First 2 numbers are X and Z values. Next 30 numbers are Y values for each polygon vertice (2 numbers for each vertice, e.g. 1.0. You do not need to add the decimal). Last four numbers are color values averaged across 4 polygons. Creates a mesh with 16 triangles.
+
+CUBE
+Cube: 00100100112. XYZ values of single cube. Last two numbers set size and color.
+
+SPHERE
+Sphere: 00100100112. XYZ values of single sphere. Last two numbers set size and color.
+
+CYLINDER
+Cylinder: 0010010011234. XYZ values of cylinder. 10th number is height of cylinder. 11th and 12th numbers are the sizes of top and bottom of cylinder. Last number is color.
+
+R VOX SPHERES
+Random voxel spheres: 00100100112. XYZ values of random sphere array. Last two numbers set size and color.
+
+VOX SPHERES
+Voxel spheres: 00100100112. XYZ values of sphere array. Last two numbers set size and color.
+
+TEX SPHERE
+Texture sphere: 00100100112. XYZ values of single sphere. Last two numbers set size and texture. Textures default to UV grid (1 thru 9). You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
+
+TEX CUBE
+Texture cube: 00100100112. XYZ values of single cube. Last two numbers set size and texture. Textures default to UV grid (1 thru 9). You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
+
+TEX PLNE
+Texture plane: 0010010010010010010010010010010010011. XYZ values of 4 plane vertices (clockwise direction). Last number sets texture. Textures default to UV grid (1 thru 9). You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
+
+TEX CYL
+Texture cylinder: 0010010011234. XYZ values of cylinder. Next 3 numbers set height, top and bottom values. Last number sets texture. Textures default to UV grid (1 thru 9). You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
+
+Function buttons:
+
+TEX PLANE 1
+Basic ground plane with ground map and sky-textured environment sphere.
+
+SKY PLANE 1
+Basic sky plane with sky texture.
+
+SKY S 2
+Sky sphere with gradient color.
+
+TEX PLANE 2
+Ground plane with various colors.
+
+SKY PLANE 2
+Sky plane with various colors.
+
+PME 
+Pix-map editor (very experimental!). Use three button mouse to draw top-view of cube layout. Colors represent 3 levels:green = bottom, blue = middle, red = top. After drawing, press s, then enter "i" into prompt. Press enter. This saves the pix-map. Close pix-map editor afterwords.
+
+POLL
+After closing pix-map editor, press poll button to generate .xpm file.
+
+VOX F IMG
+After pressing poll, this generates cubes in the scene from the pix-map (you might have to navigate to find them).
+
+EDIT SPHERE
+Creates a sky sphere with UV grid. You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
+
+EDIT PLNE
+Creates ground plane with UV grid. You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
+
+###############################################################################
+
+Section 5-
+
+Navigation:
+	  
+Up arrow = camera forward
+Down arrow = camera reverse
+	  
+Left arrow = camera rotate left
+Right arrow = camera rotate right
+
+Page Up = camera tilt up
+Page Down = camera tilt down
+	  
+"w" = camera slide right
+"W" = camera slide left
+"e" = camera elevate up
+"E" = camera elevate down
+	  
+"3" = set camera move increments up
+"4" = set camera move increments down
+
+###############################################################################
+
+Section 6-
+
+Colors:
+
+1=red, 2=green, 3=blue, 4=yellow, 5=orange, 6=magenta, 7=gray, 8=light gray, 9=dark gray
+		  	  
+
+###############################################################################
+
+Section 7-
+
+Present issues-stuff to be added/fixed in the future:
+
+X,Y and Z only work in plus (+) directions from origin point.
+
+Currently don't have a lot of basic software functions such as save, undo, copy/paste etc. 
+
+Image saving at the moment does not work. One cheat you can do for now is print screen, and then paste into your favorite image editor.
+
+The order of shape generation seems to affect how colors and textures work. In the case of textured objects, try this method: tex cylinder first, tex cubes and tex spheres second, tex sky and tex ground third. Tex plane order doesn't seem to matter. 
+
+Most of the time, if numbers are not entered correctly the program will crash.
+
+Sometimes when generating a lot of objects, program will appear to freeze. Usually just waiting a bit will solve this.
+
+No controls for lights or shaders.
+
+.x model input not working correctly.
+
+Animation functions currently disabled.
+
+The pix-map editor (pme) only works with a certain amount of digits, so dont use squares on the top and left side of the screen (10 in), and dont use less than 10 squares for each color. You must use all three colors. 
+
+No translation controls.
+
+There are a lot more additions and issues...too many to mention :) , by I will address as many of these as I can.
+
+########################################################################################
+
+shawnfratis@gmail.com
+
+
+
+
+
+
+
+
+
 
 
 
