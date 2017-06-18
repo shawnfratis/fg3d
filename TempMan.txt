@@ -134,6 +134,15 @@ Creates a sky sphere with UV grid. You can change the texture by overwriting the
 EDIT PLNE
 Creates ground plane with UV grid. You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
 
+3D REF GRID
+Gives you a quick XYZ reference.
+
+REFRESH
+Refresh the screen.
+
+CLEAR SCRN
+Clear all contents.
+
 ###############################################################################
 
 Section 5-

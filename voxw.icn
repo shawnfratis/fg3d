@@ -866,6 +866,38 @@ end
 
 ####################################################
 
+procedure tdref()
+
+WOpen("image=rgrid.gif")
+
+end
+
+##################################################
+
+procedure refresh()
+
+Refresh()
+
+end
+
+##################################################
+
+procedure cls()
+
+EraseArea()
+
+end
+
+##################################################
+
+procedure listx()
+
+WindowContents()
+
+end
+
+##################################################
+ 
 procedure iscan()
 
 a := write(readlinea("input.txt",1)|"failed")
@@ -1028,7 +1060,7 @@ WAttrib("texture="||(tex)||".png")
 
 PushMatrix()
 
-Rotate(-90,1.0,0,0)
+Rotate(-5.0,1.0,0,0)
    
 DrawSphere(x,y,z,r)
 
