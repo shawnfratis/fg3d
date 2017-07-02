@@ -102,6 +102,12 @@ Texture plane: 0010010010010010010010010010010010011. XYZ values of 4 plane vert
 TEX CYL
 Texture cylinder: 0010010011234. XYZ values of cylinder. Next 3 numbers set height, top and bottom values. Last number sets texture. Textures default to UV grid (1 thru 9). You can change the texture by overwriting the .png file in the main folder (backup the defaults in a separate folder!).
 
+R TEX SPHERE
+Random textured spheres.
+
+R TEX CUBE
+Random textured cubes.
+
 Function buttons:
 
 TEX PLANE 1
@@ -137,8 +143,8 @@ Creates ground plane with UV grid. You can change the texture by overwriting the
 3D REF GRID
 Gives you a quick XYZ reference.
 
-REFRESH
-Refresh the screen.
+FLUSH
+Flush memory.
 
 CLEAR SCRN
 Clear all contents.
