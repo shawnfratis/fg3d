@@ -47,7 +47,7 @@ method render()
   &window := w3d
   EraseArea()
   #Fg("red")
-  WAttrib("light0=diffuse white; ambient white; specular white; position 5.0, 5.0, 5.0")
+  #WAttrib("light0=diffuse white; ambient white; specular white; position 5.0, 5.0, 5.0")
   #WAttrib("light1=diffuse white; ambient white; specular white; position 5.0, 5.0, -5.0")
   WAttrib("light0=on")
   WAttrib("light1=on")
